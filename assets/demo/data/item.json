@@ -22357,7 +22357,7 @@
   "name": "Royal Knight's Broadsword [1]",
   "unidName": "Two-Handed Sword",
   "resName": "T_Sword_Of_Kingdom",
-  "description": "^cc0000[ROZ] Not yet in the calculator:^000000\nIncreases ASPD (After Attack Delay -10%), CRIT +5.\nAt +7 refine: increases Critical Damage by 15%.\nAt +9 refine: additionally increases Critical Damage by 15%, ASPD +1.\nHeavy greatsword once wielded by the Knight of Honor.\n^FFFFFF_^000000\nIncreases ASPD (After Attack Delay -10%), CRIT +5.\nAt +7 refine: increases Critical Damage by 15%.\nAt +9 refine: additionally increases Critical Damage by 15%, ASPD +1.\n^777777--------------------------^000000\nType : ^777777Two-Handed Sword^000000\nATK : ^777777165^000000\nWeight : ^777777150^000000\nWeapon Level : ^7777773^000000\nRequired Level : ^77777760^000000\nEquippable by : ^777777Swordsman Class^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nRoyal Knight's Broadsword\nดาบใหญ่สองมืออันหนักอึ้งที่\nอัศวินผู้ทรงเกียรติเคยใช้\nASPD +10%, CRI +5\nเมื่ออัปเกรดถึงขั้น 7 จะเพิ่ม\nCritical Damage 15%\nเมื่ออัปเกรดถึงขั้น 9 จะเพิ่ม\nCritical Damage 15%\nและ ASPD +1\n^FFFFFF_^000000\nประเภท : ^777777Two-Handed Sword^000000\nพลังโจมตี : ^777777165^000000\nน้ำหนัก : ^777777150^000000\nเลเวลอาวุธ : ^7777773^000000\nเลเวลที่ต้องการ : ^77777760^000000\nอาชีพที่สวมใส่ได้ : ^777777Swordman Class^000000",
+  "description": "^cc0000[ROZ] Not yet in the calculator:^000000\nAt +7 refine: increases Critical Damage by 15%.\nAt +9 refine: additionally increases Critical Damage by 15%, ASPD +1.\nHeavy greatsword once wielded by the Knight of Honor.\n^FFFFFF_^000000\nIncreases ASPD (After Attack Delay -10%), CRIT +5.\nAt +7 refine: increases Critical Damage by 15%.\nAt +9 refine: additionally increases Critical Damage by 15%, ASPD +1.\n^777777--------------------------^000000\nType : ^777777Two-Handed Sword^000000\nATK : ^777777165^000000\nWeight : ^777777150^000000\nWeapon Level : ^7777773^000000\nRequired Level : ^77777760^000000\nEquippable by : ^777777Swordsman Class^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nRoyal Knight's Broadsword\nดาบใหญ่สองมืออันหนักอึ้งที่\nอัศวินผู้ทรงเกียรติเคยใช้\nASPD +10%, CRI +5\nเมื่ออัปเกรดถึงขั้น 7 จะเพิ่ม\nCritical Damage 15%\nเมื่ออัปเกรดถึงขั้น 9 จะเพิ่ม\nCritical Damage 15%\nและ ASPD +1\n^FFFFFF_^000000\nประเภท : ^777777Two-Handed Sword^000000\nพลังโจมตี : ^777777165^000000\nน้ำหนัก : ^777777150^000000\nเลเวลอาวุธ : ^7777773^000000\nเลเวลที่ต้องการ : ^77777760^000000\nอาชีพที่สวมใส่ได้ : ^777777Swordman Class^000000",
   "slots": 1,
   "itemTypeId": 1,
   "itemSubTypeId": 258,
@@ -22371,7 +22371,14 @@
   "usableClass": [
    "Swordman"
   ],
-  "script": {}
+  "script": {
+   "aspdPercent": [
+    "10"
+   ],
+   "cri": [
+    "5"
+   ]
+  }
  },
  "420455": {
   "id": 420455,
@@ -22998,10 +23005,10 @@
    ],
    "luk": [
     "-3",
-    "3"
+    "EQUIP[VIT Exchange Stone (Middle)]3"
    ],
    "agi": [
-    "3"
+    "EQUIP[VIT Exchange Stone (Middle)]3"
    ]
   }
  },
@@ -23512,10 +23519,10 @@
    ],
    "str": [
     "-3",
-    "3"
+    "EQUIP[AGI Exchange Stone (Middle)]3"
    ],
    "luk": [
-    "3"
+    "EQUIP[AGI Exchange Stone (Middle)]3"
    ]
   }
  },
@@ -23937,10 +23944,10 @@
    ],
    "agi": [
     "-3",
-    "3"
+    "EQUIP[DEX Exchange Stone (Middle)]3"
    ],
    "vit": [
-    "3"
+    "EQUIP[DEX Exchange Stone (Middle)]3"
    ]
   }
  },
@@ -25063,10 +25070,10 @@
     "4"
    ],
    "hit": [
-    "5"
+    "EQUIP[DEF Stone (Middle)]5"
    ],
    "flee": [
-    "5"
+    "EQUIP[DEF Stone (Middle)]5"
    ]
   }
  },
@@ -37433,10 +37440,10 @@
    ],
    "dex": [
     "-3",
-    "3"
+    "EQUIP[STR Exchange Stone (Middle)]3"
    ],
    "int": [
-    "3"
+    "EQUIP[STR Exchange Stone (Middle)]3"
    ]
   }
  },
@@ -49484,10 +49491,10 @@
    ],
    "int": [
     "-3",
-    "3"
+    "EQUIP[LUK Exchange Stone (Middle)]3"
    ],
    "str": [
-    "3"
+    "EQUIP[LUK Exchange Stone (Middle)]3"
    ]
   }
  },
@@ -52197,7 +52204,7 @@
   "name": "Hill Patrol Boots [1]",
   "unidName": "Shoes",
   "resName": "룬부츠",
-  "description": "^cc0000[ROZ] Not yet in the calculator:^000000\nMHP + 200, MSP + 75, Increases Attack Speed (reduces attack delay by 5%).\nBoots of a wanderer roaming the rugged ridges of Nordfeld.\nMHP + 200, MSP + 75, Increases Attack Speed (reduces attack delay by 5%).\nAt Refine Level 7, FLEE + 15, HIT +10.\nType : ^777777Shoes^000000\nDEF : ^77777710^000000\nWeight : ^77777750^000000\nRequired Level : ^77777750^000000\nEquippable by : ^777777All Jobs^000000\n^0000ff──────── ภาษาไทย ────────^000000\nHill Patrol Boots\nรองเท้าบูตส์ของพลลาดตระเวน\nที่ออกสำรวจไปตามสันเขาอัน\nขรุขระของ Nordfeld\nMaxHP +200, MaxSP +75,\nเพิ่มความเร็วในการโจมตี\n(ลดดีเลย์หลังโจมตี 5%)\nเมื่ออัปเกรดถึงขั้น 7,\nFLEE + 15, HIT +10\n^FFFFFF_^000000\nประเภท : ^777777Footgear^000000\nพลังป้องกัน : ^77777710^000000\nน้ำหนัก : ^77777750^000000\nเลเวลที่ต้องการ : ^77777750^000000\nอาชีพที่สวมใส่ได้ : ^777777ทุกอาชีพ^000000",
+  "description": "Boots of a wanderer roaming the rugged ridges of Nordfeld.\nMHP + 200, MSP + 75, Increases Attack Speed (reduces attack delay by 5%).\nAt Refine Level 7, FLEE + 15, HIT +10.\nType : ^777777Shoes^000000\nDEF : ^77777710^000000\nWeight : ^77777750^000000\nRequired Level : ^77777750^000000\nEquippable by : ^777777All Jobs^000000\n^0000ff──────── ภาษาไทย ────────^000000\nHill Patrol Boots\nรองเท้าบูตส์ของพลลาดตระเวน\nที่ออกสำรวจไปตามสันเขาอัน\nขรุขระของ Nordfeld\nMaxHP +200, MaxSP +75,\nเพิ่มความเร็วในการโจมตี\n(ลดดีเลย์หลังโจมตี 5%)\nเมื่ออัปเกรดถึงขั้น 7,\nFLEE + 15, HIT +10\n^FFFFFF_^000000\nประเภท : ^777777Footgear^000000\nพลังป้องกัน : ^77777710^000000\nน้ำหนัก : ^77777750^000000\nเลเวลที่ต้องการ : ^77777750^000000\nอาชีพที่สวมใส่ได้ : ^777777ทุกอาชีพ^000000",
   "slots": 1,
   "itemTypeId": 2,
   "itemSubTypeId": 516,
@@ -52212,6 +52219,15 @@
    "all"
   ],
   "script": {
+   "hp": [
+    "200"
+   ],
+   "sp": [
+    "75"
+   ],
+   "aspdPercent": [
+    "5"
+   ],
    "flee": [
     "7===15"
    ],

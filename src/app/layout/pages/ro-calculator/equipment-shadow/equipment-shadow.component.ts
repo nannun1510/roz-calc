@@ -1,3 +1,4 @@
+import { flattenOptionList } from 'src/app/utils/flatten-option-list';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { getEnchants } from 'src/app/constants';
 import { ItemModel } from 'src/app/models/item.model';
@@ -23,6 +24,10 @@ export class EquipmentShadowComponent implements OnInit, OnChanges {
   @Input() itemList: DropdownModel[] = [];
   @Input() refineList: DropdownModel[] = [];
   @Input() optionList: any[] = [];
+
+  get flatOptions() {
+    return flattenOptionList(this.optionList);
+  }
 
   @Output() selectItemChange = new EventEmitter<EventEmitterResultModel>();
   @Output() clearItemEvent = new EventEmitter<string>();

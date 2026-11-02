@@ -207,6 +207,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
         'New ROZ look: dark navy and gold theme, section headers (Character / Equipment / Costume / Guild), panels and Thai-friendly font.',
         'Prefer the old look? Click the theme button at the top right to switch to Classic (it is remembered).',
         'Page fits smaller screens automatically; item details show in a hover card that stays on screen.',
+        'Option slots now have a search box: type e.g. "demi", "atk %", "str +5" or "pene".',
       ],
     },
     {

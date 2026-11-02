@@ -130,19 +130,31 @@
       </div>
 
       <div class="col-3">
-        <p-cascadeSelect
+        <p-dropdown
           [(ngModel)]="optionValue"
           [disabled]="!itemId"
-          [options]="optionList"
-          optionValue="value"
-          optionGroupLabel="label"
-          optionLabel="label"
-          [optionGroupChildren]="['children', 'children']"
           placeholder="Options"
           [showClear]="true"
           (onChange)="onOptionChange($event)"
           (onClear)="onOptionChange($event)"
-        ></p-cascadeSelect>
+          [options]="flatOptions"
+          optionValue="value"
+          optionLabel="label"
+          [filter]="true"
+          filterBy="search"
+          filterPlaceholder="Search option (e.g. atk, race, str)"
+          [resetFilterOnHide]="true"
+          [autoDisplayFirst]="false"
+          [virtualScroll]="true"
+          [virtualScrollItemSize]="32"
+          scrollHeight="320px"
+          appendTo="body"
+          panelStyleClass="roz-option-panel"
+        >
+          <ng-template let-o pTemplate="item">
+            <div class="roz-opt"><span>{{ o.label }}</span><small>{{ o.path }}</small></div>
+          </ng-template>
+        </p-dropdown>
       </div>
     </div>
   </div>

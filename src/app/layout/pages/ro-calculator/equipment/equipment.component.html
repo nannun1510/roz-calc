@@ -180,34 +180,58 @@
         </p-dropdown>
       </div>
       <div class="col-4" *ngIf="!isWeapon && totalExtraOption < 3" [hidden]="totalExtraOption < 1">
-        <p-cascadeSelect
+        <p-dropdown
           [(ngModel)]="option1Value"
           [disabled]="!itemId"
-          [options]="optionList"
-          optionValue="value"
-          optionGroupLabel="label"
-          optionLabel="label"
-          [optionGroupChildren]="['children', 'children', 'children']"
           placeholder="Option 1"
           [showClear]="true"
           (onChange)="onOptionChange('option1Value', $event)"
           (onClear)="onOptionChange('option1Value', $event)"
-        ></p-cascadeSelect>
+          [options]="flatOptions"
+          optionValue="value"
+          optionLabel="label"
+          [filter]="true"
+          filterBy="search"
+          filterPlaceholder="Search option (e.g. atk, race, str)"
+          [resetFilterOnHide]="true"
+          [autoDisplayFirst]="false"
+          [virtualScroll]="true"
+          [virtualScrollItemSize]="32"
+          scrollHeight="320px"
+          appendTo="body"
+          panelStyleClass="roz-option-panel"
+        >
+          <ng-template let-o pTemplate="item">
+            <div class="roz-opt"><span>{{ o.label }}</span><small>{{ o.path }}</small></div>
+          </ng-template>
+        </p-dropdown>
       </div>
       <div class="col-4" *ngIf="!isWeapon && totalExtraOption < 3" [hidden]="totalExtraOption < 2">
-        <p-cascadeSelect
+        <p-dropdown
           [(ngModel)]="option2Value"
           [disabled]="!itemId"
-          [options]="optionList"
-          optionValue="value"
-          optionGroupLabel="label"
-          optionLabel="label"
-          [optionGroupChildren]="['children', 'children', 'children']"
           placeholder="Option 2"
           [showClear]="true"
           (onChange)="onOptionChange('option2Value', $event)"
           (onClear)="onOptionChange('option2Value', $event)"
-        ></p-cascadeSelect>
+          [options]="flatOptions"
+          optionValue="value"
+          optionLabel="label"
+          [filter]="true"
+          filterBy="search"
+          filterPlaceholder="Search option (e.g. atk, race, str)"
+          [resetFilterOnHide]="true"
+          [autoDisplayFirst]="false"
+          [virtualScroll]="true"
+          [virtualScrollItemSize]="32"
+          scrollHeight="320px"
+          appendTo="body"
+          panelStyleClass="roz-option-panel"
+        >
+          <ng-template let-o pTemplate="item">
+            <div class="roz-opt"><span>{{ o.label }}</span><small>{{ o.path }}</small></div>
+          </ng-template>
+        </p-dropdown>
       </div>
 
       <div class="col-12" [hidden]="(enchant2List.length === 0 && enchant3List.length === 0 && enchant4List.length === 0) || !itemId">
@@ -334,64 +358,112 @@
       <div class="col-12" *ngIf="isWeapon || totalExtraOption >= 3">
         <div class="grid grid-nogutter">
           <div class="col-3" [hidden]="totalExtraOption < 1">
-            <p-cascadeSelect
+            <p-dropdown
               [(ngModel)]="option1Value"
               [disabled]="!itemId"
-              [options]="optionList"
-              optionValue="value"
-              optionGroupLabel="label"
-              optionLabel="label"
-              [optionGroupChildren]="['children', 'children', 'children']"
               placeholder="Option 1"
               [showClear]="true"
               (onChange)="onOptionChange('option1Value', $event)"
               (onClear)="onOptionChange('option1Value', $event)"
-            ></p-cascadeSelect>
+              [options]="flatOptions"
+              optionValue="value"
+              optionLabel="label"
+              [filter]="true"
+              filterBy="search"
+              filterPlaceholder="Search option (e.g. atk, race, str)"
+              [resetFilterOnHide]="true"
+              [autoDisplayFirst]="false"
+              [virtualScroll]="true"
+              [virtualScrollItemSize]="32"
+              scrollHeight="320px"
+              appendTo="body"
+              panelStyleClass="roz-option-panel"
+            >
+              <ng-template let-o pTemplate="item">
+                <div class="roz-opt"><span>{{ o.label }}</span><small>{{ o.path }}</small></div>
+              </ng-template>
+            </p-dropdown>
           </div>
           <div class="col-3" [hidden]="totalExtraOption < 2">
-            <p-cascadeSelect
+            <p-dropdown
               [(ngModel)]="option2Value"
               [disabled]="!itemId"
-              [options]="optionList"
-              optionValue="value"
-              optionGroupLabel="label"
-              optionLabel="label"
-              [optionGroupChildren]="['children', 'children', 'children']"
               placeholder="Option 2"
               [showClear]="true"
               (onChange)="onOptionChange('option2Value', $event)"
               (onClear)="onOptionChange('option2Value', $event)"
-            ></p-cascadeSelect>
+              [options]="flatOptions"
+              optionValue="value"
+              optionLabel="label"
+              [filter]="true"
+              filterBy="search"
+              filterPlaceholder="Search option (e.g. atk, race, str)"
+              [resetFilterOnHide]="true"
+              [autoDisplayFirst]="false"
+              [virtualScroll]="true"
+              [virtualScrollItemSize]="32"
+              scrollHeight="320px"
+              appendTo="body"
+              panelStyleClass="roz-option-panel"
+            >
+              <ng-template let-o pTemplate="item">
+                <div class="roz-opt"><span>{{ o.label }}</span><small>{{ o.path }}</small></div>
+              </ng-template>
+            </p-dropdown>
           </div>
           <div class="col-3" [hidden]="totalExtraOption < 3">
-            <p-cascadeSelect
+            <p-dropdown
               [(ngModel)]="option3Value"
               [disabled]="!itemId"
-              [options]="optionList"
-              optionValue="value"
-              optionGroupLabel="label"
-              optionLabel="label"
-              [optionGroupChildren]="['children', 'children', 'children']"
               placeholder="Option 3"
               [showClear]="true"
               (onChange)="onOptionChange('option3Value', $event)"
               (onClear)="onOptionChange('option3Value', $event)"
-            ></p-cascadeSelect>
+              [options]="flatOptions"
+              optionValue="value"
+              optionLabel="label"
+              [filter]="true"
+              filterBy="search"
+              filterPlaceholder="Search option (e.g. atk, race, str)"
+              [resetFilterOnHide]="true"
+              [autoDisplayFirst]="false"
+              [virtualScroll]="true"
+              [virtualScrollItemSize]="32"
+              scrollHeight="320px"
+              appendTo="body"
+              panelStyleClass="roz-option-panel"
+            >
+              <ng-template let-o pTemplate="item">
+                <div class="roz-opt"><span>{{ o.label }}</span><small>{{ o.path }}</small></div>
+              </ng-template>
+            </p-dropdown>
           </div>
           <div class="col-3" [hidden]="totalExtraOption < 4">
-            <p-cascadeSelect
+            <p-dropdown
               [(ngModel)]="option4Value"
               [disabled]="!itemId"
-              [options]="optionList"
-              optionValue="value"
-              optionGroupLabel="label"
-              optionLabel="label"
-              [optionGroupChildren]="['children', 'children', 'children']"
               placeholder="Option 4"
               [showClear]="true"
               (onChange)="onOptionChange('option4Value', $event)"
               (onClear)="onOptionChange('option4Value', $event)"
-            ></p-cascadeSelect>
+              [options]="flatOptions"
+              optionValue="value"
+              optionLabel="label"
+              [filter]="true"
+              filterBy="search"
+              filterPlaceholder="Search option (e.g. atk, race, str)"
+              [resetFilterOnHide]="true"
+              [autoDisplayFirst]="false"
+              [virtualScroll]="true"
+              [virtualScrollItemSize]="32"
+              scrollHeight="320px"
+              appendTo="body"
+              panelStyleClass="roz-option-panel"
+            >
+              <ng-template let-o pTemplate="item">
+                <div class="roz-opt"><span>{{ o.label }}</span><small>{{ o.path }}</small></div>
+              </ng-template>
+            </p-dropdown>
           </div>
         </div>
       </div>

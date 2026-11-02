@@ -224,3 +224,9 @@ html.roz-theme .img_monster { background: transparent !important; border-radius:
 /* item description panel keeps its white card (game colour codes are made for light bg) */
 html.roz-theme div[style*='background-color: #fff']:empty { display: none; }
 html.roz-theme div[style*='background-color: #fff'] { border-radius: 8px; }
+
+/* Searchable random-option dropdown (both themes) */
+.roz-option-panel { min-width: 320px !important; }
+.roz-option-panel .roz-opt { display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; width: 100%; }
+.roz-option-panel .roz-opt small { opacity: 0.6; font-size: 0.75rem; white-space: nowrap; }
+.roz-option-panel .p-dropdown-item { padding: 0.35rem 0.75rem !important; }

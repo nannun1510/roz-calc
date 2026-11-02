@@ -1,3 +1,4 @@
+import { flattenOptionList } from 'src/app/utils/flatten-option-list';
 import { prettyItemDesc } from 'src/app/utils/pretty-item-desc';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { DropdownModel } from '../../../../models/dropdown.model';
@@ -31,6 +32,10 @@ export class EquipmentComponent implements OnChanges, OnInit {
   @Input() cardList: DropdownModel[] = [];
   @Input() mapEnchant!: Map<string, ItemModel>;
   @Input() optionList: any[] = [];
+
+  get flatOptions() {
+    return flattenOptionList(this.optionList);
+  }
 
   @Output() selectItemChange = new EventEmitter<EventEmitterResultModel>();
   @Output() clearItemEvent = new EventEmitter<string>();

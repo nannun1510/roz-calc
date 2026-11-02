@@ -1,155 +1,18 @@
 <!doctype html>
-<!-- `ro-booting` trava a rolagem durante a abertura: o template do simulador é montado
-     atrás do splash e faz o documento crescer, o que fazia a barra de rolagem aparecer e
-     mudar de tamanho no meio do carregamento. Removida junto com o splash. -->
-<html lang="pt-BR" class="ro-booting">
+<html lang="en" data-critters-container>
   <head>
-    <meta charset="utf-8" />
-    <title>ROZ Global Damage Calculator — Ragnarok Zero (Alpha)</title>
-    <base href="./" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta
-      name="description"
-      content="Simulador de dano de Ragnarok Online LATAM: calcule o dano por habilidade de 70+ classes (incluindo 4ª classe), importe replays .rrf, salve builds e compartilhe por link. Interface em português (pt-BR)."
-    />
-    <meta
-      name="keywords"
-      content="Ragnarok Online, RO LATAM, simulador de dano, calculadora de dano, build, DPS, habilidades, 4ª classe, pt-BR"
-    />
-    <meta name="author" content="LATAM Tools" />
-    <meta name="theme-color" content="#3f9a67" />
-    <link rel="canonical" href="https://simulador.latam-tools.com.br/" />
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Simulador de Dano RO LATAM — Ragnarok Online (Beta)" />
-    <meta
-      property="og:description"
-      content="Calcule o dano por habilidade de 70+ classes de Ragnarok Online LATAM, importe replays, salve builds e compartilhe por link."
-    />
-    <meta property="og:url" content="https://simulador.latam-tools.com.br/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Simulador RO LATAM" />
-    <meta property="og:locale" content="pt_BR" />
-    <meta property="og:image" content="https://simulador.latam-tools.com.br/assets/og-cover.png" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Simulador de Dano RO LATAM" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Simulador de Dano RO LATAM — Ragnarok Online (Beta)" />
-    <meta
-      name="twitter:description"
-      content="Calcule o dano por habilidade de 70+ classes de Ragnarok Online LATAM, importe replays, salve builds e compartilhe por link."
-    />
-    <meta name="twitter:image" content="https://simulador.latam-tools.com.br/assets/og-cover.png" />
-
-    <link rel="icon" type="image/png" href="https://assets.latam-tools.com.br/image?job=1002&amp;action=0" />
-    <link rel="manifest" href="manifest.webmanifest" />
-
-    <!-- Splash pré-bootstrap. Fica dentro de <app-root>; o Angular substitui os filhos do
-         elemento ao inicializar, então ele some sozinho e não precisa de teardown. Cores
-         fixas (vela-green) e spinner em CSS puro de propósito: cobre justamente a janela em
-         que nenhum stylesheet de tema, webfont ou bundle JS chegou ainda. -->
-    <style>
-      html { font-size: 14px; }
-      html.ro-booting,
-      html.ro-booting body {
-        overflow: hidden;
-      }
-      .ro-splash {
-        position: fixed;
-        inset: 0;
-        /* Acima das sobreposições da interface durante a abertura. */
-        z-index: 2000;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 1.25rem;
-        background: #17212f;
-        color: rgba(255, 255, 255, 0.87);
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      }
-      .ro-splash-ring {
-        width: 44px;
-        height: 44px;
-        border: 4px solid rgba(255, 255, 255, 0.15);
-        border-top-color: #81c784;
-        border-radius: 50%;
-        animation: ro-splash-spin 0.9s linear infinite;
-      }
-      .ro-splash-text {
-        font-size: 0.95rem;
-        letter-spacing: 0.02em;
-        opacity: 0.75;
-      }
-      @keyframes ro-splash-spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-      /* Saída suave. A remoção do elemento é agendada por setTimeout, não por
-         transitionend: numa aba em segundo plano o navegador não compõe quadros, a
-         transição não roda e o evento nunca dispara — o splash ficaria preso. */
-      .ro-splash.ro-splash--hide {
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.2s ease;
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .ro-splash-ring {
-          animation-duration: 2.4s;
-        }
-        .ro-splash.ro-splash--hide {
-          transition: none;
-        }
-      }
-    </style>
-
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Simulador de Dano RO LATAM",
-        "url": "https://simulador.latam-tools.com.br/",
-        "description": "Simulador de dano de Ragnarok Online LATAM: calcule o dano por habilidade de 70+ classes, importe replays .rrf, salve builds e compartilhe por link.",
-        "applicationCategory": "GameApplication",
-        "operatingSystem": "Web",
-        "inLanguage": "pt-BR",
-        "isAccessibleForFree": true,
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" }
-      }
-    </script>
-  <link rel="preload" as="style" href="styles.DCFKHWWC.css"><link rel="stylesheet" data-ro-styles media="print" href="styles.DCFKHWWC.css">
-<link rel="preload" as="style" href="main.YM7TUPCX.css"><link rel="stylesheet" data-ro-styles media="print" href="main.YM7TUPCX.css">
-<link rel="modulepreload" href="main.4MQX2TFZ.js">
-<link rel="modulepreload" href="chunk-6B4EF2EZ.js">
-<link rel="modulepreload" href="chunk-HPL723JA.js">
-<link rel="modulepreload" href="chunk-VIMNGYQZ.js">
-<script>window.__RO_DATA__={"v":1,"base":"assets/data/","files":{"itemsCore":"items-core.65d2f2432e.json","itemsDesc":"items-desc.894e5482b9.json","itemNamesEs":"items-name-es.44136fa355.json","itemNamesEn":"items-name-en.44136fa355.json","itemsDescEs":"items-desc-es.894e5482b9.json","itemsDescEn":"items-desc-en.894e5482b9.json","skillDescriptions":"skill-descriptions.8754a0f1e4.json","releaseHistory":"release-history.9951763fd8.json","monsters":"monsters.cece9538a6.json","hpsp":"hpsp.7d46682ba7.json","classes":"classes.6db7e35ef5.json","itemViews":"item-views.2bb8b41af1.json","latamExtra":"latam-extra.44136fa355.json","latamMonsters":"latam-monsters.b8eb3a0f63.json","itemsDescMcp":"items-desc-mcp.894e5482b9.json"}};
-(function(m){var b=m.base,f=m.files,o={};
-function g(k){var p=fetch(b+f[k]).then(function(r){if(!r.ok)throw new Error(k+" "+r.status);return r.json();});
-p.catch(function(){});o[k]=p;}
-["itemsCore","monsters","hpsp","classes"].forEach(g);
-var l=null;try{l=localStorage.getItem("ro-locale");}catch(e){}
-var n={"es":"itemNamesEs","en":"itemNamesEn"}[l];
-if(n&&f[n])g(n);
-window.__RO_BOOT__=o;})(window.__RO_DATA__);</script>
-</head>
+    <meta charset="utf-8">
+    <meta name="google-adsense-account" content="ca-pub-4951849890377415">
+    <title>ROZ Global Calculator</title>
+    <base href="./">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link id="theme-css" rel="stylesheet" type="text/css" href="assets/layout/styles/theme/vela-green/theme.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1347571462452425" crossorigin="anonymous"></script>
+  <style>@-webkit-keyframes p-fadein{0%{opacity:0}to{opacity:1}}@-webkit-keyframes p-icon-spin{0%{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(359deg);transform:rotate(359deg)}}@-webkit-keyframes fa-spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0)}to{-webkit-transform:rotate(359deg);transform:rotate(359deg)}}*{box-sizing:border-box}html{height:100%;font-size:14px}body{font-family:var(--font-family);color:var(--text-color);background-color:var(--surface-ground);margin:0;padding:0;min-height:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+</style><link rel="stylesheet" href="styles.YXELDXGC.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.YXELDXGC.css"></noscript><link rel="modulepreload" href="chunk-FLK2DNJJ.js"><link rel="modulepreload" href="chunk-72SW4UKG.js"><link rel="modulepreload" href="chunk-5ROSLQPW.js"><link rel="modulepreload" href="chunk-LUH2O2AG.js"><link rel="modulepreload" href="chunk-YAHOFSNQ.js"></head>
 
   <body>
-    <!-- Fica FORA do <app-root> de propósito. Dentro dele, o Angular substitui os filhos
-         ao inicializar e o splash sumiria antes de o componente da rota (lazy) renderizar
-         o seu — dando um piscar de tela vazia no meio da abertura. Aqui ele é um elemento
-         só, do primeiro paint até o fim do carregamento, removido uma única vez pelo
-         RoCalculatorComponent. -->
-    <div class="ro-splash" id="ro-splash">
-      <div class="ro-splash-ring"></div>
-      <div class="ro-splash-text">Carregando o simulador…</div>
-    </div>
     <app-root></app-root>
-  <script type="module" src="main.4MQX2TFZ.js"></script>
-</body>
+  <script src="polyfills.REIEYTPJ.js" type="module"></script><script src="scripts.4FWRIP5I.js" defer></script><script src="main.ENSOS4CP.js" type="module"></script></body>
 </html>

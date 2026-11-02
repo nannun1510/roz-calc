@@ -5809,7 +5809,7 @@
   "weight": 1,
   "requiredLevel": 1,
   "location": null,
-  "compositionPos": 65535,
+  "compositionPos": 4,
   "usableClass": [
    "all"
   ],
@@ -7940,7 +7940,7 @@
   "weight": 1,
   "requiredLevel": 1,
   "location": null,
-  "compositionPos": 65535,
+  "compositionPos": 4,
   "usableClass": [
    "all"
   ],
@@ -8006,7 +8006,7 @@
   "weight": 1,
   "requiredLevel": 1,
   "location": null,
-  "compositionPos": 65535,
+  "compositionPos": 4,
   "usableClass": [
    "all"
   ],
@@ -9896,7 +9896,7 @@
   "name": "Hammer Boulder Dwarf Card",
   "unidName": "Hammer Boulder Dwarf Card",
   "resName": "이름없는카드",
-  "description": "^cc0000[ROZ] Not yet in the calculator:^000000\nLUK + 1, LUK + 1 for every 3 refine levels of the Helm.\nLUK + 1, LUK + 1 for every 3 refine levels of the Helm.\n^777777--------------------------^000000\nType : ^777777Card^000000\nEquippable by : ^777777Helm^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nHammer Boulder Dwarf Card\nLUK +1\nทุกการอัปเกรด Headgear 3 ขั้น\nLUK +1\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Headgear^000000\nน้ำหนัก : ^7777771^000000",
+  "description": "LUK + 1, LUK + 1 for every 3 refine levels of the Helm.\n^777777--------------------------^000000\nType : ^777777Card^000000\nEquippable by : ^777777Helm^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nHammer Boulder Dwarf Card\nLUK +1\nทุกการอัปเกรด Headgear 3 ขั้น\nLUK +1\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Headgear^000000\nน้ำหนัก : ^7777771^000000",
   "slots": 0,
   "itemTypeId": 6,
   "itemSubTypeId": 0,
@@ -9906,11 +9906,16 @@
   "weight": 1,
   "requiredLevel": 1,
   "location": null,
-  "compositionPos": 65535,
+  "compositionPos": 769,
   "usableClass": [
    "all"
   ],
-  "script": {}
+  "script": {
+   "luk": [
+    "1",
+    "REFINE[headUpper==3]---1"
+   ]
+  }
  },
  "300938": {
   "id": 300938,
@@ -9928,7 +9933,7 @@
   "weight": 1,
   "requiredLevel": 1,
   "location": null,
-  "compositionPos": 65535,
+  "compositionPos": 769,
   "usableClass": [
    "all"
   ],
@@ -9944,7 +9949,7 @@
   "name": "Nordium Golem Card",
   "unidName": "Nordium Golem Card",
   "resName": "이름없는카드",
-  "description": "^cc0000[ROZ] Not yet in the calculator:^000000\nVIT + 1, VIT + 1 for every 3 refine levels of the Helm.\nVIT + 1, VIT + 1 for every 3 refine levels of the Helm.\n^777777--------------------------^000000\nType : ^777777Card^000000\nEquippable by : ^777777Helm^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nNordium Golem Card\nVIT +1\nทุกการอัปเกรด Headgear 3 ขั้น\nVIT +1\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Headgear^000000\nน้ำหนัก : ^7777771^000000",
+  "description": "VIT + 1, VIT + 1 for every 3 refine levels of the Helm.\n^777777--------------------------^000000\nType : ^777777Card^000000\nEquippable by : ^777777Helm^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nNordium Golem Card\nVIT +1\nทุกการอัปเกรด Headgear 3 ขั้น\nVIT +1\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Headgear^000000\nน้ำหนัก : ^7777771^000000",
   "slots": 0,
   "itemTypeId": 6,
   "itemSubTypeId": 0,
@@ -9954,11 +9959,16 @@
   "weight": 1,
   "requiredLevel": 1,
   "location": null,
-  "compositionPos": 65535,
+  "compositionPos": 769,
   "usableClass": [
    "all"
   ],
-  "script": {}
+  "script": {
+   "vit": [
+    "1",
+    "REFINE[headUpper==3]---1"
+   ]
+  }
  },
  "300942": {
   "id": 300942,
@@ -9966,7 +9976,7 @@
   "name": "Boulder Dwarf Siege Trooper Card",
   "unidName": "Boulder Dwarf Siege Trooper Card",
   "resName": "이름없는카드",
-  "description": "^cc0000[ROZ] Not yet in the calculator:^000000\nAGI + 1, AGI + 1 for every 3 refine levels of the Helm.\nAGI + 1, AGI + 1 for every 3 refine levels of the Helm.\n^777777--------------------------^000000\nType : ^777777Card^000000\nEquippable by : ^777777Helm^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nBoulder Dwarf Siege Trooper Card\nAGI +1\nทุกการอัปเกรด Headgear 3 ขั้น\nAGI +1\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Headgear^000000\nน้ำหนัก : ^7777771^000000",
+  "description": "AGI + 1, AGI + 1 for every 3 refine levels of the Helm.\n^777777--------------------------^000000\nType : ^777777Card^000000\nEquippable by : ^777777Helm^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nBoulder Dwarf Siege Trooper Card\nAGI +1\nทุกการอัปเกรด Headgear 3 ขั้น\nAGI +1\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Headgear^000000\nน้ำหนัก : ^7777771^000000",
   "slots": 0,
   "itemTypeId": 6,
   "itemSubTypeId": 0,
@@ -9976,11 +9986,16 @@
   "weight": 1,
   "requiredLevel": 1,
   "location": null,
-  "compositionPos": 65535,
+  "compositionPos": 769,
   "usableClass": [
    "all"
   ],
-  "script": {}
+  "script": {
+   "agi": [
+    "1",
+    "REFINE[headUpper==3]---1"
+   ]
+  }
  },
  "700113": {
   "id": 700113,
@@ -10025,7 +10040,7 @@
   "weight": 1,
   "requiredLevel": 1,
   "location": null,
-  "compositionPos": 65535,
+  "compositionPos": 0,
   "usableClass": [
    "all"
   ],
@@ -11825,7 +11840,7 @@
   "name": "Extra Joker Card",
   "unidName": "Extra Joker Card",
   "resName": "이름없는카드",
-  "description": "^cc0000[ROZ] Not yet in the calculator:^000000\nEach refine on Shield grants MDEF +10.\nWhen equipped with Joker Card, physical/magical attacks have a chance to transform you into Joker for 7 seconds.\nDuring transformation: ATK +70, MATK +70, loses 77 HP and 7 SP per second.\nEach refine on Shield grants MDEF +10.\nWhen equipped with Joker Card, physical/magical attacks have a chance to transform you into Joker for 7 seconds.\nDuring transformation: ATK +70, MATK +70, loses 77 HP and 7 SP per second.\n^FFFFFF_^000000\n^777777--------------------------^000000\nType : ^777777Card^000000\nEquipped on : ^777777Shield^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nExtra Joker Card\nทุกการอัปเกรด Shield 1 ขั้น,\nMDEF +10\nเมื่อใช้ร่วมกับ Joker Card\nเมื่อโจมตีทางกายภาพ/เวทมนตร์\nมีโอกาสที่จะเปลี่ยนร่างเป็น\nJoker เป็นเวลา 7 วินาที\nขณะอยู่ในสถานะแปลงร่าง:\nATK +70, MATK +70\nสูญเสีย HP 77 และ\nSP 7 ทุก 1 วินาที\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Shield^000000\nน้ำหนัก : ^7777771^000000",
+  "description": "^cc0000[ROZ] Not yet in the calculator:^000000\nWhen equipped with Joker Card, physical/magical attacks have a chance to transform you into Joker for 7 seconds.\nDuring transformation: ATK +70, MATK +70, loses 77 HP and 7 SP per second.\nEach refine on Shield grants MDEF +10.\nWhen equipped with Joker Card, physical/magical attacks have a chance to transform you into Joker for 7 seconds.\nDuring transformation: ATK +70, MATK +70, loses 77 HP and 7 SP per second.\n^FFFFFF_^000000\n^777777--------------------------^000000\nType : ^777777Card^000000\nEquipped on : ^777777Shield^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nExtra Joker Card\nทุกการอัปเกรด Shield 1 ขั้น,\nMDEF +10\nเมื่อใช้ร่วมกับ Joker Card\nเมื่อโจมตีทางกายภาพ/เวทมนตร์\nมีโอกาสที่จะเปลี่ยนร่างเป็น\nJoker เป็นเวลา 7 วินาที\nขณะอยู่ในสถานะแปลงร่าง:\nATK +70, MATK +70\nสูญเสีย HP 77 และ\nSP 7 ทุก 1 วินาที\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Shield^000000\nน้ำหนัก : ^7777771^000000",
   "slots": 0,
   "itemTypeId": 6,
   "itemSubTypeId": 0,
@@ -11839,7 +11854,11 @@
   "usableClass": [
    "all"
   ],
-  "script": {}
+  "script": {
+   "mdef": [
+    "REFINE[shield==1]---10"
+   ]
+  }
  },
  "19591": {
   "id": 19591,
@@ -12023,7 +12042,7 @@
   "name": "Erzsebet Card",
   "unidName": "Erzsebet Card",
   "resName": "이름없는카드",
-  "description": "^cc0000[ROZ] Not yet in the calculator:^000000\nRaises MATK by 4 per shield refine.\nWhen equipped together with Bathory Card, increases INT by 1 per armor refine.\nRaises MATK by 4 per shield refine.\nWhen equipped together with Bathory Card, increases INT by 1 per armor refine.\n^FFFFFF_^000000\n^777777--------------------------^000000\nType : ^777777Card^000000\nEquipped on : ^777777Shield^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nErzsebet Card\nทุกการอัปเกรด Shield 1 ขั้น,\nMATK +4\nเมื่อใช้ร่วมกับ Bathory Card\nทุกการอัปเกรด Armor 1 ขั้น,\nINT +1\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Shield^000000\nน้ำหนัก : ^7777771^000000",
+  "description": "^cc0000[ROZ] Not yet in the calculator:^000000\nWhen equipped together with Bathory Card, increases INT by 1 per armor refine.\nRaises MATK by 4 per shield refine.\nWhen equipped together with Bathory Card, increases INT by 1 per armor refine.\n^FFFFFF_^000000\n^777777--------------------------^000000\nType : ^777777Card^000000\nEquipped on : ^777777Shield^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nErzsebet Card\nทุกการอัปเกรด Shield 1 ขั้น,\nMATK +4\nเมื่อใช้ร่วมกับ Bathory Card\nทุกการอัปเกรด Armor 1 ขั้น,\nINT +1\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Shield^000000\nน้ำหนัก : ^7777771^000000",
   "slots": 0,
   "itemTypeId": 6,
   "itemSubTypeId": 0,
@@ -12037,7 +12056,11 @@
   "usableClass": [
    "all"
   ],
-  "script": {}
+  "script": {
+   "matk": [
+    "REFINE[shield==1]---4"
+   ]
+  }
  },
  "1201": {
   "id": 1201,
@@ -37200,7 +37223,7 @@
   "weight": 1,
   "requiredLevel": 1,
   "location": null,
-  "compositionPos": 65535,
+  "compositionPos": 769,
   "usableClass": [
    "all"
   ],
@@ -45716,7 +45739,7 @@
   "weight": 1,
   "requiredLevel": 1,
   "location": null,
-  "compositionPos": 65535,
+  "compositionPos": 769,
   "usableClass": [
    "all"
   ],
@@ -45738,7 +45761,7 @@
   "weight": 1,
   "requiredLevel": 1,
   "location": null,
-  "compositionPos": 65535,
+  "compositionPos": 0,
   "usableClass": [
    "all"
   ],
@@ -45750,7 +45773,7 @@
   "name": "Cannon Boulder Dwarf Card",
   "unidName": "Cannon Boulder Dwarf Card",
   "resName": "이름없는카드",
-  "description": "^cc0000[ROZ] Not yet in the calculator:^000000\nDEX + 1, DEX + 1 for every 3 refine levels of the Helm.\nDEX + 1, DEX + 1 for every 3 refine levels of the Helm.\n^777777--------------------------^000000\nType : ^777777Card^000000\nEquippable by : ^777777Helm^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nCannon Boulder Dwarf Card\nDEX +1\nทุกการอัปเกรด Headgear 3 ขั้น\nDEX +1\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Headgear^000000\nน้ำหนัก : ^7777771^000000",
+  "description": "DEX + 1, DEX + 1 for every 3 refine levels of the Helm.\n^777777--------------------------^000000\nType : ^777777Card^000000\nEquippable by : ^777777Helm^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nCannon Boulder Dwarf Card\nDEX +1\nทุกการอัปเกรด Headgear 3 ขั้น\nDEX +1\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Headgear^000000\nน้ำหนัก : ^7777771^000000",
   "slots": 0,
   "itemTypeId": 6,
   "itemSubTypeId": 0,
@@ -45760,11 +45783,16 @@
   "weight": 1,
   "requiredLevel": 1,
   "location": null,
-  "compositionPos": 65535,
+  "compositionPos": 769,
   "usableClass": [
    "all"
   ],
-  "script": {}
+  "script": {
+   "dex": [
+    "1",
+    "REFINE[headUpper==3]---1"
+   ]
+  }
  },
  "300940": {
   "id": 300940,
@@ -45772,7 +45800,7 @@
   "name": "Pickaxe Boulder Dwarf Card",
   "unidName": "Pickaxe Boulder Dwarf Card",
   "resName": "이름없는카드",
-  "description": "^cc0000[ROZ] Not yet in the calculator:^000000\nINT + 1, INT + 1 for every 3 refine levels of the Helm.\nINT + 1, INT + 1 for every 3 refine levels of the Helm.\n^777777--------------------------^000000\nType : ^777777Card^000000\nEquippable by : ^777777Helm^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nPickaxe Boulder Dwarf Card\nINT +1\nทุกการอัปเกรด Headgear 3 ขั้น\nINT +1\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Headgear^000000\nน้ำหนัก : ^7777771^000000",
+  "description": "INT + 1, INT + 1 for every 3 refine levels of the Helm.\n^777777--------------------------^000000\nType : ^777777Card^000000\nEquippable by : ^777777Helm^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nPickaxe Boulder Dwarf Card\nINT +1\nทุกการอัปเกรด Headgear 3 ขั้น\nINT +1\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Headgear^000000\nน้ำหนัก : ^7777771^000000",
   "slots": 0,
   "itemTypeId": 6,
   "itemSubTypeId": 0,
@@ -45782,11 +45810,16 @@
   "weight": 1,
   "requiredLevel": 1,
   "location": null,
-  "compositionPos": 65535,
+  "compositionPos": 769,
   "usableClass": [
    "all"
   ],
-  "script": {}
+  "script": {
+   "int": [
+    "1",
+    "REFINE[headUpper==3]---1"
+   ]
+  }
  },
  "480559": {
   "id": 480559,
@@ -45870,7 +45903,7 @@
   "weight": 1,
   "requiredLevel": 1,
   "location": null,
-  "compositionPos": 65535,
+  "compositionPos": 4,
   "usableClass": [
    "all"
   ],
@@ -45905,7 +45938,7 @@
   "weight": 1,
   "requiredLevel": 1,
   "location": null,
-  "compositionPos": 65535,
+  "compositionPos": 4,
   "usableClass": [
    "all"
   ],

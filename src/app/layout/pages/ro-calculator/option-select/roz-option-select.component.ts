@@ -1,6 +1,13 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { FlatOption, flattenOptionList } from 'src/app/utils/flatten-option-list';
+import { rozOptionAllowedInSlot } from 'src/app/constants/roz-option-slot-rules';
+
+const slotCache = new WeakMap<any[], Map<number, any[]>>();
+const prune = (nodes: any[], slot: number): any[] =>
+  (nodes || [])
+    .map((n) => (Array.isArray(n.children) && n.children.length ? { ...n, children: prune(n.children, slot) } : n))
+    .filter((n) => (Array.isArray(n.children) ? n.children.length > 0 : rozOptionAllowedInSlot(n.value, slot)));
 
 /**
  * ROZ: random-option slot = Tong's original cascade menu + a search button.
@@ -26,8 +33,22 @@ export class RozOptionSelectComponent {
   results: FlatOption[] = [];
   readonly LIMIT = 80;
 
+  /** slot number (1-4) from the placeholder "Option N" */
+  get slot() {
+    return Number(String(this.placeholder).match(/(\d)/)?.[1] || 0);
+  }
+
+  /** option tree with only the options this slot can roll (ROZ slot rules) */
+  get slotOptions() {
+    if (!Array.isArray(this.options)) return [];
+    let m = slotCache.get(this.options);
+    if (!m) { m = new Map(); slotCache.set(this.options, m); }
+    if (!m.has(this.slot)) m.set(this.slot, prune(this.options, this.slot));
+    return m.get(this.slot);
+  }
+
   get flat() {
-    return flattenOptionList(this.options);
+    return flattenOptionList(this.slotOptions);
   }
 
   onCascade(event: any) {

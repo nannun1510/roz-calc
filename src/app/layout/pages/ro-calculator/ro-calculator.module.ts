@@ -43,6 +43,7 @@ import { MonsterDataViewComponent } from './monster-data-view/monster-data-view.
 import { FieldsetModule } from 'primeng/fieldset';
 import { MiscDetailComponent } from './misc-detail/misc-detail.component';
 import { DialogModule } from 'primeng/dialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { EquipmentShadowComponent } from './equipment-shadow/equipment-shadow.component';
 import { ItemSearchComponent } from './item-search/item-search.component';
 import { ElementalTableComponent } from './elemental-table/elemental-table.component';
@@ -87,6 +88,7 @@ import { StatusInputComponent } from './status-input/status-input.component';
     TreeSelectModule,
     FieldsetModule,
     DialogModule,
+    InputTextareaModule,
     RoCalculatorRoutingModule,
   ],
   declarations: [

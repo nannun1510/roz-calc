@@ -1,4 +1,5 @@
 import { ItemOptionMap } from '../../../constants/item-options-table';
+import { decodeBuild, encodeBuild } from '../../../utils/roz-build-code';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService, PrimeIcons, SelectItemGroup } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -2457,6 +2458,67 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
 
   onConsumableChange() {
     this.updateItemEvent.next(1);
+  }
+
+  // ROZ: share build as a text code
+  isShowPasteBuild = false;
+  pasteBuildText = '';
+
+  copyBuildCode() {
+    const code = encodeBuild(toUpsertPresetModel(this.model, this.selectedCharacter));
+    const done = () => this.messageService.add({ severity: 'success', summary: 'Build code copied', detail: 'Send it to your friend. They click "Paste code" and paste it.' });
+    const fallback = () => {
+      this.pasteBuildText = code;
+      this.isShowPasteBuild = true;
+      this.messageService.add({ severity: 'info', summary: 'Copy the code from the box', detail: 'Your browser blocked automatic copy.' });
+    };
+    try {
+      navigator.clipboard.writeText(code).then(done, fallback);
+    } catch {
+      fallback();
+    }
+  }
+
+  openPasteBuild() {
+    this.pasteBuildText = '';
+    this.isShowPasteBuild = true;
+  }
+
+  applyPastedBuild() {
+    let model: any;
+    try {
+      model = decodeBuild(this.pasteBuildText);
+    } catch (e: any) {
+      this.messageService.add({ severity: 'error', summary: 'Cannot read this code', detail: e?.message || String(e) });
+      return;
+    }
+    this.isShowPasteBuild = false;
+    this.isInProcessingPreset = true;
+    waitRxjs()
+      .pipe(
+        mergeMap(() => this.loadItemSet(model).pipe(switchMap(() => waitRxjs(1)))),
+        take(1),
+        finalize(() => {
+          this.isInProcessingPreset = false;
+          this.updateItemEvent.next(1);
+          this.messageService.add({ severity: 'success', summary: 'Build loaded', detail: 'Click Save if you want to keep it as a preset.' });
+        }),
+      )
+      .subscribe();
+  }
+
+  // ROZ auto attack procs
+  readonly rozLevels = Array.from({ length: 10 }, (_, i) => ({ label: `Lv ${i + 1}`, value: i + 1 }));
+  readonly rozBoltElements = [
+    { label: 'Fire Bolt', value: 'Fire' },
+    { label: 'Cold Bolt', value: 'Water' },
+    { label: 'Lightning Bolt', value: 'Wind' },
+  ];
+  get rozHasDuple() {
+    return (this.selectedCharacter as any)?.className === 'Priest';
+  }
+  get rozHasSpellFist() {
+    return (this.selectedCharacter as any)?.className === 'Sage';
   }
 
   onSkillClassChange() {

@@ -1258,6 +1258,40 @@ export class DamageCalculator {
     return { criMinDamage, criMaxDamage, sizePenalty: 100 };
   }
 
+  /**
+   * ROZ: skills that add damage to auto attacks (ticked in "Auto attack procs").
+   *  - Duple Light (Priest): 2 lights roll separately, (10 + 2*Lv)% each, melee only.
+   *      Duple Strike = physical 500 + 50*Lv % (weapon element), Duple Magic = magical 800 + 80*Lv % (Neutral).
+   *  - Spell Fist (Sage): 5*Lv % chance, magical 100*Lv % MATK of the chosen bolt element.
+   * DPS = chance x average damage x auto attacks per second x hit rate.
+   */
+  private calcRozProcs(a: { propertyAtk: ElementType; sizePenalty: number; hitsPerSec: number; accuracy: number; basicDps: number }) {
+    const m: any = this.model || {};
+    const rows: { label: string; chance: number; min: number; max: number; dps: number; element: string; type: string }[] = [];
+    const add = (label: string, isMatk: boolean, ratio: number, chance: number, element?: ElementType) => {
+      const skillData: any = { name: label, isMatk, isMelee: !isMatk, ...(element ? { element } : {}) };
+      const r = isMatk
+        ? this.calcMagicalSkillDamage({ skillData, baseSkillDamage: ratio, weaponPropertyAtk: a.propertyAtk })
+        : this.calcPhysicalSkillDamage({ skillData, baseSkillDamage: ratio, weaponPropertyAtk: a.propertyAtk, sizePenalty: a.sizePenalty });
+      const avg = (r.minDamage + r.maxDamage) / 2;
+      const dps = floor(chance * avg * a.hitsPerSec * (a.accuracy / 100));
+      rows.push({ label, chance: round(chance * 100, 0), min: r.minDamage, max: r.maxDamage, dps, element: r.propertyAtk, type: isMatk ? 'Magical' : 'Physical' });
+    };
+    const duple = Number(m.rozDupleLight) || 0;
+    if (duple > 0) {
+      const ch = (10 + 2 * duple) / 100;
+      add('Duple Strike', false, 500 + 50 * duple, ch);
+      add('Duple Magic', true, 800 + 80 * duple, ch, ElementType.Neutral);
+    }
+    const fist = Number(m.rozSpellFist) || 0;
+    if (fist > 0) {
+      const ele = (m.rozSpellFistElement as ElementType) || ElementType.Fire;
+      add('Spell Fist', true, 100 * fist, (5 * fist) / 100, ele);
+    }
+    const procDps = rows.reduce((t, r) => t + r.dps, 0);
+    return { rows, procDps, totalDps: floor((a.basicDps || 0) + procDps) };
+  }
+
   calculateAllDamages(args: { skillValue: string; propertyAtk: ElementType; maxHp: number; maxSp: number; }): DamageSummaryModel {
     const { skillValue, propertyAtk, maxHp, maxSp } = args;
     const sizePenalty = this.getSizePenalty();
@@ -1307,6 +1341,7 @@ export class DamageCalculator {
       sMatk,
       cRate,
     };
+    (basicDmg as any).rozProcs = this.calcRozProcs({ propertyAtk, sizePenalty, hitsPerSec: basicAspd.hitsPerSec, accuracy: misc.accuracy, basicDps });
 
     const [, _skillName, skillLevelStr] = skillValue?.match(/(.+)==(\d+)/) ?? [];
     const skillData = this._class.atkSkills.find((a) => a.value === skillValue || a.levelList?.findIndex((b) => b.value === skillValue) >= 0);

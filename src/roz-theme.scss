@@ -242,3 +242,25 @@ html.roz-theme div[style*='background-color: #fff'] { border-radius: 8px; }
 .roz-optsel-panel .roz-optsel-empty { opacity: 0.6; font-size: 0.8rem; padding: 0.4rem 0.5rem; }
 html.roz-theme .roz-optsel-btn { background: var(--roz-input, #0f1828); border-color: var(--roz-line); color: var(--roz-muted); }
 html.roz-theme .roz-optsel-btn:hover:not(:disabled) { color: var(--roz-gold); }
+
+/* ROZ auto attack procs panel (both themes) */
+.roz-procs { border: 1px solid var(--surface-border, #3f4b5b); border-radius: 8px; padding: 0.6rem 0.75rem !important; margin-top: 0.4rem; }
+.roz-procs-head { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 0.4rem; }
+.roz-procs-head span { font-weight: 700; }
+.roz-procs-head small { opacity: 0.65; }
+.roz-procs-controls { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-bottom: 0.5rem; }
+.roz-proc-ctl { display: flex; align-items: center; gap: 0.45rem; }
+.roz-proc-ctl label { cursor: pointer; }
+.roz-proc-ctl .p-dropdown { min-width: 0; }
+.roz-proc-ctl .roz-proc-lv { width: 6rem; }
+.roz-proc-ctl .roz-proc-ele { width: 9.5rem; }
+.roz-procs-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.roz-procs-table th { text-align: left; font-weight: 600; opacity: 0.7; padding: 0.2rem 0.4rem; border-bottom: 1px solid var(--surface-border, #3f4b5b); }
+.roz-procs-table td { padding: 0.25rem 0.4rem; }
+.roz-procs-table td small { opacity: 0.6; margin-left: 0.3rem; font-size: 0.75rem; }
+.roz-procs-table .dmg { color: #f6c26b; }
+.roz-procs-table .dps { color: #7fd1ff; font-weight: 700; }
+.roz-procs-table tr.sum td { border-top: 1px dashed var(--surface-border, #3f4b5b); }
+.roz-procs-table tr.total td { font-weight: 700; }
+html.roz-theme .roz-procs { border-color: var(--roz-line); background: rgba(255, 255, 255, 0.02); }
+html.roz-theme .roz-procs-head span { color: var(--roz-gold-2); letter-spacing: 0.04em; }

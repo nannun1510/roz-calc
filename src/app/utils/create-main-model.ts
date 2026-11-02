@@ -176,4 +176,7 @@ export const createMainModel = (): MainModel => ({
   aspdPotions: [],
   defStars: 0,
   hpStars: 0,
+  rozDupleLight: 0,
+  rozSpellFist: 0,
+  rozSpellFistElement: 'Fire',
 });

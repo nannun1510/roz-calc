@@ -38,6 +38,39 @@ for aegis, mps in maps.items():
             'elementName': f'{ELEM[ele]} {elv}', 'elementShortName': ELEM[ele], 'scaleName': SIZE[size], 'raceName': RACE[race],
         },
     }
+# ---- ROZ's own numbers (rozerodb.com, scraped from the live server data) override rAthena ----
+EL = {'N': 0, 'W': 1, 'E': 2, 'F': 3, 'A': 4, 'P': 5, 'H': 6, 'S': 7, 'G': 8, 'U': 9}
+roz_rows = [l.rstrip('\n').split(',', 22) for l in open('tools/roz/rozerodb-monsters.csv', encoding='utf-8') if l.strip() and not l.startswith('#')]
+by_dbname = {v['dbname']: k for k, v in out.items()}
+updated = added = 0
+for r in roz_rows:
+    (mid, lv, hp, df, mdf, amin, amax, mmin, mmax, flee, hit, st, ag, vi, it, dx, lk, ele, race, size, boss, aegis, name) = r
+    if int(hp) <= 0: continue
+    n = lambda x, d: int(x) if int(x) > 0 else d
+    k = by_dbname.get(aegis) or (mid if mid in out else None)
+    if k is None:
+        k = mid; added += 1
+        out[k] = {'id': int(mid), 'dbname': aegis, 'name': name, 'spawn': ','.join(sorted(set(maps.get(aegis, [])))), 'stats': {
+            'attackRange': 1, 'sp': 1, 'rechargeTime': 1500, 'atk1': 0, 'atk2': 0, 'baseExperience': 0, 'jobExperience': 0, 'aggroRange': 12,
+            'escapeRange': 12, 'movementSpeed': 150, 'attackSpeed': 1500, 'attackedSpeed': 500, 'ai': 'MONSTER_TYPE_06', 'attr': 0, 'res': 0, 'mres': 0}}
+    else:
+        updated += 1
+    st_ = out[k]['stats']; o = dict(st_)
+    e, elv = EL[ele[0]], int(ele[1:])
+    st_.update({
+        'level': int(lv), 'health': int(hp), 'defense': int(df), 'magicDefense': int(mdf),
+        'str': n(st, o.get('str', 1)), 'agi': n(ag, o.get('agi', 1)), 'vit': n(vi, o.get('vit', 1)), 'int': n(it, o.get('int', 1)),
+        'dex': n(dx, o.get('dex', 1)), 'luk': n(lk, o.get('luk', 1)),
+        'attack': {'minimum': n(amin, (o.get('attack') or {}).get('minimum', 1)), 'maximum': n(amax, (o.get('attack') or {}).get('maximum', 1))},
+        'magicAttack': {'minimum': n(mmin, (o.get('magicAttack') or {}).get('minimum', 1)), 'maximum': n(mmax, (o.get('magicAttack') or {}).get('maximum', 1))},
+        'hit': n(hit, int(lv) + n(ag, 1) + 200), 'flee': n(flee, int(lv) + n(dx, 1) + 170),
+        'element': elv * 20 + e, 'scale': int(size), 'race': int(race),
+        'mvp': 1 if boss == 'M' else 0, 'class': 1 if boss in ('M', 'B') else 0,
+        'elementName': f'{ELEM[e]} {elv}', 'elementShortName': ELEM[e], 'scaleName': SIZE[int(size)], 'raceName': RACE[int(race)],
+    })
+    out[k]['rozVerified'] = True
+print('ROZ stats applied', updated, 'new monsters', added)
+
 for k, v in latam.items():
     if 'Dummy' in v['name']: out[k] = v
 json.dump(out, open('src/assets/demo/data/monster.json', 'w'), ensure_ascii=False, indent=1)

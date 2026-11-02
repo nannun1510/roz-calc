@@ -360,19 +360,7 @@
 1
 ],
 [
-"LUK + N, LUK + N for every N refine levels of the Helm.",
-1
-],
-[
 "When equipped with the Nordfeld Helm, ATK +N and MATK + N for every refine level of the Helm.",
-1
-],
-[
-"VIT + N, VIT + N for every N refine levels of the Helm.",
-1
-],
-[
-"AGI + N, AGI + N for every N refine levels of the Helm.",
 1
 ],
 [
@@ -468,10 +456,6 @@
 1
 ],
 [
-"Each refine on Shield grants MDEF +N.",
-1
-],
-[
 "When equipped with Joker Card, physical/magical attacks have a chance to transform you into Joker for N seconds.",
 1
 ],
@@ -481,10 +465,6 @@
 ],
 [
 "Casts Frost Driver Lv N with a chance when performing physical attacks.",
-1
-],
-[
-"Raises MATK by N per shield refine.",
 1
 ],
 [
@@ -1185,14 +1165,6 @@
 ],
 [
 "Physical damage against Boulder Dwarves +N%.",
-1
-],
-[
-"DEX + N, DEX + N for every N refine levels of the Helm.",
-1
-],
-[
-"INT + N, INT + N for every N refine levels of the Helm.",
 1
 ],
 [

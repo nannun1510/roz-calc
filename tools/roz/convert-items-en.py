@@ -137,9 +137,41 @@ def split_clauses(text):
     return [p for p in re.split(r',\s*|\s+and\s+(?=[A-Z])|\.\s+|;\s*', text) if p.strip()]
 
 
+SLOT_REFINE = {'helm': 'headUpper', 'headgear': 'headUpper', 'helmet': 'headUpper', 'shield': 'shield', 'armor': 'armor',
+               'garment': 'garment', 'shoes': 'boot', 'footgear': 'boot', 'weapon': 'weapon'}
+
+
+def parse_slot_refine(l):
+    """'AGI + 1, AGI + 1 for every 3 refine levels of the Helm.' / 'Each refine on Shield grants MDEF +10.'
+    / 'Raises MATK by 4 per shield refine.' -> REFINE[slot==N]---V (Tong's per-refine-of-slot condition)."""
+    m = re.fullmatch(r'(?:(.+?),\s*)?(.+?) for every (\d+ )?refine levels? of the (\w+)\.?', l, flags=re.I)
+    if m and m.group(4).lower() in SLOT_REFINE:
+        slot, n = SLOT_REFINE[m.group(4).lower()], (m.group(3) or '1').strip()
+        out = []
+        if m.group(1):
+            for c in split_clauses(m.group(1)):
+                r = clause(c)
+                if r is None: return None
+                out += [(k, str(v)) for k, v in r]
+        r = clause(m.group(2))
+        if r is None: return None
+        return out + [(k, f'REFINE[{slot}=={n}]---{v}') for k, v in r]
+    m = re.fullmatch(r'Each refine on (\w+) grants (.+?)\.?', l, flags=re.I) or None
+    if m and m.group(1).lower() in SLOT_REFINE:
+        r = clause(m.group(2))
+        return None if r is None else [(k, f'REFINE[{SLOT_REFINE[m.group(1).lower()]}==1]---{v}') for k, v in r]
+    m = re.fullmatch(r'(?:Raises|Increases) (.+?) by (\d+%?) per (?:(\d+) )?(\w+) refines?\.?', l, flags=re.I)
+    if m and m.group(4).lower() in SLOT_REFINE:
+        r = clause(f'{m.group(1)} +{m.group(2)}')
+        return None if r is None else [(k, f'REFINE[{SLOT_REFINE[m.group(4).lower()]}=={m.group(3) or 1}]---{v}') for k, v in r]
+    return False
+
+
 def parse_line(line):
     """Returns (list of (key, value-string)) or None."""
     l = line.strip()
+    sr = parse_slot_refine(l)
+    if sr is not False: return sr
     # refine thresholds
     m = re.match(r'^(?:At \+(\d+) refine(?: or higher)?|When refined to \+(\d+)(?: or higher)?|At refine level (\d+)(?: or higher)?|If refined to \+(\d+)(?: or higher)?)\s*[,:]?\s*(.*)$', l, flags=re.I)
     if m:
@@ -229,6 +261,8 @@ for k, v in S.items():
             f['acc'] = 510 if 'Accessory (Right)' in val else 511 if 'Accessory (Left)' in val else 517 if 'Accessory' in val else None
         elif key in ('element', 'property'): f['ele'] = val
         elif key == 'equipped on': f['cardpos'] = val
+        elif key.startswith('equippable') and val.strip() in CARDPOS:
+            f['cardpos'] = val  # newer cards (Nordfeld, collabs): "Equippable by : Helm"
         elif key.startswith('equippable'):
             if val.startswith('All Jobs'): f['cls'] = ['all']
             else: f['cls'] = sorted({CLASS[c] for c in CLASS if re.search(r'\b' + re.escape(c) + r'\b', val)}) or ['all']

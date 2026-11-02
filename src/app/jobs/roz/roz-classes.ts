@@ -161,7 +161,6 @@ function makeRozClass(Base: Ctor, cfg: RozClassConfig): Ctor {
   ].map((s) => s.name);
   const allowed = new Set(treeNames.map(norm).map((n) => NAME_ALIAS[n] ?? n));
   const atk = ROZ_ATK_SKILLS.filter((s) => treeNames.includes(s.name)).map(rozAtkSkill);
-  if (treeNames.includes('Duple Light') && !atk.some((a) => a.name === ('Duple Light' as any))) atk.push(ROZ_DUPLE_LIGHT);
 
   return class extends (Base as any) {
     constructor() {

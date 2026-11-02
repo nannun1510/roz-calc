@@ -149,6 +149,12 @@ export const createExtraOptionList = () => {
     ['HP', 'hp', 1, 20, 50],
     ['SP %', 'spPercent', 1, 20, 1, ' %'],
     ['SP', 'sp', 1, 20, 20],
+    // ROZ: option types in the ROZ client table that Tong's list did not have
+    ['HIT', 'hit', 1, 30, 1],
+    ['FLEE', 'flee', 1, 30, 1],
+    ['Perfect Dodge', 'perfectDodge', 1, 10, 1],
+    ['DEF', 'def', 1, 20, 10],
+    ['MDEF', 'mdef', 1, 30, 1],
   ];
 
   const subTypeMap = {
@@ -216,7 +222,8 @@ export const createExtraOptionList = () => {
   }
 
   items.push(createBaseStatOptionList(1, 30));
-  items.push(createTraitStatOptionList(1, 20));
+  // ROZ: no trait stats (POW/STA/...) on ROZ Global
+  void createTraitStatOptionList;
 
   return items;
 };

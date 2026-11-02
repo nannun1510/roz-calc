@@ -201,6 +201,15 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.2 (alpha)',
+      date: '02-11-2026',
+      logs: [
+        'Equipment slots now follow ROZ Global: Taming Ring in the costume area (pet egg enchants), ROZ costume enchant stones, guild Shadow Shield only.',
+        'No trait stats (POW/STA/WIS/SPL/CON/CRT), no 4th-job shadow gear.',
+        'Hover any item, card or enchant to see its English and Thai description from the ROZ client.',
+      ],
+    },
+    {
       v: 'ROZ Global v0.1 (alpha)',
       date: '02-11-2026',
       logs: [

@@ -1,11 +1,23 @@
 [
 [
+"<NAVI>[Costume Enchant Master]<INFO>itemmall,N,N,N,N,N,N</INFO></NAVI>",
+35
+],
+[
 "Ignores N% of players' physical defense.",
 23
 ],
 [
 "At +N refine, ignores an additional N% of players' defense.",
 19
+],
+[
+"Enchant the Nth slot of a Garment Costume to apply an effect.",
+11
+],
+[
+"<NAVI>[Gruzio Gurmani]<INFO>itemmall,N,N,N,N,N,N</INFO></NAVI>",
+8
 ],
 [
 "if total refine level is N or higher: MHP +N, Damage Taken from Players -N%.",
@@ -17,6 +29,10 @@
 ],
 [
 "If total refine level is N or higher:",
+3
+],
+[
+"Can be enchanted through Costume Enchant Master (prontera N N).",
 3
 ],
 [
@@ -88,11 +104,23 @@
 2
 ],
 [
+"Device capable of measuring a person’s strength; most townsfolk score around N.",
+2
+],
+[
 "At +N refine: additionally increases damage of Holy Cross and Pierce by N%.",
 2
 ],
 [
 "Damage taken from Shadow-Property attacks +N%.",
+2
+],
+[
+"Exclusive costume obtainable during the Nst anniversary celebration of GGH.",
+2
+],
+[
+"A grand and iconic clock tower with a timeless charm. The massive bell within rings every N minutes, endlessly reminding people of its presence.",
 2
 ],
 [
@@ -188,6 +216,10 @@
 1
 ],
 [
+"MaxHP +N.",
+1
+],
+[
 "Has a N% chance to inflict Blind on the enemy when attacking.",
 1
 ],
@@ -205,6 +237,10 @@
 ],
 [
 "When equipped together with Fei-chai’s Egg Lv.N or Tai-zi Egg Lv.N, physical or magical attacks have a high chance to trigger ATK +N and MATK +N for N seconds.",
+1
+],
+[
+"MaxSP +N.",
 1
 ],
 [
@@ -409,6 +445,18 @@
 ],
 [
 "At +N refine, normal physical attacks have a chance to increase Critical Damage by N% for N seconds, with an additional +N% per refine level.",
+1
+],
+[
+"Modeled after the helmet of Jun, No. N of Gatchaman.",
+1
+],
+[
+"Modeled after the helmet of Jinpei, No. N of Gatchaman.",
+1
+],
+[
+"Modeled after the helmet of Ryu, No. N of Gatchaman.",
 1
 ],
 [
@@ -1048,6 +1096,18 @@
 1
 ],
 [
+"When equipped together with Variable Casting Stone (Middle) and Variable Casting Stone (Lower), an additional Variable Casting Time -N% is granted.",
+1
+],
+[
+"Modeled after the helmet of Joe, No. N of Gatchaman.",
+1
+],
+[
+"Allows use of Double Attack Lv.N.",
+1
+],
+[
 "At +N refine, when using Improvised Song, Slinging Arrow damage +N% for N seconds, HIT +N, and Variable Casting Time -N%. Additional HIT and Slinging Arrow damage increase based on refine level.",
 1
 ],
@@ -1056,7 +1116,15 @@
 1
 ],
 [
+"When equipped together with Critical Stones for Upper, Middle, and Lower, CRIT +N is granted.",
+1
+],
+[
 "Heal Lv N usable.",
+1
+],
+[
+"When equipped together with Critical Stones for Middle and Lower, an additional Critical Damage +N% is granted.",
 1
 ],
 [
@@ -1069,6 +1137,10 @@
 ],
 [
 "If Fire Ball Lv N is learned, autocast triggers Fire Ball Lv N instead.",
+1
+],
+[
+"Variable Casting Time -N%. <NAVI>[Costume Enchant Master]<INFO>itemmall,N,N,N,N,N,N</INFO></NAVI>",
 1
 ],
 [
@@ -1233,6 +1305,10 @@
 ],
 [
 "At +N refine, when using Heal, has a chance to increase Heal Amount by N% for N seconds, with an additional +N% per refine.",
+1
+],
+[
+"When ATK +N% (Upper), ATK +N%, and ATK +N% (Lower) are equipped on Upper, Middle, and Lower costume slots, ATK +N% is granted.",
 1
 ],
 [

@@ -186,6 +186,14 @@ def parse_line(line):
     return out
 
 
+def costume_stone(lines):
+    j = ' '.join(lines)
+    if re.search(r'4th slot of a Garment Costume', j): return 75
+    m = re.search(r'costume (Upper|Middle|Lower|Garment) slot|slotted into a (Garment) costume', j, re.I)
+    if not m: return None
+    return {'upper': 71, 'middle': 72, 'lower': 73, 'garment': 74}[(m.group(1) or m.group(2)).lower()]
+
+
 def bilingual(k, unparsed=()):
     en = '\n'.join(x for x in (S.get(k, {}).get('identifiedDescriptionName') or []))
     th = '\n'.join(x for x in (TH.get(k, {}).get('identifiedDescriptionName') or []))
@@ -217,21 +225,25 @@ for k, v in S.items():
         elif key in ('weapon level', 'armor level'): f['lv'] = num
         elif key == 'required level': f['req'] = num or 1
         elif key in ('position', 'location'):
-            f['pos'] = [POS[p.strip()] for p in re.split(r'[,/&]|\band\b', val) if p.strip() in POS]
+            f['pos'] = [POS[p] for p in re.findall(r'\b(Upper|Middle|Mid|Lower)\b', val)]
             f['acc'] = 510 if 'Accessory (Right)' in val else 511 if 'Accessory (Left)' in val else 517 if 'Accessory' in val else None
         elif key in ('element', 'property'): f['ele'] = val
         elif key == 'equipped on': f['cardpos'] = val
         elif key.startswith('equippable'):
             if val.startswith('All Jobs'): f['cls'] = ['all']
             else: f['cls'] = sorted({CLASS[c] for c in CLASS if re.search(r'\b' + re.escape(c) + r'\b', val)}) or ['all']
-    t = f['type']
+    t = f['type'] or ''
     if t in WEAPON: tid, sub = 1, WEAPON[t]
     elif t in EQUIP: tid, sub = 2, EQUIP[t]
     elif t == 'Card': tid, sub = 6, 0
-    elif t == 'Special Equipment' and f['acc']: tid, sub = 2, f['acc']
+    elif t == 'Special Equipment' and f['acc']: tid, sub = 10, 529   # Taming Ring -> ROZ costume accessory slot (Tong's shadow-earring slot)
+    elif t.startswith('Shadow Equipment'): tid, sub = 10, 527          # guild shields
+    elif t.startswith('Costume') and f['pos']:
+        tid, sub = 9, {'Upper': 519, 'Middle': 520, 'Lower': 521}[f['pos'][0]]
+    elif t.startswith('Costume') and 'Garment' in ' '.join(lines): tid, sub = 9, 522
+    elif not t and costume_stone(lines): tid, sub = 6, costume_stone(lines)
     else: continue
     dt = DATA.get(k, {})
-    if dt.get('costume') and t != 'Special Equipment': continue
     script, un = collections.defaultdict(list), []
     for l in body:
         r = parse_line(l)

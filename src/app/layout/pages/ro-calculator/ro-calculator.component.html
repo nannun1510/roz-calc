@@ -189,7 +189,7 @@
                   ></app-status-input>
                 </div>
                 <div class="col-6">
-                  <app-status-input
+                  <app-status-input *ngIf="isAllowTraitStat"
                     label="Pow"
                     [disabled]="!isAllowTraitStat"
                     [dropdownList]="traitStatusList"
@@ -213,7 +213,7 @@
                   ></app-status-input>
                 </div>
                 <div class="col-6">
-                  <app-status-input
+                  <app-status-input *ngIf="isAllowTraitStat"
                     label="Sta"
                     [disabled]="!isAllowTraitStat"
                     [dropdownList]="traitStatusList"
@@ -237,7 +237,7 @@
                   ></app-status-input>
                 </div>
                 <div class="col-6">
-                  <app-status-input
+                  <app-status-input *ngIf="isAllowTraitStat"
                     label="Wis"
                     [disabled]="!isAllowTraitStat"
                     [dropdownList]="traitStatusList"
@@ -261,7 +261,7 @@
                   ></app-status-input>
                 </div>
                 <div class="col-6">
-                  <app-status-input
+                  <app-status-input *ngIf="isAllowTraitStat"
                     label="Spl"
                     [disabled]="!isAllowTraitStat"
                     [dropdownList]="traitStatusList"
@@ -285,7 +285,7 @@
                   ></app-status-input>
                 </div>
                 <div class="col-6">
-                  <app-status-input
+                  <app-status-input *ngIf="isAllowTraitStat"
                     label="Con"
                     [disabled]="!isAllowTraitStat"
                     [dropdownList]="traitStatusList"
@@ -309,7 +309,7 @@
                   ></app-status-input>
                 </div>
                 <div class="col-6">
-                  <app-status-input
+                  <app-status-input *ngIf="isAllowTraitStat"
                     label="Crt"
                     [disabled]="!isAllowTraitStat"
                     [dropdownList]="traitStatusList"
@@ -1139,7 +1139,7 @@
             (selectItemChange)="onSelectItem('costumeEnchantUpper', $event.itemId)"
           ></app-equipment-cos-enchant>
         </div>
-        <div class="col-3">
+        <div class="col-3" [hidden]="true">
           <app-equipment-cos-enchant
             [itemType]="'costumeEnchantUpper2'"
             [placeholder]="'Upper Enchant 2'"
@@ -1148,7 +1148,7 @@
             (selectItemChange)="onSelectItem('costumeEnchantUpper2', $event.itemId)"
           ></app-equipment-cos-enchant>
         </div>
-        <div class="col-3 item_label_pet">
+        <div class="col-3 item_label_pet" [hidden]="true">
           <p-dropdown
             inputId="pet"
             [autoDisplayFirst]="false"
@@ -1242,7 +1242,7 @@
             (selectItemChange)="onSelectItem('costumeEnchantGarment', $event.itemId)"
           ></app-equipment-cos-enchant>
         </div>
-        <div class="col-3">
+        <div class="col-3" [hidden]="true">
           <app-equipment-cos-enchant
             [itemType]="'costumeEnchantGarment2'"
             [placeholder]="'Garment Enchant 2'"
@@ -1333,11 +1333,35 @@
       </div>
     </div>
 
+    <div class="grid grid-nogutter mt-1">
+        <!-- ROZ: Taming Ring (costume accessory) -->
+        <div class="col-12 item_label_costume">
+          <app-equipment-shadow
+            [itemType]="'shadowEarring'"
+            [placeholder]="'Taming Ring'"
+            [items]="items"
+            [mapEnchant]="mapEnchant"
+            [itemList]="shadowEarringList"
+            [refineList]="shadowRefineList"
+            [optionList]="basicOptions"
+            [(itemId)]="model.shadowEarring"
+            [(itemRefine)]="model.shadowEarringRefine"
+            [(enchant2Id)]="model.shadowEarringEnchant1"
+            [(enchant3Id)]="model.shadowEarringEnchant2"
+            [(enchant4Id)]="model.shadowEarringEnchant3"
+            [(optionValue)]="model.rawOptionTxts[itemOptionNumber.SD_Ear_1]"
+            (selectItemChange)="onSelectItem($event.itemType, $event.itemId, $event.refine)"
+            (clearItemEvent)="onClearItem($event)"
+            (optionChange)="onOptionChange()"
+          ></app-equipment-shadow>
+        </div>
+    </div>
+
     <!-- Shadow -->
     <div class="grid grid-nogutter mt-3">
       <div class="col-12 grid grid-nogutter align-content-start">
         <!-- Shadow Weapon -->
-        <div class="col-12 item_label_shadow">
+        <div class="col-12 item_label_shadow" [hidden]="true">
           <app-equipment-shadow
             [itemType]="'shadowWeapon'"
             [placeholder]="'Shadow Weapon'"
@@ -1362,7 +1386,7 @@
         <div class="col-12 item_label_shadow">
           <app-equipment-shadow
             [itemType]="'shadowShield'"
-            [placeholder]="'Shadow Shield'"
+            [placeholder]="'Shadow Shield (Guild)'"
             [items]="items"
             [mapEnchant]="mapEnchant"
             [itemList]="shadowShieldList"
@@ -1381,7 +1405,7 @@
         </div>
 
         <!-- Shadow Armor -->
-        <div class="col-12 item_label_shadow">
+        <div class="col-12 item_label_shadow" [hidden]="true">
           <app-equipment-shadow
             [itemType]="'shadowArmor'"
             [placeholder]="'Shadow Armor'"
@@ -1403,7 +1427,7 @@
         </div>
 
         <!-- Shadow Boot -->
-        <div class="col-12 item_label_shadow">
+        <div class="col-12 item_label_shadow" [hidden]="true">
           <app-equipment-shadow
             [itemType]="'shadowBoot'"
             [placeholder]="'Shadow Boot'"
@@ -1424,30 +1448,9 @@
           ></app-equipment-shadow>
         </div>
 
-        <!-- Shadow Earring -->
-        <div class="col-12 item_label_shadow">
-          <app-equipment-shadow
-            [itemType]="'shadowEarring'"
-            [placeholder]="'Shadow Earring'"
-            [items]="items"
-            [mapEnchant]="mapEnchant"
-            [itemList]="shadowEarringList"
-            [refineList]="shadowRefineList"
-            [optionList]="basicOptions"
-            [(itemId)]="model.shadowEarring"
-            [(itemRefine)]="model.shadowEarringRefine"
-            [(enchant2Id)]="model.shadowEarringEnchant1"
-            [(enchant3Id)]="model.shadowEarringEnchant2"
-            [(enchant4Id)]="model.shadowEarringEnchant3"
-            [(optionValue)]="model.rawOptionTxts[itemOptionNumber.SD_Ear_1]"
-            (selectItemChange)="onSelectItem($event.itemType, $event.itemId, $event.refine)"
-            (clearItemEvent)="onClearItem($event)"
-            (optionChange)="onOptionChange()"
-          ></app-equipment-shadow>
-        </div>
 
         <!-- Shadow Pendant -->
-        <div class="col-12 item_label_shadow">
+        <div class="col-12 item_label_shadow" [hidden]="true">
           <app-equipment-shadow
             [itemType]="'shadowPendant'"
             [placeholder]="'Shadow Pendant'"
@@ -1490,7 +1493,7 @@
         <div class="col-12 item_label_compare" *ngIf="showCompareItemMap.shadowShield">
           <app-equipment-shadow
             [itemType]="'shadowShield'"
-            [placeholder]="'Shadow Shield'"
+            [placeholder]="'Shadow Shield (Guild)'"
             [items]="items"
             [mapEnchant]="mapEnchant"
             [itemList]="shadowShieldList"

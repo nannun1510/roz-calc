@@ -1,0 +1,613 @@
+import { JOB_4_MAX_JOB_LEVEL, JOB_4_MIN_MAX_LEVEL } from '../app-config';
+import { ElementType, WeaponTypeName } from '../constants';
+import { EquipmentSummaryModel } from '../models/equipment-summary.model';
+import { AdditionalBonusInput } from '../models/info-for-class.model';
+import { addBonus, floor, genSkillList } from '../utils';
+import { ShadowChaser } from './ShadowChaser';
+import { ActiveSkillModel, AtkSkillFormulaInput, AtkSkillModel, PassiveSkillModel } from './_character-base.abstract';
+import { ClassName } from './_class-name';
+import { InfoForClass } from '../models/info-for-class.model';
+
+const jobBonusTable: Record<number, [number, number, number, number, number, number]> = {
+  1: [0, 0, 0, 0, 0, 1],
+  2: [1, 0, 0, 0, 0, 1],
+  3: [1, 0, 0, 0, 1, 1],
+  4: [1, 0, 0, 0, 1, 2],
+  5: [2, 0, 0, 1, 1, 2],
+  6: [2, 0, 0, 2, 1, 2],
+  7: [2, 0, 0, 2, 1, 3],
+  8: [2, 1, 0, 2, 1, 3],
+  9: [2, 1, 0, 2, 2, 3],
+  10: [2, 1, 1, 3, 2, 3],
+  11: [2, 1, 2, 3, 2, 3],
+  12: [3, 1, 2, 3, 2, 3],
+  13: [4, 1, 2, 4, 2, 3],
+  14: [4, 1, 2, 4, 2, 4],
+  15: [4, 1, 2, 4, 2, 4],
+  16: [4, 1, 2, 4, 3, 4],
+  17: [4, 2, 2, 4, 3, 4],
+  18: [4, 2, 3, 4, 3, 4],
+  19: [4, 2, 3, 5, 3, 4],
+  20: [4, 2, 4, 5, 3, 4],
+  21: [5, 2, 4, 6, 3, 4],
+  22: [5, 2, 5, 6, 4, 4],
+  23: [5, 3, 5, 6, 4, 4],
+  24: [5, 3, 5, 6, 4, 5],
+  25: [5, 4, 6, 6, 4, 5],
+  26: [5, 4, 6, 6, 4, 6],
+  27: [6, 5, 6, 6, 4, 6],
+  28: [6, 6, 6, 6, 4, 6],
+  29: [6, 7, 7, 6, 4, 6],
+  30: [6, 7, 7, 6, 5, 6],
+  31: [7, 8, 7, 6, 5, 6],
+  32: [8, 8, 7, 6, 5, 6],
+  33: [8, 8, 8, 6, 5, 6],
+  34: [8, 8, 8, 6, 5, 6],
+  35: [8, 8, 8, 6, 5, 6],
+  36: [8, 8, 8, 6, 5, 6],
+  37: [8, 8, 8, 6, 5, 6],
+  38: [8, 8, 8, 6, 6, 6],
+  39: [8, 8, 8, 6, 6, 6],
+  40: [8, 8, 8, 6, 6, 6],
+  41: [8, 9, 8, 6, 6, 6],
+  42: [8, 9, 8, 6, 6, 6],
+  43: [8, 9, 8, 6, 6, 6],
+  44: [8, 9, 8, 6, 6, 6],
+  45: [8, 9, 8, 6, 6, 6],
+  46: [8, 9, 8, 6, 6, 6],
+  47: [8, 9, 8, 6, 6, 6],
+  48: [8, 9, 8, 6, 6, 6],
+  49: [8, 9, 8, 6, 6, 6],
+  50: [8, 9, 8, 6, 6, 6],
+  51: [8, 9, 8, 6, 6, 6],
+  52: [8, 9, 8, 6, 6, 6],
+  53: [8, 9, 8, 6, 6, 6],
+  54: [8, 9, 8, 6, 6, 6],
+  55: [8, 9, 8, 6, 6, 6],
+  56: [8, 9, 8, 6, 6, 6],
+  57: [8, 9, 8, 6, 6, 6],
+  58: [8, 9, 8, 6, 6, 6],
+  59: [8, 9, 8, 6, 6, 6],
+  60: [8, 9, 8, 6, 6, 6],
+  61: [8, 9, 8, 6, 6, 6],
+  62: [8, 9, 8, 6, 6, 6],
+  63: [8, 9, 8, 6, 6, 6],
+  64: [8, 9, 8, 6, 6, 6],
+  65: [8, 9, 8, 6, 6, 6],
+  66: [8, 9, 8, 6, 6, 6],
+  67: [8, 9, 8, 6, 6, 6],
+  68: [8, 9, 8, 6, 6, 6],
+  69: [8, 9, 8, 6, 6, 6],
+  70: [8, 9, 8, 6, 6, 6],
+};
+
+const traitBonusTable: Record<number, [number, number, number, number, number, number]> = {
+  1: [1, 0, 0, 0, 0, 0],
+  2: [1, 0, 0, 1, 0, 0],
+  3: [1, 0, 0, 1, 0, 0],
+  4: [1, 0, 0, 1, 0, 0],
+  5: [1, 0, 0, 1, 0, 0],
+  6: [1, 0, 0, 1, 0, 0],
+  7: [2, 0, 0, 1, 0, 0],
+  8: [2, 1, 0, 1, 0, 0],
+  9: [2, 1, 0, 1, 1, 0],
+  10: [2, 1, 0, 1, 1, 0],
+  11: [2, 1, 0, 1, 2, 0],
+  12: [2, 1, 0, 1, 2, 0],
+  13: [2, 1, 0, 1, 2, 0],
+  14: [2, 1, 0, 1, 2, 0],
+  15: [2, 1, 0, 2, 2, 0],
+  16: [2, 1, 0, 2, 2, 1],
+  17: [2, 1, 1, 2, 2, 1],
+  18: [2, 1, 1, 2, 2, 1],
+  19: [2, 1, 2, 2, 2, 1],
+  20: [2, 2, 2, 2, 2, 1],
+  21: [2, 2, 2, 2, 2, 1],
+  22: [2, 2, 2, 2, 2, 1],
+  23: [2, 3, 2, 2, 2, 1],
+  24: [2, 3, 2, 2, 2, 1],
+  25: [2, 3, 2, 2, 2, 1],
+  26: [2, 3, 2, 2, 2, 1],
+  27: [2, 3, 2, 2, 2, 1],
+  28: [2, 3, 2, 2, 2, 1],
+  29: [2, 3, 2, 2, 2, 1],
+  30: [2, 3, 2, 2, 2, 1],
+  31: [2, 3, 2, 2, 2, 1],
+  32: [2, 3, 2, 2, 2, 1],
+  33: [2, 3, 2, 2, 2, 1],
+  34: [3, 3, 3, 2, 2, 1],
+  35: [3, 3, 3, 3, 2, 1],
+  36: [4, 3, 3, 3, 2, 1],
+  37: [4, 4, 3, 3, 3, 1],
+  38: [4, 4, 3, 3, 3, 1],
+  39: [4, 4, 3, 3, 3, 2],
+  40: [4, 4, 3, 3, 3, 3],
+  41: [4, 5, 3, 3, 3, 3],
+  42: [5, 5, 3, 3, 3, 3],
+  43: [5, 5, 3, 3, 3, 4],
+  44: [6, 5, 3, 3, 3, 4],
+  45: [6, 5, 3, 4, 3, 5],
+  46: [6, 5, 3, 5, 3, 5],
+  47: [6, 5, 4, 5, 3, 5],
+  48: [6, 5, 4, 6, 4, 5],
+  49: [6, 6, 4, 6, 4, 5],
+  50: [7, 6, 4, 7, 4, 5],
+  51: [8, 6, 4, 7, 4, 5],
+  52: [8, 6, 4, 7, 4, 6],
+  53: [8, 6, 4, 7, 4, 6],
+  54: [8, 7, 4, 7, 4, 6],
+  55: [8, 8, 4, 7, 5, 6],
+  56: [8, 8, 4, 8, 5, 6],
+  57: [8, 8, 4, 8, 5, 6],
+  58: [8, 8, 4, 8, 5, 6],
+  59: [9, 8, 4, 8, 5, 6],
+  60: [9, 8, 4, 8, 5, 6],
+  61: [9, 8, 4, 8, 5, 6],
+  62: [9, 8, 4, 8, 5, 6],
+  63: [9, 8, 4, 8, 5, 6],
+  64: [9, 8, 4, 8, 5, 6],
+  65: [9, 8, 4, 8, 5, 6],
+  66: [9, 8, 4, 8, 5, 6],
+  67: [9, 8, 4, 8, 5, 6],
+  68: [9, 8, 4, 8, 5, 6],
+  69: [9, 8, 4, 8, 5, 6],
+  70: [9, 8, 4, 8, 5, 6],
+};
+
+export class AbyssChaser extends ShadowChaser {
+  protected override CLASS_NAME = ClassName.AbyssChaser;
+  protected override JobBonusTable = jobBonusTable;
+  protected override TraitBonusTable = traitBonusTable;
+
+  protected override minMaxLevel = JOB_4_MIN_MAX_LEVEL;
+  protected override maxJob = JOB_4_MAX_JOB_LEVEL;
+
+  private readonly classNames4th = [ClassName.Only_4th, ClassName.AbyssChaser];
+  private readonly atkSkillList4th: AtkSkillModel[] = [
+    {
+      name: 'Abyss Dagger',
+      label: 'Abyss Dagger Lv5',
+      value: 'Abyss Dagger==5',
+      acd: 0.5,
+      fct: 0,
+      vct: 0,
+      cd: 0.4,
+      isMelee: true,
+      totalHit: 2,
+      verifyItemFn: ({ weapon }) => {
+        const requires: WeaponTypeName[] = ['dagger', 'sword'];
+        if (requires.some(wType => weapon.isType(wType))) return '';
+
+        return requires.join(', ');
+      },
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalPow } = status;
+        const { level: baseLevel } = model;
+
+        if (this.activeSkillLv('Skill Version') === 0) { // GGT
+          return (100 + skillLevel * 900 + totalPow * 5) * (baseLevel / 100);
+        }
+
+        // KRO
+        return (350 + skillLevel * 1400 + totalPow * 5) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Unlucky Rush',
+      label: 'Unlucky Rush Lv5',
+      value: 'Unlucky Rush==5',
+      acd: 0.5,
+      fct: 0,
+      vct: 0,
+      cd: 0.25,
+      isMelee: true,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalPow } = status;
+        const { level: baseLevel } = model;
+
+        return (100 + skillLevel * 300 + totalPow * 5) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Deft Stab',
+      label: 'Deft Stab Lv10',
+      value: 'Deft Stab==10',
+      acd: 0.5,
+      fct: 0,
+      vct: 0,
+      cd: 0.7,
+      isMelee: true,
+      totalHit: 5,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalPow } = status;
+        const { level: baseLevel } = model;
+
+        if (this.activeSkillLv('Skill Version') === 0) {  // GGT
+          return (250 + skillLevel * 350 + totalPow * 5) * (baseLevel / 100);
+        }
+
+        // KRO
+        return (700 + skillLevel * 550 + totalPow * 7) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Chain Reaction Shot',
+      label: 'Chain Reaction Shot Lv5',
+      value: 'Chain Reaction Shot==5',
+      acd: 0,
+      fct: 1,
+      vct: 1,
+      cd: 1,
+      verifyItemFn: ({ weapon }) => {
+        const requires: WeaponTypeName[] = ['bow'];
+        if (requires.some(wType => weapon.isType(wType))) return '';
+
+        return requires.join(', ');
+      },
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalCon } = status;
+        const { level: baseLevel } = model;
+
+        const primary = (skillLevel * 850 + totalCon * 15) * (baseLevel / 100);
+        const second = (600 + skillLevel * 2350 + totalCon * 15) * (baseLevel / 100);
+
+        return floor(primary) + floor(second);
+      },
+    },
+    {
+      name: 'Frenzy Shot',
+      label: 'Frenzy Shot Lv10 (1 hit)',
+      value: 'Frenzy Shot==10',
+      acd: 0.5,
+      fct: 0,
+      vct: 0,
+      cd: 0.35,
+      canCri: true,
+      baseCriPercentage: 1,
+      criDmgPercentage: 0.5,
+      verifyItemFn: ({ weapon }) => {
+        const requires: WeaponTypeName[] = ['bow'];
+        if (requires.some(wType => weapon.isType(wType))) return '';
+
+        return requires.join(', ');
+      },
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalCon } = status;
+        const { level: baseLevel } = model;
+
+        if (this.activeSkillLv('Skill Version') === 0) // GGT
+          return (150 + skillLevel * 600 + totalCon * 15) * (baseLevel / 100);
+
+        // KRO
+        return (250 + skillLevel * 800 + totalCon * 15) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'From the Abyss',
+      label: 'From the Abyss Lv5',
+      value: 'From the Abyss==5',
+      acd: 0,
+      fct: 0,
+      vct: 0,
+      cd: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return 30;
+
+        return 60;
+      },
+      isMatk: true,
+      element: ElementType.Neutral,
+      totalHit: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return 5;
+
+        return 2;
+      },
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalSpl } = status;
+        const { level: baseLevel } = model;
+
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
+          return (150 + skillLevel * 650 + totalSpl * 5) * (baseLevel / 100);
+        }
+
+        return (100 + skillLevel * 500 + totalSpl * 5) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Abyss Square',
+      label: 'Abyss Square Lv5 (นอกพื้นที่สกิล)',
+      value: 'Abyss Square==5',
+      acd: 0.5,
+      fct: 1.5,
+      vct: 5,
+      cd: 3,
+      totalHit: 10,
+      isMatk: true,
+      element: ElementType.Neutral,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalSpl } = status;
+        const { level: baseLevel } = model;
+        const magicSwordMasLv = this.learnLv('Magic Sword Mastery');
+
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
+          return (skillLevel * (750 + magicSwordMasLv * 40) + totalSpl * 5) * (baseLevel / 100);
+        }
+        return (skillLevel * (570 + magicSwordMasLv * 20) + totalSpl * 5) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Abyss Square',
+      label: 'Abyss Square Lv5 (ในพื้นที่สกิล)',
+      value: 'Abyss Square==6',
+      acd: 0.5,
+      fct: 1.5,
+      vct: 5,
+      cd: 3,
+      totalHit: 10,
+      isMatk: true,
+      element: ElementType.Neutral,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalSpl } = status;
+        const { level: baseLevel } = model;
+        const magicSwordMasLv = this.learnLv('Magic Sword Mastery');
+
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
+          return (Math.min(5, skillLevel) * (750 + magicSwordMasLv * 40) + totalSpl * 5) * 2 * (baseLevel / 100);
+        }
+        return (Math.min(5, skillLevel) * (570 + magicSwordMasLv * 20) + totalSpl * 5) * 2 * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Omega Abyss Strike',
+      label: 'Omega Abyss Strike Lv10',
+      value: 'Omega Abyss Strike==10',
+      acd: 0.5,
+      fct: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return 1;
+
+        return 1.5;
+      },
+      vct: 4,
+      cd: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return 0.7;
+
+        return 3;
+      },
+      isMatk: true,
+      getElement: () => {
+        if (this.activeSkillLv('Skill Version') === 1) return ElementType.Fire;
+
+        return ElementType.Neutral;
+      },
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status, monster } = input;
+        const { totalSpl } = status;
+        const { level: baseLevel } = model;
+        const raceBonus = monster.isRace('angel', 'demon') ? 150 : 0;
+
+        if (this.activeSkillLv('Skill Version') === 1) { // KRO
+          if (monster.isRace('angel', 'demon')) {
+            return (skillLevel * 2850 + totalSpl * 10) * (baseLevel / 100);
+          }
+          return (skillLevel * 2650 + totalSpl * 10) * (baseLevel / 100);
+        }
+        return (skillLevel * (2200 + raceBonus) + totalSpl * 10) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Abyss Flame',
+      label: 'Abyss Flame Lv5 (รอบเป้าหมาย)',
+      value: 'Abyss Flame==5',
+      acd: 1,
+      fct: 1.5,
+      vct: 3,
+      cd: 0.7,
+      isMatk: true,
+      totalHit: 5,
+      element: ElementType.Fire,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalSpl } = status;
+        const { level: baseLevel } = model;
+        const magicSwordMasLv = this.learnLv('Magic Sword Mastery');
+
+        return (skillLevel * (500 + magicSwordMasLv * 15) + totalSpl * 5) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Abyss Flame',
+      label: 'Abyss Flame Lv5 (รอบผู้ใช้)',
+      value: 'Abyss Flame==6',
+      acd: 1,
+      fct: 1.5,
+      vct: 3,
+      cd: 0.7,
+      isMatk: true,
+      totalHit: 3,
+      element: ElementType.Fire,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalSpl } = status;
+        const { level: baseLevel } = model;
+        const magicSwordMasLv = this.learnLv('Magic Sword Mastery');
+
+        return ((skillLevel - 1) * (820 + magicSwordMasLv * 30) + totalSpl * 5) * (baseLevel / 100);
+      },
+    },
+    {
+      name: 'Soul Vulcan Strike',
+      label: 'Soul Vulcan Strike Lv5',
+      value: 'Soul Vulcan Strike==5',
+      acd: 0.5,
+      fct: 1,
+      vct: 3,
+      cd: 0.7,
+      isMatk: true,
+      element: ElementType.Ghost,
+      totalHit: ({ skillLevel }) => skillLevel + 2,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalSpl } = status;
+        const { level: baseLevel } = model;
+
+        if (this.activeSkillLv('Skill Version') === 1) // KRO
+          return (skillLevel * 300 + totalSpl * 3) * (baseLevel / 100);
+        else
+          return (skillLevel * 250 + totalSpl * 3) * (baseLevel / 100);
+      }
+    },
+    {
+      name: 'Jack Frost Nova',
+      label: 'Jack Frost Nova Lv10',
+      value: 'Jack Frost Nova==10',
+      acd: 0.3,
+      fct: 1.5,
+      vct: 2.5,
+      cd: 3,
+      isMatk: true,
+      totalHit: () => {
+        if (this.activeSkillLv('Jack Frost Nova Type') === 1) {
+          return 1;
+        } else {
+          return 10;
+        }
+      },
+      element: ElementType.Water,
+      formula: (input: AtkSkillFormulaInput): number => {
+        const { model, skillLevel, status } = input;
+        const { totalSpl } = status;
+        const baseLevel = model.level;
+        const skillBonusLv = this.learnLv('Self Study Sorcery');
+
+        if (this.activeSkillLv('Jack Frost Nova Type') === 1) {
+
+          if (this.isSkillActive('Rule Break'))
+            return (skillLevel * (200 + skillBonusLv * 3) + totalSpl * 2) * (baseLevel / 100) * 170 / 100;
+
+          return (skillLevel * (200 + skillBonusLv * 3) + totalSpl * 2) * (baseLevel / 100);
+        } else {
+
+          if (this.isSkillActive('Rule Break'))
+            return (400 + skillLevel * (500 + skillBonusLv * 3) + totalSpl * 2) * (baseLevel / 100) * 170 / 100;
+
+          return (400 + skillLevel * (500 + skillBonusLv * 3) + totalSpl * 2) * (baseLevel / 100);
+        }
+      },
+    },
+  ];
+  private readonly activeSkillList4th: ActiveSkillModel[] = [
+    {
+      name: 'Strip Shadow',
+      label: 'Strip Shadow',
+      isDebuff: true,
+      inputType: 'selectButton',
+      dropdown: [
+        { label: 'Yes', value: 5, isUse: true, bonus: { monster_res: -50, monster_mres: -50 } },
+        { label: 'No', value: 0, isUse: false },
+      ],
+    },
+    {
+      name: 'Abyss Slayer',
+      label: 'Abyss Slayer',
+      inputType: 'dropdown',
+      dropdown: genSkillList(10, (lv) => ({ pAtk: 10 + lv * 2, sMatk: 10 + lv * 2, hit: 100 + lv * 20 })),
+    },
+    {
+      name: 'Abyss Dagger',
+      label: 'Abyss Dagger',
+      inputType: 'selectButton',
+      dropdown: [
+        { label: 'Yes', value: 5, isUse: true },
+        { label: 'No', value: 0, isUse: false },
+      ],
+    },
+    {
+      label: 'Power (Good&Evil)',
+      name: 'Power',
+      inputType: 'dropdown',
+      dropdown: [
+        { label: '-', value: 0, isUse: false },
+        { label: 'Lv 4', value: 4, isUse: true },
+      ],
+    },
+    {
+      inputType: 'selectButton',
+      label: 'Jack Frost Nova',
+      name: 'Jack Frost Nova Type',
+      dropdown: [
+        { label: 'ระเบิด', value: 1, isUse: true },
+        { label: 'บ่อ', value: 0, isUse: false },
+      ],
+    },
+  ];
+  private readonly passiveSkillList4th: PassiveSkillModel[] = [
+    {
+      name: 'Dagger & Bow Mastery',
+      label: 'Dagger & Bow Mastery',
+      inputType: 'dropdown',
+      dropdown: genSkillList(10),
+    },
+    {
+      name: 'Magic Sword Mastery',
+      label: 'Magic Sword Mastery',
+      inputType: 'dropdown',
+      dropdown: genSkillList(10),
+    },
+    {
+      name: 'Frenzy Shot',
+      label: 'Frenzy Shot',
+      inputType: 'dropdown',
+      dropdown: genSkillList(10),
+    },
+  ];
+
+  constructor() {
+    super();
+
+    this.inheritSkills({
+      activeSkillList: this.activeSkillList4th,
+      atkSkillList: this.atkSkillList4th,
+      passiveSkillList: this.passiveSkillList4th,
+      classNames: this.classNames4th,
+    });
+  }
+
+  override setAdditionalBonus(params: AdditionalBonusInput): EquipmentSummaryModel {
+    super.setAdditionalBonus(params);
+
+    const { totalBonus, weapon } = params;
+
+    const dAndBowLv = this.learnLv('Dagger & Bow Mastery');
+    if (dAndBowLv > 0 && weapon.isType('dagger', 'bow')) {
+      const mapM = [0, 2, 3, 5, 6, 8, 9, 11, 12, 14, 15];
+      addBonus(totalBonus, 'p_size_s', dAndBowLv);
+      addBonus(totalBonus, 'p_size_m', mapM[dAndBowLv]);
+      addBonus(totalBonus, 'p_size_l', dAndBowLv * 2);
+    }
+
+    const magicLv = this.learnLv('Magic Sword Mastery');
+    if (magicLv > 0 && weapon.isType('dagger', 'sword')) {
+      addBonus(totalBonus, 'm_size_all', Math.ceil(magicLv * 1.5));
+    }
+
+    return totalBonus;
+  }
+
+  override modifyFinalAtk(currentAtk: number, _params: InfoForClass) {
+    const powerLv = this.bonuses.usedSkillMap.get('Power');
+
+    let totalAtk = currentAtk;
+    if (powerLv >= 1) {
+      totalAtk = totalAtk + floor(totalAtk * (powerLv * 20) * 0.01);
+    }
+
+    return totalAtk;
+  }
+}

@@ -1,0 +1,4238 @@
+{
+ "JT_NOVICE": {
+  "jobId": 0,
+  "inheritsFrom": null,
+  "skills": [
+   {
+    "pos": 0,
+    "id": 1,
+    "aegis": "NV_BASIC",
+    "name": "Basic Skill",
+    "maxLv": 9
+   },
+   {
+    "pos": 7,
+    "id": 142,
+    "aegis": "NV_FIRSTAID",
+    "name": "First Aid",
+    "maxLv": 1
+   },
+   {
+    "pos": 14,
+    "id": 143,
+    "aegis": "NV_TRICKDEAD",
+    "name": "Play Dead",
+    "maxLv": 1
+   }
+  ]
+ },
+ "JT_MAGICIAN": {
+  "jobId": 2,
+  "inheritsFrom": "JT_NOVICE",
+  "skills": [
+   {
+    "pos": 1,
+    "id": 16,
+    "aegis": "MG_STONECURSE",
+    "name": "Stone Curse",
+    "maxLv": 10
+   },
+   {
+    "pos": 2,
+    "id": 14,
+    "aegis": "MG_COLDBOLT",
+    "name": "Cold Bolt",
+    "maxLv": 10
+   },
+   {
+    "pos": 3,
+    "id": 20,
+    "aegis": "MG_LIGHTNINGBOLT",
+    "name": "Lightning Bolt",
+    "maxLv": 10
+   },
+   {
+    "pos": 4,
+    "id": 11,
+    "aegis": "MG_NAPALMBEAT",
+    "name": "Napalm Beat",
+    "maxLv": 10
+   },
+   {
+    "pos": 5,
+    "id": 19,
+    "aegis": "MG_FIREBOLT",
+    "name": "Fire Bolt",
+    "maxLv": 10
+   },
+   {
+    "pos": 6,
+    "id": 10,
+    "aegis": "MG_SIGHT",
+    "name": "Sight",
+    "maxLv": 1
+   },
+   {
+    "pos": 8,
+    "id": 90,
+    "aegis": "WZ_EARTHSPIKE",
+    "name": "Earth Spike",
+    "maxLv": 5
+   },
+   {
+    "pos": 9,
+    "id": 15,
+    "aegis": "MG_FROSTDIVER",
+    "name": "Frost Diver",
+    "maxLv": 10
+   },
+   {
+    "pos": 10,
+    "id": 21,
+    "aegis": "MG_THUNDERSTORM",
+    "name": "Thunder Storm",
+    "maxLv": 10
+   },
+   {
+    "pos": 11,
+    "id": 13,
+    "aegis": "MG_SOULSTRIKE",
+    "name": "Soul Strike",
+    "maxLv": 10
+   },
+   {
+    "pos": 12,
+    "id": 17,
+    "aegis": "MG_FIREBALL",
+    "name": "Fire Ball",
+    "maxLv": 10
+   },
+   {
+    "pos": 13,
+    "id": 157,
+    "aegis": "MG_ENERGYCOAT",
+    "name": "Energy Coat",
+    "maxLv": 1
+   },
+   {
+    "pos": 15,
+    "id": 9,
+    "aegis": "MG_SRECOVERY",
+    "name": "Increase SP Recovery",
+    "maxLv": 10
+   },
+   {
+    "pos": 18,
+    "id": 12,
+    "aegis": "MG_SAFETYWALL",
+    "name": "Safety Wall",
+    "maxLv": 10
+   },
+   {
+    "pos": 19,
+    "id": 18,
+    "aegis": "MG_FIREWALL",
+    "name": "Fire Wall",
+    "maxLv": 10
+   }
+  ]
+ },
+ "JT_ACOLYTE": {
+  "jobId": 4,
+  "inheritsFrom": "JT_NOVICE",
+  "skills": [
+   {
+    "pos": 1,
+    "id": 24,
+    "aegis": "AL_RUWACH",
+    "name": "Ruwach",
+    "maxLv": 1
+   },
+   {
+    "pos": 2,
+    "id": 28,
+    "aegis": "AL_HEAL",
+    "name": "Heal",
+    "maxLv": 10
+   },
+   {
+    "pos": 3,
+    "id": 31,
+    "aegis": "AL_HOLYWATER",
+    "name": "Aqua Benedicta",
+    "maxLv": 1
+   },
+   {
+    "pos": 4,
+    "id": 65,
+    "aegis": "PR_MACEMASTERY",
+    "name": "Mace Mastery",
+    "maxLv": 10
+   },
+   {
+    "pos": 5,
+    "id": 22,
+    "aegis": "AL_DP",
+    "name": "Divine Protection",
+    "maxLv": 10
+   },
+   {
+    "pos": 6,
+    "id": 156,
+    "aegis": "AL_HOLYLIGHT",
+    "name": "Holy Light",
+    "maxLv": 1
+   },
+   {
+    "pos": 8,
+    "id": 26,
+    "aegis": "AL_TELEPORT",
+    "name": "Teleport",
+    "maxLv": 2
+   },
+   {
+    "pos": 9,
+    "id": 35,
+    "aegis": "AL_CURE",
+    "name": "Cure",
+    "maxLv": 1
+   },
+   {
+    "pos": 10,
+    "id": 29,
+    "aegis": "AL_INCAGI",
+    "name": "Increase Agility",
+    "maxLv": 10
+   },
+   {
+    "pos": 11,
+    "id": 34,
+    "aegis": "AL_BLESSING",
+    "name": "Blessing",
+    "maxLv": 10
+   },
+   {
+    "pos": 12,
+    "id": 23,
+    "aegis": "AL_DEMONBANE",
+    "name": "Demon Bane",
+    "maxLv": 10
+   },
+   {
+    "pos": 13,
+    "id": 33,
+    "aegis": "AL_ANGELUS",
+    "name": "Angelus",
+    "maxLv": 10
+   },
+   {
+    "pos": 15,
+    "id": 27,
+    "aegis": "AL_WARP",
+    "name": "Warp Portal",
+    "maxLv": 4
+   },
+   {
+    "pos": 17,
+    "id": 30,
+    "aegis": "AL_DECAGI",
+    "name": "Decrease Agility",
+    "maxLv": 10
+   },
+   {
+    "pos": 19,
+    "id": 32,
+    "aegis": "AL_CRUCIS",
+    "name": "Signum Crucis",
+    "maxLv": 10
+   },
+   {
+    "pos": 22,
+    "id": 25,
+    "aegis": "AL_PNEUMA",
+    "name": "Pneuma",
+    "maxLv": 1
+   }
+  ]
+ },
+ "JT_PRIEST": {
+  "jobId": 8,
+  "inheritsFrom": "JT_ACOLYTE",
+  "skills": [
+   {
+    "pos": 0,
+    "id": 73,
+    "aegis": "PR_KYRIE",
+    "name": "Kyrie Eleison",
+    "maxLv": 10
+   },
+   {
+    "pos": 1,
+    "id": 74,
+    "aegis": "PR_MAGNIFICAT",
+    "name": "Magnificat",
+    "maxLv": 5
+   },
+   {
+    "pos": 2,
+    "id": 72,
+    "aegis": "PR_STRECOVERY",
+    "name": "Status Recovery",
+    "maxLv": 1
+   },
+   {
+    "pos": 3,
+    "id": 9,
+    "aegis": "MG_SRECOVERY",
+    "name": "Increase SP Recovery",
+    "maxLv": 10
+   },
+   {
+    "pos": 4,
+    "id": 76,
+    "aegis": "PR_LEXDIVINA",
+    "name": "Lex Divina",
+    "maxLv": 10
+   },
+   {
+    "pos": 5,
+    "id": 66,
+    "aegis": "PR_IMPOSITIO",
+    "name": "Impositio Manus",
+    "maxLv": 5
+   },
+   {
+    "pos": 6,
+    "id": 70,
+    "aegis": "PR_SANCTUARY",
+    "name": "Sanctuary",
+    "maxLv": 10
+   },
+   {
+    "pos": 7,
+    "id": 75,
+    "aegis": "PR_GLORIA",
+    "name": "Gloria",
+    "maxLv": 5
+   },
+   {
+    "pos": 8,
+    "id": 2042,
+    "aegis": "AB_CANTO",
+    "name": "Cantocandidus",
+    "maxLv": 3
+   },
+   {
+    "pos": 9,
+    "id": 54,
+    "aegis": "ALL_RESURRECTION",
+    "name": "Resurrection",
+    "maxLv": 4
+   },
+   {
+    "pos": 10,
+    "id": 361,
+    "aegis": "HP_ASSUMPTIO",
+    "name": "Assumptio",
+    "maxLv": 5
+   },
+   {
+    "pos": 11,
+    "id": 78,
+    "aegis": "PR_LEXAETERNA",
+    "name": "Lex Aeterna",
+    "maxLv": 1
+   },
+   {
+    "pos": 12,
+    "id": 67,
+    "aegis": "PR_SUFFRAGIUM",
+    "name": "Suffragium",
+    "maxLv": 3
+   },
+   {
+    "pos": 13,
+    "id": 68,
+    "aegis": "PR_ASPERSIO",
+    "name": "Aspersio",
+    "maxLv": 5
+   },
+   {
+    "pos": 14,
+    "id": 69,
+    "aegis": "PR_BENEDICTIO",
+    "name": "B.S Sacramenti",
+    "maxLv": 5
+   },
+   {
+    "pos": 15,
+    "id": 2041,
+    "aegis": "AB_CLEMENTIA",
+    "name": "Clementia",
+    "maxLv": 3
+   },
+   {
+    "pos": 16,
+    "id": 77,
+    "aegis": "PR_TURNUNDEAD",
+    "name": "Turn Undead",
+    "maxLv": 10
+   },
+   {
+    "pos": 17,
+    "id": 362,
+    "aegis": "HP_BASILICA",
+    "name": "Basilica",
+    "maxLv": 5
+   },
+   {
+    "pos": 18,
+    "id": 2054,
+    "aegis": "AB_DUPLELIGHT",
+    "name": "Duple Light",
+    "maxLv": 10
+   },
+   {
+    "pos": 19,
+    "id": 363,
+    "aegis": "HP_MEDITATIO",
+    "name": "Meditation",
+    "maxLv": 10
+   },
+   {
+    "pos": 20,
+    "id": 12,
+    "aegis": "MG_SAFETYWALL",
+    "name": "Safety Wall",
+    "maxLv": 10
+   },
+   {
+    "pos": 22,
+    "id": 481,
+    "aegis": "HP_MANARECHARGE",
+    "name": "Spiritual Thrift",
+    "maxLv": 5
+   },
+   {
+    "pos": 25,
+    "id": 79,
+    "aegis": "PR_MAGNUS",
+    "name": "Magnus Exorcismus",
+    "maxLv": 10
+   },
+   {
+    "pos": 27,
+    "id": 1014,
+    "aegis": "PR_REDEMPTIO",
+    "name": "Redemptio",
+    "maxLv": 1
+   }
+  ]
+ },
+ "JT_SAGE": {
+  "jobId": 16,
+  "inheritsFrom": "JT_MAGICIAN",
+  "skills": [
+   {
+    "pos": 0,
+    "id": 274,
+    "aegis": "SA_ADVANCEDBOOK",
+    "name": "Study",
+    "maxLv": 10
+   },
+   {
+    "pos": 1,
+    "id": 93,
+    "aegis": "WZ_ESTIMATION",
+    "name": "Sense",
+    "maxLv": 1
+   },
+   {
+    "pos": 2,
+    "id": 1008,
+    "aegis": "SA_ELEMENTWATER",
+    "name": "Elemental Change - Water",
+    "maxLv": 1
+   },
+   {
+    "pos": 3,
+    "id": 1019,
+    "aegis": "SA_ELEMENTWIND",
+    "name": "Elemental Change - Wind",
+    "maxLv": 1
+   },
+   {
+    "pos": 4,
+    "id": 1017,
+    "aegis": "SA_ELEMENTGROUND",
+    "name": "Elemental Change - Ground",
+    "maxLv": 1
+   },
+   {
+    "pos": 5,
+    "id": 1018,
+    "aegis": "SA_ELEMENTFIRE",
+    "name": "Elemental Change - Fire",
+    "maxLv": 1
+   },
+   {
+    "pos": 6,
+    "id": 1007,
+    "aegis": "SA_CREATECON",
+    "name": "Create Elemental Converter",
+    "maxLv": 1
+   },
+   {
+    "pos": 7,
+    "id": 405,
+    "aegis": "PF_SPIDERWEB",
+    "name": "Fiber Lock",
+    "maxLv": 1
+   },
+   {
+    "pos": 8,
+    "id": 283,
+    "aegis": "SA_SEISMICWEAPON",
+    "name": "Endow Quake",
+    "maxLv": 5
+   },
+   {
+    "pos": 9,
+    "id": 275,
+    "aegis": "SA_CASTCANCEL",
+    "name": "Cast Cancel",
+    "maxLv": 5
+   },
+   {
+    "pos": 10,
+    "id": 276,
+    "aegis": "SA_MAGICROD",
+    "name": "Magic Rod",
+    "maxLv": 5
+   },
+   {
+    "pos": 11,
+    "id": 281,
+    "aegis": "SA_FROSTWEAPON",
+    "name": "Endow Tsunami",
+    "maxLv": 5
+   },
+   {
+    "pos": 12,
+    "id": 282,
+    "aegis": "SA_LIGHTNINGLOADER",
+    "name": "Endow Tornado",
+    "maxLv": 5
+   },
+   {
+    "pos": 13,
+    "id": 280,
+    "aegis": "SA_FLAMELAUNCHER",
+    "name": "Endow Blaze",
+    "maxLv": 5
+   },
+   {
+    "pos": 15,
+    "id": 91,
+    "aegis": "WZ_HEAVENDRIVE",
+    "name": "Heaven's Drive",
+    "maxLv": 5
+   },
+   {
+    "pos": 16,
+    "id": 278,
+    "aegis": "SA_FREECAST",
+    "name": "Free Cast",
+    "maxLv": 10
+   },
+   {
+    "pos": 17,
+    "id": 277,
+    "aegis": "SA_SPELLBREAKER",
+    "name": "Spell Breaker",
+    "maxLv": 5
+   },
+   {
+    "pos": 18,
+    "id": 286,
+    "aegis": "SA_DELUGE",
+    "name": "Deluge",
+    "maxLv": 5
+   },
+   {
+    "pos": 19,
+    "id": 287,
+    "aegis": "SA_VIOLENTGALE",
+    "name": "Whirlwind",
+    "maxLv": 5
+   },
+   {
+    "pos": 20,
+    "id": 285,
+    "aegis": "SA_VOLCANO",
+    "name": "Volcano",
+    "maxLv": 5
+   },
+   {
+    "pos": 21,
+    "id": 374,
+    "aegis": "PF_SOULCHANGE",
+    "name": "Soul Exhale",
+    "maxLv": 1
+   },
+   {
+    "pos": 23,
+    "id": 279,
+    "aegis": "SA_AUTOSPELL",
+    "name": "Hindsight",
+    "maxLv": 10
+   },
+   {
+    "pos": 24,
+    "id": 289,
+    "aegis": "SA_DISPELL",
+    "name": "Dispell",
+    "maxLv": 5
+   },
+   {
+    "pos": 26,
+    "id": 404,
+    "aegis": "PF_FOGWALL",
+    "name": "Blinding Mist",
+    "maxLv": 1
+   },
+   {
+    "pos": 27,
+    "id": 288,
+    "aegis": "SA_LANDPROTECTOR",
+    "name": "Land Protector",
+    "maxLv": 5
+   },
+   {
+    "pos": 28,
+    "id": 373,
+    "aegis": "PF_HPCONVERSION",
+    "name": "Indulge",
+    "maxLv": 5
+   },
+   {
+    "pos": 29,
+    "id": 482,
+    "aegis": "PF_DOUBLECASTING",
+    "name": "Double Bolt",
+    "maxLv": 5
+   },
+   {
+    "pos": 30,
+    "id": 403,
+    "aegis": "PF_MEMORIZE",
+    "name": "Foresight",
+    "maxLv": 1
+   },
+   {
+    "pos": 31,
+    "id": 375,
+    "aegis": "PF_SOULBURN",
+    "name": "Soul Siphon",
+    "maxLv": 5
+   },
+   {
+    "pos": 34,
+    "id": 290,
+    "aegis": "SA_ABRACADABRA",
+    "name": "Hocus-pocus",
+    "maxLv": 10
+   },
+   {
+    "pos": 37,
+    "id": 2445,
+    "aegis": "SO_SPELLFIST",
+    "name": "Spell Fist",
+    "maxLv": 10
+   },
+   {
+    "pos": 38,
+    "id": 402,
+    "aegis": "PF_MINDBREAKER",
+    "name": "Mind Breaker",
+    "maxLv": 5
+   }
+  ]
+ },
+ "JT_ROGUE": {
+  "jobId": 17,
+  "inheritsFrom": "JT_THIEF",
+  "skills": [
+   {
+    "pos": 0,
+    "id": 44,
+    "aegis": "AC_VULTURE",
+    "name": "Vulture's Eye",
+    "maxLv": 10
+   },
+   {
+    "pos": 1,
+    "id": 213,
+    "aegis": "RG_TUNNELDRIVE",
+    "name": "Stalk",
+    "maxLv": 5
+   },
+   {
+    "pos": 2,
+    "id": 210,
+    "aegis": "RG_SNATCHER",
+    "name": "Gank",
+    "maxLv": 10
+   },
+   {
+    "pos": 3,
+    "id": 218,
+    "aegis": "RG_STRIPHELM",
+    "name": "Divest Helm",
+    "maxLv": 5
+   },
+   {
+    "pos": 5,
+    "id": 390,
+    "aegis": "ST_REJECTSWORD",
+    "name": "Counter Instinct",
+    "maxLv": 5
+   },
+   {
+    "pos": 6,
+    "id": 1005,
+    "aegis": "RG_CLOSECONFINE",
+    "name": "Close Confine",
+    "maxLv": 1
+   },
+   {
+    "pos": 7,
+    "id": 46,
+    "aegis": "AC_DOUBLE",
+    "name": "Double Strafe",
+    "maxLv": 10
+   },
+   {
+    "pos": 8,
+    "id": 389,
+    "aegis": "ST_CHASEWALK",
+    "name": "Stealth",
+    "maxLv": 5
+   },
+   {
+    "pos": 9,
+    "id": 212,
+    "aegis": "RG_BACKSTAP",
+    "name": "Back Stab",
+    "maxLv": 10
+   },
+   {
+    "pos": 10,
+    "id": 216,
+    "aegis": "RG_STRIPSHIELD",
+    "name": "Divest Shield",
+    "maxLv": 5
+   },
+   {
+    "pos": 14,
+    "id": 124,
+    "aegis": "HT_REMOVETRAP",
+    "name": "Remove Trap",
+    "maxLv": 1
+   },
+   {
+    "pos": 15,
+    "id": 214,
+    "aegis": "RG_RAID",
+    "name": "Sightless Mind",
+    "maxLv": 5
+   },
+   {
+    "pos": 17,
+    "id": 217,
+    "aegis": "RG_STRIPARMOR",
+    "name": "Divest Armor",
+    "maxLv": 5
+   },
+   {
+    "pos": 18,
+    "id": 223,
+    "aegis": "RG_GANGSTER",
+    "name": "Slyness",
+    "maxLv": 1
+   },
+   {
+    "pos": 21,
+    "id": 2288,
+    "aegis": "SC_TRIANGLESHOT",
+    "name": "Triangle Shot",
+    "maxLv": 10
+   },
+   {
+    "pos": 22,
+    "id": 219,
+    "aegis": "RG_INTIMIDATE",
+    "name": "Snatch",
+    "maxLv": 5
+   },
+   {
+    "pos": 24,
+    "id": 215,
+    "aegis": "RG_STRIPWEAPON",
+    "name": "Divest Weapon",
+    "maxLv": 5
+   },
+   {
+    "pos": 25,
+    "id": 220,
+    "aegis": "RG_GRAFFITI",
+    "name": "Scribble",
+    "maxLv": 1
+   },
+   {
+    "pos": 26,
+    "id": 224,
+    "aegis": "RG_COMPULSION",
+    "name": "Haggle",
+    "maxLv": 5
+   },
+   {
+    "pos": 29,
+    "id": 225,
+    "aegis": "RG_PLAGIARISM",
+    "name": "Plagiarism",
+    "maxLv": 10
+   },
+   {
+    "pos": 31,
+    "id": 476,
+    "aegis": "ST_FULLSTRIP",
+    "name": "Full Divestment",
+    "maxLv": 5
+   },
+   {
+    "pos": 36,
+    "id": 2286,
+    "aegis": "SC_AUTOSHADOWSPELL",
+    "name": "Shadow Spell",
+    "maxLv": 10
+   },
+   {
+    "pos": 37,
+    "id": 475,
+    "aegis": "ST_PRESERVE",
+    "name": "Preserve",
+    "maxLv": 1
+   }
+  ]
+ },
+ "JT_WIZARD": {
+  "jobId": 9,
+  "inheritsFrom": "JT_MAGICIAN",
+  "skills": [
+   {
+    "pos": 0,
+    "id": 93,
+    "aegis": "WZ_ESTIMATION",
+    "name": "Sense",
+    "maxLv": 1
+   },
+   {
+    "pos": 1,
+    "id": 87,
+    "aegis": "WZ_ICEWALL",
+    "name": "Ice Wall",
+    "maxLv": 10
+   },
+   {
+    "pos": 2,
+    "id": 84,
+    "aegis": "WZ_JUPITEL",
+    "name": "Jupitel Thunder",
+    "maxLv": 10
+   },
+   {
+    "pos": 3,
+    "id": 91,
+    "aegis": "WZ_HEAVENDRIVE",
+    "name": "Heaven's Drive",
+    "maxLv": 5
+   },
+   {
+    "pos": 4,
+    "id": 81,
+    "aegis": "WZ_SIGHTRASHER",
+    "name": "Sightrasher",
+    "maxLv": 10
+   },
+   {
+    "pos": 5,
+    "id": 80,
+    "aegis": "WZ_FIREPILLAR",
+    "name": "Fire Pillar",
+    "maxLv": 10
+   },
+   {
+    "pos": 6,
+    "id": 1006,
+    "aegis": "WZ_SIGHTBLASTER",
+    "name": "Sight Blaster",
+    "maxLv": 1
+   },
+   {
+    "pos": 7,
+    "id": 483,
+    "aegis": "HW_GANBANTEIN",
+    "name": "Ganbantein",
+    "maxLv": 1
+   },
+   {
+    "pos": 8,
+    "id": 88,
+    "aegis": "WZ_FROSTNOVA",
+    "name": "Frost Nova",
+    "maxLv": 10
+   },
+   {
+    "pos": 9,
+    "id": 85,
+    "aegis": "WZ_VERMILION",
+    "name": "Lord of Vermilion",
+    "maxLv": 10
+   },
+   {
+    "pos": 10,
+    "id": 92,
+    "aegis": "WZ_QUAGMIRE",
+    "name": "Quagmire",
+    "maxLv": 5
+   },
+   {
+    "pos": 11,
+    "id": 83,
+    "aegis": "WZ_METEOR",
+    "name": "Meteor Storm",
+    "maxLv": 10
+   },
+   {
+    "pos": 12,
+    "id": 365,
+    "aegis": "HW_MAGICCRASHER",
+    "name": "Stave Crasher",
+    "maxLv": 1
+   },
+   {
+    "pos": 13,
+    "id": 364,
+    "aegis": "HW_SOULDRAIN",
+    "name": "Soul Drain",
+    "maxLv": 10
+   },
+   {
+    "pos": 15,
+    "id": 86,
+    "aegis": "WZ_WATERBALL",
+    "name": "Waterball",
+    "maxLv": 5
+   },
+   {
+    "pos": 17,
+    "id": 484,
+    "aegis": "HW_GRAVITATION",
+    "name": "Gravitational Field",
+    "maxLv": 5
+   },
+   {
+    "pos": 19,
+    "id": 400,
+    "aegis": "HW_NAPALMVULCAN",
+    "name": "Napalm Vulcan",
+    "maxLv": 5
+   },
+   {
+    "pos": 20,
+    "id": 366,
+    "aegis": "HW_MAGICPOWER",
+    "name": "Mystical Amplification",
+    "maxLv": 10
+   },
+   {
+    "pos": 22,
+    "id": 89,
+    "aegis": "WZ_STORMGUST",
+    "name": "Storm Gust",
+    "maxLv": 10
+   }
+  ]
+ },
+ "JT_ALCHEMIST": {
+  "jobId": 18,
+  "inheritsFrom": "JT_MERCHANT",
+  "skills": [
+   {
+    "pos": 0,
+    "id": 227,
+    "aegis": "AM_LEARNINGPOTION",
+    "name": "Potion Research",
+    "maxLv": 10
+   },
+   {
+    "pos": 2,
+    "id": 65,
+    "aegis": "PR_MACEMASTERY",
+    "name": "Mace Mastery",
+    "maxLv": 10
+   },
+   {
+    "pos": 3,
+    "id": 485,
+    "aegis": "WS_CARTTERMINATION",
+    "name": "High Speed Cart Ram",
+    "maxLv": 10
+   },
+   {
+    "pos": 5,
+    "id": 237,
+    "aegis": "AM_CP_HELM",
+    "name": "Biochemical Helm",
+    "maxLv": 5
+   },
+   {
+    "pos": 6,
+    "id": 238,
+    "aegis": "AM_BIOETHICS",
+    "name": "Bioethics",
+    "maxLv": 1
+   },
+   {
+    "pos": 7,
+    "id": 228,
+    "aegis": "AM_PHARMACY",
+    "name": "Prepare Potion",
+    "maxLv": 10
+   },
+   {
+    "pos": 12,
+    "id": 235,
+    "aegis": "AM_CP_SHIELD",
+    "name": "Synthesized Shield",
+    "maxLv": 5
+   },
+   {
+    "pos": 13,
+    "id": 244,
+    "aegis": "AM_REST",
+    "name": "Vaporize",
+    "maxLv": 1
+   },
+   {
+    "pos": 14,
+    "id": 233,
+    "aegis": "AM_SPHEREMINE",
+    "name": "Summon Marine Sphere",
+    "maxLv": 5
+   },
+   {
+    "pos": 15,
+    "id": 231,
+    "aegis": "AM_POTIONPITCHER",
+    "name": "Aid Potion",
+    "maxLv": 5
+   },
+   {
+    "pos": 16,
+    "id": 229,
+    "aegis": "AM_DEMONSTRATION",
+    "name": "Bomb",
+    "maxLv": 5
+   },
+   {
+    "pos": 17,
+    "id": 230,
+    "aegis": "AM_ACIDTERROR",
+    "name": "Acid Terror",
+    "maxLv": 5
+   },
+   {
+    "pos": 18,
+    "id": 232,
+    "aegis": "AM_CANNIBALIZE",
+    "name": "Summon Flora",
+    "maxLv": 5
+   },
+   {
+    "pos": 19,
+    "id": 236,
+    "aegis": "AM_CP_ARMOR",
+    "name": "Synthetic Armor",
+    "maxLv": 5
+   },
+   {
+    "pos": 20,
+    "id": 243,
+    "aegis": "AM_CALLHOMUN",
+    "name": "Call Homunculus",
+    "maxLv": 1
+   },
+   {
+    "pos": 22,
+    "id": 478,
+    "aegis": "CR_SLIMPITCHER",
+    "name": "Aid Condensed Potion",
+    "maxLv": 10
+   },
+   {
+    "pos": 23,
+    "id": 490,
+    "aegis": "CR_ACIDDEMONSTRATION",
+    "name": "Acid Bomb",
+    "maxLv": 10
+   },
+   {
+    "pos": 26,
+    "id": 234,
+    "aegis": "AM_CP_WEAPON",
+    "name": "Alchemical Weapon",
+    "maxLv": 5
+   },
+   {
+    "pos": 27,
+    "id": 247,
+    "aegis": "AM_RESURRECTHOMUN",
+    "name": "Homunculus Resurrection",
+    "maxLv": 5
+   },
+   {
+    "pos": 33,
+    "id": 479,
+    "aegis": "CR_FULLPROTECTION",
+    "name": "Full Chemical Protection",
+    "maxLv": 5
+   },
+   {
+    "pos": 34,
+    "id": 1012,
+    "aegis": "BS_UNFAIRLYTRICK",
+    "name": "Dubious Salesmanship",
+    "maxLv": 1
+   }
+  ]
+ },
+ "JT_MERCHANT": {
+  "jobId": 5,
+  "inheritsFrom": "JT_NOVICE",
+  "skills": [
+   {
+    "pos": 1,
+    "id": 36,
+    "aegis": "MC_INCCARRY",
+    "name": "Enlarge Weight Limit",
+    "maxLv": 10
+   },
+   {
+    "pos": 2,
+    "id": 226,
+    "aegis": "AM_AXEMASTERY",
+    "name": "Axe Mastery",
+    "maxLv": 10
+   },
+   {
+    "pos": 3,
+    "id": 42,
+    "aegis": "MC_MAMMONITE",
+    "name": "Mammonite",
+    "maxLv": 10
+   },
+   {
+    "pos": 5,
+    "id": 155,
+    "aegis": "MC_LOUD",
+    "name": "Crazy Uproar",
+    "maxLv": 1
+   },
+   {
+    "pos": 6,
+    "id": 40,
+    "aegis": "MC_IDENTIFY",
+    "name": "Item Appraisal",
+    "maxLv": 1
+   },
+   {
+    "pos": 8,
+    "id": 37,
+    "aegis": "MC_DISCOUNT",
+    "name": "Discount",
+    "maxLv": 10
+   },
+   {
+    "pos": 9,
+    "id": 39,
+    "aegis": "MC_PUSHCART",
+    "name": "Pushcart",
+    "maxLv": 10
+   },
+   {
+    "pos": 12,
+    "id": 154,
+    "aegis": "MC_CHANGECART",
+    "name": "Change Cart",
+    "maxLv": 1
+   },
+   {
+    "pos": 15,
+    "id": 38,
+    "aegis": "MC_OVERCHARGE",
+    "name": "Overcharge",
+    "maxLv": 10
+   },
+   {
+    "pos": 16,
+    "id": 41,
+    "aegis": "MC_VENDING",
+    "name": "Vending",
+    "maxLv": 10
+   },
+   {
+    "pos": 19,
+    "id": 153,
+    "aegis": "MC_CARTREVOLUTION",
+    "name": "Cart Revolution",
+    "maxLv": 1
+   },
+   {
+    "pos": 26,
+    "id": 387,
+    "aegis": "WS_CARTBOOST",
+    "name": "Cart Boost",
+    "maxLv": 1
+   }
+  ]
+ },
+ "JT_BLACKSMITH": {
+  "jobId": 10,
+  "inheritsFrom": "JT_MERCHANT",
+  "skills": [
+   {
+    "pos": 0,
+    "id": 94,
+    "aegis": "BS_IRON",
+    "name": "Iron Tempering",
+    "maxLv": 5
+   },
+   {
+    "pos": 1,
+    "id": 109,
+    "aegis": "BS_SKINTEMPER",
+    "name": "Skin Tempering",
+    "maxLv": 5
+   },
+   {
+    "pos": 2,
+    "id": 105,
+    "aegis": "BS_HILTBINDING",
+    "name": "Hilt Binding",
+    "maxLv": 1
+   },
+   {
+    "pos": 3,
+    "id": 110,
+    "aegis": "BS_HAMMERFALL",
+    "name": "Hammerfall",
+    "maxLv": 5
+   },
+   {
+    "pos": 5,
+    "id": 98,
+    "aegis": "BS_DAGGER",
+    "name": "Smith Dagger",
+    "maxLv": 3
+   },
+   {
+    "pos": 7,
+    "id": 95,
+    "aegis": "BS_STEEL",
+    "name": "Steel Tempering",
+    "maxLv": 5
+   },
+   {
+    "pos": 8,
+    "id": 96,
+    "aegis": "BS_ENCHANTEDSTONE",
+    "name": "Enchanted Stone Craft",
+    "maxLv": 5
+   },
+   {
+    "pos": 9,
+    "id": 107,
+    "aegis": "BS_WEAPONRESEARCH",
+    "name": "Weaponry Research",
+    "maxLv": 10
+   },
+   {
+    "pos": 10,
+    "id": 111,
+    "aegis": "BS_ADRENALINE",
+    "name": "Adrenaline Rush",
+    "maxLv": 5
+   },
+   {
+    "pos": 11,
+    "id": 104,
+    "aegis": "BS_SPEAR",
+    "name": "Smith Spear",
+    "maxLv": 3
+   },
+   {
+    "pos": 12,
+    "id": 99,
+    "aegis": "BS_SWORD",
+    "name": "Smith Sword",
+    "maxLv": 3
+   },
+   {
+    "pos": 13,
+    "id": 103,
+    "aegis": "BS_KNUCKLE",
+    "name": "Smith Knuckle",
+    "maxLv": 3
+   },
+   {
+    "pos": 14,
+    "id": 106,
+    "aegis": "BS_FINDINGORE",
+    "name": "Ore Discovery",
+    "maxLv": 1
+   },
+   {
+    "pos": 16,
+    "id": 108,
+    "aegis": "BS_REPAIRWEAPON",
+    "name": "Repair Weapon",
+    "maxLv": 1
+   },
+   {
+    "pos": 17,
+    "id": 112,
+    "aegis": "BS_WEAPONPERFECT",
+    "name": "Weapon Perfection",
+    "maxLv": 5
+   },
+   {
+    "pos": 18,
+    "id": 113,
+    "aegis": "BS_OVERTHRUST",
+    "name": "Power Thrust",
+    "maxLv": 5
+   },
+   {
+    "pos": 19,
+    "id": 100,
+    "aegis": "BS_TWOHANDSWORD",
+    "name": "Smith Two-handed Sword",
+    "maxLv": 3
+   },
+   {
+    "pos": 20,
+    "id": 102,
+    "aegis": "BS_MACE",
+    "name": "Smith Mace",
+    "maxLv": 3
+   },
+   {
+    "pos": 21,
+    "id": 485,
+    "aegis": "WS_CARTTERMINATION",
+    "name": "High Speed Cart Ram",
+    "maxLv": 10
+   },
+   {
+    "pos": 22,
+    "id": 384,
+    "aegis": "WS_MELTDOWN",
+    "name": "Shattering Strike",
+    "maxLv": 10
+   },
+   {
+    "pos": 24,
+    "id": 114,
+    "aegis": "BS_MAXIMIZE",
+    "name": "Maximize Power",
+    "maxLv": 5
+   },
+   {
+    "pos": 25,
+    "id": 486,
+    "aegis": "WS_OVERTHRUSTMAX",
+    "name": "Maximum Power-Thrust",
+    "maxLv": 5
+   },
+   {
+    "pos": 26,
+    "id": 101,
+    "aegis": "BS_AXE",
+    "name": "Smith Axe",
+    "maxLv": 3
+   },
+   {
+    "pos": 28,
+    "id": 2276,
+    "aegis": "NC_TRAININGAXE",
+    "name": "Axe Mastery",
+    "maxLv": 10
+   },
+   {
+    "pos": 29,
+    "id": 2278,
+    "aegis": "NC_AXEBOOMERANG",
+    "name": "Axe Boomerang",
+    "maxLv": 5
+   },
+   {
+    "pos": 30,
+    "id": 2279,
+    "aegis": "NC_POWERSWING",
+    "name": "Power Swing",
+    "maxLv": 10
+   },
+   {
+    "pos": 34,
+    "id": 1012,
+    "aegis": "BS_UNFAIRLYTRICK",
+    "name": "Dubious Salesmanship",
+    "maxLv": 1
+   },
+   {
+    "pos": 36,
+    "id": 2280,
+    "aegis": "NC_AXETORNADO",
+    "name": "Axe Tornado",
+    "maxLv": 5
+   }
+  ]
+ },
+ "JT_DANCER": {
+  "jobId": 20,
+  "inheritsFrom": "JT_ARCHER",
+  "skills": [
+   {
+    "pos": 0,
+    "id": 304,
+    "aegis": "BD_ADAPTATION",
+    "name": "Amp",
+    "maxLv": 1
+   },
+   {
+    "pos": 1,
+    "id": 323,
+    "aegis": "DC_DANCINGLESSON",
+    "name": "Dance Lessons",
+    "maxLv": 10
+   },
+   {
+    "pos": 3,
+    "id": 325,
+    "aegis": "DC_UGLYDANCE",
+    "name": "Hip Shaker",
+    "maxLv": 5
+   },
+   {
+    "pos": 5,
+    "id": 1011,
+    "aegis": "DC_WINKCHARM",
+    "name": "Charming Wink",
+    "maxLv": 1
+   },
+   {
+    "pos": 7,
+    "id": 305,
+    "aegis": "BD_ENCORE",
+    "name": "Encore",
+    "maxLv": 1
+   },
+   {
+    "pos": 8,
+    "id": 324,
+    "aegis": "DC_THROWARROW",
+    "name": "Slinging Arrow",
+    "maxLv": 5
+   },
+   {
+    "pos": 9,
+    "id": 327,
+    "aegis": "DC_HUMMING",
+    "name": "Focus Ballet",
+    "maxLv": 10
+   },
+   {
+    "pos": 10,
+    "id": 328,
+    "aegis": "DC_DONTFORGETME",
+    "name": "Slow Grace",
+    "maxLv": 10
+   },
+   {
+    "pos": 11,
+    "id": 329,
+    "aegis": "DC_FORTUNEKISS",
+    "name": "Lady Luck",
+    "maxLv": 10
+   },
+   {
+    "pos": 12,
+    "id": 330,
+    "aegis": "DC_SERVICEFORYOU",
+    "name": "Gypsy's Kiss",
+    "maxLv": 10
+   },
+   {
+    "pos": 14,
+    "id": 326,
+    "aegis": "DC_SCREAM",
+    "name": "Dazzler",
+    "maxLv": 5
+   },
+   {
+    "pos": 16,
+    "id": 306,
+    "aegis": "BD_LULLABY",
+    "name": "Lullaby",
+    "maxLv": 1
+   },
+   {
+    "pos": 17,
+    "id": 311,
+    "aegis": "BD_ROKISWEIL",
+    "name": "Classical Pluck",
+    "maxLv": 1
+   },
+   {
+    "pos": 18,
+    "id": 313,
+    "aegis": "BD_SIEGFRIED",
+    "name": "Acoustic Rhythm",
+    "maxLv": 5
+   },
+   {
+    "pos": 19,
+    "id": 309,
+    "aegis": "BD_DRUMBATTLEFIELD",
+    "name": "Battle Theme",
+    "maxLv": 5
+   },
+   {
+    "pos": 23,
+    "id": 312,
+    "aegis": "BD_INTOABYSS",
+    "name": "Power Cord",
+    "maxLv": 1
+   },
+   {
+    "pos": 24,
+    "id": 308,
+    "aegis": "BD_ETERNALCHAOS",
+    "name": "Down Tempo",
+    "maxLv": 1
+   },
+   {
+    "pos": 25,
+    "id": 307,
+    "aegis": "BD_RICHMANKIM",
+    "name": "Mental Sensing",
+    "maxLv": 5
+   },
+   {
+    "pos": 26,
+    "id": 310,
+    "aegis": "BD_RINGNIBELUNGEN",
+    "name": "Harmonic Lick",
+    "maxLv": 5
+   },
+   {
+    "pos": 29,
+    "id": 394,
+    "aegis": "CG_ARROWVULCAN",
+    "name": "Arrow Vulcan",
+    "maxLv": 10
+   },
+   {
+    "pos": 30,
+    "id": 395,
+    "aegis": "CG_MOONLIT",
+    "name": "Sheltering Bliss",
+    "maxLv": 5
+   },
+   {
+    "pos": 31,
+    "id": 396,
+    "aegis": "CG_MARIONETTE",
+    "name": "Marionette Control",
+    "maxLv": 1
+   },
+   {
+    "pos": 32,
+    "id": 488,
+    "aegis": "CG_HERMODE",
+    "name": "Hermode's Rod",
+    "maxLv": 5
+   },
+   {
+    "pos": 38,
+    "id": 5068,
+    "aegis": "SKID_CG_SPECIALSINGER",
+    "name": "Skilled Special Singer",
+    "maxLv": 1
+   },
+   {
+    "pos": 39,
+    "id": 489,
+    "aegis": "CG_TAROTCARD",
+    "name": "Tarot Card of Fate",
+    "maxLv": 5
+   }
+  ]
+ },
+ "JT_HUNTER": {
+  "jobId": 11,
+  "inheritsFrom": "JT_ARCHER",
+  "skills": [
+   {
+    "pos": 0,
+    "id": 126,
+    "aegis": "HT_BEASTBANE",
+    "name": "Beastbane",
+    "maxLv": 10
+   },
+   {
+    "pos": 2,
+    "id": 115,
+    "aegis": "HT_SKIDTRAP",
+    "name": "Skid Trap",
+    "maxLv": 5
+   },
+   {
+    "pos": 4,
+    "id": 116,
+    "aegis": "HT_LANDMINE",
+    "name": "Land Mine",
+    "maxLv": 5
+   },
+   {
+    "pos": 5,
+    "id": 382,
+    "aegis": "SN_SHARPSHOOTING",
+    "name": "Focused Arrow Strike",
+    "maxLv": 5
+   },
+   {
+    "pos": 7,
+    "id": 127,
+    "aegis": "HT_FALCON",
+    "name": "Falconry Mastery",
+    "maxLv": 1
+   },
+   {
+    "pos": 9,
+    "id": 120,
+    "aegis": "HT_FLASHER",
+    "name": "Flasher",
+    "maxLv": 5
+   },
+   {
+    "pos": 10,
+    "id": 117,
+    "aegis": "HT_ANKLESNARE",
+    "name": "Anklesnare",
+    "maxLv": 5
+   },
+   {
+    "pos": 11,
+    "id": 124,
+    "aegis": "HT_REMOVETRAP",
+    "name": "Remove Trap",
+    "maxLv": 1
+   },
+   {
+    "pos": 12,
+    "id": 383,
+    "aegis": "SN_WINDWALK",
+    "name": "Wind Walker",
+    "maxLv": 10
+   },
+   {
+    "pos": 13,
+    "id": 1009,
+    "aegis": "HT_PHANTASMIC",
+    "name": "Phantasmic Arrow",
+    "maxLv": 1
+   },
+   {
+    "pos": 14,
+    "id": 129,
+    "aegis": "HT_BLITZBEAT",
+    "name": "Blitz Beat",
+    "maxLv": 5
+   },
+   {
+    "pos": 15,
+    "id": 119,
+    "aegis": "HT_SANDMAN",
+    "name": "Sandman",
+    "maxLv": 5
+   },
+   {
+    "pos": 16,
+    "id": 121,
+    "aegis": "HT_FREEZINGTRAP",
+    "name": "Freezing Trap",
+    "maxLv": 5
+   },
+   {
+    "pos": 17,
+    "id": 118,
+    "aegis": "HT_SHOCKWAVE",
+    "name": "Shockwave Trap",
+    "maxLv": 5
+   },
+   {
+    "pos": 18,
+    "id": 131,
+    "aegis": "HT_SPRINGTRAP",
+    "name": "Spring Trap",
+    "maxLv": 5
+   },
+   {
+    "pos": 19,
+    "id": 130,
+    "aegis": "HT_DETECTING",
+    "name": "Detect",
+    "maxLv": 4
+   },
+   {
+    "pos": 21,
+    "id": 128,
+    "aegis": "HT_STEELCROW",
+    "name": "Steel Crow",
+    "maxLv": 10
+   },
+   {
+    "pos": 22,
+    "id": 122,
+    "aegis": "HT_BLASTMINE",
+    "name": "Blast Mine",
+    "maxLv": 5
+   },
+   {
+    "pos": 24,
+    "id": 125,
+    "aegis": "HT_TALKIEBOX",
+    "name": "Talkie Box",
+    "maxLv": 1
+   },
+   {
+    "pos": 26,
+    "id": 380,
+    "aegis": "SN_SIGHT",
+    "name": "Falcon Eyes",
+    "maxLv": 10
+   },
+   {
+    "pos": 28,
+    "id": 381,
+    "aegis": "SN_FALCONASSAULT",
+    "name": "Falcon Assault",
+    "maxLv": 5
+   },
+   {
+    "pos": 29,
+    "id": 123,
+    "aegis": "HT_CLAYMORETRAP",
+    "name": "Claymore Trap",
+    "maxLv": 5
+   }
+  ]
+ },
+ "JT_ARCHER": {
+  "jobId": 3,
+  "inheritsFrom": "JT_NOVICE",
+  "skills": [
+   {
+    "pos": 2,
+    "id": 46,
+    "aegis": "AC_DOUBLE",
+    "name": "Double Strafe",
+    "maxLv": 10
+   },
+   {
+    "pos": 3,
+    "id": 43,
+    "aegis": "AC_OWL",
+    "name": "Owl's Eye",
+    "maxLv": 10
+   },
+   {
+    "pos": 5,
+    "id": 148,
+    "aegis": "AC_CHARGEARROW",
+    "name": "Arrow Repel",
+    "maxLv": 1
+   },
+   {
+    "pos": 9,
+    "id": 47,
+    "aegis": "AC_SHOWER",
+    "name": "Arrow Shower",
+    "maxLv": 10
+   },
+   {
+    "pos": 10,
+    "id": 44,
+    "aegis": "AC_VULTURE",
+    "name": "Vulture's Eye",
+    "maxLv": 10
+   },
+   {
+    "pos": 12,
+    "id": 147,
+    "aegis": "AC_MAKINGARROW",
+    "name": "Arrow Crafting",
+    "maxLv": 1
+   },
+   {
+    "pos": 17,
+    "id": 45,
+    "aegis": "AC_CONCENTRATION",
+    "name": "Improve Concentration",
+    "maxLv": 10
+   }
+  ]
+ },
+ "JT_THIEF": {
+  "jobId": 6,
+  "inheritsFrom": "JT_NOVICE",
+  "skills": [
+   {
+    "pos": 1,
+    "id": 48,
+    "aegis": "TF_DOUBLE",
+    "name": "Double Attack",
+    "maxLv": 10
+   },
+   {
+    "pos": 2,
+    "id": 50,
+    "aegis": "TF_STEAL",
+    "name": "Steal",
+    "maxLv": 10
+   },
+   {
+    "pos": 3,
+    "id": 52,
+    "aegis": "TF_POISON",
+    "name": "Envenom",
+    "maxLv": 10
+   },
+   {
+    "pos": 4,
+    "id": 149,
+    "aegis": "TF_SPRINKLESAND",
+    "name": "Sand Attack",
+    "maxLv": 1
+   },
+   {
+    "pos": 5,
+    "id": 152,
+    "aegis": "TF_THROWSTONE",
+    "name": "Stone Fling",
+    "maxLv": 1
+   },
+   {
+    "pos": 8,
+    "id": 49,
+    "aegis": "TF_MISS",
+    "name": "Improve Dodge",
+    "maxLv": 10
+   },
+   {
+    "pos": 9,
+    "id": 51,
+    "aegis": "TF_HIDING",
+    "name": "Hiding",
+    "maxLv": 10
+   },
+   {
+    "pos": 10,
+    "id": 53,
+    "aegis": "TF_DETOXIFY",
+    "name": "Detoxify",
+    "maxLv": 1
+   },
+   {
+    "pos": 11,
+    "id": 150,
+    "aegis": "TF_BACKSLIDING",
+    "name": "Back Slide",
+    "maxLv": 1
+   },
+   {
+    "pos": 12,
+    "id": 151,
+    "aegis": "TF_PICKSTONE",
+    "name": "Find Stone",
+    "maxLv": 1
+   },
+   {
+    "pos": 15,
+    "id": 2,
+    "aegis": "SM_SWORD",
+    "name": "Sword Mastery",
+    "maxLv": 10
+   }
+  ]
+ },
+ "JT_ASSASSIN": {
+  "jobId": 12,
+  "inheritsFrom": "JT_THIEF",
+  "skills": [
+   {
+    "pos": 0,
+    "id": 132,
+    "aegis": "AS_RIGHT",
+    "name": "Righthand Mastery",
+    "maxLv": 5
+   },
+   {
+    "pos": 1,
+    "id": 134,
+    "aegis": "AS_KATAR",
+    "name": "Katar Mastery",
+    "maxLv": 10
+   },
+   {
+    "pos": 2,
+    "id": 135,
+    "aegis": "AS_CLOAKING",
+    "name": "Cloaking",
+    "maxLv": 10
+   },
+   {
+    "pos": 3,
+    "id": 138,
+    "aegis": "AS_ENCHANTPOISON",
+    "name": "Enchant Poison",
+    "maxLv": 10
+   },
+   {
+    "pos": 6,
+    "id": 1004,
+    "aegis": "AS_VENOMKNIFE",
+    "name": "Venom Knife",
+    "maxLv": 1
+   },
+   {
+    "pos": 7,
+    "id": 133,
+    "aegis": "AS_LEFT",
+    "name": "Lefthand Mastery",
+    "maxLv": 5
+   },
+   {
+    "pos": 8,
+    "id": 136,
+    "aegis": "AS_SONICBLOW",
+    "name": "Sonic Blow",
+    "maxLv": 10
+   },
+   {
+    "pos": 9,
+    "id": 376,
+    "aegis": "ASC_KATAR",
+    "name": "Advanced Katar Mastery",
+    "maxLv": 5
+   },
+   {
+    "pos": 10,
+    "id": 140,
+    "aegis": "AS_VENOMDUST",
+    "name": "Venom Dust",
+    "maxLv": 10
+   },
+   {
+    "pos": 11,
+    "id": 139,
+    "aegis": "AS_POISONREACT",
+    "name": "Poison React",
+    "maxLv": 10
+   },
+   {
+    "pos": 12,
+    "id": 407,
+    "aegis": "ASC_CDP",
+    "name": "Create Deadly Poison",
+    "maxLv": 1
+   },
+   {
+    "pos": 15,
+    "id": 137,
+    "aegis": "AS_GRIMTOOTH",
+    "name": "Grimtooth",
+    "maxLv": 5
+   },
+   {
+    "pos": 17,
+    "id": 141,
+    "aegis": "AS_SPLASHER",
+    "name": "Venom Splasher",
+    "maxLv": 10
+   },
+   {
+    "pos": 18,
+    "id": 379,
+    "aegis": "ASC_BREAKER",
+    "name": "Soul Destroyer",
+    "maxLv": 10
+   },
+   {
+    "pos": 19,
+    "id": 378,
+    "aegis": "ASC_EDP",
+    "name": "Enchant Deadly Poison",
+    "maxLv": 5
+   },
+   {
+    "pos": 25,
+    "id": 406,
+    "aegis": "ASC_METEORASSAULT",
+    "name": "Meteor Assault",
+    "maxLv": 10
+   }
+  ]
+ },
+ "JT_GUNSLINGER": {
+  "jobId": 24,
+  "inheritsFrom": "JT_NOVICE",
+  "skills": [
+   {
+    "pos": 1,
+    "id": 500,
+    "aegis": "GS_GLITTERING",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 3,
+    "id": 509,
+    "aegis": "GS_SINGLEACTION",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 8,
+    "id": 508,
+    "aegis": "GS_CRACKER",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 9,
+    "id": 507,
+    "aegis": "GS_MAGICALBULLET",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 10,
+    "id": 511,
+    "aegis": "GS_CHAINACTION",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 11,
+    "id": 512,
+    "aegis": "GS_TRACKING",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 12,
+    "id": 518,
+    "aegis": "GS_DUST",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 13,
+    "id": 520,
+    "aegis": "GS_SPREADATTACK",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 15,
+    "id": 506,
+    "aegis": "GS_INCREASING",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 16,
+    "id": 501,
+    "aegis": "GS_FLING",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 17,
+    "id": 515,
+    "aegis": "GS_RAPIDSHOWER",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 18,
+    "id": 514,
+    "aegis": "GS_PIERCINGSHOT",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 19,
+    "id": 519,
+    "aegis": "GS_FULLBUSTER",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 20,
+    "id": 521,
+    "aegis": "GS_GROUNDDRIFT",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 22,
+    "id": 504,
+    "aegis": "GS_MADNESSCANCEL",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 23,
+    "id": 502,
+    "aegis": "GS_TRIPLEACTION",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 24,
+    "id": 516,
+    "aegis": "GS_DESPERADO",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 25,
+    "id": 513,
+    "aegis": "GS_DISARM",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 29,
+    "id": 505,
+    "aegis": "GS_ADJUSTMENT",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 31,
+    "id": 517,
+    "aegis": "GS_GATLINGFEVER",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 34,
+    "id": 510,
+    "aegis": "GS_SNAKEEYE",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 36,
+    "id": 503,
+    "aegis": "GS_BULLSEYE",
+    "name": null,
+    "maxLv": 1
+   }
+  ]
+ },
+ "JT_SUPERNOVICE2": {
+  "jobId": 4190,
+  "inheritsFrom": "JT_SUPERNOVICE",
+  "skills": [
+   {
+    "pos": 0,
+    "id": 259,
+    "aegis": "MO_IRONHAND",
+    "name": "Iron Fists",
+    "maxLv": 10
+   },
+   {
+    "pos": 1,
+    "id": 248,
+    "aegis": "CR_TRUST",
+    "name": "Faith",
+    "maxLv": 10
+   },
+   {
+    "pos": 2,
+    "id": 253,
+    "aegis": "CR_HOLYCROSS",
+    "name": "Holy Cross",
+    "maxLv": 10
+   },
+   {
+    "pos": 3,
+    "id": 66,
+    "aegis": "PR_IMPOSITIO",
+    "name": "Impositio Manus",
+    "maxLv": 5
+   },
+   {
+    "pos": 4,
+    "id": 213,
+    "aegis": "RG_TUNNELDRIVE",
+    "name": "Stalk",
+    "maxLv": 5
+   },
+   {
+    "pos": 5,
+    "id": 210,
+    "aegis": "RG_SNATCHER",
+    "name": "Gank",
+    "maxLv": 10
+   },
+   {
+    "pos": 6,
+    "id": 138,
+    "aegis": "AS_ENCHANTPOISON",
+    "name": "Enchant Poison",
+    "maxLv": 10
+   },
+   {
+    "pos": 7,
+    "id": 261,
+    "aegis": "MO_CALLSPIRITS",
+    "name": "Summon Spirit Sphere",
+    "maxLv": 5
+   },
+   {
+    "pos": 8,
+    "id": 249,
+    "aegis": "CR_AUTOGUARD",
+    "name": "Guard",
+    "maxLv": 10
+   },
+   {
+    "pos": 9,
+    "id": 70,
+    "aegis": "PR_SANCTUARY",
+    "name": "Sanctuary",
+    "maxLv": 10
+   },
+   {
+    "pos": 10,
+    "id": 72,
+    "aegis": "PR_STRECOVERY",
+    "name": "Status Recovery",
+    "maxLv": 1
+   },
+   {
+    "pos": 11,
+    "id": 212,
+    "aegis": "RG_BACKSTAP",
+    "name": "Back Stab",
+    "maxLv": 10
+   },
+   {
+    "pos": 13,
+    "id": 139,
+    "aegis": "AS_POISONREACT",
+    "name": "Poison React",
+    "maxLv": 10
+   },
+   {
+    "pos": 14,
+    "id": 262,
+    "aegis": "MO_ABSORBSPIRITS",
+    "name": "Spiritual Sphere Absorption",
+    "maxLv": 1
+   },
+   {
+    "pos": 15,
+    "id": 250,
+    "aegis": "CR_SHIELDCHARGE",
+    "name": "Smite",
+    "maxLv": 5
+   },
+   {
+    "pos": 16,
+    "id": 75,
+    "aegis": "PR_GLORIA",
+    "name": "Gloria",
+    "maxLv": 5
+   },
+   {
+    "pos": 17,
+    "id": 68,
+    "aegis": "PR_ASPERSIO",
+    "name": "Aspersio",
+    "maxLv": 5
+   },
+   {
+    "pos": 18,
+    "id": 214,
+    "aegis": "RG_RAID",
+    "name": "Sightless Mind",
+    "maxLv": 5
+   },
+   {
+    "pos": 19,
+    "id": 365,
+    "aegis": "HW_MAGICCRASHER",
+    "name": "Stave Crasher",
+    "maxLv": 1
+   },
+   {
+    "pos": 20,
+    "id": 140,
+    "aegis": "AS_VENOMDUST",
+    "name": "Venom Dust",
+    "maxLv": 10
+   },
+   {
+    "pos": 21,
+    "id": 270,
+    "aegis": "MO_EXPLOSIONSPIRITS",
+    "name": "Fury",
+    "maxLv": 5
+   },
+   {
+    "pos": 22,
+    "id": 251,
+    "aegis": "CR_SHIELDBOOMERANG",
+    "name": "Shield Boomerang",
+    "maxLv": 5
+   },
+   {
+    "pos": 23,
+    "id": 74,
+    "aegis": "PR_MAGNIFICAT",
+    "name": "Magnificat",
+    "maxLv": 5
+   },
+   {
+    "pos": 27,
+    "id": 141,
+    "aegis": "AS_SPLASHER",
+    "name": "Venom Splasher",
+    "maxLv": 10
+   },
+   {
+    "pos": 28,
+    "id": 401,
+    "aegis": "CH_SOULCOLLECT",
+    "name": "Zen",
+    "maxLv": 1
+   },
+   {
+    "pos": 29,
+    "id": 86,
+    "aegis": "WZ_WATERBALL",
+    "name": "Waterball",
+    "maxLv": 5
+   },
+   {
+    "pos": 30,
+    "id": 84,
+    "aegis": "WZ_JUPITEL",
+    "name": "Jupitel Thunder",
+    "maxLv": 10
+   },
+   {
+    "pos": 32,
+    "id": 81,
+    "aegis": "WZ_SIGHTRASHER",
+    "name": "Sightrasher",
+    "maxLv": 10
+   },
+   {
+    "pos": 33,
+    "id": 115,
+    "aegis": "HT_SKIDTRAP",
+    "name": "Skid Trap",
+    "maxLv": 5
+   },
+   {
+    "pos": 35,
+    "id": 265,
+    "aegis": "MO_DODGE",
+    "name": "Flee",
+    "maxLv": 10
+   },
+   {
+    "pos": 36,
+    "id": 87,
+    "aegis": "WZ_ICEWALL",
+    "name": "Ice Wall",
+    "maxLv": 10
+   },
+   {
+    "pos": 37,
+    "id": 85,
+    "aegis": "WZ_VERMILION",
+    "name": "Lord of Vermilion",
+    "maxLv": 10
+   },
+   {
+    "pos": 38,
+    "id": 91,
+    "aegis": "WZ_HEAVENDRIVE",
+    "name": "Heaven's Drive",
+    "maxLv": 5
+   },
+   {
+    "pos": 39,
+    "id": 80,
+    "aegis": "WZ_FIREPILLAR",
+    "name": "Fire Pillar",
+    "maxLv": 10
+   },
+   {
+    "pos": 40,
+    "id": 116,
+    "aegis": "HT_LANDMINE",
+    "name": "Land Mine",
+    "maxLv": 5
+   },
+   {
+    "pos": 41,
+    "id": 105,
+    "aegis": "BS_HILTBINDING",
+    "name": "Hilt Binding",
+    "maxLv": 1
+   },
+   {
+    "pos": 43,
+    "id": 88,
+    "aegis": "WZ_FROSTNOVA",
+    "name": "Frost Nova",
+    "maxLv": 10
+   },
+   {
+    "pos": 44,
+    "id": 89,
+    "aegis": "WZ_STORMGUST",
+    "name": "Storm Gust",
+    "maxLv": 10
+   },
+   {
+    "pos": 45,
+    "id": 92,
+    "aegis": "WZ_QUAGMIRE",
+    "name": "Quagmire",
+    "maxLv": 5
+   },
+   {
+    "pos": 46,
+    "id": 83,
+    "aegis": "WZ_METEOR",
+    "name": "Meteor Storm",
+    "maxLv": 10
+   },
+   {
+    "pos": 47,
+    "id": 126,
+    "aegis": "HT_BEASTBANE",
+    "name": "Beastbane",
+    "maxLv": 10
+   },
+   {
+    "pos": 48,
+    "id": 107,
+    "aegis": "BS_WEAPONRESEARCH",
+    "name": "Weaponry Research",
+    "maxLv": 10
+   },
+   {
+    "pos": 54,
+    "id": 93,
+    "aegis": "WZ_ESTIMATION",
+    "name": "Sense",
+    "maxLv": 1
+   },
+   {
+    "pos": 55,
+    "id": 108,
+    "aegis": "BS_REPAIRWEAPON",
+    "name": "Repair Weapon",
+    "maxLv": 1
+   },
+   {
+    "pos": 56,
+    "id": 5075,
+    "aegis": "NV_BREAKTHROUGH",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 57,
+    "id": 5076,
+    "aegis": "NV_HELPANGEL",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 58,
+    "id": 5077,
+    "aegis": "NV_TRANSCENDENCE",
+    "name": null,
+    "maxLv": 5
+   }
+  ]
+ },
+ "JT_NINJA": {
+  "jobId": 25,
+  "inheritsFrom": "JT_NOVICE",
+  "skills": [
+   {
+    "pos": 1,
+    "id": 522,
+    "aegis": "NJ_TOBIDOUGU",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 2,
+    "id": 527,
+    "aegis": "NJ_TATAMIGAESHI",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 5,
+    "id": 533,
+    "aegis": "NJ_NINPOU",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 8,
+    "id": 523,
+    "aegis": "NJ_SYURIKEN",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 9,
+    "id": 529,
+    "aegis": "NJ_SHADOWJUMP",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 10,
+    "id": 543,
+    "aegis": "NJ_NEN",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 11,
+    "id": 534,
+    "aegis": "NJ_KOUENKA",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 12,
+    "id": 537,
+    "aegis": "NJ_HYOUSENSOU",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 13,
+    "id": 540,
+    "aegis": "NJ_HUUJIN",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 15,
+    "id": 524,
+    "aegis": "NJ_KUNAI",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 16,
+    "id": 528,
+    "aegis": "NJ_KASUMIKIRI",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 17,
+    "id": 531,
+    "aegis": "NJ_UTSUSEMI",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 18,
+    "id": 535,
+    "aegis": "NJ_KAENSIN",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 19,
+    "id": 538,
+    "aegis": "NJ_SUITON",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 20,
+    "id": 541,
+    "aegis": "NJ_RAIGEKISAI",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 22,
+    "id": 525,
+    "aegis": "NJ_HUUMA",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 23,
+    "id": 530,
+    "aegis": "NJ_KIRIKAGE",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 25,
+    "id": 536,
+    "aegis": "NJ_BAKUENRYU",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 26,
+    "id": 539,
+    "aegis": "NJ_HYOUSYOURAKU",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 27,
+    "id": 542,
+    "aegis": "NJ_KAMAITACHI",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 29,
+    "id": 526,
+    "aegis": "NJ_ZENYNAGE",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 30,
+    "id": 532,
+    "aegis": "NJ_BUNSINJYUTSU",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 31,
+    "id": 544,
+    "aegis": "NJ_ISSEN",
+    "name": null,
+    "maxLv": 10
+   }
+  ]
+ },
+ "JT_SUPERNOVICE": {
+  "jobId": 23,
+  "inheritsFrom": "JT_NOVICE",
+  "skills": [
+   {
+    "pos": 1,
+    "id": 2,
+    "aegis": "SM_SWORD",
+    "name": "Sword Mastery",
+    "maxLv": 10
+   },
+   {
+    "pos": 2,
+    "id": 5,
+    "aegis": "SM_BASH",
+    "name": "Bash",
+    "maxLv": 10
+   },
+   {
+    "pos": 3,
+    "id": 6,
+    "aegis": "SM_PROVOKE",
+    "name": "Provoke",
+    "maxLv": 10
+   },
+   {
+    "pos": 4,
+    "id": 48,
+    "aegis": "TF_DOUBLE",
+    "name": "Double Attack",
+    "maxLv": 10
+   },
+   {
+    "pos": 5,
+    "id": 50,
+    "aegis": "TF_STEAL",
+    "name": "Steal",
+    "maxLv": 10
+   },
+   {
+    "pos": 6,
+    "id": 52,
+    "aegis": "TF_POISON",
+    "name": "Envenom",
+    "maxLv": 10
+   },
+   {
+    "pos": 8,
+    "id": 4,
+    "aegis": "SM_RECOVERY",
+    "name": "Increase HP Recovery",
+    "maxLv": 10
+   },
+   {
+    "pos": 9,
+    "id": 7,
+    "aegis": "SM_MAGNUM",
+    "name": "Magnum Break",
+    "maxLv": 10
+   },
+   {
+    "pos": 10,
+    "id": 8,
+    "aegis": "SM_ENDURE",
+    "name": "Endure",
+    "maxLv": 10
+   },
+   {
+    "pos": 11,
+    "id": 49,
+    "aegis": "TF_MISS",
+    "name": "Improve Dodge",
+    "maxLv": 10
+   },
+   {
+    "pos": 12,
+    "id": 51,
+    "aegis": "TF_HIDING",
+    "name": "Hiding",
+    "maxLv": 10
+   },
+   {
+    "pos": 13,
+    "id": 53,
+    "aegis": "TF_DETOXIFY",
+    "name": "Detoxify",
+    "maxLv": 1
+   },
+   {
+    "pos": 15,
+    "id": 9,
+    "aegis": "MG_SRECOVERY",
+    "name": "Increase SP Recovery",
+    "maxLv": 10
+   },
+   {
+    "pos": 16,
+    "id": 31,
+    "aegis": "AL_HOLYWATER",
+    "name": "Aqua Benedicta",
+    "maxLv": 1
+   },
+   {
+    "pos": 20,
+    "id": 36,
+    "aegis": "MC_INCCARRY",
+    "name": "Enlarge Weight Limit",
+    "maxLv": 10
+   },
+   {
+    "pos": 21,
+    "id": 14,
+    "aegis": "MG_COLDBOLT",
+    "name": "Cold Bolt",
+    "maxLv": 10
+   },
+   {
+    "pos": 22,
+    "id": 20,
+    "aegis": "MG_LIGHTNINGBOLT",
+    "name": "Lightning Bolt",
+    "maxLv": 10
+   },
+   {
+    "pos": 23,
+    "id": 19,
+    "aegis": "MG_FIREBOLT",
+    "name": "Fire Bolt",
+    "maxLv": 10
+   },
+   {
+    "pos": 24,
+    "id": 11,
+    "aegis": "MG_NAPALMBEAT",
+    "name": "Napalm Beat",
+    "maxLv": 10
+   },
+   {
+    "pos": 25,
+    "id": 22,
+    "aegis": "AL_DP",
+    "name": "Divine Protection",
+    "maxLv": 10
+   },
+   {
+    "pos": 26,
+    "id": 16,
+    "aegis": "MG_STONECURSE",
+    "name": "Stone Curse",
+    "maxLv": 10
+   },
+   {
+    "pos": 27,
+    "id": 37,
+    "aegis": "MC_DISCOUNT",
+    "name": "Discount",
+    "maxLv": 10
+   },
+   {
+    "pos": 28,
+    "id": 15,
+    "aegis": "MG_FROSTDIVER",
+    "name": "Frost Diver",
+    "maxLv": 10
+   },
+   {
+    "pos": 29,
+    "id": 21,
+    "aegis": "MG_THUNDERSTORM",
+    "name": "Thunder Storm",
+    "maxLv": 10
+   },
+   {
+    "pos": 30,
+    "id": 17,
+    "aegis": "MG_FIREBALL",
+    "name": "Fire Ball",
+    "maxLv": 10
+   },
+   {
+    "pos": 31,
+    "id": 13,
+    "aegis": "MG_SOULSTRIKE",
+    "name": "Soul Strike",
+    "maxLv": 10
+   },
+   {
+    "pos": 32,
+    "id": 23,
+    "aegis": "AL_DEMONBANE",
+    "name": "Demon Bane",
+    "maxLv": 10
+   },
+   {
+    "pos": 33,
+    "id": 90,
+    "aegis": "WZ_EARTHSPIKE",
+    "name": "Earth Spike",
+    "maxLv": 5
+   },
+   {
+    "pos": 34,
+    "id": 38,
+    "aegis": "MC_OVERCHARGE",
+    "name": "Overcharge",
+    "maxLv": 10
+   },
+   {
+    "pos": 35,
+    "id": 24,
+    "aegis": "AL_RUWACH",
+    "name": "Ruwach",
+    "maxLv": 1
+   },
+   {
+    "pos": 36,
+    "id": 28,
+    "aegis": "AL_HEAL",
+    "name": "Heal",
+    "maxLv": 10
+   },
+   {
+    "pos": 37,
+    "id": 10,
+    "aegis": "MG_SIGHT",
+    "name": "Sight",
+    "maxLv": 1
+   },
+   {
+    "pos": 38,
+    "id": 12,
+    "aegis": "MG_SAFETYWALL",
+    "name": "Safety Wall",
+    "maxLv": 10
+   },
+   {
+    "pos": 39,
+    "id": 32,
+    "aegis": "AL_CRUCIS",
+    "name": "Signum Crucis",
+    "maxLv": 10
+   },
+   {
+    "pos": 40,
+    "id": 43,
+    "aegis": "AC_OWL",
+    "name": "Owl's Eye",
+    "maxLv": 10
+   },
+   {
+    "pos": 41,
+    "id": 39,
+    "aegis": "MC_PUSHCART",
+    "name": "Pushcart",
+    "maxLv": 10
+   },
+   {
+    "pos": 42,
+    "id": 26,
+    "aegis": "AL_TELEPORT",
+    "name": "Teleport",
+    "maxLv": 2
+   },
+   {
+    "pos": 43,
+    "id": 35,
+    "aegis": "AL_CURE",
+    "name": "Cure",
+    "maxLv": 1
+   },
+   {
+    "pos": 44,
+    "id": 18,
+    "aegis": "MG_FIREWALL",
+    "name": "Fire Wall",
+    "maxLv": 10
+   },
+   {
+    "pos": 46,
+    "id": 33,
+    "aegis": "AL_ANGELUS",
+    "name": "Angelus",
+    "maxLv": 10
+   },
+   {
+    "pos": 48,
+    "id": 41,
+    "aegis": "MC_VENDING",
+    "name": "Vending",
+    "maxLv": 10
+   },
+   {
+    "pos": 49,
+    "id": 27,
+    "aegis": "AL_WARP",
+    "name": "Warp Portal",
+    "maxLv": 4
+   },
+   {
+    "pos": 50,
+    "id": 29,
+    "aegis": "AL_INCAGI",
+    "name": "Increase Agility",
+    "maxLv": 10
+   },
+   {
+    "pos": 53,
+    "id": 34,
+    "aegis": "AL_BLESSING",
+    "name": "Blessing",
+    "maxLv": 10
+   },
+   {
+    "pos": 54,
+    "id": 45,
+    "aegis": "AC_CONCENTRATION",
+    "name": "Improve Concentration",
+    "maxLv": 10
+   },
+   {
+    "pos": 55,
+    "id": 42,
+    "aegis": "MC_MAMMONITE",
+    "name": "Mammonite",
+    "maxLv": 10
+   },
+   {
+    "pos": 56,
+    "id": 25,
+    "aegis": "AL_PNEUMA",
+    "name": "Pneuma",
+    "maxLv": 1
+   },
+   {
+    "pos": 57,
+    "id": 30,
+    "aegis": "AL_DECAGI",
+    "name": "Decrease Agility",
+    "maxLv": 10
+   },
+   {
+    "pos": 59,
+    "id": 387,
+    "aegis": "WS_CARTBOOST",
+    "name": "Cart Boost",
+    "maxLv": 1
+   },
+   {
+    "pos": 60,
+    "id": 65,
+    "aegis": "PR_MACEMASTERY",
+    "name": "Mace Mastery",
+    "maxLv": 10
+   },
+   {
+    "pos": 61,
+    "id": 226,
+    "aegis": "AM_AXEMASTERY",
+    "name": "Axe Mastery",
+    "maxLv": 10
+   },
+   {
+    "pos": 62,
+    "id": 40,
+    "aegis": "MC_IDENTIFY",
+    "name": "Item Appraisal",
+    "maxLv": 1
+   }
+  ]
+ },
+ "JT_REBELLION": {
+  "jobId": 4215,
+  "inheritsFrom": "JT_GUNSLINGER",
+  "skills": [
+   {
+    "pos": 0,
+    "id": 2552,
+    "aegis": "RL_RICHS_COIN",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 1,
+    "id": 2556,
+    "aegis": "RL_FLICKER",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 2,
+    "id": 2557,
+    "aegis": "RL_S_STORM",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 3,
+    "id": 2553,
+    "aegis": "RL_MASS_SPIRAL",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 4,
+    "id": 2564,
+    "aegis": "RL_FALLEN_ANGEL",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 5,
+    "id": 2562,
+    "aegis": "RL_H_MINE",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 6,
+    "id": 2567,
+    "aegis": "RL_FIRE_RAIN",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 7,
+    "id": 2563,
+    "aegis": "RL_P_ALTER",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 8,
+    "id": 2555,
+    "aegis": "RL_B_TRAP",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 9,
+    "id": 2554,
+    "aegis": "RL_BANISHING_BUSTER",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 10,
+    "id": 2569,
+    "aegis": "RL_AM_BLAST",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 11,
+    "id": 2561,
+    "aegis": "RL_FIREDANCE",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 12,
+    "id": 2566,
+    "aegis": "RL_D_TAIL",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 13,
+    "id": 2565,
+    "aegis": "RL_R_TRIP",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 14,
+    "id": 2568,
+    "aegis": "RL_HEAT_BARREL",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 16,
+    "id": 2570,
+    "aegis": "RL_SLUGSHOT",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 17,
+    "id": 2571,
+    "aegis": "RL_HAMMER_OF_GOD",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 30,
+    "id": 2560,
+    "aegis": "RL_C_MARKER",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 31,
+    "id": 2559,
+    "aegis": "RL_QD_SHOT",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 32,
+    "id": 2558,
+    "aegis": "RL_E_CHAIN",
+    "name": null,
+    "maxLv": 10
+   }
+  ]
+ },
+ "JT_OBORO": {
+  "jobId": 4212,
+  "inheritsFrom": "JT_NINJA",
+  "skills": [
+   {
+    "pos": 0,
+    "id": 3001,
+    "aegis": "KO_YAMIKUMO",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 1,
+    "id": 3012,
+    "aegis": "KO_ZANZOU",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 2,
+    "id": 3021,
+    "aegis": "KO_GENWAKU",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 3,
+    "id": 3013,
+    "aegis": "KO_KYOUGAKU",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 4,
+    "id": 3014,
+    "aegis": "KO_JYUSATSU",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 7,
+    "id": 3004,
+    "aegis": "KO_JYUMONJIKIRI",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 9,
+    "id": 3026,
+    "aegis": "OB_ZANGETSU",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 10,
+    "id": 3015,
+    "aegis": "KO_KAHU_ENTEN",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 11,
+    "id": 3016,
+    "aegis": "KO_HYOUHU_HUBUKI",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 12,
+    "id": 3017,
+    "aegis": "KO_KAZEHU_SEIRAN",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 13,
+    "id": 3018,
+    "aegis": "KO_DOHU_KOUKAI",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 16,
+    "id": 3029,
+    "aegis": "OB_AKAITSUKI",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 17,
+    "id": 3019,
+    "aegis": "KO_KAIHOU",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 21,
+    "id": 3006,
+    "aegis": "KO_BAKURETSU",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 23,
+    "id": 3027,
+    "aegis": "OB_OBOROGENSOU",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 24,
+    "id": 3020,
+    "aegis": "KO_ZENKAI",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 26,
+    "id": 3011,
+    "aegis": "KO_MEIKYOUSISUI",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 28,
+    "id": 3007,
+    "aegis": "KO_HAPPOKUNAI",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 30,
+    "id": 3010,
+    "aegis": "KO_MAKIBISHI",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 33,
+    "id": 3002,
+    "aegis": "KO_RIGHT",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 34,
+    "id": 3003,
+    "aegis": "KO_LEFT",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 36,
+    "id": 3009,
+    "aegis": "KO_HUUMARANKA",
+    "name": null,
+    "maxLv": 10
+   }
+  ]
+ },
+ "JT_KNIGHT": {
+  "jobId": 7,
+  "inheritsFrom": "JT_SWORDMAN",
+  "skills": [
+   {
+    "pos": 0,
+    "id": 60,
+    "aegis": "KN_TWOHANDQUICKEN",
+    "name": "Two Hand Quicken",
+    "maxLv": 10
+   },
+   {
+    "pos": 1,
+    "id": 61,
+    "aegis": "KN_AUTOCOUNTER",
+    "name": "Counter Attack",
+    "maxLv": 5
+   },
+   {
+    "pos": 2,
+    "id": 63,
+    "aegis": "KN_RIDING",
+    "name": "Peco Peco Ride",
+    "maxLv": 1
+   },
+   {
+    "pos": 3,
+    "id": 56,
+    "aegis": "KN_PIERCE",
+    "name": "Pierce",
+    "maxLv": 10
+   },
+   {
+    "pos": 4,
+    "id": 355,
+    "aegis": "LK_AURABLADE",
+    "name": "Aura Blade",
+    "maxLv": 5
+   },
+   {
+    "pos": 5,
+    "id": 358,
+    "aegis": "LK_TENSIONRELAX",
+    "name": "Relax",
+    "maxLv": 1
+   },
+   {
+    "pos": 6,
+    "id": 1001,
+    "aegis": "KN_CHARGEATK",
+    "name": "Charge Attack",
+    "maxLv": 1
+   },
+   {
+    "pos": 7,
+    "id": 356,
+    "aegis": "LK_PARRYING",
+    "name": "Parry",
+    "maxLv": 10
+   },
+   {
+    "pos": 8,
+    "id": 62,
+    "aegis": "KN_BOWLINGBASH",
+    "name": "Bowling Bash",
+    "maxLv": 10
+   },
+   {
+    "pos": 9,
+    "id": 64,
+    "aegis": "KN_CAVALIERMASTERY",
+    "name": "Cavalier Mastery",
+    "maxLv": 5
+   },
+   {
+    "pos": 10,
+    "id": 59,
+    "aegis": "KN_SPEARBOOMERANG",
+    "name": "Spear Boomerang",
+    "maxLv": 5
+   },
+   {
+    "pos": 11,
+    "id": 58,
+    "aegis": "KN_SPEARSTAB",
+    "name": "Spear Stab",
+    "maxLv": 10
+   },
+   {
+    "pos": 12,
+    "id": 357,
+    "aegis": "LK_CONCENTRATION",
+    "name": "Spear Dynamo",
+    "maxLv": 5
+   },
+   {
+    "pos": 13,
+    "id": 359,
+    "aegis": "LK_BERSERK",
+    "name": "Frenzy",
+    "maxLv": 1
+   },
+   {
+    "pos": 16,
+    "id": 398,
+    "aegis": "LK_HEADCRUSH",
+    "name": "Traumatic Blow",
+    "maxLv": 5
+   },
+   {
+    "pos": 18,
+    "id": 57,
+    "aegis": "KN_BRANDISHSPEAR",
+    "name": "Brandish Spear",
+    "maxLv": 10
+   },
+   {
+    "pos": 19,
+    "id": 397,
+    "aegis": "LK_SPIRALPIERCE",
+    "name": "Clashing Spiral",
+    "maxLv": 5
+   },
+   {
+    "pos": 23,
+    "id": 399,
+    "aegis": "LK_JOINTBEAT",
+    "name": "Vital Strike",
+    "maxLv": 10
+   }
+  ]
+ },
+ "JT_CRUSADER": {
+  "jobId": 14,
+  "inheritsFrom": "JT_SWORDMAN",
+  "skills": [
+   {
+    "pos": 0,
+    "id": 248,
+    "aegis": "CR_TRUST",
+    "name": "Faith",
+    "maxLv": 10
+   },
+   {
+    "pos": 2,
+    "id": 358,
+    "aegis": "LK_TENSIONRELAX",
+    "name": "Relax",
+    "maxLv": 1
+   },
+   {
+    "pos": 3,
+    "id": 249,
+    "aegis": "CR_AUTOGUARD",
+    "name": "Guard",
+    "maxLv": 10
+   },
+   {
+    "pos": 4,
+    "id": 258,
+    "aegis": "CR_SPEARQUICKEN",
+    "name": "Spear Quicken",
+    "maxLv": 10
+   },
+   {
+    "pos": 5,
+    "id": 63,
+    "aegis": "KN_RIDING",
+    "name": "Peco Peco Ride",
+    "maxLv": 1
+   },
+   {
+    "pos": 6,
+    "id": 1002,
+    "aegis": "CR_SHRINK",
+    "name": "Shrink",
+    "maxLv": 1
+   },
+   {
+    "pos": 7,
+    "id": 22,
+    "aegis": "AL_DP",
+    "name": "Divine Protection",
+    "maxLv": 10
+   },
+   {
+    "pos": 9,
+    "id": 28,
+    "aegis": "AL_HEAL",
+    "name": "Heal",
+    "maxLv": 10
+   },
+   {
+    "pos": 10,
+    "id": 250,
+    "aegis": "CR_SHIELDCHARGE",
+    "name": "Smite",
+    "maxLv": 5
+   },
+   {
+    "pos": 11,
+    "id": 2307,
+    "aegis": "LG_CANNONSPEAR",
+    "name": "Cannon Spear",
+    "maxLv": 5
+   },
+   {
+    "pos": 12,
+    "id": 64,
+    "aegis": "KN_CAVALIERMASTERY",
+    "name": "Cavalier Mastery",
+    "maxLv": 5
+   },
+   {
+    "pos": 14,
+    "id": 23,
+    "aegis": "AL_DEMONBANE",
+    "name": "Demon Bane",
+    "maxLv": 10
+   },
+   {
+    "pos": 15,
+    "id": 256,
+    "aegis": "CR_PROVIDENCE",
+    "name": "Resistant Souls",
+    "maxLv": 5
+   },
+   {
+    "pos": 16,
+    "id": 35,
+    "aegis": "AL_CURE",
+    "name": "Cure",
+    "maxLv": 1
+   },
+   {
+    "pos": 17,
+    "id": 251,
+    "aegis": "CR_SHIELDBOOMERANG",
+    "name": "Shield Boomerang",
+    "maxLv": 5
+   },
+   {
+    "pos": 21,
+    "id": 367,
+    "aegis": "PA_PRESSURE",
+    "name": "Gloria Domini",
+    "maxLv": 5
+   },
+   {
+    "pos": 22,
+    "id": 253,
+    "aegis": "CR_HOLYCROSS",
+    "name": "Holy Cross",
+    "maxLv": 10
+   },
+   {
+    "pos": 23,
+    "id": 369,
+    "aegis": "PA_GOSPEL",
+    "name": "Battle Chant",
+    "maxLv": 10
+   },
+   {
+    "pos": 24,
+    "id": 257,
+    "aegis": "CR_DEFENDER",
+    "name": "Defending Aura",
+    "maxLv": 5
+   },
+   {
+    "pos": 25,
+    "id": 252,
+    "aegis": "CR_REFLECTSHIELD",
+    "name": "Shield Reflect",
+    "maxLv": 10
+   },
+   {
+    "pos": 26,
+    "id": 480,
+    "aegis": "PA_SHIELDCHAIN",
+    "name": "Rapid Smiting",
+    "maxLv": 5
+   },
+   {
+    "pos": 28,
+    "id": 368,
+    "aegis": "PA_SACRIFICE",
+    "name": "Martyr's Reckoning",
+    "maxLv": 5
+   },
+   {
+    "pos": 29,
+    "id": 254,
+    "aegis": "CR_GRANDCROSS",
+    "name": "Grand Cross",
+    "maxLv": 10
+   },
+   {
+    "pos": 32,
+    "id": 255,
+    "aegis": "CR_DEVOTION",
+    "name": "Sacrifice",
+    "maxLv": 5
+   }
+  ]
+ },
+ "JT_KAGEROU": {
+  "jobId": 4211,
+  "inheritsFrom": "JT_NINJA",
+  "skills": [
+   {
+    "pos": 0,
+    "id": 3001,
+    "aegis": "KO_YAMIKUMO",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 1,
+    "id": 3012,
+    "aegis": "KO_ZANZOU",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 2,
+    "id": 3021,
+    "aegis": "KO_GENWAKU",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 3,
+    "id": 3013,
+    "aegis": "KO_KYOUGAKU",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 4,
+    "id": 3014,
+    "aegis": "KO_JYUSATSU",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 7,
+    "id": 3004,
+    "aegis": "KO_JYUMONJIKIRI",
+    "name": null,
+    "maxLv": 10
+   },
+   {
+    "pos": 8,
+    "id": 3023,
+    "aegis": "KG_KAGEHUMI",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 10,
+    "id": 3015,
+    "aegis": "KO_KAHU_ENTEN",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 11,
+    "id": 3016,
+    "aegis": "KO_HYOUHU_HUBUKI",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 12,
+    "id": 3017,
+    "aegis": "KO_KAZEHU_SEIRAN",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 13,
+    "id": 3018,
+    "aegis": "KO_DOHU_KOUKAI",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 15,
+    "id": 3024,
+    "aegis": "KG_KYOMU",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 17,
+    "id": 3019,
+    "aegis": "KO_KAIHOU",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 21,
+    "id": 3006,
+    "aegis": "KO_BAKURETSU",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 22,
+    "id": 3025,
+    "aegis": "KG_KAGEMUSYA",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 24,
+    "id": 3020,
+    "aegis": "KO_ZENKAI",
+    "name": null,
+    "maxLv": 1
+   },
+   {
+    "pos": 26,
+    "id": 3011,
+    "aegis": "KO_MEIKYOUSISUI",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 28,
+    "id": 3007,
+    "aegis": "KO_HAPPOKUNAI",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 30,
+    "id": 3010,
+    "aegis": "KO_MAKIBISHI",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 33,
+    "id": 3002,
+    "aegis": "KO_RIGHT",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 34,
+    "id": 3003,
+    "aegis": "KO_LEFT",
+    "name": null,
+    "maxLv": 5
+   },
+   {
+    "pos": 36,
+    "id": 3009,
+    "aegis": "KO_HUUMARANKA",
+    "name": null,
+    "maxLv": 10
+   }
+  ]
+ },
+ "JT_BARD": {
+  "jobId": 19,
+  "inheritsFrom": "JT_ARCHER",
+  "skills": [
+   {
+    "pos": 0,
+    "id": 304,
+    "aegis": "BD_ADAPTATION",
+    "name": "Amp",
+    "maxLv": 1
+   },
+   {
+    "pos": 1,
+    "id": 315,
+    "aegis": "BA_MUSICALLESSON",
+    "name": "Music Lessons",
+    "maxLv": 10
+   },
+   {
+    "pos": 3,
+    "id": 317,
+    "aegis": "BA_DISSONANCE",
+    "name": "Unchained Serenade",
+    "maxLv": 5
+   },
+   {
+    "pos": 5,
+    "id": 1010,
+    "aegis": "BA_PANGVOICE",
+    "name": "Pang Voice",
+    "maxLv": 1
+   },
+   {
+    "pos": 7,
+    "id": 305,
+    "aegis": "BD_ENCORE",
+    "name": "Encore",
+    "maxLv": 1
+   },
+   {
+    "pos": 8,
+    "id": 316,
+    "aegis": "BA_MUSICALSTRIKE",
+    "name": "Melody Strike",
+    "maxLv": 5
+   },
+   {
+    "pos": 9,
+    "id": 319,
+    "aegis": "BA_WHISTLE",
+    "name": "Perfect Tablature",
+    "maxLv": 10
+   },
+   {
+    "pos": 10,
+    "id": 320,
+    "aegis": "BA_ASSASSINCROSS",
+    "name": "Impressive Riff",
+    "maxLv": 10
+   },
+   {
+    "pos": 11,
+    "id": 321,
+    "aegis": "BA_POEMBRAGI",
+    "name": "Magic Strings",
+    "maxLv": 10
+   },
+   {
+    "pos": 12,
+    "id": 322,
+    "aegis": "BA_APPLEIDUN",
+    "name": "Song of Lutie",
+    "maxLv": 10
+   },
+   {
+    "pos": 14,
+    "id": 318,
+    "aegis": "BA_FROSTJOKER",
+    "name": "Unbarring Octave",
+    "maxLv": 5
+   },
+   {
+    "pos": 16,
+    "id": 306,
+    "aegis": "BD_LULLABY",
+    "name": "Lullaby",
+    "maxLv": 1
+   },
+   {
+    "pos": 17,
+    "id": 311,
+    "aegis": "BD_ROKISWEIL",
+    "name": "Classical Pluck",
+    "maxLv": 1
+   },
+   {
+    "pos": 18,
+    "id": 313,
+    "aegis": "BD_SIEGFRIED",
+    "name": "Acoustic Rhythm",
+    "maxLv": 5
+   },
+   {
+    "pos": 19,
+    "id": 309,
+    "aegis": "BD_DRUMBATTLEFIELD",
+    "name": "Battle Theme",
+    "maxLv": 5
+   },
+   {
+    "pos": 23,
+    "id": 312,
+    "aegis": "BD_INTOABYSS",
+    "name": "Power Cord",
+    "maxLv": 1
+   },
+   {
+    "pos": 24,
+    "id": 308,
+    "aegis": "BD_ETERNALCHAOS",
+    "name": "Down Tempo",
+    "maxLv": 1
+   },
+   {
+    "pos": 25,
+    "id": 307,
+    "aegis": "BD_RICHMANKIM",
+    "name": "Mental Sensing",
+    "maxLv": 5
+   },
+   {
+    "pos": 26,
+    "id": 310,
+    "aegis": "BD_RINGNIBELUNGEN",
+    "name": "Harmonic Lick",
+    "maxLv": 5
+   },
+   {
+    "pos": 29,
+    "id": 394,
+    "aegis": "CG_ARROWVULCAN",
+    "name": "Arrow Vulcan",
+    "maxLv": 10
+   },
+   {
+    "pos": 30,
+    "id": 395,
+    "aegis": "CG_MOONLIT",
+    "name": "Sheltering Bliss",
+    "maxLv": 5
+   },
+   {
+    "pos": 31,
+    "id": 396,
+    "aegis": "CG_MARIONETTE",
+    "name": "Marionette Control",
+    "maxLv": 1
+   },
+   {
+    "pos": 32,
+    "id": 488,
+    "aegis": "CG_HERMODE",
+    "name": "Hermode's Rod",
+    "maxLv": 5
+   },
+   {
+    "pos": 38,
+    "id": 5068,
+    "aegis": "SKID_CG_SPECIALSINGER",
+    "name": "Skilled Special Singer",
+    "maxLv": 1
+   },
+   {
+    "pos": 39,
+    "id": 489,
+    "aegis": "CG_TAROTCARD",
+    "name": "Tarot Card of Fate",
+    "maxLv": 5
+   }
+  ]
+ },
+ "JT_MONK": {
+  "jobId": 15,
+  "inheritsFrom": "JT_ACOLYTE",
+  "skills": [
+   {
+    "pos": 0,
+    "id": 259,
+    "aegis": "MO_IRONHAND",
+    "name": "Iron Fists",
+    "maxLv": 10
+   },
+   {
+    "pos": 3,
+    "id": 265,
+    "aegis": "MO_DODGE",
+    "name": "Flee",
+    "maxLv": 10
+   },
+   {
+    "pos": 5,
+    "id": 1015,
+    "aegis": "MO_KITRANSLATION",
+    "name": "Spiritual Bestowment",
+    "maxLv": 1
+   },
+   {
+    "pos": 7,
+    "id": 261,
+    "aegis": "MO_CALLSPIRITS",
+    "name": "Summon Spirit Sphere",
+    "maxLv": 5
+   },
+   {
+    "pos": 8,
+    "id": 266,
+    "aegis": "MO_INVESTIGATE",
+    "name": "Occult Impaction",
+    "maxLv": 5
+   },
+   {
+    "pos": 9,
+    "id": 263,
+    "aegis": "MO_TRIPLEATTACK",
+    "name": "Raging Trifecta Blow",
+    "maxLv": 10
+   },
+   {
+    "pos": 10,
+    "id": 269,
+    "aegis": "MO_BLADESTOP",
+    "name": "Root",
+    "maxLv": 5
+   },
+   {
+    "pos": 12,
+    "id": 1016,
+    "aegis": "MO_BALKYOUNG",
+    "name": "Excruciating Palm",
+    "maxLv": 1
+   },
+   {
+    "pos": 14,
+    "id": 262,
+    "aegis": "MO_ABSORBSPIRITS",
+    "name": "Spiritual Sphere Absorption",
+    "maxLv": 1
+   },
+   {
+    "pos": 15,
+    "id": 267,
+    "aegis": "MO_FINGEROFFENSIVE",
+    "name": "Throw Spirit Sphere",
+    "maxLv": 5
+   },
+   {
+    "pos": 16,
+    "id": 272,
+    "aegis": "MO_CHAINCOMBO",
+    "name": "Raging Quadruple Blow",
+    "maxLv": 5
+   },
+   {
+    "pos": 17,
+    "id": 260,
+    "aegis": "MO_SPIRITSRECOVERY",
+    "name": "Spiritual Cadence",
+    "maxLv": 5
+   },
+   {
+    "pos": 18,
+    "id": 370,
+    "aegis": "CH_PALMSTRIKE",
+    "name": "Raging Palm Strike",
+    "maxLv": 5
+   },
+   {
+    "pos": 21,
+    "id": 270,
+    "aegis": "MO_EXPLOSIONSPIRITS",
+    "name": "Fury",
+    "maxLv": 5
+   },
+   {
+    "pos": 23,
+    "id": 273,
+    "aegis": "MO_COMBOFINISH",
+    "name": "Raging Thrust",
+    "maxLv": 5
+   },
+   {
+    "pos": 24,
+    "id": 268,
+    "aegis": "MO_STEELBODY",
+    "name": "Mental Strength",
+    "maxLv": 5
+   },
+   {
+    "pos": 28,
+    "id": 401,
+    "aegis": "CH_SOULCOLLECT",
+    "name": "Zen",
+    "maxLv": 1
+   },
+   {
+    "pos": 29,
+    "id": 271,
+    "aegis": "MO_EXTREMITYFIST",
+    "name": "Guillotine Fist",
+    "maxLv": 5
+   },
+   {
+    "pos": 30,
+    "id": 371,
+    "aegis": "CH_TIGERFIST",
+    "name": "Glacier Fist",
+    "maxLv": 5
+   },
+   {
+    "pos": 32,
+    "id": 264,
+    "aegis": "MO_BODYRELOCATION",
+    "name": "Snap",
+    "maxLv": 1
+   },
+   {
+    "pos": 35,
+    "id": 2338,
+    "aegis": "SR_RAISINGDRAGON",
+    "name": "Rising Dragon",
+    "maxLv": 10
+   },
+   {
+    "pos": 37,
+    "id": 372,
+    "aegis": "CH_CHAINCRUSH",
+    "name": "Chain Crush Combo",
+    "maxLv": 10
+   }
+  ]
+ },
+ "JT_SWORDMAN": {
+  "jobId": 1,
+  "inheritsFrom": "JT_NOVICE",
+  "skills": [
+   {
+    "pos": 1,
+    "id": 2,
+    "aegis": "SM_SWORD",
+    "name": "Sword Mastery",
+    "maxLv": 10
+   },
+   {
+    "pos": 2,
+    "id": 4,
+    "aegis": "SM_RECOVERY",
+    "name": "Increase HP Recovery",
+    "maxLv": 10
+   },
+   {
+    "pos": 3,
+    "id": 5,
+    "aegis": "SM_BASH",
+    "name": "Bash",
+    "maxLv": 10
+   },
+   {
+    "pos": 4,
+    "id": 6,
+    "aegis": "SM_PROVOKE",
+    "name": "Provoke",
+    "maxLv": 10
+   },
+   {
+    "pos": 5,
+    "id": 146,
+    "aegis": "SM_AUTOBERSERK",
+    "name": "Berserk",
+    "maxLv": 1
+   },
+   {
+    "pos": 6,
+    "id": 144,
+    "aegis": "SM_MOVINGRECOVERY",
+    "name": "HP Recovery While Moving",
+    "maxLv": 1
+   },
+   {
+    "pos": 8,
+    "id": 3,
+    "aegis": "SM_TWOHAND",
+    "name": "Two Handed Sword Mastery",
+    "maxLv": 10
+   },
+   {
+    "pos": 10,
+    "id": 7,
+    "aegis": "SM_MAGNUM",
+    "name": "Magnum Break",
+    "maxLv": 10
+   },
+   {
+    "pos": 11,
+    "id": 8,
+    "aegis": "SM_ENDURE",
+    "name": "Endure",
+    "maxLv": 10
+   },
+   {
+    "pos": 12,
+    "id": 145,
+    "aegis": "SM_FATALBLOW",
+    "name": "Fatal Blow",
+    "maxLv": 1
+   },
+   {
+    "pos": 15,
+    "id": 55,
+    "aegis": "KN_SPEARMASTERY",
+    "name": "Spear Mastery",
+    "maxLv": 10
+   }
+  ]
+ }
+}

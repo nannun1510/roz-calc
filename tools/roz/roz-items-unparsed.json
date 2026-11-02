@@ -1,0 +1,1322 @@
+[
+[
+"Ignores N% of players' physical defense.",
+23
+],
+[
+"At +N refine, ignores an additional N% of players' defense.",
+19
+],
+[
+"if total refine level is N or higher: MHP +N, Damage Taken from Players -N%.",
+6
+],
+[
+"At +N refine, ignores an additional N% of players' physical defense.",
+4
+],
+[
+"If total refine level is N or higher:",
+3
+],
+[
+"Ranged Physical Damage Taken -N%.",
+3
+],
+[
+"(Applies up to BaseLv N.)",
+3
+],
+[
+"At +N refine, ignores additional N% of players' defense.",
+3
+],
+[
+"Ignores N% of players' magic defense.",
+3
+],
+[
+"At +N refine, ignores an additional N% of players' magic defense.",
+3
+],
+[
+"When equipped with a Garment refined to +N or higher,",
+2
+],
+[
+"When equipped together with Fei-chai’s Egg Lv.N: ASPD increases (After Attack Delay -N%).",
+2
+],
+[
+"Additional N% damage to Human-type enemies.",
+2
+],
+[
+"and Fixed Casting -N%.",
+2
+],
+[
+"When equipped together with Tai-zi Egg Lv.N, Critical Damage +N%.",
+2
+],
+[
+"(Up to BaseLv N.)",
+2
+],
+[
+"Ignores N% of players' P.DEF.",
+2
+],
+[
+"On physical attack, N% chance to inflict Stun.",
+2
+],
+[
+"At +N refine, when using Hiding, Sightless Mind damage +N% for N seconds and HIT +N.",
+2
+],
+[
+"Has a N% chance to inflict Stun when attacking.",
+2
+],
+[
+"At +N refine, additional +N% damage to Meteor Storm and Fire Pillar.",
+2
+],
+[
+"At +N refine, additional +N% damage to Storm Gust, Frost Nova, and Frost Driver.",
+2
+],
+[
+"At +N refine: additionally increases damage of Holy Cross and Pierce by N%.",
+2
+],
+[
+"Damage taken from Shadow-Property attacks +N%.",
+2
+],
+[
+"At +N refine, DEF increases by an additional N and CRIT by an additional N.",
+2
+],
+[
+"At refine level N, reduces Physical/Magical damage taken from Earth property enemies by N%.",
+2
+],
+[
+"At +N refine: Additional MHP +N per level of Faith.",
+2
+],
+[
+"At +N refine, Guillotine Fist Fixed Casting Time -N%, and when using Fury, ATK +N for N seconds, with additional ATK increased per refine.",
+1
+],
+[
+"At +N refine, physical damage to players +N%, and normal physical attacks have a chance to trigger [Critical Wounds]; ASPD increases (After Attack Delay -N%).",
+1
+],
+[
+"At +N refine, when using [Power Thrust], physical attacks have a low chance to break the target's weapon for N seconds, with break chance increased per refine.",
+1
+],
+[
+"and Variable Casting Time -N%.",
+1
+],
+[
+"If INT is N or higher, the chance to inflict Stone increases.",
+1
+],
+[
+"[Bash] skill Lv.N can be used.",
+1
+],
+[
+"MHP +N and an additional Physical Damage Taken from Neutral Enemies -N%.",
+1
+],
+[
+"MHP +N and an additional Magical Damage Taken from Neutral Enemies -N%.",
+1
+],
+[
+"When attacking, has a low chance to cast [Fire Ball] Lv N.",
+1
+],
+[
+"Additional N% damage to Undead and Earth-property Monsters.",
+1
+],
+[
+"CRIT +N when attacking Formless Monsters.",
+1
+],
+[
+"Physical attacks have a chance to autocast Heal Lv.N on the enemy.",
+1
+],
+[
+"Triggers Auto-Spell Provoke Lv N with a certain chance when performing physical attacks.",
+1
+],
+[
+"When equipped by Swordsman, Merchant, Thief, or Archer Class: MAXHP +N.",
+1
+],
+[
+"When equipped by Mage or Acolyte Class: MAXSP +N.",
+1
+],
+[
+"Physical Damage to Demi-Human, Brute, Plant, and Insect Monsters +N%.",
+1
+],
+[
+"CRIT +N when attacking Undead Monsters.",
+1
+],
+[
+"Damage taken from boss-type enemies -N%.",
+1
+],
+[
+"Damage taken from normal enemies +N%.",
+1
+],
+[
+"When equipped by Thief Class, CRIT +N.",
+1
+],
+[
+"Has a N% chance to inflict Blind on the enemy when attacking.",
+1
+],
+[
+"Physical Damage to Large-Size Monsters +N%.",
+1
+],
+[
+"For every N BaseLv, MHP + N, DEF + N, MDEF + N.",
+1
+],
+[
+"When equipped together with Fei-chai’s Egg Lv.N or Tai-zi Egg Lv.N, physical or magical attacks have a low chance to trigger ATK +N and MATK +N for N seconds.",
+1
+],
+[
+"When equipped together with Fei-chai’s Egg Lv.N or Tai-zi Egg Lv.N, physical or magical attacks have a high chance to trigger ATK +N and MATK +N for N seconds.",
+1
+],
+[
+"For every N refine levels, MHP +N and MSP +N.",
+1
+],
+[
+"Has a chance to cast Weapon Perfection Lv N when performing attacks.",
+1
+],
+[
+"Increases attack range to N cells when equipped.",
+1
+],
+[
+"MATK +N, Variable Casting Time +N%.",
+1
+],
+[
+"At refine level N, Variable Casting Time -N% additionally and ASPD +N% additionally.",
+1
+],
+[
+"At refine level N, Variable Casting Time -N% additionally, ASPD +N% additionally, and ASPD +N.",
+1
+],
+[
+"Grants N% resistance to the Status Ailment effects of Poison, Curse, Silence, Confusion, and Blind.",
+1
+],
+[
+"Able to use Cure Lv N.",
+1
+],
+[
+"Able to use Heal Lv N.",
+1
+],
+[
+"Glittering claws of Joker leave afterimages that strip everything from enemies. STR +N, Raging Trifecta Blow damage +N%.",
+1
+],
+[
+"Each refine increases Raging Trifecta Blow damage by +N%.",
+1
+],
+[
+"Every N refine levels increase ASPD (After Attack Delay -N%).",
+1
+],
+[
+"At +N refine, Raging Quadruple Blow damage +N%.",
+1
+],
+[
+"At +N refine, Raging Thrust damage +N%.",
+1
+],
+[
+"Fixed casting time -N%.",
+1
+],
+[
+"Heal Amount you cast is increased by N%.",
+1
+],
+[
+"For every N BaseLv, ATK +N, DEF +N, and MDEF +N.",
+1
+],
+[
+"For every N BaseLv, MATK +N, DEF +N, and MDEF +N.",
+1
+],
+[
+"[Envenom] NLv can be used.",
+1
+],
+[
+"On enemy attack, N% chance to inflict Poison.",
+1
+],
+[
+"When attacking Fish Monsters, CRIT +N.",
+1
+],
+[
+"INT +N. If refine level ≥ N, MSP +N.",
+1
+],
+[
+"At +N refine, when using Improve Concentration, Double Strafe damage +N% for N seconds and HIT +N. Additional HIT and Double Strafe damage increase based on refine level.",
+1
+],
+[
+"At +N refine, when using Acid Terror or Mammonite, grants a chance to trigger Critical Wounds Lv.N.",
+1
+],
+[
+"At +N refine, when using Improve Concentration, Double Strafe damage +N% for N seconds and HIT +N.",
+1
+],
+[
+"When equipped with Shackles, ATK +N. Additional ATK increases based on the refine level of Shackles.",
+1
+],
+[
+"When equipped by Thief Class, Perfect Dodge +N.",
+1
+],
+[
+"Recovers N SP when defeating Plant Monsters with melee physical attacks.",
+1
+],
+[
+"When equipped with Criatura Academy Hat, ATK +N and MATK +N.",
+1
+],
+[
+"LUK + N, LUK + N for every N refine levels of the Helm.",
+1
+],
+[
+"When equipped with the Nordfeld Helm, ATK +N and MATK + N for every refine level of the Helm.",
+1
+],
+[
+"VIT + N, VIT + N for every N refine levels of the Helm.",
+1
+],
+[
+"AGI + N, AGI + N for every N refine levels of the Helm.",
+1
+],
+[
+"Magic damage against Boulder Dwarves +N%.",
+1
+],
+[
+"Water and Fire magic damage +N%, and magic attacks have a chance to reduce Variable Casting Time by N% for N seconds.",
+1
+],
+[
+"At +N refine, Water and Fire magic damage +N%.",
+1
+],
+[
+"At +N refine, Water and Fire magic damage +N% and Variable Casting Time -N%.",
+1
+],
+[
+"Damage Taken from Demi-Human Enemies N%.",
+1
+],
+[
+"When worn with Prisoner Uniform, ATK +N per refine level on Prisoner Uniform.",
+1
+],
+[
+"When worn with Shackles, ATK +N per refine level on Shackles.",
+1
+],
+[
+"Physical attacks have a N% chance to restore N HP every second for N seconds.",
+1
+],
+[
+"[Detoxify] NLv can be used.",
+1
+],
+[
+"If DEX is N or higher, greatly increased chance to inflict Stun.",
+1
+],
+[
+"When refine level is N or higher, MDEF +N.",
+1
+],
+[
+"Reflects N% of melee physical damage received. DEF +N.",
+1
+],
+[
+"At +N refine: increases CRIT Damage by N%.",
+1
+],
+[
+"At +N refine: additionally increases CRIT Damage by N%.",
+1
+],
+[
+"Physical/Magical attacks have a N% chance to restore N SP every second for N seconds.",
+1
+],
+[
+"M.ATK +N.",
+1
+],
+[
+"When equipped with Tower Keeper Card, reduces Variable Casting Time by N%.",
+1
+],
+[
+"At +N refine, normal physical attacks have a chance to increase Critical Damage by N% for N seconds, with an additional +N% per refine level.",
+1
+],
+[
+"When equipped with Clock Card, grants DEF +N and MSP +N.",
+1
+],
+[
+"When equipped with Alarm Card, grants MHP +N.",
+1
+],
+[
+"Each refine on Shield grants MDEF +N.",
+1
+],
+[
+"When equipped with Joker Card, physical/magical attacks have a chance to transform you into Joker for N seconds.",
+1
+],
+[
+"During transformation: ATK +N, MATK +N, loses N HP and N SP per second.",
+1
+],
+[
+"Casts Frost Driver Lv N with a chance when performing physical attacks.",
+1
+],
+[
+"Raises MATK by N per shield refine.",
+1
+],
+[
+"When equipped together with Bathory Card, increases INT by N per armor refine.",
+1
+],
+[
+"When Animal-type monsters are defeated, N% chance to drop Meat.",
+1
+],
+[
+"At +N refine, when using Acid Terror or Mammonite, grants a chance to inflict [Critical Wounds] Lv N on the enemy.",
+1
+],
+[
+"Reduces Ranged Physical Damage Taken by N%, and by an additional N% per armor refine.",
+1
+],
+[
+"When equipped together with Penomena Card, increases ASPD by N per N shield refines.",
+1
+],
+[
+"Physical attacks have a N% chance to inflict Bleeding.",
+1
+],
+[
+"While using a blunt weapon, increases CRIT by N per weapon refine, and at +N increases Critical Damage by N%.",
+1
+],
+[
+"While using a knuckle, reduces After Attack Delay by N% per refine, and at +N increases ASPD by N.",
+1
+],
+[
+"When equipped together with High Orc Card, grants ASPD +N and ATK +N.",
+1
+],
+[
+"MHP + N, reduces Physical/Magical damage taken from Earth property enemies by N%.",
+1
+],
+[
+"At refine level N, MHP + N, reduces Physical/Magical damage taken from Earth property enemies by N%.",
+1
+],
+[
+"When equipped together with Arclouse Card, increases FLEE by N per shield refine.",
+1
+],
+[
+"Physical Damage Taken from Fish Monsters +N%.",
+1
+],
+[
+"Triggers Meteor Storm Lv.N as an auto spell at a certain probability when performing physical attacks.",
+1
+],
+[
+"When hit by close-range physical attacks, has a N% chance to inflict Stun.",
+1
+],
+[
+"When equipped with Poring Card, FLEE Rate +N.",
+1
+],
+[
+"Reduces Variable Casting Time by N%.",
+1
+],
+[
+"When equipped with Alarm, Clock, and Punk Card, MDEF +N and DEF +N.",
+1
+],
+[
+"Damage of Holy Light +N%.",
+1
+],
+[
+"A soft, squishy hat modeled after the hand-shaped mud creature Sting. It seems the creator ignored the wearer’s comfort entirely.",
+1
+],
+[
+"Earth Magical Damage +N%.",
+1
+],
+[
+"Damage taken from Fire-property attacks +N%.",
+1
+],
+[
+"Ignores N% of players' DEF.",
+1
+],
+[
+"At +N refine, when Provoke succeeds on a target, Pierce damage +N% for N seconds.",
+1
+],
+[
+"When receiving physical damage, has a low chance to auto-cast [Assumptio] Lv N on the wearer.",
+1
+],
+[
+"Physical Defense -N%.",
+1
+],
+[
+"Ghost-Property/Wind-Property Resistance +N%.",
+1
+],
+[
+"Fire-Property/Shadow-Property Resistance -N%.",
+1
+],
+[
+"Takes N% additional damage from Ghost-Property attacks.",
+1
+],
+[
+"Heal effect of sushi and sashimi consumption +N%.",
+1
+],
+[
+"Reflects N% of all melee physical damage.",
+1
+],
+[
+"Restores N SP per hit when striking an enemy.",
+1
+],
+[
+"Physical and magical damage to Insect Monsters +N%.",
+1
+],
+[
+"Arrow Throwing damage +N%.",
+1
+],
+[
+"Each refine increases [Meteor Storm] and [Storm Gust] damage by +N% and reduces MHP by N%.",
+1
+],
+[
+"Every N refine levels, MATK +N.",
+1
+],
+[
+"At +N refine: For every BaseLv N, Variable Casting Time -N%.",
+1
+],
+[
+"Damage of Meteor Storm and Fire Pillar +N%.",
+1
+],
+[
+"On physical attack, N% chance to inflict Blind.",
+1
+],
+[
+"[Magnum Break] NLv can be used.",
+1
+],
+[
+"On enemy attack, N% chance to inflict Confusion.",
+1
+],
+[
+"Chance to auto-cast [Meteor Storm] Lv.N when receiving physical damage.",
+1
+],
+[
+"When equipped with Dark Illusion Card, MHP/MSP +N%.",
+1
+],
+[
+"MDEF +N when refine level is N or lower.",
+1
+],
+[
+"Physical attacks have a chance to autocast Jupitel Thunder Lv.N.",
+1
+],
+[
+"If Jupitel Thunder Lv.N is learned, Lv.N is autocast instead.",
+1
+],
+[
+"When used with Tarou Card, STR +N.",
+1
+],
+[
+"Damage of Storm Gust, Frost Nova, and Frost Driver +N%.",
+1
+],
+[
+"Every N refine levels, increases Heal Amount by N%.",
+1
+],
+[
+"At +N refine: For every BaseLv N, Critical Damage +N%.",
+1
+],
+[
+"When hit by melee physical attacks, small chance to cast Quagmire Lv.N",
+1
+],
+[
+"Every N refine levels, increases Physical Damage to monsters of all races by N%.",
+1
+],
+[
+"Every N refine levels, increases M.ATK +N%.",
+1
+],
+[
+"At +N refine, when using Improvised Song, Melody Strike damage +N% for N seconds, HIT +N, and Variable Casting Time -N%. Additional HIT and Melody Strike damage increase based on refine level.",
+1
+],
+[
+"When equipped with Claw Card, the reduction becomes -N%.",
+1
+],
+[
+"Critical Damage +N%. When attacking Brute Monsters, CRIT +N.",
+1
+],
+[
+"Recovers N SP when defeating Demi-Human Monsters with melee physical attacks.",
+1
+],
+[
+"Increases damage to Fish Monsters by N%.",
+1
+],
+[
+"Increases damage of Holy Cross and Pierce by N%.",
+1
+],
+[
+"For every N refine levels, AGI +N and LUK +N.",
+1
+],
+[
+"On physical attack, N% chance to inflict Poison.",
+1
+],
+[
+"[Heal] Lv.N can be used.",
+1
+],
+[
+"SP cost of skills +N%.",
+1
+],
+[
+"Chance to autocast Improve Concentration Lv.N when receiving physical damage.",
+1
+],
+[
+"If Improve Concentration Lv N is learned, autocast triggers Improve Concentration Lv N instead.",
+1
+],
+[
+"When used with Lunatic Card, FLEE Rate +N.",
+1
+],
+[
+"At +N refine, when using [Pierce], has a chance to inflict Stun on the target, with higher chance based on refine level.",
+1
+],
+[
+"When performing physical attacks, has a certain chance to transform into Smokie for N seconds. Movement speed increases during the transformation (does not stack with Increase Agility).",
+1
+],
+[
+"When performing physical attacks, has a certain chance to transform into Lunatic for N seconds. Movement speed increases during the transformation (does not stack with Increase Agility).",
+1
+],
+[
+"Physical Damage Taken has a chance to autocast Auto Guard Lv.N.",
+1
+],
+[
+"If Auto Guard Lv.N is learned, Lv.N is autocast instead.",
+1
+],
+[
+"All DEF of the wearer reduced to N/N.",
+1
+],
+[
+"At +N refine, fixed cast time of [Guillotine Fist] reduced by N%, and when using [Fury], ATK +N for N seconds, with additional ATK per refine.",
+1
+],
+[
+"At +N refine, normal physical attacks have a chance to inflict Stun, increase ASPD (reduces After Attack Delay by N%), and the chance to inflict Stun increases based on Mace Mastery level.",
+1
+],
+[
+"For each refine, Meteor Storm and Storm Gust damage +N%, and MHP -N%.",
+1
+],
+[
+"Physical Damage to Boss Monsters +N%.",
+1
+],
+[
+"All basic stats +N.",
+1
+],
+[
+"When receiving physical damage, chance to autocast Kyrie Eleison Lv.N.",
+1
+],
+[
+"If INT is N or higher, chance to autocast Kyrie Eleison increases.",
+1
+],
+[
+"Physical attacks have a chance to autocast Sonic Blow Lv.N.",
+1
+],
+[
+"When equipped with Zealotus Card, ATK +N and LUK +N.",
+1
+],
+[
+"At +N refine, reduces physical and magical damage taken from enemies of all elements by N%.",
+1
+],
+[
+"For each refine, Heal Amount +N%, and Increase Agility/Blessing SP consumption -N%.",
+1
+],
+[
+"At +N refine, when using Heal, grants a chance to increase Heal Amount by N% for N seconds, plus an additional N% per refine.",
+1
+],
+[
+"At +N refine, Land Protector Variable Casting Time -N%, and when using Deluge, Whirlwind, or Volcano, all magic consumes no gemstones for N seconds.",
+1
+],
+[
+"Increases ASPD (After Attack Delay -N%), CRIT +N.",
+1
+],
+[
+"At +N refine: increases Critical Damage by N%.",
+1
+],
+[
+"At +N refine: additionally increases Critical Damage by N%, ASPD +N.",
+1
+],
+[
+"Chance to autocast Impositio Manus Lv.N on self when dealing physical damage.",
+1
+],
+[
+"When equipped with Owl Baron Card, chance to autocast Lightning Bolt Lv N when dealing physical damage.",
+1
+],
+[
+"MATK +N, SP consumption +N%.",
+1
+],
+[
+"On physical attack, N% chance to inflict Frozen.",
+1
+],
+[
+"Chance to autocast Lex Aeterna Lv.N on the target when dealing physical damage.",
+1
+],
+[
+"At +N refine, normal physical attacks have a chance to ignore N% of players' physical defense for N seconds, plus an additional N% per refine.",
+1
+],
+[
+"Has a N% chance to inflict Stun when attacking. Unbreakable.",
+1
+],
+[
+"Sword named after a renowned eastern bladesmith. Often called a cursed blade, yet its power cannot be ignored.",
+1
+],
+[
+"Increases ASPD (After Attack Delay -N%).",
+1
+],
+[
+"Stun +N%.",
+1
+],
+[
+"When hitting with Mammonite, knocks enemies back by N cells.",
+1
+],
+[
+"Encyclopedia published by a famous house in Prontera, known for its rock-hard corners. People say it feels like they set NCarat diamonds into the edges.",
+1
+],
+[
+"CRIT +N, additional CRIT based on pure LUK.",
+1
+],
+[
+"At +N refine, ATK/MATK +N.",
+1
+],
+[
+"On physical attack, N% chance to inflict Sleep.",
+1
+],
+[
+"[Teleport] NLv can be used.",
+1
+],
+[
+"[Cloaking] NLv can be used.",
+1
+],
+[
+"DEF +N and MDEF +N when refine level is N or lower.",
+1
+],
+[
+"HP Recovery +N%.",
+1
+],
+[
+"On physical attack, N% chance to inflict Silence.",
+1
+],
+[
+"[Discount] Lv.N can be used.",
+1
+],
+[
+"Damage of Double Strafe and Arrow Shower +N%.",
+1
+],
+[
+"Chance to autocast Snatch Lv.N when dealing physical damage.",
+1
+],
+[
+"When equipped by Thief Class, FLEE Rate +N.",
+1
+],
+[
+"Recovers N SP when defeating Undead Monsters with melee physical attacks.",
+1
+],
+[
+"When equipped with Rogue Card, FLEE Rate +N.",
+1
+],
+[
+"Physical Damage Taken from Undead Monsters +N%.",
+1
+],
+[
+"Recovers N SP when defeating Fish Monsters with melee physical attacks.",
+1
+],
+[
+"Has a low chance to autocast [Fire Bolt] Lv.N when dealing physical attacks.",
+1
+],
+[
+"[Fire Bolt] Lv.N can be used.",
+1
+],
+[
+"All defense is reduced to N/N while equipped.",
+1
+],
+[
+"N% chance to inflict Stun when attacking.",
+1
+],
+[
+"Pierce Lv N usable.",
+1
+],
+[
+"Range : N cells.",
+1
+],
+[
+"Additional N% damage to Earth, Water, Fire, and Wind-property Monsters.",
+1
+],
+[
+"Deals additional N% damage to Holy-property Monsters.",
+1
+],
+[
+"Consumes N SP per attack.",
+1
+],
+[
+"When equipped together with Magician Hat, DEX +N, INT +N, and SP recovery rate +N%. MATK increases by N% per refine.",
+1
+],
+[
+"Received Heal Amount +N%.",
+1
+],
+[
+"At +N refine: additional Variable Casting Time -N%, Fire Magical Damage +N%.",
+1
+],
+[
+"Resistance Holy Property attack +N%.",
+1
+],
+[
+"When equipped with Triangle Panties, AGI +N, FLEE +N.",
+1
+],
+[
+"Reduces SP cost of skills by N%.",
+1
+],
+[
+"Recovers N SP each time you defeat Dragon Monsters with melee physical attacks.",
+1
+],
+[
+"Chance to autocast Bash Lv.N when dealing physical damage.",
+1
+],
+[
+"Using Bash pushes enemies back by N cells.",
+1
+],
+[
+"Physical damage taken from Munak +N%.",
+1
+],
+[
+"Chance to autocast Sight Lv.N when receiving physical attacks.",
+1
+],
+[
+"Recovers N SP when defeating Formless Monsters with melee physical attacks.",
+1
+],
+[
+"When worn with Prisoner Uniform: Normal physical attacks have a low chance to increase CRIT by N% for N seconds.",
+1
+],
+[
+"ATK +N, SP consumption +N%.",
+1
+],
+[
+"[Double Attack] Lv.N can be used.",
+1
+],
+[
+"Damage of Slinging Arrow and Melody Strike +N%.",
+1
+],
+[
+"At +N refine, when using Pierce, grants a chance to inflict Stun, with the chance increasing based on refine level. When using Holy Cross, grants a chance to inflict Silence, with the chance increasing based on refine level.",
+1
+],
+[
+"At +N refine, physical damage to players +N%, and normal physical attacks have a chance to trigger Critical Wounds. ASPD increases (After Attack Delay -N%).",
+1
+],
+[
+"At +N refine, when using Power Thrust, physical attacks have a low chance to break the enemy’s weapon for N seconds, with the break chance increasing based on refine level.",
+1
+],
+[
+"At +N refine, normal physical attacks have a chance to increase Critical Damage by N% for N seconds, plus an additional N% per weapon refine.",
+1
+],
+[
+"At +N refine, normal physical attacks have a chance to ignore an additional N% of players' physical defense for N seconds, plus N% per weapon refine.",
+1
+],
+[
+"At +N refine, normal physical attacks have a chance to inflict Stun, and ASPD increases (After Attack Delay -N%). The chance to inflict Stun further increases based on Mace Mastery level.",
+1
+],
+[
+"At +N refine, when Provoke succeeds on a target, Pierce damage +N% for N seconds. When using Pierce, grants a chance to inflict Stun and Blind. Pierce damage and the chance to inflict Stun/Blind increase based on Spear Mastery level.",
+1
+],
+[
+"At +N refine, when Sacrifice succeeds on a target, MHP +N for N seconds, plus MHP +N per weapon refine.",
+1
+],
+[
+"Recovers N SP each time you defeat Brute Monsters with melee physical attacks.",
+1
+],
+[
+"At +N refine, when using Improvised Song, Melody Strike damage +N% for N seconds, HIT +N, and Variable Casting Time -N%.",
+1
+],
+[
+"STR +N. STR +N for every N refine levels of the Helm.",
+1
+],
+[
+"MHP/MSP +N%.",
+1
+],
+[
+"When attacking Brute Monsters, CRIT +N.",
+1
+],
+[
+"Chance to reduce enemy SP on hit. When equipped by Sage, restores N SP each time a physical attack hits a monster.",
+1
+],
+[
+"At +N refine, when using Improvised Song, Slinging Arrow damage +N% for N seconds, HIT +N, and Variable Casting Time -N%. Additional HIT and Slinging Arrow damage increase based on refine level.",
+1
+],
+[
+"When equipped with Wolf Card, FLEE Rate +N.",
+1
+],
+[
+"Heal Lv N usable.",
+1
+],
+[
+"When equipped with Steel Arrow, Ranged Weapon Physical Damage +N%.",
+1
+],
+[
+"Chance to autocast Fire Ball Lv.N when dealing physical damage.",
+1
+],
+[
+"If Fire Ball Lv N is learned, autocast triggers Fire Ball Lv N instead.",
+1
+],
+[
+"[Hiding] NLv can be used.",
+1
+],
+[
+"On physical attack, N% chance to inflict Curse.",
+1
+],
+[
+"Physical Damage to Medium-Size Monsters +N%.",
+1
+],
+[
+"When drinking juice, HP Heal effect +N%.",
+1
+],
+[
+"Chance to autocast Signum Crucis Lv.N when receiving physical damage.",
+1
+],
+[
+"When equipped with Mummy Card, Perfect Hit +N%.",
+1
+],
+[
+"When an Acolyte Class attacks Demon or Undead Monsters, CRIT +N.",
+1
+],
+[
+"When equipped by Mage or Acolyte Classes, INT + N. For every N refine levels of the Helm, MATK + N.",
+1
+],
+[
+"When equipped by Swordman, Merchant, or Thief Classes, STR + N. For every N refine levels of the Helm, ATK + N.",
+1
+],
+[
+"When equipped by Archer Classes, DEX + N. For every N refine levels of the Helm, ATK + N.",
+1
+],
+[
+"Physical damage against Boulder Dwarves +N%.",
+1
+],
+[
+"DEX + N, DEX + N for every N refine levels of the Helm.",
+1
+],
+[
+"INT + N, INT + N for every N refine levels of the Helm.",
+1
+],
+[
+"When equipped together with Fei-chai’s Egg Lv.N or Tai-zi Egg Lv.N, Blitz Beat has a low chance to trigger LUK +N for N seconds.",
+1
+],
+[
+"When equipped together with Fei-chai’s Egg Lv.N or Tai-zi Egg Lv.N, Blitz Beat has a high chance to trigger LUK +N for N seconds.",
+1
+],
+[
+"When equipped together with Fei-chai’s Egg Lv.N or Tai-zi Egg Lv.N, physical attacks (melee/ranged) have a low chance to trigger ATK +N. The user loses N HP per second for N second, lasting N seconds.",
+1
+],
+[
+"When equipped together with Fei-chai’s Egg Lv.N or Tai-zi Egg Lv.N, physical attacks (melee/ranged) have a high chance to trigger ATK +N. The user loses N HP per second for N second, lasting N seconds.",
+1
+],
+[
+"For every N BaseLv, MATK + N, DEF + N, MDEF + N.",
+1
+],
+[
+"For every N BaseLv, ATK + N, DEF + N, MDEF + N.",
+1
+],
+[
+"Physical Damage to Aster +N%.",
+1
+],
+[
+"When equipped together with Crab, Shellfish, and Aster Card, Fish monsters have a chance to drop Sashimi when hunted, and Physical Damage to Water-property Monsters +N%.",
+1
+],
+[
+"INT +N. When equipped by Acolyte Class, INT +N and MDEF +N.",
+1
+],
+[
+"Physical damage taken from Demon Monsters +N%.",
+1
+],
+[
+"Casts Quagmire Lv.N when taking physical damage.",
+1
+],
+[
+"If Quagmire Lv.N is learned, Lv.N is cast instead of Lv.N.",
+1
+],
+[
+"HP +N. At +N refine: HP +N. At +N refine: HP +N.",
+1
+],
+[
+"Physical Damage to Goblin +N%.",
+1
+],
+[
+"Physical damage taken from Angel Monsters +N%.",
+1
+],
+[
+"At +N refine: For every BaseLv N, Fire-Property and Water Magical Damage +N%.",
+1
+],
+[
+"At +N refine: For every BaseLv N, ASPD increases (After Attack Delay -N%).",
+1
+],
+[
+"Increases Sonic Blow damage by N%.",
+1
+],
+[
+"Reduces After Attack Delay by N% per N refine levels.",
+1
+],
+[
+"At +N, increases Critical Damage by N%.",
+1
+],
+[
+"At +N, increases Critical Damage by an additional N%.",
+1
+],
+[
+"Reduces physical and magical damage received from Plant Monsters by N%.",
+1
+],
+[
+"At +N refine, Magnus Exorcismus damage +N%.",
+1
+],
+[
+"Ignores N% of players' magical defense.",
+1
+],
+[
+"Every N refine: MATK +N.",
+1
+],
+[
+"At +N refine, ignores an additional N% of players' magical defense.",
+1
+],
+[
+"At +N refine, [Land Protector] variable casting time -N%, and when using [Deluge], [Whirlwind], or [Volcano], reduces gemstone cost for all magic by N for N seconds.",
+1
+],
+[
+"Each refine increases Heal Amount by +N%, and reduces SP cost of [Increase Agility] and [Blessing] by N%.",
+1
+],
+[
+"At +N refine, when using Heal, has a chance to increase Heal Amount by N% for N seconds, with an additional +N% per refine.",
+1
+],
+[
+"At +N refine, when using [Adaptation to Circumstances], increases [Slinging Arrow] damage by N% for N seconds, HIT +N, and Variable Casting Time -N%.",
+1
+],
+[
+"At +N refine, when Sacrifice succeeds on a target, MHP +N for N seconds, and MHP +N per weapon refine level.",
+1
+],
+[
+"M.ATK +N per refine level.",
+1
+],
+[
+"Variable Casting Time +N%.",
+1
+],
+[
+"[Cure] Lv.N can be used.",
+1
+],
+[
+"For each level of Faith learned: MHP +N, DEF +N.",
+1
+],
+[
+"Perfect Hit +N%.",
+1
+],
+[
+"If the set wearer is Archer Class, EXP gained from defeating Brute Monsters +N%, and chance to inflict Coma on Brute enemies when dealing physical damage.",
+1
+],
+[
+"When equipped with Rocker Card, FLEE Rate +N.",
+1
+],
+[
+"Physical damage to Orcs +N%.",
+1
+],
+[
+"Physical Damage to Siege Guardians +N%.",
+1
+],
+[
+"When equipped with Chonchon Card, FLEE Rate +N.",
+1
+],
+[
+"When refinement level is N or higher, FLEE +N.",
+1
+],
+[
+"Normal physical attacks (excluding skills) become N-cell splash attacks.",
+1
+],
+[
+"[Steal] Lv.N can be used.",
+1
+],
+[
+"MHP + N, MSP + N, Increases Attack Speed (reduces attack delay by N%).",
+1
+],
+[
+"[Sight] Lv.N can be used.",
+1
+]
+]

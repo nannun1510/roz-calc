@@ -1,0 +1,26 @@
+{
+  "singleQuote": true,
+  "trailingComma": "all",
+  "endOfLine": "auto",
+  "printWidth": 170,
+  "overrides": [
+    {
+      "files": "src\\app\\jobs\\_aspd-table.ts",
+      "options": {
+        "printWidth": 240
+      }
+    },
+    {
+      "files": "src\\app\\constants\\enchant_item\\enchant_table.ts",
+      "options": {
+        "printWidth": 200
+      }
+    },
+    {
+      "files": "src\\app\\constants\\element-mapper.ts",
+      "options": {
+        "printWidth": 200
+      }
+    }
+  ]
+}

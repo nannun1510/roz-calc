@@ -1,0 +1,27 @@
+export const AllowedCompareItemTypes = [
+  'weapon',
+  'shield',
+  'headUpper',
+  'headMiddle',
+  'headLower',
+  'armor',
+  'garment',
+  'boot',
+  'accRight',
+  'accLeft',
+
+  'costumeEnchantUpper',
+  'costumeEnchantUpper2',
+  'costumeEnchantMiddle',
+  'costumeEnchantLower',
+  'costumeEnchantGarment',
+  'costumeEnchantGarment2',
+  'costumeEnchantGarment4',
+
+  'shadowWeapon',
+  'shadowShield',
+  'shadowArmor',
+  'shadowBoot',
+  'shadowEarring',
+  'shadowPendant',
+] as const;

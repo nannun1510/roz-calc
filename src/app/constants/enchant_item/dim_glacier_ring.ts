@@ -1,0 +1,42 @@
+import { AttackDelay, EA, ExpertFighter, ExpertMagician, Spell } from "./_basic";
+
+export const dim_ring_LT4 = [
+  EA._3,
+  EA._5,
+  ExpertFighter._3,
+  ExpertFighter._5,
+  ExpertMagician._3,
+  ExpertMagician._5,
+  Spell._3,
+  Spell._5,
+  AttackDelay._2,
+  AttackDelay._4,
+];
+
+export const dim_ring_LT3 = [
+  'Star_Of_MasterArcher1',
+  'Star_Of_MasterArcher2',
+  'Star_Of_MasterArcher3',
+  'Star_Of_MasterArcher4',
+  'Star_Of_MasterArcher5',
+  'Star_Of_Sharp1',
+  'Star_Of_Sharp2',
+  'Star_Of_Sharp3',
+  'Star_Of_Sharp4',
+  'Star_Of_Sharp5',
+  'Star_Of_Spell1',
+  'Star_Of_Spell2',
+  'Star_Of_Spell3',
+  'Star_Of_Spell4',
+  'Star_Of_Spell5',
+  'Star_Of_Speed1',
+  'Star_Of_Speed2',
+  'Star_Of_Speed3',
+  'Star_Of_Speed4',
+  'Star_Of_Speed5',
+  'Star_Of_Vital1',
+  'Star_Of_Vital2',
+  'Star_Of_Vital3',
+  'Star_Of_Vital4',
+  'Star_Of_Vital5',
+];

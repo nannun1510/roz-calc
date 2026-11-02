@@ -1,0 +1,113 @@
+import { ROZ_CLASSES } from './roz/roz-classes';
+import { DropdownModel } from '../models/dropdown.model';
+import { CharacterBase } from './_character-base.abstract';
+import { ClassID, ClassIcon } from './_class-name';
+import { AbyssChaser } from './AbyssChaser';
+import { ArchBishop } from './ArchBishop';
+import { ArchMage } from './ArchMage';
+import { Biolo } from './Biolo';
+import { Cardinal } from './Cardinal';
+import { Doram } from './Doram';
+import { DragonKnight } from './DragonKnight';
+import { ElementalMaster } from './ElementalMaster';
+import { Genetic } from './Genetic';
+import { GuillotineCross } from './GuillotineCross';
+import { HyperNovice } from './HyperNovice';
+import { ImperialGuard } from './ImperialGuard';
+import { Inquisitor } from './Inquisitor';
+import { Kagerou } from './Kagerou';
+import { Mechanic } from './Mechanic';
+import { Meister } from './Meister';
+import { Minstrel } from './Minstrel';
+import { NightWatch } from './NightWatch';
+import { Oboro } from './Oboro';
+import { Ranger } from './Ranger';
+import { Rebellion } from './Rebellion';
+import { RoyalGuard } from './RoyalGuard';
+import { RuneKnight } from './RuneKnight';
+import { ShadowChaser } from './ShadowChaser';
+import { ShadowCross } from './ShadowCross';
+import { Shinkiro } from './Shinkiro';
+import { Shiranui } from './Shiranui';
+import { SkyEmperor } from './SkyEmperor';
+import { Sorcerer } from './Sorcerer';
+import { SoulReaper } from './SoulReaper';
+import { SoulAscetic } from './SoulAscetic';
+import { SpiritHandler } from './SpiritHandler';
+import { StarEmperor } from './StarEmperor';
+import { SuperNovice } from './SuperNovice';
+import { Sura } from './Sura';
+import { Troubadour } from './Troubadour';
+import { Trouvere } from './Trouvere';
+import { Wanderer } from './Wanderer';
+import { Warlock } from './Warlock';
+import { Windhawk } from './Windhawk';
+
+// Ragnarok Zero: Global roster (src/app/jobs/roz). Register the ROZ ids in the display maps.
+for (const [id, , jobId, label] of ROZ_CLASSES) {
+  (ClassIcon as Record<number, number>)[id] = jobId;
+  (ClassID as Record<number, string>)[id] = label;
+}
+
+const toClassItem = (id: number) => ({ label: ClassID[id], value: id, icon: ClassIcon[id] });
+
+export const getRozClassDropdownList = (): (DropdownModel & { icon: number; instant: CharacterBase })[] =>
+  ROZ_CLASSES.map(([id, Ctor]) => ({ ...toClassItem(id), instant: new Ctor() }));
+
+export const getClassDropdownList = (): (DropdownModel & { icon: number; instant: CharacterBase })[] => getRozClassDropdownList();
+
+/** The original Tong calc roster (3rd/4th jobs), kept for reference. */
+export const getTongClassDropdownList = (): (DropdownModel & { icon: number; instant: CharacterBase })[] => {
+  return [
+    { ...toClassItem(11), instant: new RoyalGuard() },
+    { ...toClassItem(4258), instant: new ImperialGuard() },
+    { ...toClassItem(12), instant: new RuneKnight() },
+    { ...toClassItem(4252), instant: new DragonKnight() },
+
+    { ...toClassItem(7), instant: new ArchBishop() },
+    { ...toClassItem(4256), instant: new Cardinal() },
+    { ...toClassItem(13), instant: new Sura() },
+    { ...toClassItem(4262), instant: new Inquisitor() },
+
+    { ...toClassItem(2), instant: new Ranger() },
+    { ...toClassItem(4257), instant: new Windhawk() },
+    { ...toClassItem(21), instant: new Minstrel() },
+    { ...toClassItem(4263), instant: new Troubadour() },
+    { ...toClassItem(22), instant: new Wanderer() },
+    { ...toClassItem(4264), instant: new Trouvere() },
+
+    { ...toClassItem(5), instant: new GuillotineCross() },
+    { ...toClassItem(4254), instant: new ShadowCross() },
+    { ...toClassItem(4), instant: new ShadowChaser() },
+    { ...toClassItem(4260), instant: new AbyssChaser() },
+
+    { ...toClassItem(6), instant: new Warlock() },
+    { ...toClassItem(4255), instant: new ArchMage() },
+    { ...toClassItem(8), instant: new Sorcerer() },
+    { ...toClassItem(4261), instant: new ElementalMaster() },
+
+    { ...toClassItem(10), instant: new Mechanic() },
+    { ...toClassItem(4253), instant: new Meister() },
+    { ...toClassItem(9), instant: new Genetic() },
+    { ...toClassItem(4259), instant: new Biolo() },
+
+    { ...toClassItem(33), instant: new StarEmperor() },
+    { ...toClassItem(4302), instant: new SkyEmperor() },
+    { ...toClassItem(3), instant: new SoulReaper() },
+    { ...toClassItem(4303), instant: new SoulAscetic() },
+
+    { ...toClassItem(18), instant: new Kagerou() },
+    { ...toClassItem(4304), instant: new Shinkiro() },
+    { ...toClassItem(17), instant: new Oboro() },
+    { ...toClassItem(4305), instant: new Shiranui() },
+
+    { ...toClassItem(1), instant: new Rebellion() },
+    { ...toClassItem(4306), instant: new NightWatch() },
+
+    { ...toClassItem(30), instant: new SuperNovice() },
+    { ...toClassItem(4307), instant: new HyperNovice() },
+
+    { ...toClassItem(31), instant: new Doram() },
+    { ...toClassItem(4308), instant: new SpiritHandler() },
+  ];
+};

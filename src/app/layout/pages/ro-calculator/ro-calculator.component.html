@@ -1976,14 +1976,25 @@
                 ></app-battle-dmg-summary>
               </div>
               <!-- ROZ: proc chance override for auto attack proc skills -->
-              <div class="col-12 roz-procs" *ngIf="isRozProcSkill">
-                <div class="roz-procs-head">
-                  <span>Proc chance</span>
-                  <small>{{ rozProcDefaultText }}. If you measured a different rate in game, type it here (% per proc, 0 = default).</small>
-                </div>
-                <div class="roz-procs-controls">
-                  <p-inputNumber [(ngModel)]="model.rozProcChance" (onBlur)="onSkillClassChange()" (ngModelChange)="onSkillClassChange()" [min]="0" [max]="100" [maxFractionDigits]="1" suffix=" %" [showButtons]="true" inputStyleClass="roz-proc-input"></p-inputNumber>
-                </div>
+              <div class="col-12 roz-proc-custom" *ngIf="isRozProcSkill">
+                <p-checkbox
+                  [binary]="true"
+                  inputId="rozProcCustom"
+                  [ngModel]="(model.rozProcChance || 0) > 0 || rozProcCustomOpen"
+                  (ngModelChange)="onRozProcCustomToggle($event)"
+                ></p-checkbox>
+                <label for="rozProcCustom" [title]="rozProcDefaultText">Custom proc chance</label>
+                <p-inputNumber
+                  *ngIf="(model.rozProcChance || 0) > 0 || rozProcCustomOpen"
+                  [(ngModel)]="model.rozProcChance"
+                  (ngModelChange)="onSkillClassChange()"
+                  [min]="0"
+                  [max]="100"
+                  [maxFractionDigits]="1"
+                  suffix=" %"
+                  inputStyleClass="roz-proc-input"
+                  placeholder="%"
+                ></p-inputNumber>
               </div>
             </div>
           </div>

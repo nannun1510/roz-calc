@@ -1613,6 +1613,10 @@ export class DamageCalculator {
       skillBonusFromEquipment: this.getSkillBonus(skillName),
     };
 
+    // ROZ: for auto attack proc skills the DPS that matters is auto attack + procs
+    const rp = (basicDmg as any).rozProcs;
+    if (rp) skillDmg.skillDps = rp.totalDps;
+
     return { basicDmg, misc, skillDmg, skillAspd, basicAspd };
   }
 

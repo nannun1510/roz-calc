@@ -269,3 +269,7 @@ html.roz-theme .roz-procs-head span { color: var(--roz-gold-2); letter-spacing: 
 .roz-procs-table td small { display: block; margin-left: 0; }
 .roz-proc-input { width: 7rem; }
 html.roz-theme .roz-proc-sum-title { color: var(--roz-gold-2); }
+.roz-procs-table small.cmp { display: block; color: #ff9f6b; font-weight: 600; opacity: 0.95; font-size: 0.78rem; }
+.roz-proc-custom { display: flex; align-items: center; gap: 0.45rem; padding: 0.3rem 0.5rem !important; font-size: 0.85rem; }
+.roz-proc-custom label { cursor: pointer; opacity: 0.8; }
+.roz-proc-custom .roz-proc-input { width: 5.5rem; padding: 0.3rem 0.5rem; }

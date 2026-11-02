@@ -222,15 +222,38 @@
       </div>
       <table class="roz-procs-table">
         <tr><th></th><th>Chance</th><th>Damage per proc</th><th>DPS</th></tr>
-        <tr *ngFor="let r of rp.rows">
+        <tr *ngFor="let r of rp.rows; index as i">
           <td>{{ r.label }}<small>{{ r.note }} · {{ r.element }}</small></td>
           <td>{{ r.chance }}%<sup *ngIf="rp.isCustomChance">*</sup></td>
-          <td class="dmg">{{ r.min | number }} - {{ r.max | number }}</td>
-          <td class="dps">{{ r.dps | number }}</td>
+          <td class="dmg">
+            {{ r.min | number }} - {{ r.max | number }}
+            <small class="cmp" *ngIf="isEnableCompare && totalSummary2?.dmg?.rozProcs?.rows?.[i] as r2">→ {{ r2.min | number }} - {{ r2.max | number }}</small>
+          </td>
+          <td class="dps">
+            {{ r.dps | number }}
+            <small class="cmp" *ngIf="isEnableCompare && totalSummary2?.dmg?.rozProcs?.rows?.[i] as r2">→ {{ r2.dps | number }}</small>
+          </td>
         </tr>
-        <tr class="sum"><td>Auto attack</td><td></td><td class="dmg">{{ totalSummary?.dmg?.basicMinDamage | number }} - {{ totalSummary?.dmg?.basicMaxDamage | number }}</td><td class="dps">{{ totalSummary?.dmg?.basicDps | number }}</td></tr>
-        <tr class="sum total"><td>Auto attack + procs</td><td></td><td></td><td class="dps">{{ rp.totalDps | number }}</td></tr>
+        <tr class="sum">
+          <td>Auto attack</td><td></td>
+          <td class="dmg">{{ totalSummary?.dmg?.basicMinDamage | number }} - {{ totalSummary?.dmg?.basicMaxDamage | number }}</td>
+          <td class="dps">
+            {{ totalSummary?.dmg?.basicDps | number }}
+            <small class="cmp" *ngIf="isEnableCompare && totalSummary2?.dmg">→ {{ totalSummary2?.dmg?.basicDps | number }}</small>
+          </td>
+        </tr>
       </table>
+    </div>
+    <div class="col-12">
+      <app-calc-value
+        [enableCompare]="isEnableCompare && totalSummary2?.dmg"
+        label="DPS (auto attack + procs):"
+        styleClass="summary_highlight"
+        styleClass2="summary_compare"
+        [showPercentDiff]="true"
+        [max]="rp.totalDps"
+        [max2]="totalSummary2?.dmg?.rozProcs?.totalDps"
+      ></app-calc-value>
     </div>
   </ng-container>
   <ng-container *ngIf="!totalSummary?.dmg?.rozProcs">

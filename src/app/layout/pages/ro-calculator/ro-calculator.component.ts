@@ -2512,6 +2512,16 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   }
 
   // ROZ auto attack proc skills (Duple Light / Spell Fist) picked in the Skill dropdown
+  rozProcCustomOpen = false;
+
+  onRozProcCustomToggle(on: boolean) {
+    this.rozProcCustomOpen = on;
+    if (!on && this.model.rozProcChance) {
+      this.model.rozProcChance = 0;
+      this.onSkillClassChange();
+    }
+  }
+
   get isRozProcSkill() {
     const v = this.model?.selectedAtkSkill;
     return !!v && /\(auto attack\)==/.test(v);

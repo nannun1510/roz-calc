@@ -201,6 +201,15 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.13 (alpha)',
+      date: '02-11-2026',
+      logs: [
+        'Auto attack procs (Duple Light, Spell Fist): new "DPS (auto attack + procs)" line, and when comparing items each proc shows the compared damage / DPS (→) and the % difference.',
+        'The monster table DPS for proc skills now uses auto attack + procs.',
+        'Proc chance box is now a small "Custom proc chance" checkbox; tick it to type your own %.',
+      ],
+    },
+    {
       v: 'ROZ Global v0.12 (alpha)',
       date: '02-11-2026',
       logs: [

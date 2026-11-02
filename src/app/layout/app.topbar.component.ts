@@ -201,6 +201,15 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.4 (alpha)',
+      date: '02-11-2026',
+      logs: [
+        'New ROZ look: dark navy and gold theme, section headers (Character / Equipment / Costume / Guild), panels and Thai-friendly font.',
+        'Prefer the old look? Click the theme button at the top right to switch to Classic (it is remembered).',
+        'Page fits smaller screens automatically; item details show in a hover card that stays on screen.',
+      ],
+    },
+    {
       v: 'ROZ Global v0.3 (alpha)',
       date: '02-11-2026',
       logs: [
@@ -1577,6 +1586,18 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   showDialog() {
     this.visible = true;
+  }
+
+  isRozTheme = document.documentElement.classList.contains('roz-theme');
+
+  toggleTheme() {
+    this.isRozTheme = !this.isRozTheme;
+    document.documentElement.classList.toggle('roz-theme', this.isRozTheme);
+    try {
+      localStorage.setItem('roz-theme', this.isRozTheme ? 'roz' : 'classic');
+    } catch {
+      /* storage blocked: the choice just won't persist */
+    }
   }
 
   showUpdateDialog() {

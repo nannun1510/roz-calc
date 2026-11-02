@@ -22,9 +22,10 @@
   <app-elemental-table [monsterMap]="monsterDataMap" [groupMonsterList]="groupMonsterList" [allSelectedMonsterIds]="allSelectedMonsterIds"></app-elemental-table>
 </p-dialog>
 
-<div class="grid grid-nogutter" style="min-width: 1500px">
+<div class="grid grid-nogutter roz-page" style="min-width: 1500px">
   <!-- Left Side -->
-  <div class="p-fluid col-7">
+  <div class="p-fluid col-7 roz-col roz-col-left">
+    <div class="roz-section-title"><span>Character</span><small>Class · Level · Stats</small></div>
     <!-- Create Update Class -->
     <div class="grid grid-nogutter">
       <div class="col-4">
@@ -497,6 +498,7 @@
       </div>
     </div>
 
+    <div class="roz-section-title"><span>Equipment</span><small>Refine · Cards · Enchants · Random options</small></div>
     <!-- Weapon + Ammo -->
     <div class="grid grid-nogutter item_label_weapon_main">
       <div class="col-12">
@@ -1144,6 +1146,7 @@
       </div>
     </div>
 
+    <div class="roz-section-title"><span>Costume</span><small>Costume slots · Costume enchants · Taming Ring</small></div>
     <!-- Pet / Costume -->
     <div class="grid grid-nogutter mt-3">
       <!-- Upper -->
@@ -1384,6 +1387,7 @@
         </div>
     </div>
 
+    <div class="roz-section-title"><span>Guild</span><small>Guild shadow shield</small></div>
     <!-- Shadow -->
     <div class="grid grid-nogutter mt-3">
       <div class="col-12 grid grid-nogutter align-content-start">
@@ -1617,7 +1621,7 @@
   </div>
 
   <!-- Right Side -->
-  <div class="p-fluid col-5">
+  <div class="p-fluid col-5 roz-col roz-col-right">
     <p-accordion [multiple]="true" [activeIndex]="[2, 7]">
       <p-accordionTab header="Consumables" class="consumable">
         <div class="grid grid-nogutter">

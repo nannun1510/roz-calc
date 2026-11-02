@@ -1,0 +1,226 @@
+/*
+ * ROZ Global theme — a restyle of Tong calc's layout (same structure, new look).
+ * Active when <html> has the class "roz-theme" (toggle in the top bar; default on).
+ * Direction: deep navy "night in Prontera" panels, warm gold accents for headings and
+ * focus, quieter borders, one typeface that renders English and Thai equally well.
+ */
+html.roz-theme {
+  --roz-bg: #0d1320;
+  --roz-bg-2: #111a2b;
+  --roz-panel: #152034;
+  --roz-panel-2: #1b2842;
+  --roz-input: #0f1727;
+  --roz-line: #26344f;
+  --roz-line-2: #34476b;
+  --roz-text: #e7ebf3;
+  --roz-muted: #97a3bc;
+  --roz-gold: #e3b45a;
+  --roz-gold-2: #f4d58f;
+  --roz-gold-dim: rgba(227, 180, 90, 0.16);
+  --roz-blue: #6aa9ff;
+  --roz-radius: 6px;
+  --roz-font: 'IBM Plex Sans Thai', 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif;
+
+  /* PrimeNG theme variables */
+  --surface-ground: var(--roz-bg);
+  --surface-section: var(--roz-bg);
+  --surface-card: var(--roz-panel);
+  --surface-overlay: var(--roz-panel);
+  --surface-border: var(--roz-line);
+  --surface-hover: var(--roz-panel-2);
+  --surface-a: var(--roz-panel);
+  --surface-b: var(--roz-bg);
+  --surface-d: var(--roz-line-2);
+  --surface-e: var(--roz-panel);
+  --surface-0: var(--roz-bg);
+  --text-color: var(--roz-text);
+  --text-color-secondary: var(--roz-muted);
+  --primary-color: var(--roz-gold);
+  --primary-color-text: #1a1406;
+  --font-family: var(--roz-font);
+  --border-radius: var(--roz-radius);
+  --highlight-bg: var(--roz-gold-dim);
+  --highlight-text-color: var(--roz-gold-2);
+  --focus-ring: 0 0 0 2px rgba(227, 180, 90, 0.45);
+}
+
+html.roz-theme,
+html.roz-theme body {
+  background:
+    radial-gradient(1200px 600px at 15% -10%, rgba(106, 169, 255, 0.07), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(227, 180, 90, 0.06), transparent 55%),
+    var(--roz-bg) !important;
+  color: var(--roz-text);
+  font-family: var(--roz-font) !important;
+  font-variant-numeric: tabular-nums;
+}
+html.roz-theme * { font-family: var(--roz-font); }
+html.roz-theme .pi { font-family: 'primeicons' !important; }
+
+/* Layout shell */
+html.roz-theme .layout-main-container,
+html.roz-theme .layout-wrapper { background: transparent !important; }
+html.roz-theme .layout-topbar {
+  background: linear-gradient(180deg, #121c2f, #0f1727) !important;
+  border-bottom: 1px solid var(--roz-line);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+}
+html.roz-theme .layout-topbar > span:first-of-type {
+  font-weight: 600; letter-spacing: 0.02em; color: var(--roz-gold-2);
+}
+html.roz-theme .p-tabmenu .p-tabmenu-nav,
+html.roz-theme .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link { background: transparent !important; border-color: transparent !important; }
+html.roz-theme .p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link {
+  color: var(--roz-gold-2) !important; border-bottom: 2px solid var(--roz-gold) !important;
+}
+html.roz-theme .layout-footer { display: none; }
+
+/* Inputs: dropdowns, cascades, text fields */
+html.roz-theme .p-dropdown,
+html.roz-theme .p-cascadeselect,
+html.roz-theme .p-multiselect,
+html.roz-theme .p-inputtext,
+html.roz-theme .p-inputnumber-input {
+  background: var(--roz-input) !important;
+  border: 1px solid var(--roz-line) !important;
+  border-radius: var(--roz-radius) !important;
+  transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
+}
+html.roz-theme .p-dropdown:not(.p-disabled):hover,
+html.roz-theme .p-cascadeselect:not(.p-disabled):hover,
+html.roz-theme .p-multiselect:not(.p-disabled):hover { border-color: var(--roz-line-2) !important; background: #121d31 !important; }
+html.roz-theme .p-dropdown:not(.p-disabled).p-focus,
+html.roz-theme .p-cascadeselect:not(.p-disabled).p-focus,
+html.roz-theme .p-inputtext:enabled:focus { border-color: var(--roz-gold) !important; box-shadow: var(--focus-ring) !important; }
+html.roz-theme .p-dropdown.p-disabled,
+html.roz-theme .p-cascadeselect.p-disabled { opacity: 0.45; }
+html.roz-theme .p-dropdown .p-dropdown-trigger,
+html.roz-theme .p-cascadeselect .p-cascadeselect-trigger { color: var(--roz-muted) !important; }
+html.roz-theme .p-dropdown-label.p-placeholder,
+html.roz-theme .p-cascadeselect-label.p-placeholder { font-weight: 500; }
+
+/* Overlay panels */
+html.roz-theme .p-dropdown-panel,
+html.roz-theme .p-cascadeselect-panel,
+html.roz-theme .p-multiselect-panel,
+html.roz-theme .p-cascadeselect-sublist {
+  background: var(--roz-panel) !important;
+  border: 1px solid var(--roz-line-2) !important;
+  border-radius: var(--roz-radius) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5) !important;
+}
+html.roz-theme .p-dropdown-panel .p-dropdown-header { background: var(--roz-panel-2) !important; border-bottom: 1px solid var(--roz-line) !important; }
+html.roz-theme .p-dropdown-panel .p-dropdown-items .p-dropdown-item,
+html.roz-theme .p-cascadeselect-panel .p-cascadeselect-item-content { padding: 0.45rem 0.75rem !important; }
+html.roz-theme .p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover,
+html.roz-theme .p-cascadeselect-panel .p-cascadeselect-item:not(.p-highlight) .p-cascadeselect-item-content:hover { background: var(--roz-panel-2) !important; }
+html.roz-theme .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight { background: var(--roz-gold-dim) !important; color: var(--roz-gold-2) !important; }
+
+/* Section headers (Battle Summary, Item Descriptions, ...) */
+html.roz-theme .p-accordion .p-accordion-header .p-accordion-header-link {
+  background: var(--roz-panel) !important;
+  border: 1px solid var(--roz-line) !important;
+  color: var(--roz-text) !important;
+  border-radius: var(--roz-radius) !important;
+  font-weight: 600; letter-spacing: 0.01em;
+}
+html.roz-theme .p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link { background: var(--roz-panel-2) !important; }
+html.roz-theme .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+  background: linear-gradient(90deg, rgba(227, 180, 90, 0.22), rgba(227, 180, 90, 0.04) 70%), var(--roz-panel-2) !important;
+  border-color: rgba(227, 180, 90, 0.45) !important;
+  color: var(--roz-gold-2) !important;
+  border-bottom-left-radius: 0 !important; border-bottom-right-radius: 0 !important;
+}
+html.roz-theme .p-accordion .p-accordion-content {
+  background: var(--roz-bg-2) !important;
+  border: 1px solid var(--roz-line) !important; border-top: 0 !important;
+}
+html.roz-theme .p-accordion-tab { margin-bottom: 6px; }
+
+/* Buttons */
+html.roz-theme .p-button:not(.p-button-text):not(.p-button-link) { border-radius: var(--roz-radius) !important; }
+html.roz-theme .p-button.p-button-secondary:not(.p-button-text),
+html.roz-theme a.p-button-secondary {
+  background: var(--roz-panel-2) !important; border: 1px solid var(--roz-line-2) !important; color: var(--roz-text) !important;
+}
+html.roz-theme .p-button.p-button-secondary:not(.p-button-text):hover { border-color: var(--roz-gold) !important; color: var(--roz-gold-2) !important; }
+html.roz-theme .p-selectbutton .p-button { background: var(--roz-input) !important; border-color: var(--roz-line) !important; color: var(--roz-muted) !important; }
+html.roz-theme .p-selectbutton .p-button.p-highlight { background: var(--roz-gold-dim) !important; border-color: var(--roz-gold) !important; color: var(--roz-gold-2) !important; }
+
+/* Tables, fieldsets, cards, listboxes */
+html.roz-theme .p-datatable .p-datatable-thead > tr > th { background: var(--roz-panel-2) !important; color: var(--roz-muted) !important; border-color: var(--roz-line) !important; font-weight: 600; }
+html.roz-theme .p-datatable .p-datatable-tbody > tr { background: transparent !important; }
+html.roz-theme .p-datatable .p-datatable-tbody > tr > td { border-color: var(--roz-line) !important; }
+html.roz-theme .p-datatable .p-datatable-tbody > tr:nth-child(even) { background: rgba(255, 255, 255, 0.02) !important; }
+html.roz-theme .p-fieldset, html.roz-theme .p-card, html.roz-theme .card,
+html.roz-theme .p-listbox { background: var(--roz-panel) !important; border-color: var(--roz-line) !important; border-radius: var(--roz-radius) !important; }
+html.roz-theme .p-listbox .p-listbox-list .p-listbox-item.p-highlight { background: var(--roz-gold-dim) !important; color: var(--roz-gold-2) !important; }
+
+/* Tong's dark value chips in the summary: blend with the navy instead of pure black */
+html.roz-theme .battle_row_health,
+html.roz-theme [class^='summary_stat_'],
+html.roz-theme [class*=' summary_stat_'] { background-color: rgba(8, 12, 22, 0.75) !important; border-radius: 3px; padding: 0 3px; }
+
+/* Dialogs, toasts, scrollbars */
+html.roz-theme .p-dialog .p-dialog-header,
+html.roz-theme .p-dialog .p-dialog-content,
+html.roz-theme .p-dialog .p-dialog-footer { background: var(--roz-panel) !important; }
+html.roz-theme .p-dialog { border: 1px solid var(--roz-line-2); border-radius: 10px; overflow: hidden; }
+html.roz-theme .p-dialog .p-dialog-header .p-dialog-title { color: var(--roz-gold-2); }
+html.roz-theme ::-webkit-scrollbar { width: 10px; height: 10px; }
+html.roz-theme ::-webkit-scrollbar-thumb { background: #2a3a5a; border-radius: 6px; border: 2px solid var(--roz-bg); }
+html.roz-theme ::-webkit-scrollbar-track { background: var(--roz-bg); }
+
+/* Item icons: soft frame so pixel icons read on the navy */
+html.roz-theme .item_img { filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.6)); }
+
+/* Theme toggle in the top bar */
+.roz-theme-toggle {
+  display: inline-flex; align-items: center; gap: 0.4rem; margin-right: 0.75rem;
+  padding: 0.35rem 0.7rem; border-radius: 999px; cursor: pointer; font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.18); background: rgba(255, 255, 255, 0.04); color: inherit;
+}
+html.roz-theme .roz-theme-toggle { border-color: var(--roz-line-2); color: var(--roz-gold-2); }
+.roz-theme-toggle:focus-visible { outline: 2px solid #e3b45a; outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.roz-theme * { transition: none !important; }
+}
+
+/* Section titles + column panels (only in the ROZ theme) */
+.roz-section-title { display: none; }
+html.roz-theme .roz-section-title {
+  display: flex; align-items: baseline; gap: 0.75rem;
+  margin: 1.1rem 0 0.5rem; padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--roz-line);
+  position: relative;
+}
+html.roz-theme .roz-section-title::after {
+  content: ''; position: absolute; left: 0; bottom: -1px; width: 72px; height: 2px;
+  background: linear-gradient(90deg, var(--roz-gold), transparent);
+}
+html.roz-theme .roz-section-title span {
+  font-size: 0.95rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--roz-gold-2);
+}
+html.roz-theme .roz-section-title small { color: var(--roz-muted); font-size: 0.78rem; letter-spacing: 0.02em; }
+html.roz-theme .roz-col-left > .roz-section-title:first-child { margin-top: 0.2rem; }
+
+html.roz-theme .roz-page { gap: 0; padding: 0.25rem 0.25rem 1rem; }
+html.roz-theme .roz-col {
+  background: linear-gradient(180deg, rgba(21, 32, 52, 0.85), rgba(17, 26, 43, 0.85));
+  border: 1px solid var(--roz-line);
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem 1rem !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+html.roz-theme .roz-col-left { margin-right: 0.6rem; flex: 0 0 calc(58.3333% - 0.6rem) !important; max-width: calc(58.3333% - 0.6rem); }
+html.roz-theme .roz-col-right { flex: 0 0 41.6667% !important; }
+
+/* Rows breathe a little more */
+html.roz-theme .roz-col-left .grid.grid-nogutter > [class*='col-'] { padding-top: 1px; padding-bottom: 1px; }
+html.roz-theme .p-dropdown, html.roz-theme .p-cascadeselect { min-height: 2.15rem; }
+
+html.roz-theme .img_monster { background: transparent !important; border-radius: 6px; }
+/* item description panel keeps its white card (game colour codes are made for light bg) */
+html.roz-theme div[style*='background-color: #fff']:empty { display: none; }
+html.roz-theme div[style*='background-color: #fff'] { border-radius: 8px; }

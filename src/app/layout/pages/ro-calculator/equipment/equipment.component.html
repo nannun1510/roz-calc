@@ -17,13 +17,13 @@
           placeholder="{{ placeholder }}"
         >
           <ng-template let-item pTemplate="selectedItem">
-            <div class="flex gap-1 item_template" [pTooltip]="descOf(item.value)" [escape]="false" tooltipPosition="right" tooltipStyleClass="roz-item-tip" [showDelay]="250" *ngIf="itemId">
+            <div class="flex gap-1 item_template" [rozHoverDesc]="descOf(item.value)" *ngIf="itemId">
               <img src="assets/demo/images/items/{{ item.value }}.png" alt="" class="item_img" />
               <div>{{ item.label }}</div>
             </div>
           </ng-template>
           <ng-template let-item pTemplate="item">
-            <div class="flex gap-1 {{ item.lv200ClassName }}" [pTooltip]="descOf(item.value)" [escape]="false" tooltipPosition="right" tooltipStyleClass="roz-item-tip" [showDelay]="250">
+            <div class="flex gap-1 {{ item.lv200ClassName }}" [rozHoverDesc]="descOf(item.value)">
               <img src="assets/demo/images/items/{{ item.value }}.png" alt="" style="width: 19px" />
               <div>{{ item.label }}</div>
             </div>
@@ -52,7 +52,7 @@
           (onChange)="onSelectItem('itemRefine', itemId, $event.value)"
         >
           <ng-template let-item pTemplate="selectedItem">
-            <div class="flex gap-1" [pTooltip]="descOf(item.value)" [escape]="false" tooltipPosition="right" tooltipStyleClass="roz-item-tip" [showDelay]="250">
+            <div class="flex gap-1" [rozHoverDesc]="descOf(item.value)">
               <div>{{ item.label > 0 ? '+ ' : '' }} {{ item.label || 0 }}</div>
             </div>
           </ng-template>
@@ -79,13 +79,13 @@
           placeholder="Card{{ isWeapon ? ' 1' : '' }}"
         >
           <ng-template let-item pTemplate="selectedItem">
-            <div class="flex gap-1 item_template" [pTooltip]="descOf(item.value)" [escape]="false" tooltipPosition="right" tooltipStyleClass="roz-item-tip" [showDelay]="250" *ngIf="card1Id">
+            <div class="flex gap-1 item_template" [rozHoverDesc]="descOf(item.value)" *ngIf="card1Id">
               <img src="assets/demo/images/items/{{ item.value }}.png" alt="" class="item_img" />
               <div>{{ item.label }}</div>
             </div>
           </ng-template>
           <ng-template let-item pTemplate="item">
-            <div class="flex gap-1" [pTooltip]="descOf(item.value)" [escape]="false" tooltipPosition="right" tooltipStyleClass="roz-item-tip" [showDelay]="250">
+            <div class="flex gap-1" [rozHoverDesc]="descOf(item.value)">
               <img src="assets/demo/images/items/{{ item.value }}.png" alt="" style="width: 19px" />
               <div>{{ item.label }}</div>
             </div>
@@ -108,13 +108,13 @@
           placeholder="Card 2"
         >
           <ng-template let-item pTemplate="selectedItem">
-            <div class="flex gap-1 item_template" [pTooltip]="descOf(item.value)" [escape]="false" tooltipPosition="right" tooltipStyleClass="roz-item-tip" [showDelay]="250" *ngIf="card2Id">
+            <div class="flex gap-1 item_template" [rozHoverDesc]="descOf(item.value)" *ngIf="card2Id">
               <img src="assets/demo/images/items/{{ item.value }}.png" alt="" class="item_img" />
               <div>{{ item.label }}</div>
             </div>
           </ng-template>
           <ng-template let-item pTemplate="item">
-            <div class="flex gap-1" [pTooltip]="descOf(item.value)" [escape]="false" tooltipPosition="right" tooltipStyleClass="roz-item-tip" [showDelay]="250">
+            <div class="flex gap-1" [rozHoverDesc]="descOf(item.value)">
               <img src="assets/demo/images/items/{{ item.value }}.png" alt="" style="width: 19px" />
               <div>{{ item.label }}</div>
             </div>
@@ -137,13 +137,13 @@
           placeholder="Card3"
         >
           <ng-template let-item pTemplate="selectedItem">
-            <div class="flex gap-1 item_template" [pTooltip]="descOf(item.value)" [escape]="false" tooltipPosition="right" tooltipStyleClass="roz-item-tip" [showDelay]="250" *ngIf="card3Id">
+            <div class="flex gap-1 item_template" [rozHoverDesc]="descOf(item.value)" *ngIf="card3Id">
               <img src="assets/demo/images/items/{{ item.value }}.png" alt="" class="item_img" />
               <div>{{ item.label }}</div>
             </div>
           </ng-template>
           <ng-template let-item pTemplate="item">
-            <div class="flex gap-1" [pTooltip]="descOf(item.value)" [escape]="false" tooltipPosition="right" tooltipStyleClass="roz-item-tip" [showDelay]="250">
+            <div class="flex gap-1" [rozHoverDesc]="descOf(item.value)">
               <img src="assets/demo/images/items/{{ item.value }}.png" alt="" style="width: 19px" />
               <div>{{ item.label }}</div>
             </div>
@@ -166,13 +166,13 @@
           placeholder="Card 4"
         >
           <ng-template let-item pTemplate="selectedItem">
-            <div class="flex gap-1 item_template" [pTooltip]="descOf(item.value)" [escape]="false" tooltipPosition="right" tooltipStyleClass="roz-item-tip" [showDelay]="250" *ngIf="card4Id">
+            <div class="flex gap-1 item_template" [rozHoverDesc]="descOf(item.value)" *ngIf="card4Id">
               <img src="assets/demo/images/items/{{ item.value }}.png" alt="" class="item_img" />
               <div>{{ item.label }}</div>
             </div>
           </ng-template>
           <ng-template let-item pTemplate="item">
-            <div class="flex gap-1" [pTooltip]="descOf(item.value)" [escape]="false" tooltipPosition="right" tooltipStyleClass="roz-item-tip" [showDelay]="250">
+            <div class="flex gap-1" [rozHoverDesc]="descOf(item.value)">
               <img src="assets/demo/images/items/{{ item.value }}.png" alt="" style="width: 19px" />
               <div>{{ item.label }}</div>
             </div>
@@ -228,13 +228,13 @@
               placeholder="Enchant 1"
             >
               <ng-template let-item pTemplate="selectedItem">
-                <div class="flex gap-1 item_template" [pTooltip]="descOf(item.value)" [escape]="false" tooltipPosition="right" tooltipStyleClass="roz-item-tip" [showDelay]="250" *ngIf="enchant1Id">
+                <div class="flex gap-1 item_template" [rozHoverDesc]="descOf(item.value)" *ngIf="enchant1Id">
                   <img src="assets/demo/images/items/{{ item.value }}.png" alt="" class="item_img" />
                   <div>{{ item.label }}</div>
                 </div>
               </ng-template>
               <ng-template let-item pTemplate="item">
-                <div class="flex gap-1" [pTooltip]="descOf(item.value)" [escape]="false" tooltipPosition="right" tooltipStyleClass="roz-item-tip" [showDelay]="250">
+                <div class="flex gap-1" [rozHoverDesc]="descOf(item.value)">
                   <img src="assets/demo/images/items/{{ item.value }}.png" alt="" style="width: 19px" />
                   <div>{{ item.label }}</div>
                 </div>
@@ -257,13 +257,13 @@
               placeholder="Enchant 2"
             >
               <ng-template let-item pTemplate="selectedItem">
-                <div class="flex gap-1 item_template" [pTooltip]="descOf(item.value)" [escape]="false" tooltipPosition="right" tooltipStyleClass="roz-item-tip" [showDelay]="250" *ngIf="enchant2Id">
+                <div class="flex gap-1 item_template" [rozHoverDesc]="descOf(item.value)" *ngIf="enchant2Id">
                   <img src="assets/demo/images/items/{{ item.value }}.png" alt="" class="item_img" />
                   <div>{{ item.label }}</div>
                 </div>
               </ng-template>
               <ng-template let-item pTemplate="item">
-                <div class="flex gap-1" [pTooltip]="descOf(item.value)" [escape]="false" tooltipPosition="right" tooltipStyleClass="roz-item-tip" [showDelay]="250">
+                <div class="flex gap-1" [rozHoverDesc]="descOf(item.value)">
                   <img src="assets/demo/images/items/{{ item.value }}.png" alt="" style="width: 19px" />
                   <div>{{ item.label }}</div>
                 </div>
@@ -286,13 +286,13 @@
               placeholder="Enchant 3"
             >
               <ng-template let-item pTemplate="selectedItem">
-                <div class="flex gap-1 item_template" [pTooltip]="descOf(item.value)" [escape]="false" tooltipPosition="right" tooltipStyleClass="roz-item-tip" [showDelay]="250" *ngIf="enchant3Id">
+                <div class="flex gap-1 item_template" [rozHoverDesc]="descOf(item.value)" *ngIf="enchant3Id">
                   <img src="assets/demo/images/items/{{ item.value }}.png" alt="" class="item_img" />
                   <div>{{ item.label }}</div>
                 </div>
               </ng-template>
               <ng-template let-item pTemplate="item">
-                <div class="flex gap-1" [pTooltip]="descOf(item.value)" [escape]="false" tooltipPosition="right" tooltipStyleClass="roz-item-tip" [showDelay]="250">
+                <div class="flex gap-1" [rozHoverDesc]="descOf(item.value)">
                   <img src="assets/demo/images/items/{{ item.value }}.png" alt="" style="width: 19px" />
                   <div>{{ item.label }}</div>
                 </div>
@@ -315,13 +315,13 @@
               placeholder="Enchant 4"
             >
               <ng-template let-item pTemplate="selectedItem">
-                <div class="flex gap-1 item_template" [pTooltip]="descOf(item.value)" [escape]="false" tooltipPosition="right" tooltipStyleClass="roz-item-tip" [showDelay]="250" *ngIf="enchant4Id">
+                <div class="flex gap-1 item_template" [rozHoverDesc]="descOf(item.value)" *ngIf="enchant4Id">
                   <img src="assets/demo/images/items/{{ item.value }}.png" alt="" class="item_img" />
                   <div>{{ item.label }}</div>
                 </div>
               </ng-template>
               <ng-template let-item pTemplate="item">
-                <div class="flex gap-1" [pTooltip]="descOf(item.value)" [escape]="false" tooltipPosition="right" tooltipStyleClass="roz-item-tip" [showDelay]="250">
+                <div class="flex gap-1" [rozHoverDesc]="descOf(item.value)">
                   <img src="assets/demo/images/items/{{ item.value }}.png" alt="" style="width: 19px" />
                   <div>{{ item.label }}</div>
                 </div>

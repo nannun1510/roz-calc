@@ -1,3 +1,4 @@
+import { RozHoverDescDirective } from './roz-hover-desc.directive';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
@@ -86,6 +87,7 @@ import { StatusInputComponent } from './status-input/status-input.component';
     RoCalculatorRoutingModule,
   ],
   declarations: [
+    RozHoverDescDirective,
     RoCalculatorComponent,
     EquipmentComponent,
     CalcValueComponent,

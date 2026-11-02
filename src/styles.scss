@@ -67,3 +67,11 @@ $gutter: 1rem; //for primeflex grid system
   white-space: normal; max-height: 70vh; overflow: auto;
 }
 .roz-item-tip .p-tooltip-arrow { border-right-color: #9aa7b8 !important; }
+
+/* ROZ hover panel (roz-hover-desc.directive.ts) */
+.roz-hover-desc {
+  position: fixed; z-index: 10000; width: 420px; max-width: calc(100vw - 16px); overflow-y: auto;
+  background: #ffffff !important; color: #000000 !important; font-size: 12px; line-height: 1.45;
+  padding: 8px 10px; border: 1px solid #9aa7b8; border-radius: 4px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  pointer-events: none; white-space: normal; word-break: break-word;
+}

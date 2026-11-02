@@ -201,6 +201,15 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.15 (alpha)',
+      date: '03-11-2026',
+      logs: [
+        'FIX ASPD: 1st / 2nd job classes now use their own base ASPD per weapon type and shield penalty (before: a flat 156 for every weapon).',
+        'FIX: items with "Increases Attack Speed (reduces attack delay by N%)" now count (e.g. Hill Patrol Boots ASPD +5%, MHP +200, MSP +75).',
+        'FIX: "Additional effects when <item> is also equipped" only apply with that item (e.g. AGI Exchange Stone (Lower) LUK/STR +3 needs the Middle stone).',
+      ],
+    },
+    {
       v: 'ROZ Global v0.14 (alpha)',
       date: '02-11-2026',
       logs: [

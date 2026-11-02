@@ -468,10 +468,6 @@
 1
 ],
 [
-"Increases ASPD (After Attack Delay -N%), CRIT +N.",
-1
-],
-[
 "At +N refine: increases Critical Damage by N%.",
 1
 ],
@@ -497,10 +493,6 @@
 ],
 [
 "Sword named after a renowned eastern bladesmith. Often called a cursed blade, yet its power cannot be ignored.",
-1
-],
-[
-"Increases ASPD (After Attack Delay -N%).",
 1
 ],
 [
@@ -841,10 +833,6 @@
 ],
 [
 "Normal physical attacks (excluding skills) become N-cell splash attacks.",
-1
-],
-[
-"MHP + N, MSP + N, Increases Attack Speed (reduces attack delay by N%).",
 1
 ]
 ]

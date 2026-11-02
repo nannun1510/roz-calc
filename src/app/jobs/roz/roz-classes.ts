@@ -49,6 +49,11 @@ import { Warlock } from '../Warlock';
 import { Sorcerer } from '../Sorcerer';
 import { ROZ_ATK_SKILLS, ROZ_SKILL_TREE, RozAtkSpec } from './roz-data.generated';
 import { RighthandMasteryFn } from '../../constants/share-passive-skills';
+import { AspdTable } from '../_aspd-table';
+import { RozAspdTable } from './roz-aspd-table';
+
+// ROZ 1st/2nd job base ASPD per weapon (Tong only has 3rd/4th job rows; others fell back to a flat 156)
+Object.assign(AspdTable as any, RozAspdTable);
 
 /** ROZ skills the engine classes do not have (values from the ROZ client skill text).
  *  Weapon-dependent parts are applied in getMasteryAtk / setAdditionalBonus below. */

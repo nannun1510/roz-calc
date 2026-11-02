@@ -128,6 +128,8 @@ def clause(c):
     if m and m.group(1) in SKILLS: return [(m.group(1), int(m.group(2)))]
     m = re.fullmatch(r'\[?(.+?)\]? damage \+(\d+)%', c)
     if m and m.group(1) in SKILLS: return [(m.group(1), int(m.group(2)))]
+    m = re.fullmatch(r'(?:Increases )?(?:Attack Speed|ASPD)(?: increases)? \((?:reduces )?(?:After )?Attack Delay (?:by |-)\s*(\d+)%\)', c, flags=re.I)
+    if m: return [('aspdPercent', int(m.group(1)))]
     m = re.fullmatch(r'ASPD increases \(After Attack Delay -(\d+)%\)', c)
     if m: return [('aspdPercent', int(m.group(1)))]
     # damage dealt
@@ -355,9 +357,27 @@ for k, v in S.items():
             continue
         merged.append(l)
     body = merged
+    # "Additional effects are granted when <item> is also equipped:" -> following effect lines only count with that item
+    tagged, cond = [], None
+    for l in body:
+        mm = re.match(r'^(?:Additional effects (?:are )?(?:granted |apply )?when|When) (?:equipped (?:together )?with )?(.+?) (?:is|are) (?:also )?equipped[:,]?$', l)
+        if mm:
+            nm = mm.group(1).strip()
+            for cand in (nm, nm.replace('Conversion', 'Exchange'), nm.replace('Exchange', 'Conversion')):
+                if cand in EQUIP_NAMES: cond = cand; break
+            else: cond = '?'
+            continue
+        if cond and (l.startswith('_') or l.startswith('<') or not re.search(r'[+-]\s*\d', l)): cond = None
+        tagged.append(f'§{cond}§{l}' if cond else l)
+    body = tagged
     script, un = collections.defaultdict(list), []
     for l in body:
+        cond = None
+        mm = re.match(r'^§(.*?)§(.*)$', l)
+        if mm: cond, l = mm.group(1), mm.group(2)
         r = parse_line(l)
+        if r is not None and cond:
+            r = None if cond == '?' else [(k, f'EQUIP[{cond}]{v}') for k, v in r]
         if r is None:
             if re.search(r'\d|%|[Ii]gnore', l) and not NO_DMG_EFFECT.search(l): un.append(l); unp[re.sub(r'\d+', 'N', l)] += 1
             continue

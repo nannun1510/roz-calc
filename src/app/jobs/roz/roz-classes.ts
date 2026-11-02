@@ -62,7 +62,15 @@ const ROZ_EXTRA_PASSIVES: Record<string, any> = {
   'Dance Lessons': { name: 'Dance Lessons', label: 'Dance Lessons (Whip)', inputType: 'dropdown', dropdown: lvs(10, (l) => ({ spPercent: l })) },
   Flee: { name: 'Flee', label: 'Flee', inputType: 'dropdown', dropdown: lvs(10, (l) => ({ flee: [0, 1, 3, 4, 6, 7, 9, 10, 12, 13, 15][l] })) },
   'Righthand Mastery': RighthandMasteryFn(),
+  // Priest: party Blessing / Increase AGI centred on the caster; stronger with the caster's Job Lv.
+  // Applied to yourself in setAdditionalBonus (assumes Blessing / Increase AGI Lv10).
+  Clementia: { name: 'Clementia', label: 'Clementia (Blessing 10 + JobLv/10)', inputType: 'dropdown', dropdown: lvs(3) },
+  Cantocandidus: { name: 'Cantocandidus', label: 'Cantocandidus (Inc AGI 10 + JobLv/10)', inputType: 'dropdown', dropdown: lvs(3) },
 };
+
+/** ROZ Clementia / Cantocandidus value for a caster Job Lv (Tong / official: + JobLv / 10). */
+export const rozClementia = (jobLv: number) => ({ str: 10 + Math.floor(jobLv / 10), int: 10 + Math.floor(jobLv / 10), dex: 10 + Math.floor(jobLv / 10), hit: 20 + Math.floor(jobLv / 10) });
+export const rozCantocandidus = (jobLv: number) => ({ agi: 12 + Math.floor(jobLv / 10), aspdPercent: 10 + Math.floor(jobLv / 10) });
 const ROZ_EXTRA_ACTIVES: Record<string, any> = {
   Fury: { name: 'Fury', label: 'Fury (CRIT)', inputType: 'dropdown', dropdown: lvs(5, (l) => ({ cri: 7.5 + 2.5 * l })) },
   'Summon Spirit Sphere': { name: 'Summon Spirit Sphere', label: 'Spirit Spheres (+3 dmg each)', inputType: 'dropdown', dropdown: lvs(5) },
@@ -202,13 +210,15 @@ function makeRozClass(Base: Ctor, cfg: RozClassConfig): Ctor {
       self._atkSkillList.splice(0, self._atkSkillList.length, ...atk);
       for (const key of ['_passiveSkillList', '_activeSkillList']) {
         const list: { name: string }[] = self[key];
-        const keep = list.filter((s) => allowed.has(norm(s.name)));
+        const extra = new Set([...Object.keys(ROZ_EXTRA_PASSIVES), ...Object.keys(ROZ_EXTRA_ACTIVES)].map(norm));
+        const keep = list.filter((s) => allowed.has(norm(s.name)) && !extra.has(norm(s.name)));
         list.splice(0, list.length, ...keep);
       }
       const have = new Set([...self._passiveSkillList, ...self._activeSkillList].map((x: { name: string }) => norm(x.name)));
       const atkNames = new Set(atk.map((a) => norm(a.name)));
       for (const key of allowed) {
         if (have.has(key) || atkNames.has(key)) continue;
+        if (Object.keys(ROZ_EXTRA_PASSIVES).some((n) => norm(n) === key) || Object.keys(ROZ_EXTRA_ACTIVES).some((n) => norm(n) === key)) continue;
         const d = donors().get(key);
         if (d) { self[d.kind].push(d.skill); have.add(key); }
       }
@@ -258,6 +268,10 @@ function makeRozClass(Base: Ctor, cfg: RozClassConfig): Ctor {
       if (w === 'book') add('aspdPercent', 0.5 * (self.learnLv('Study') || 0));
       if (w === 'instrument') add('aspdPercent', self.learnLv('Music Lessons') || 0);
       if (w === 'whip') add('cri', self.learnLv('Dance Lessons') || 0);
+      // Priest casting Clementia / Cantocandidus also buffs themself (Buffs panel Blessing / Increase AGI is then ignored)
+      const job = Number(params?.model?.jobLevel) || 0;
+      if ((self.learnLv('Clementia') || 0) > 0) for (const [k, v] of Object.entries(rozClementia(job))) add(k, v as number);
+      if ((self.learnLv('Cantocandidus') || 0) > 0) for (const [k, v] of Object.entries(rozCantocandidus(job))) add(k, v as number);
       return total;
     }
     get excludedJobLevels(): number[] { return []; }

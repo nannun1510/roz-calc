@@ -367,6 +367,11 @@
                     ASPD:
                     <span class="font-semibold px-1 summary_stat_atk">{{ totalSummary?.calc?.totalAspd || 0 }}</span>
                     <span class="font-semibold px-1 summary_highlight">( {{ totalSummary?.calc?.hitPerSecs || 0 }} Hits/s )</span>
+                    <span
+                      class="font-semibold px-1 summary_compare"
+                      *ngIf="isEnableCompare && totalSummary2?.calc && (totalSummary2.calc.totalAspd !== totalSummary?.calc?.totalAspd || totalSummary2.calc.hitPerSecs !== totalSummary?.calc?.hitPerSecs)"
+                      >→ {{ totalSummary2.calc.totalAspd }} ( {{ totalSummary2.calc.hitPerSecs }} Hits/s )</span
+                    >
                   </div>
                   <div class="col-12">
                     Hit:

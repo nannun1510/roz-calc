@@ -744,7 +744,10 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
     this.skillBuffs.forEach((skillBuff, i) => {
       const buffVal = this.model.skillBuffs[i];
       const buff = skillBuff.dropdown.find((a) => a.value === buffVal);
-      if (buff?.isUse && !activeSkillNames.has(skillBuff.name)) {
+      // ROZ: your own Clementia / Cantocandidus already gives you Blessing / Increase AGI
+      const selfCast = (skillBuff.name === ('Blessing' as any) && (learnedSkillMap?.get('Clementia' as any) || 0) > 0) ||
+        (skillBuff.name === ('Increase Agility' as any) && (learnedSkillMap?.get('Cantocandidus' as any) || 0) > 0);
+      if (buff?.isUse && !activeSkillNames.has(skillBuff.name) && !selfCast) {
         if (skillBuff.isMasteryAtk) {
           buffMasterys[skillBuff.name] = buff.bonus;
         } else {

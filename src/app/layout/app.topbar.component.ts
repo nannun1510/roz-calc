@@ -201,6 +201,15 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.12 (alpha)',
+      date: '02-11-2026',
+      logs: [
+        'Priest: Clementia / Cantocandidus now buff yourself = Blessing 10 / Increase AGI 10 + (Job Lv / 10). In the Buffs panel, Blessing and Increase AGI also have "Clementia / Cantocandidus (Priest Job N)" options for party Priests.',
+        'ASPD: auto attacks per second are no longer rounded down (e.g. 1.52 Hits/s), so every ASPD change shows in DPS, including auto attack procs (Duple Light, Spell Fist).',
+        'Compare: when the compared set changes ASPD, the new ASPD and Hits/s are shown next to yours.',
+      ],
+    },
+    {
       v: 'ROZ Global v0.11 (alpha)',
       date: '02-11-2026',
       logs: [

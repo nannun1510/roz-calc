@@ -493,9 +493,10 @@ export class DamageCalculator {
       decreaseSkillAspdPercent: this.totalBonus.decreaseSkillAspdPercent,
     });
 
-    const hitsPerSec = floor(50 / (200 - totalAspd));
+    // ROZ: attacks per second = 50 / (200 - ASPD), kept with 2 decimals so every ASPD change shows in DPS
+    const hitsPerSec = round(50 / Math.max(1, 200 - totalAspd), 2);
 
-    return { totalAspd, hitsPerSec: Math.max(hitsPerSec, 1) };
+    return { totalAspd, hitsPerSec: Math.max(hitsPerSec, 0.1) };
   }
 
   private getMiscData(): MiscModel {

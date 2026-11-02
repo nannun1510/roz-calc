@@ -16,8 +16,20 @@ const yes = (bonus: Record<string, number>, value = 1) => [
 
 export const RozJobBuffs: ActiveSkillModel[] = [
   // Acolyte / Priest
-  { name: 'Blessing' as any, label: 'Blessing', inputType: 'dropdown', dropdown: lv(10, (l) => ({ str: l, int: l, dex: l, hit: 2 * l })) },
-  { name: 'Increase Agility' as any, label: 'Increase AGI', inputType: 'dropdown', dropdown: lv(10, (l) => ({ agi: l + 2, aspdPercent: l })) },
+  {
+    name: 'Blessing' as any, label: 'Blessing / Clementia', inputType: 'dropdown',
+    dropdown: [
+      ...lv(10, (l) => ({ str: l, int: l, dex: l, hit: 2 * l })),
+      ...[10, 20, 30, 40, 50, 60, 70].map((j) => ({ label: `Clementia (Priest Job ${j})`, value: 100 + j, isUse: true, bonus: { str: 10 + j / 10, int: 10 + j / 10, dex: 10 + j / 10, hit: 20 + j / 10 } })),
+    ],
+  },
+  {
+    name: 'Increase Agility' as any, label: 'Increase AGI / Cantocandidus', inputType: 'dropdown',
+    dropdown: [
+      ...lv(10, (l) => ({ agi: l + 2, aspdPercent: l })),
+      ...[10, 20, 30, 40, 50, 60, 70].map((j) => ({ label: `Cantocandidus (Priest Job ${j})`, value: 100 + j, isUse: true, bonus: { agi: 12 + j / 10, aspdPercent: 10 + j / 10 } })),
+    ],
+  },
   { name: 'Angelus' as any, label: 'Angelus', inputType: 'dropdown', dropdown: lv(10, (l) => ({ hp: 50 * l })) },
   { name: 'Impositio Manus', label: 'Impositio Manus', inputType: 'dropdown', dropdown: lv(5, (l) => ({ atk: 5 * l, matk: 5 * l })) },
   { name: 'Gloria' as any, label: 'Gloria (LUK +30)', inputType: 'selectButton', dropdown: yes({ luk: 30 }, 5) },

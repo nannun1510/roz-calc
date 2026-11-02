@@ -27,8 +27,10 @@ TH = json.load(open('tools/roz/roz-items-th.json'))
 clean = lambda s: re.sub(r'\^[0-9a-fA-F]{6}', '', s).strip()
 
 WEAPON = {'Dagger': 256, 'Sword': 257, 'One-Handed Sword': 257, 'Two-Handed Sword': 258, 'One-Handed Spear': 259, 'Spear': 259, 'Two-Handed Spear': 260,
-          'One-Handed Axe': 261, 'Axe': 261, 'Two-Handed Axe': 262, 'Mace': 263, 'One-Handed Staff': 265, 'Staff': 265, 'Rod': 265, 'Bow': 266, 'Knuckle': 267,
-          'Instrument': 268, 'Musical Instrument': 268, 'Whip': 269, 'Book': 270, 'Katar': 271, 'Two-Handed Staff': 278}
+          'One-Handed Axe': 261, 'Axe': 261, 'Two-Handed Axe': 262, 'Mace': 263, 'One-Handed Mace': 263, 'Two-Handed Mace': 264,
+          'One-Handed Staff': 265, 'Staff': 265, 'Rod': 265, 'Two-Handed Staff': 266, 'Two-Handed Rod': 266,
+          'Bow': 267, 'Knuckle': 268, 'Fist Weapon': 268, 'Instrument': 269, 'Musical Instrument': 269, 'Whip': 270, 'Book': 271, 'Katar': 272}
+# ids follow Tong's WeaponSubTypeNameMapById (src/app/constants/weapon-type-mapper.ts)
 EQUIP = {'Headgear': 512, 'Helmet': 512, 'Helm': 512, 'Armor': 513, 'Shield': 514, 'Garment': 515, 'Shoes': 516, 'Accessory': 517, 'Accessory (Right)': 510, 'Accessory (Left)': 511}
 CARDPOS = {'Weapon': 0, 'Armor': 16, 'Shield': 32, 'Garment': 4, 'Shoes': 64, 'Accessory': 136, 'Headgear': 769, 'Helmet': 769, 'Helm': 769}
 CLASS = {'Novice': 'Novice', 'Swordsman': 'Swordman', 'Swordman': 'Swordman', 'Mage': 'Mage', 'Archer': 'Archer', 'Acolyte': 'Acolyte', 'Merchant': 'Merchant', 'Thief': 'Thief',
@@ -270,6 +272,7 @@ for k, v in S.items():
     if t in WEAPON: tid, sub = 1, WEAPON[t]
     elif t in EQUIP: tid, sub = 2, EQUIP[t]
     elif t == 'Card': tid, sub = 6, 0
+    elif t == 'Arrow': tid, sub = 4, 1024   # ammo (arrow ATK adds to bow ATK)
     elif t == 'Special Equipment' and f['acc']: tid, sub = 10, 529   # Taming Ring -> ROZ costume accessory slot (Tong's shadow-earring slot)
     elif t.startswith('Shadow Equipment'): tid, sub = 10, 527          # guild shields
     elif t.startswith('Costume') and f['pos']:
@@ -302,7 +305,7 @@ for k, v in S.items():
     if tid == 6:
         rec['compositionPos'] = CARDPOS.get((f['cardpos'] or '').split(',')[0].strip(), 65535)
         rec['usableClass'] = ['all']
-    if f['ele'] and tid == 1:
+    if f['ele'] and tid in (1, 4):
         rec['propertyAtk'] = ele_key(f['ele']).capitalize() if f['ele'] != 'Shadow' else 'Dark'
     desc = bilingual(k, un if source == 'roz' else [])
     rec['description'] = desc

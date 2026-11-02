@@ -201,6 +201,14 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.8 (alpha)',
+      date: '02-11-2026',
+      logs: [
+        'FIX: weapon types were shifted for Bow, Knuckle, Instrument, Whip, Book, Katar and Two-Handed Staff (a Bow was calculated as a Two-Handed Rod). Damage for Hunter, Bard, Dancer, Monk, Sage, Assassin is now correct.',
+        'Arrows added (22 ROZ arrows with ATK and element). Pick one in the Ammo box under the weapon: arrow ATK adds to your damage.',
+      ],
+    },
+    {
       v: 'ROZ Global v0.7 (alpha)',
       date: '02-11-2026',
       logs: [

@@ -1,0 +1,11 @@
+.roz-optsel { display: flex; align-items: stretch; width: 100%; }
+.roz-optsel ::ng-deep .roz-optsel-cascade { flex: 1 1 auto; min-width: 0; }
+.roz-optsel ::ng-deep .roz-optsel-cascade .p-cascadeselect { width: 100%; border-top-right-radius: 0; border-bottom-right-radius: 0; }
+.roz-optsel-btn {
+  flex: 0 0 2rem; border: 1px solid var(--surface-border, #3f4b5b); border-left: 0;
+  border-radius: 0 6px 6px 0; background: var(--surface-card, #1f2d40); color: var(--text-color-secondary, #aaa);
+  cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0;
+}
+.roz-optsel-btn:hover:not(:disabled) { color: var(--primary-color, #81c784); }
+.roz-optsel-btn:disabled { opacity: 0.4; cursor: default; }
+.roz-optsel-btn .pi { font-size: 0.8rem; }

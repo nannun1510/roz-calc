@@ -33,6 +33,8 @@ import { TreeSelectModule } from 'primeng/treeselect';
 
 import { RoCalculatorComponent } from './ro-calculator.component';
 import { PrettyJsonPipe } from '../../prettier-json.pipe';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { RozOptionSelectComponent } from './option-select/roz-option-select.component';
 import { RoCalculatorRoutingModule } from './ro-calculator-routing.module';
 import { EquipmentComponent } from './equipment/equipment.component';
 import { CalcValueComponent } from './calc-value/calc-value.component';
@@ -58,6 +60,7 @@ import { StatusInputComponent } from './status-input/status-input.component';
     ButtonModule,
     CardModule,
     CascadeSelectModule,
+    OverlayPanelModule,
     CheckboxModule,
     CommonModule,
     ConfirmDialogModule,
@@ -87,6 +90,7 @@ import { StatusInputComponent } from './status-input/status-input.component';
     RoCalculatorRoutingModule,
   ],
   declarations: [
+    RozOptionSelectComponent,
     RozHoverDescDirective,
     RoCalculatorComponent,
     EquipmentComponent,

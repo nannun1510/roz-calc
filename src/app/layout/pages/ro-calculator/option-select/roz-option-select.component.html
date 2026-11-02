@@ -1,0 +1,37 @@
+<div class="roz-optsel">
+  <p-cascadeSelect
+    class="roz-optsel-cascade"
+    [(ngModel)]="value"
+    [disabled]="disabled"
+    [options]="options"
+    optionValue="value"
+    optionGroupLabel="label"
+    optionLabel="label"
+    [optionGroupChildren]="['children', 'children', 'children']"
+    [placeholder]="placeholder"
+    [showClear]="true"
+    (onChange)="onCascade($event)"
+    (onClear)="onCascade($event)"
+  ></p-cascadeSelect>
+  <button type="button" class="roz-optsel-btn" [disabled]="disabled" (click)="openSearch($event)" title="Search option">
+    <i class="pi pi-search"></i>
+  </button>
+</div>
+
+<p-overlayPanel #op appendTo="body" styleClass="roz-optsel-panel">
+  <ng-template pTemplate="content">
+    <div class="roz-optsel-search">
+      <span class="p-input-icon-left w-full">
+        <i class="pi pi-search"></i>
+        <input #searchInput pInputText type="text" class="w-full" [(ngModel)]="query" (ngModelChange)="filter()" (keydown)="onKey($event)" placeholder="Search option (e.g. demi, atk %, str +5)" />
+      </span>
+    </div>
+    <div class="roz-optsel-list">
+      <div class="roz-optsel-item" *ngFor="let o of results" [class.active]="o.value === value" (click)="pick(o)">
+        <span>{{ o.label }}</span><small>{{ o.path }}</small>
+      </div>
+      <div class="roz-optsel-empty" *ngIf="results.length === 0">No option found</div>
+      <div class="roz-optsel-empty" *ngIf="results.length >= LIMIT">Type more to narrow the list…</div>
+    </div>
+  </ng-template>
+</p-overlayPanel>

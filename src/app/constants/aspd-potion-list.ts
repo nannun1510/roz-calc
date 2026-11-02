@@ -4,14 +4,11 @@ export const AspdPotionList = [
   { label: 'Berserk Potion', value: 657, bonus: 9 },
 ];
 
-export const AspdPotionStackable = [{ label: 'ASPD Potion', value: 12684, bonus: 3 }];
+// ROZ: Agi Up Potion stacks with the potions above ("ASPD increases slightly more"); treated like kRO's ASPD Potion (+3)
+export const AspdPotionStackable = [{ label: 'Agi Up Potion', value: 107045, bonus: 3 }];
 
-export const AspdPotionList2 = [{ label: 'Enrich Celermine', value: 12437 }, ...AspdPotionStackable];
+export const AspdPotionList2 = [...AspdPotionStackable];
 
 export const AspdPotionFixBonus = new Map([...AspdPotionList, ...AspdPotionStackable].map((a) => [a.value, a.bonus]));
 
-export const extrabuff = [{ label: 'Confidential Document', value: 103428 },
-						{ label: 'Symposium Rice Cake', value: 103429 },
-						{ label: 'Symposium Butter Cookie', value: 103430 },
-						{ label: 'Symposium Coffee Stick', value: 103431 }
-						];
+export const extrabuff: { label: string; value: number }[] = [];

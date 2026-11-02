@@ -1686,7 +1686,7 @@
                   </ng-template>
                 </p-listbox>
               </div>
-			  <div class="col-12">
+			  <div class="col-12" *ngIf="extrabuff.length">
                 <p-listbox [options]="extrabuff" [(ngModel)]="model.aspdPotions" [multiple]="true" [metaKeySelection]="false" (onChange)="onConsumableChange()">
                   <ng-template let-item pTemplate="item">
                     <div class="flex gap-2">

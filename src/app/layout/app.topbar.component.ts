@@ -201,6 +201,15 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.14 (alpha)',
+      date: '02-11-2026',
+      logs: [
+        'Consumables now use ROZ items: Blessing of Yggdrasil (All Stats +7, ATK/MATK +30, HIT/FLEE +5), Premium Course Meal, Mixed Dish Lv5-10, Cold Watermelon Juice, Guild Tickets, Muscle Activation Potion.',
+        'Stat foods: ROZ cooked foods +1 to +10 for each stat.',
+        'ASPD potions: Concentration / Awakening / Berserk Potion with ROZ class and level rules, plus Agi Up Potion.',
+      ],
+    },
+    {
       v: 'ROZ Global v0.13 (alpha)',
       date: '02-11-2026',
       logs: [

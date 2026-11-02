@@ -54634,5 +54634,2109 @@
     "5"
    ]
   }
+ },
+ "23481": {
+  "id": 23481,
+  "aegisName": "ROZ_23481",
+  "name": "Blessing of Yggdrasil",
+  "unidName": "Blessing of Yggdrasil",
+  "resName": "",
+  "description": "Grants All Stats +7, ATK/MATK +30, and HIT/FLEE +5 for 1 hour.\n^FFFFFF_^000000\n^777777--------------------------^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nAll Stats +7, ATK/MATK +30, HIT/FLEE +5 เป็นเวลา 1 ชั่วโมง\n^FFFFFF_^000000\nน้ำหนัก : ^7777771^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 0,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "str": [
+    "7"
+   ],
+   "agi": [
+    "7"
+   ],
+   "vit": [
+    "7"
+   ],
+   "int": [
+    "7"
+   ],
+   "dex": [
+    "7"
+   ],
+   "luk": [
+    "7"
+   ],
+   "atk": [
+    "30"
+   ],
+   "matk": [
+    "30"
+   ],
+   "hit": [
+    "5"
+   ],
+   "flee": [
+    "5"
+   ]
+  }
+ },
+ "23604": {
+  "id": 23604,
+  "aegisName": "ROZ_23604",
+  "name": "Premium Course Meal",
+  "unidName": "Premium Course Meal",
+  "resName": "",
+  "description": "A premium dish made by condensing all dishes reputed to be good for the body.\nFor 30 minutes, all stats +5, ATK/MATK +20.\n^FFFFFF_^000000\n^777777--------------------------^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nสุดยอดอาหารระดับพรีเมียมที่รวม\nเมนูขึ้นชื่อว่าดีต่อร่างกายเอาไว้\nAll Stats +5,\nATK, MATK +20\nเป็นเวลา 30 นาที\n^FFFFFF_^000000\nน้ำหนัก : ^7777771^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 0,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "str": [
+    "5"
+   ],
+   "agi": [
+    "5"
+   ],
+   "vit": [
+    "5"
+   ],
+   "int": [
+    "5"
+   ],
+   "dex": [
+    "5"
+   ],
+   "luk": [
+    "5"
+   ],
+   "atk": [
+    "20"
+   ],
+   "matk": [
+    "20"
+   ]
+  }
+ },
+ "100075": {
+  "id": 100075,
+  "aegisName": "ROZ_100075",
+  "name": "Mixed Dish Lv.5",
+  "unidName": "Mixed Dish Lv.5",
+  "resName": "",
+  "description": "A Level 5 assorted dish.\nAll State +5. Recovers 5% HP and SP.\n^FFFFFF_^000000\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nอาหารรวมมิตรเลเวล 5\nAll Stats +5, ฟื้นฟู HP และ SP 5%\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 0,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "str": [
+    "5"
+   ],
+   "agi": [
+    "5"
+   ],
+   "vit": [
+    "5"
+   ],
+   "int": [
+    "5"
+   ],
+   "dex": [
+    "5"
+   ],
+   "luk": [
+    "5"
+   ]
+  }
+ },
+ "100076": {
+  "id": 100076,
+  "aegisName": "ROZ_100076",
+  "name": "Mixed Dish Lv.6",
+  "unidName": "Mixed Dish Lv.6",
+  "resName": "",
+  "description": "A Level 6 assorted dish.\nAll State +6. Recovers 6% HP and SP.\n^FFFFFF_^000000\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nอาหารรวมมิตรเลเวล 6\nAll Stats +6, ฟื้นฟู HP และ SP 6%\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 0,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "str": [
+    "6"
+   ],
+   "agi": [
+    "6"
+   ],
+   "vit": [
+    "6"
+   ],
+   "int": [
+    "6"
+   ],
+   "dex": [
+    "6"
+   ],
+   "luk": [
+    "6"
+   ]
+  }
+ },
+ "100077": {
+  "id": 100077,
+  "aegisName": "ROZ_100077",
+  "name": "Mixed Dish Lv.7",
+  "unidName": "Mixed Dish Lv.7",
+  "resName": "",
+  "description": "A Level 7 assorted dish.\nAll State +7. Recovers 7% HP and SP.\n^FFFFFF_^000000\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nอาหารรวมมิตรเลเวล 7\nAll Stats +7, ฟื้นฟู HP และ SP 7%\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 0,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "str": [
+    "7"
+   ],
+   "agi": [
+    "7"
+   ],
+   "vit": [
+    "7"
+   ],
+   "int": [
+    "7"
+   ],
+   "dex": [
+    "7"
+   ],
+   "luk": [
+    "7"
+   ]
+  }
+ },
+ "100078": {
+  "id": 100078,
+  "aegisName": "ROZ_100078",
+  "name": "Mixed Dish Lv.8",
+  "unidName": "Mixed Dish Lv.8",
+  "resName": "",
+  "description": "A Level 8 assorted dish.\nAll State +8. Recovers 8% HP and SP.\n^FFFFFF_^000000\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nอาหารรวมมิตรเลเวล 8\nAll Stats +8, ฟื้นฟู HP และ SP 8%\n\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 0,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "str": [
+    "8"
+   ],
+   "agi": [
+    "8"
+   ],
+   "vit": [
+    "8"
+   ],
+   "int": [
+    "8"
+   ],
+   "dex": [
+    "8"
+   ],
+   "luk": [
+    "8"
+   ]
+  }
+ },
+ "100079": {
+  "id": 100079,
+  "aegisName": "ROZ_100079",
+  "name": "Mixed Dish Lv.9",
+  "unidName": "Mixed Dish Lv.9",
+  "resName": "",
+  "description": "A Level 9 assorted dish.\nAll State +9. Recovers 9% HP and SP.\n^FFFFFF_^000000\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nอาหารรวมมิตรเลเวล 9\nAll Stats +9, ฟื้นฟู HP และ SP 9%\n\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 0,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "str": [
+    "9"
+   ],
+   "agi": [
+    "9"
+   ],
+   "vit": [
+    "9"
+   ],
+   "int": [
+    "9"
+   ],
+   "dex": [
+    "9"
+   ],
+   "luk": [
+    "9"
+   ]
+  }
+ },
+ "100080": {
+  "id": 100080,
+  "aegisName": "ROZ_100080",
+  "name": "Mixed Dish Lv.10",
+  "unidName": "Mixed Dish Lv.10",
+  "resName": "",
+  "description": "A Level 10 assorted dish.\nAll State +10. Recovers 10% HP and SP.\n^FFFFFF_^000000\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nอาหารรวมมิตรเลเวล 10\nAll Stats +10, ฟื้นฟู HP และ SP 10%\n\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 0,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "str": [
+    "10"
+   ],
+   "agi": [
+    "10"
+   ],
+   "vit": [
+    "10"
+   ],
+   "int": [
+    "10"
+   ],
+   "dex": [
+    "10"
+   ],
+   "luk": [
+    "10"
+   ]
+  }
+ },
+ "103068": {
+  "id": 103068,
+  "aegisName": "ROZ_103068",
+  "name": "Cold Watermelon Juice",
+  "unidName": "Cold Watermelon Juice",
+  "resName": "",
+  "description": "A fresh Refreshing Watermelon Juice made from seasonal watermelon.\n^FFFFFF_^000000\nFor 15 minutes: ATK +15%, MATK +15%.\n^FFFFFF_^000000\n^FF0000(This item will be deleted when the event ends.)^000000\n^FFFFFF_^000000\n^777777--------------------------^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nน้ำแตงโมสดปั่นจากแตงโมตาม\nฤดูกาล ให้ความสดชื่นเย็นฉ่ำ\n^FFFFFF_^000000\nATK +15%, MATK +15%\nเป็นเวลา 15 นาที\n^FFFFFF_^000000\n^FF0000(ไอเทมนี้จะถูกลบทั้งหมด\nเมื่อกิจกรรมสิ้นสุดลง)^000000\nน้ำหนัก : ^7777771^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 0,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "atkPercent": [
+    "15"
+   ],
+   "matkPercent": [
+    "15"
+   ]
+  }
+ },
+ "108172": {
+  "id": 108172,
+  "aegisName": "ROZ_108172",
+  "name": "[Event] Passion Guild Ticket",
+  "unidName": "[Event] Passion Guild Ticket",
+  "resName": "",
+  "description": "It feels as though a burning passion emanates from the ticket.\nUsing it grants the following effect.\n^FFFFFF_^000000\nATK + 3%\n^FFFFFF_^000000\n^FF0000(This item will be deleted when the event ends.)^000000\nWeight : ^7777770^000000\n^0000ff──────── ภาษาไทย ────────^000000\nรู้สึกได้ถึงความมุ่งมั่น\nอันร้อนแรงจากตั๋วใบนี้\nเมื่อใช้ จะได้รับเอฟเฟกต์\nดังต่อไปนี้\n^FFFFFF_^000000\nATK +3%\n^FFFFFF_^000000\n^FF0000(ไอเทมนี้จะถูกลบเมื่อ\nกิจกรรมสิ้นสุดลง)^000000\nน้ำหนัก : ^7777770^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 0,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "atkPercent": [
+    "3"
+   ]
+  }
+ },
+ "108175": {
+  "id": 108175,
+  "aegisName": "ROZ_108175",
+  "name": "[Event] Calm Guild Ticket",
+  "unidName": "[Event] Calm Guild Ticket",
+  "resName": "",
+  "description": "It feels as though a cold energy emanates from the ticket.\nUsing it grants the following effect.\n^FFFFFF_^000000\nMATK + 2%\n^FFFFFF_^000000\n^FF0000(This item will be deleted when the event ends.)^000000\nWeight : ^7777770^000000\n^0000ff──────── ภาษาไทย ────────^000000\nรู้สึกได้ถึงไอเย็นจากตั๋วใบนี้\nเมื่อใช้ จะได้รับเอฟเฟกต์\nดังต่อไปนี้\n^FFFFFF_^000000\nMATK +2%\n^FFFFFF_^000000\n^FF0000(ไอเทมนี้จะถูกลบเมื่อ\nกิจกรรมสิ้นสุดลง)^000000\nน้ำหนัก : ^7777770^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 0,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "matkPercent": [
+    "2"
+   ]
+  }
+ },
+ "108295": {
+  "id": 108295,
+  "aegisName": "ROZ_108295",
+  "name": "[Event] Muscle Activation Potion",
+  "unidName": "[Event] Muscle Activation Potion",
+  "resName": "",
+  "description": "A standard-issue Kingdom muscle activation potion. Although it was announced to have no side effects, rumors are circulating among soldiers of people experiencing dizziness from overdosing.\n^FFFFFF_^000000\nATK +15\nMATK + 10\n^FFFFFF_^000000\n^FF0000(This item will be deleted when the event ends.) ^000000\nWeight : ^7777770^000000\n^0000ff──────── ภาษาไทย ────────^000000\nPotion กระตุ้นกล้ามเนื้อทั่วไป\nของอาณาจักร แม้จะประกาศว่า\nไม่มีผลข้างเคียง แต่ในหมู่ทหาร\nกลับมีข่าวลือว่าการใช้เกินขนาด\nอาจทำให้เวียนศีรษะได้\n^FFFFFF_^000000\nATK +15\nMATK +10\n^FFFFFF_^000000\n^FF0000(ไอเทมนี้จะถูกลบออก\nหลังสิ้นสุดระยะเวลากิจกรรม)^000000\nน้ำหนัก : ^7777770^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 0,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "atk": [
+    "15"
+   ],
+   "matk": [
+    "10"
+   ]
+  }
+ },
+ "12084": {
+  "id": 12084,
+  "aegisName": "ROZ_12084",
+  "name": "Ascending Dragon Soup",
+  "unidName": "Ascending Dragon Soup",
+  "resName": "",
+  "description": "Spicy dish made with ‘dragon’ as its main ingredient; those who try it say it feels as though they start to ascend.\n^FFFFFF_^000000\nVIT +9.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nอาหารรสเผ็ดร้อนที่ใช้ ‘Dragon’ เป็นวัตถุดิบหลัก ว่ากันว่ากินแล้วจะรู้สึกราวกับพุ่งทะยานขึ้นสู่สวรรค์\nVIT + 9\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "vit": [
+    "9"
+   ]
+  }
+ },
+ "12085": {
+  "id": 12085,
+  "aegisName": "ROZ_12085",
+  "name": "Immortal Stew",
+  "unidName": "Immortal Stew",
+  "resName": "",
+  "description": "Though its appearance and smell are rather unsettling, eating it is said to instill a strange sense of immortality.\n^FFFFFF_^000000\nVIT +10.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nแม้รูปร่างและกลิ่นจะชวนขนลุกอยู่บ้าง แต่ว่ากันว่าหากกินเข้าไปแล้วจะรู้สึกราวกับไม่มีวันตาย\nVIT + 10\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "vit": [
+    "10"
+   ]
+  }
+ },
+ "11553": {
+  "id": 11553,
+  "aegisName": "ROZ_11553",
+  "name": "Casual Stew",
+  "unidName": "Casual Stew",
+  "resName": "",
+  "description": "A stew made by tossing in whatever the cook felt like adding.\nVIT +1 for 3 minutes.\n^000088Recovers about 25 HP^000000.\n^777777--------------------------^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nสตูว์ที่ใส่วัตถุดิบสารพัดอย่างลงไปตามใจคนทำ\nเพิ่ม VIT + 1 เป็นเวลา 3 นาที\n^000088ฟื้นฟู HP ประมาณ 25^000000\nน้ำหนัก : ^7777771^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "vit": [
+    "1"
+   ]
+  }
+ },
+ "12052": {
+  "id": 12052,
+  "aegisName": "ROZ_12052",
+  "name": "Assorted Seafood",
+  "unidName": "Assorted Seafood",
+  "resName": "",
+  "description": "A dish that evokes deep nostalgia for those born by the sea. Some say it brings tears to their eyes without warning.\n^FFFFFF_^000000\nVIT +2.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nอาหารที่ทำให้ผู้มีบ้านเกิดอยู่ริมทะเลหวนคิดถึงความหลังอย่างลึกซึ้ง จนเผลอน้ำตาไหลออกมา\nVIT + 2\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "vit": [
+    "2"
+   ]
+  }
+ },
+ "12054": {
+  "id": 12054,
+  "aegisName": "ROZ_12054",
+  "name": "Seasoned Jellyfish",
+  "unidName": "Seasoned Jellyfish",
+  "resName": "",
+  "description": "\"Tentacle lightly cooked with squid ink and herbs. Looks delicious, yet the taste is unexpectedly subtle.\n^FFFFFF_^000000\nVIT +4.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\"\n^0000ff──────── ภาษาไทย ────────^000000\nหนวดปลาหมึกที่นำไปปรุงกับน้ำหมึกและสมุนไพรที่ดีต่อร่างกาย ดูน่ารับประทาน แต่รสชาติกลับไม่เป็นอย่างที่คิด\nVIT + 4\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "vit": [
+    "4"
+   ]
+  }
+ },
+ "12055": {
+  "id": 12055,
+  "aegisName": "ROZ_12055",
+  "name": "Spicy Fried Bao",
+  "unidName": "Spicy Fried Bao",
+  "resName": "",
+  "description": "Spicy grilled dumplings with a stimulating aroma. Eating too many may lead to regret the next day.\n^FFFFFF_^000000\nVIT +5.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nเกี๊ยวย่างราดเครื่องปรุงรสเผ็ด ช่วยเรียกน้ำย่อยได้เป็นอย่างดี แต่หากกินมากเกินไป วันรุ่งขึ้นจะทรมานจนเหมือนตกนรก\nVIT + 5\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "vit": [
+    "5"
+   ]
+  }
+ },
+ "12081": {
+  "id": 12081,
+  "aegisName": "ROZ_12081",
+  "name": "Awfully Bitter Bracer",
+  "unidName": "Awfully Bitter Bracer",
+  "resName": "",
+  "description": "Some say medicine becomes more effective as its unpleasant taste grows stronger, though such claims remain unverified.\n^FFFFFF_^000000\nVIT +6.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nมีข่าวลือว่ายิ่งยารสชาติแย่เท่าไร ยิ่งได้ผลดี\nVIT + 6\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "vit": [
+    "6"
+   ]
+  }
+ },
+ "12082": {
+  "id": 12082,
+  "aegisName": "ROZ_12082",
+  "name": "Sumptuous Feast",
+  "unidName": "Sumptuous Feast",
+  "resName": "",
+  "description": "A curious dish said to bring tears as vivid mountains and blue seas unfold in your mind after eating it.\n^FFFFFF_^000000\nVIT +7.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nอาหารสุดพิศวงที่เมื่อกินแล้วจะเห็นภาพภูเขาอันยิ่งใหญ่และทะเลสีครามผุดขึ้นในหัวพร้อมกันจนเผลอหลั่งน้ำตา\nVIT + 7\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "vit": [
+    "7"
+   ]
+  }
+ },
+ "12053": {
+  "id": 12053,
+  "aegisName": "ROZ_12053",
+  "name": "Clam Soup",
+  "unidName": "Clam Soup",
+  "resName": "",
+  "description": "Shellfish boiled to preserve the full ocean flavor. Both the broth and the Shell Meat are meant to be enjoyed.\n^FFFFFF_^000000\nVIT +3.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nซุปรสเลิศที่ยังคงกลิ่นอายของทะเลไว้ สามารถรับประทานได้ทั้งน้ำซุปและเนื้อหอย\nVIT + 3\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "vit": [
+    "3"
+   ]
+  }
+ },
+ "12083": {
+  "id": 12083,
+  "aegisName": "ROZ_12083",
+  "name": "Giant Burito",
+  "unidName": "Giant Burito",
+  "resName": "",
+  "description": "A massive wrap seemingly made oversized on purpose so it cannot be eaten in a single bite. The creator’s intention is unmistakable.\n^FFFFFF_^000000\nVIT +8.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nห่อผักขนาดยักษ์ที่ใหญ่จนไม่มีทางกินหมดในคำเดียว สัมผัสได้ถึงความตั้งใจของผู้ทำ\nVIT + 8\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "vit": [
+    "8"
+   ]
+  }
+ },
+ "12086": {
+  "id": 12086,
+  "aegisName": "ROZ_12086",
+  "name": "Chile Shrimp Gratin",
+  "unidName": "Chile Shrimp Gratin",
+  "resName": "",
+  "description": "Gratin combining chili heat with savory shrimp—yet it tastes more like a spicy shrimp dish than a gratin.\n^FFFFFF_^000000\nAGI +6.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nกราแตงที่ผสานความเผ็ดของพริกกับความหอมมันของกุ้งได้อย่างลงตัว...แต่ดูยังไงก็เหมือนเมนูกุ้งผัดเผ็ดมากกว่า\nAGI + 6\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "agi": [
+    "6"
+   ]
+  }
+ },
+ "12087": {
+  "id": 12087,
+  "aegisName": "ROZ_12087",
+  "name": "Steamed Alligator with Vegetable",
+  "unidName": "Steamed Alligator with Vegetable",
+  "resName": "",
+  "description": "A recommended Umbala dish of lightly roasted crocodile meat wrapped with vegetables and steamed. Rumor says it is reserved for honored guests and cherished livestock.\n^FFFFFF_^000000\nAGI +7.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nเมนูแนะนำของ Umbala ที่นำเนื้อจระเข้ย่างกำลังดีห่อผักแล้วนึ่ง มีข่าวลือประหลาดว่าเสิร์ฟให้เฉพาะแขกคนสำคัญกับปศุสัตว์เท่านั้น\nAGI + 7\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "agi": [
+    "7"
+   ]
+  }
+ },
+ "12088": {
+  "id": 12088,
+  "aegisName": "ROZ_12088",
+  "name": "Incredibly Spicy Curry",
+  "unidName": "Incredibly Spicy Curry",
+  "resName": "",
+  "description": "A fiercely spicy curry said to contain the ‘taste of endurance’. The key element is a pumpkin that strangely feels like it was once worn as a hat.\n^FFFFFF_^000000\nAGI +8.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nแกงกะหรี่รสเผ็ดจัดที่ว่ากันว่าได้เติม ‘รสชาติแห่งความอึด’ ลงไป โดยจุดเด่นของรสชาติอยู่ที่ฟักทองซึ่งดูเหมือนเคยถูกนำไปสวมบนหัวมาก่อน...\nAGI + 8\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "agi": [
+    "8"
+   ]
+  }
+ },
+ "12089": {
+  "id": 12089,
+  "aegisName": "ROZ_12089",
+  "name": "Special Meat Stew",
+  "unidName": "Special Meat Stew",
+  "resName": "",
+  "description": "A specialty of the Dragon Castle region—slow-simmered assorted meats whose aroma spreads widely when the lid is opened.\n^FFFFFF_^000000\nAGI +9.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nอาหารขึ้นชื่อแห่งเมือง Lou Yang ที่เคี่ยวเนื้อหลากชนิดด้วยไฟอ่อนจนเปื่อยนุ่ม ว่ากันว่าเพียงเปิดฝาออกกลิ่นหอมก็จะแผ่ไปทั่วทุกทิศ\nAGI + 9\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "agi": [
+    "9"
+   ]
+  }
+ },
+ "12090": {
+  "id": 12090,
+  "aegisName": "ROZ_12090",
+  "name": "Steamed Desert Scorpions",
+  "unidName": "Steamed Desert Scorpions",
+  "resName": "",
+  "description": "A steamed desert scorpion dish considered one of the four great delicacies of the Sograt Desert, cooked using the heat of the sands.\n^FFFFFF_^000000\nAGI +10.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nเมนูนึ่งแมงป่องทะเลทราย หนึ่งในสี่สุดยอดอาหารแห่ง Sograt Desert ว่ากันว่าใช้ความร้อนจากผืนทรายในการปรุงให้สุก\nAGI + 10\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "agi": [
+    "10"
+   ]
+  }
+ },
+ "11552": {
+  "id": 11552,
+  "aegisName": "ROZ_11552",
+  "name": "Apple Carrot Salad",
+  "unidName": "Apple Carrot Salad",
+  "resName": "",
+  "description": "Crisp harmony of apples and carrots! A crunchy salad that lifts your mood.\nAGI +1 for 3 minutes.\n^000088Recovers about 25 HP^000000.\n^777777--------------------------^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nความลงตัวของแอปเปิลกับแครอต! สลัดกรุบกรอบที่ให้ความรู้สึกสดชื่นจนเหมือนจะลอยได้\nเพิ่ม AGI + 1 เป็นเวลา 3 นาที\n^000088ฟื้นฟู HP ประมาณ 25^000000\nน้ำหนัก : ^7777771^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "agi": [
+    "1"
+   ]
+  }
+ },
+ "12057": {
+  "id": 12057,
+  "aegisName": "ROZ_12057",
+  "name": "Smooth Noodle",
+  "unidName": "Smooth Noodle",
+  "resName": "",
+  "description": "Noodles with silky strands crafted by a master, so smooth they are almost difficult to eat.\n^FFFFFF_^000000\nAGI +2.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nบะหมี่ทำมืออย่างพิถีพิถัน แต่ลื่นเกินไปจนกินยาก\nAGI + 2\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "agi": [
+    "2"
+   ]
+  }
+ },
+ "12058": {
+  "id": 12058,
+  "aegisName": "ROZ_12058",
+  "name": "Tentacle Cheese Gratin",
+  "unidName": "Tentacle Cheese Gratin",
+  "resName": "",
+  "description": "Gratin made by stuffing slippery Tentacle with sweet Sweet Potato and rich cheese, baked until golden. Its flavor seems slightly different from the well-known children’s snack.\n^FFFFFF_^000000\nAGI +3.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nกราแตงหนวดปลาหมึกไส้มันหวานและชีส อบจนเหลืองหอม แต่รสชาติแตกต่างจากของว่างสำหรับเด็กทั่วไป\nAGI + 3\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "agi": [
+    "3"
+   ]
+  }
+ },
+ "12059": {
+  "id": 12059,
+  "aegisName": "ROZ_12059",
+  "name": "Lutie Cold Noodle",
+  "unidName": "Lutie Cold Noodle",
+  "resName": "",
+  "description": "Dish where chill and spiciness blend in a delicate balance, with pumpkin used as a distinctive garnish.\n^FFFFFF_^000000\nAGI +4.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nรสเย็นและเผ็ดที่ผสานกันอย่างลงตัว มีฟักทองวางเป็นเครื่องเคียงอย่างโดดเด่น\nAGI + 4\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "agi": [
+    "4"
+   ]
+  }
+ },
+ "12060": {
+  "id": 12060,
+  "aegisName": "ROZ_12060",
+  "name": "Steamed Bat Wing in Pumpkin",
+  "unidName": "Steamed Bat Wing in Pumpkin",
+  "resName": "",
+  "description": "Nourishing dish made by wrapping the mysterious ingredient Red Bat Wing in Hinalle leaves, then simmering it inside a hollowed pumpkin. Has a rather peculiar taste.\n^FFFFFF_^000000\nAGI +5.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nอาหารบำรุงที่ทำจากปีกค้างคาวแดงซึ่งเป็นวัตถุดิบลึกลับ ห่อด้วยใบ Hinalle แล้วนำไปตุ๋นในฟักทองที่คว้านด้านในออก รสชาติค่อนข้างแปลก\nAGI + 5\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "agi": [
+    "5"
+   ]
+  }
+ },
+ "12094": {
+  "id": 12094,
+  "aegisName": "ROZ_12094",
+  "name": "Heavenly Fruit Juice",
+  "unidName": "Heavenly Fruit Juice",
+  "resName": "",
+  "description": "A juice described by every taster as giving the sensation of ‘soaring into the sky’. Proper fruit balance is said to be crucial.\n^FFFFFF_^000000\nDEX +9.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nน้ำผลไม้ที่เล่าลือกันว่าผู้ที่ได้ดื่ม\nจะรู้สึกราวกับได้บินขึ้นสู่ท้องฟ้า\nเคล็ดลับสำคัญอยู่ที่อัตราส่วน\nของผลไม้ที่ลงตัว\nDEX + 9\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "dex": [
+    "9"
+   ]
+  }
+ },
+ "12095": {
+  "id": 12095,
+  "aegisName": "ROZ_12095",
+  "name": "Hwergelmir's Tonic",
+  "unidName": "Hwergelmir's Tonic",
+  "resName": "",
+  "description": "Liquor so revered that it was named after a legendary spring—the very source of all rivers. Everyone who tried it praised it endlessly.\n^FFFFFF_^000000\nDEX +10.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nสุราที่ผู้ได้ลิ้มลองต่างอดชื่นชมไม่ได้ จนได้รับการขนานนามด้วยชื่อแห่งบ่อน้ำในตำนานซึ่งเป็นต้นกำเนิดของสายน้ำทั้งปวง\nDEX + 10\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "dex": [
+    "10"
+   ]
+  }
+ },
+ "11554": {
+  "id": 11554,
+  "aegisName": "ROZ_11554",
+  "name": "Golden Roasted Apple",
+  "unidName": "Golden Roasted Apple",
+  "resName": "",
+  "description": "Whole roasted apple dripping with golden juice that makes your mouth water.\nDEX +1 for 3 minutes.\n^000088Recovers about 25 HP^000000.\n^777777--------------------------^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nแอปเปิลอบทั้งลูก สีทองเป็นเงาวาวชวนให้น้ำลายสอ\nเพิ่ม DEX + 1 เป็นเวลา 3 นาที\n^000088ฟื้นฟู HP ประมาณ 25^000000\nน้ำหนัก : ^7777771^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "dex": [
+    "1"
+   ]
+  }
+ },
+ "12062": {
+  "id": 12062,
+  "aegisName": "ROZ_12062",
+  "name": "Chocolate Mousse Cake",
+  "unidName": "Chocolate Mousse Cake",
+  "resName": "",
+  "description": "Signature chocolate mousse cake highly praised by royal dessert chef “Charles d'Orléans”, with a smooth texture and sweet, bittersweet flavor.\n^FFFFFF_^000000\nDEX +2.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nช็อกโกแลตมูสเค้กสูตรพิเศษที่ว่ากันว่าได้รับคำชื่นชมอย่างสูงจาก Charles Orleans ผู้ดูแลของหวานแห่งราชสำนัก เนื้อสัมผัสนุ่ม ให้รสหวานปนขมนิด ๆ\nDEX + 2\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "dex": [
+    "2"
+   ]
+  }
+ },
+ "12063": {
+  "id": 12063,
+  "aegisName": "ROZ_12063",
+  "name": "Fruit Mix",
+  "unidName": "Fruit Mix",
+  "resName": "",
+  "description": "Dessert made by cutting assorted fruits into bite-sized pieces and soaking them in syrup. Crisp texture is its greatest charm.\n^FFFFFF_^000000\nDEX +3.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nของหวานที่นำผลไม้หลายชนิดมาหั่นเป็นชิ้นพอดีคำแล้วแช่ในไซรัป สัมผัสกรอบอร่อยเป็นเลิศ\nDEX + 3\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "dex": [
+    "3"
+   ]
+  }
+ },
+ "12064": {
+  "id": 12064,
+  "aegisName": "ROZ_12064",
+  "name": "Cream Sandwich",
+  "unidName": "Cream Sandwich",
+  "resName": "",
+  "description": "Light sandwich made with freshly baked bread filled with minced meat and cream cheese. Feels perfect as a lunch option.\n^FFFFFF_^000000\nDEX +4.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nแซนด์วิชรสละมุนที่ทำจากขนมปังอบใหม่ ใส่เนื้อสับและครีมชีส เหมาะเป็นเมนูมื้อกลางวัน\nDEX + 4\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "dex": [
+    "4"
+   ]
+  }
+ },
+ "12065": {
+  "id": 12065,
+  "aegisName": "ROZ_12065",
+  "name": "Green Salad",
+  "unidName": "Green Salad",
+  "resName": "",
+  "description": "Salad of healthy vegetables tossed in a sweet Umbala-style dressing. Latest wellness menu trend in Prontera.\n^FFFFFF_^000000\nDEX +5.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nสลัดผักเพื่อสุขภาพที่คลุกเคล้ากับซอสหวานสไตล์ Umbala เมนูเพื่อสุขภาพล่าสุดของ Prontera\nDEX + 5\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "dex": [
+    "5"
+   ]
+  }
+ },
+ "12093": {
+  "id": 12093,
+  "aegisName": "ROZ_12093",
+  "name": "Special Toast",
+  "unidName": "Special Toast",
+  "resName": "",
+  "description": "Massive toast filled with meat, fruit, and cheese—about three times the usual amount. Despite the abundance, the taste remains uncertain.\n^FFFFFF_^000000\nDEX +8.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nโทสต์ขนาดยักษ์ที่อัดแน่นด้วยเนื้อ ผลไม้ และชีสมากกว่าปกติถึงสามเท่า แต่จะอร่อยสมกับปริมาณหรือไม่นั้นยังเป็นปริศนา\nDEX + 8\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "dex": [
+    "8"
+   ]
+  }
+ },
+ "12092": {
+  "id": 12092,
+  "aegisName": "ROZ_12092",
+  "name": "Soul Haunted Bread",
+  "unidName": "Soul Haunted Bread",
+  "resName": "",
+  "description": "Sweet bread so intense that some say it feels as though one’s soul might fly away; others claim their tongue nearly melts.\n^FFFFFF_^000000\nDEX +7.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nขนมปังที่มีความหวานราวกับจะทำให้วิญญาณลอยออกไป ว่ากันว่าหวานจนลิ้นแทบละลาย\nDEX + 7\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "dex": [
+    "7"
+   ]
+  }
+ },
+ "12091": {
+  "id": 12091,
+  "aegisName": "ROZ_12091",
+  "name": "Peach Cake",
+  "unidName": "Peach Cake",
+  "resName": "",
+  "description": "Refreshing cake made with Kunlun’s specialty peaches, known for their incredibly soft texture and fragrant taste.\n^FFFFFF_^000000\nDEX +6.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nเค้กกลิ่นหอมรสสดชื่นที่ทำจากลูกพีชขึ้นชื่อของ Gonryun โดยลูกพีชในเค้กมีความนุ่มเป็นพิเศษ\nDEX + 6\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "dex": [
+    "6"
+   ]
+  }
+ },
+ "12096": {
+  "id": 12096,
+  "aegisName": "ROZ_12096",
+  "name": "Lucky Soup",
+  "unidName": "Lucky Soup",
+  "resName": "",
+  "description": "Dish said to bring extraordinary fortune only when eaten while fiercely hot. Then again… it may just be a rumor.\n^FFFFFF_^000000\nLUK +6.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nว่ากันว่าหากกินตอนที่ยังร้อนจัดจะได้รับโชคก้อนโต\nLUK + 6\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "luk": [
+    "6"
+   ]
+  }
+ },
+ "12097": {
+  "id": 12097,
+  "aegisName": "ROZ_12097",
+  "name": "Assorted Shish Kebob",
+  "unidName": "Assorted Shish Kebob",
+  "resName": "",
+  "description": "Skewered dish made by grilling long, thin cuts of assorted meats. Popular for letting diners choose ingredients to suit their taste.\n^FFFFFF_^000000\nLUK +7.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nอาหารย่างเสียบไม้ที่นำเนื้อหลากชนิดมาเสียบกับไม้ยาวเรียวแล้วนำไปย่าง สามารถเลือกวัตถุดิบได้ตามใจจึงได้รับความนิยมอย่างมาก\nLUK + 7\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "luk": [
+    "7"
+   ]
+  }
+ },
+ "12098": {
+  "id": 12098,
+  "aegisName": "ROZ_12098",
+  "name": "Strawberry Flavored Rice Ball",
+  "unidName": "Strawberry Flavored Rice Ball",
+  "resName": "",
+  "description": "Rice ball with the refreshing flavor and aroma of strawberries. A rare experience that feels like eating strawberries as a side dish.\n^FFFFFF_^000000\nLUK +8.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nข้าวปั้นที่โดดเด่นด้วยรสและกลิ่นสตรอว์เบอร์รีสดชื่น ให้ประสบการณ์หายากราวกับได้กินสตรอว์เบอร์รีเป็นกับข้าว\nLUK + 8\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "luk": [
+    "8"
+   ]
+  }
+ },
+ "12099": {
+  "id": 12099,
+  "aegisName": "ROZ_12099",
+  "name": "Blood Flavored Soda",
+  "unidName": "Blood Flavored Soda",
+  "resName": "",
+  "description": "Carbonated soda loved by children for its sharp, fizzy taste. Slight hint of metallic flavor… but still enjoyable enough to overlook.\n^FFFFFF_^000000\nLUK +9.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nโซดาซาบซ่าที่เป็นที่นิยมในหมู่เด็ก ๆ แม้จะรู้สึกเหมือนมีรสเลือดจาง ๆ แต่ก็อร่อยจนมองข้ามไปได้\nLUK + 9\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "luk": [
+    "9"
+   ]
+  }
+ },
+ "12100": {
+  "id": 12100,
+  "aegisName": "ROZ_12100",
+  "name": "Cooked Nine Tail's Tails",
+  "unidName": "Cooked Nine Tail's Tails",
+  "resName": "",
+  "description": "Payon specialty cuisine made from the tail of Nine Tail, widely regarded across Rune-Midgarts as a dish of good fortune.\n^FFFFFF_^000000\nLUK +10.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nเมนูหาง Nine Tail ของขึ้นชื่อแห่ง Payon ที่เป็นที่รู้จักทั่ว Rune-Midgarts ในฐานะอาหารแห่งโชคลาภ\nLUK + 10\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "luk": [
+    "10"
+   ]
+  }
+ },
+ "12066": {
+  "id": 12066,
+  "aegisName": "ROZ_12066",
+  "name": "Fried Monkey Tails",
+  "unidName": "Fried Monkey Tails",
+  "resName": "",
+  "description": "Monkey tail lightly stir-fried and simply seasoned. Rumored to be an extremely popular snack to go with drinks.\n^FFFFFF_^000000\nLUK +1.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nหางลิงผัดจนเหลืองหอม ปรุงรสแบบเรียบง่าย ลือกันว่าเป็นกับแกล้มยอดนิยม\nLUK + 1\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "luk": [
+    "1"
+   ]
+  }
+ },
+ "12067": {
+  "id": 12067,
+  "aegisName": "ROZ_12067",
+  "name": "Mixed Juice",
+  "unidName": "Mixed Juice",
+  "resName": "",
+  "description": "Mixed Juice made by skillfully blending various fruit juices. Getting the ratio wrong may send you into a whole new world.\n^FFFFFF_^000000\nLUK +2.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nน้ำผลไม้รวมที่ผสมผสานกัน\nอย่างลงตัว หากกะสัดส่วนพลาด\nอาจได้ลิ้มลองรสชาติแบบใหม่\nLUK + 2\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "luk": [
+    "2"
+   ]
+  }
+ },
+ "12068": {
+  "id": 12068,
+  "aegisName": "ROZ_12068",
+  "name": "Fried Sweet Potato",
+  "unidName": "Fried Sweet Potato",
+  "resName": "",
+  "description": "Dish made by deep-frying Sweet Potato and then simmering it with syrup. Crispy and sweet, making it a very popular snack.\n^FFFFFF_^000000\nLUK +3.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nมันหวานทอดคลุกไซรัป เคี่ยวจนได้ที่ กรอบและหวาน เป็นของว่างยอดนิยม\nLUK + 3\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "luk": [
+    "3"
+   ]
+  }
+ },
+ "12069": {
+  "id": 12069,
+  "aegisName": "ROZ_12069",
+  "name": "Steamed Ancient Lips",
+  "unidName": "Steamed Ancient Lips",
+  "resName": "",
+  "description": "Fish dish made by steaming freshly caught fish together with Ancient Fish Lips, believed to be good for health, wrapped in fragrant leaves. Said to be more popular among men than women.\n^FFFFFF_^000000\nLUK +4.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nปลาเนื้อสดที่เพิ่งจับมาห่อด้วยใบไม้หอมแล้วนำไปนึ่ง พร้อมส่วนริมฝีปากปลาดึกดำบรรพ์ที่ลือกันว่าดีต่อสุขภาพ เป็นเมนูที่ผู้ชายชื่นชอบ\nLUK + 4\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "luk": [
+    "4"
+   ]
+  }
+ },
+ "12070": {
+  "id": 12070,
+  "aegisName": "ROZ_12070",
+  "name": "Fried Scorpion Tails",
+  "unidName": "Fried Scorpion Tails",
+  "resName": "",
+  "description": "Dish made by stir-frying only the tastiest part, the Scorpion Tail. The hard shell is cracked to enjoy the tender flesh inside. Slightly poisonous, so eating too much is not good for the body.\n^FFFFFF_^000000\nLUK +5.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nเมนูผัดหางแมงป่องที่เลือกใช้เฉพาะส่วนที่ว่ากันว่าอร่อยที่สุด ต้องทุบเปลือกแข็งออกแล้วกินเฉพาะเนื้อด้านในที่นุ่ม มีพิษอ่อน ๆ จึงไม่ดีต่อสุขภาพ\nLUK + 5\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "luk": [
+    "5"
+   ]
+  }
+ },
+ "11551": {
+  "id": 11551,
+  "aegisName": "ROZ_11551",
+  "name": "Savory Herb Salad",
+  "unidName": "Savory Herb Salad",
+  "resName": "",
+  "description": "Fragrant herb dish mixed with a refreshing sauce. Surprisingly energizing when eaten.\nSTR +1 for 3 minutes.\n^000088Recovers about 25 HP^000000.\n^777777--------------------------^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nสลัดสมุนไพรหอมกรุ่นที่คลุกเคล้ากับซอสรสสดชื่นจากสมุนไพรนานาชนิด เมื่อกินเข้าไปจะรู้สึกมีเรี่ยวแรงขึ้นอย่างน่าประหลาด\nเพิ่ม STR + 1 เป็นเวลา 3 นาที\n^000088ฟื้นฟู HP ประมาณ 25^000000\nน้ำหนัก : ^7777771^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "str": [
+    "1"
+   ]
+  }
+ },
+ "12042": {
+  "id": 12042,
+  "aegisName": "ROZ_12042",
+  "name": "Flipper Salad",
+  "unidName": "Flipper Salad",
+  "resName": "",
+  "description": "A rare dish that may look unappealing at first, but opens the door to a whole new world once tasted.\n^FFFFFF_^000000\nSTR +2.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nอาหารหายากที่แม้หน้าตาจะชวนให้ลังเล แต่เมื่อได้ลองชิมจะเปิดประสบการณ์สู่โลกใหม่\nSTR + 2\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "str": [
+    "2"
+   ]
+  }
+ },
+ "12043": {
+  "id": 12043,
+  "aegisName": "ROZ_12043",
+  "name": "Bomber Steak",
+  "unidName": "Bomber Steak",
+  "resName": "",
+  "description": "Looks like an ordinary steak, yet delivers an explosive burst of flavor the moment it's eaten.\n^FFFFFF_^000000\nSTR +3.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nแม้จะดูเหมือนสเต๊กธรรมดา แต่เมื่อได้ลิ้มลองจะรู้สึกราวกับพลังระเบิดออกมา\nSTR + 3\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "str": [
+    "3"
+   ]
+  }
+ },
+ "12045": {
+  "id": 12045,
+  "aegisName": "ROZ_12045",
+  "name": "Lutie Lady's Pancake",
+  "unidName": "Lutie Lady's Pancake",
+  "resName": "",
+  "description": "A sweet pancake crafted with the delicate touch of the Lady from Lutie. A taste that lifts the spirit.\n^FFFFFF_^000000\nSTR +5.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nแพนเค้กหวานที่เปี่ยมด้วยรสมือของคุณป้าจาก Lutie เป็นรสชาติที่ช่วยปลุกพลังให้พลุ่งพล่าน\nSTR + 5\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "str": [
+    "5"
+   ]
+  }
+ },
+ "12071": {
+  "id": 12071,
+  "aegisName": "ROZ_12071",
+  "name": "Shiny Marinade Beef",
+  "unidName": "Shiny Marinade Beef",
+  "resName": "",
+  "description": "Grilled beef dish so exquisite that those who have tried it bestowed upon it the title of “Shining”.\n^FFFFFF_^000000\nSTR +6.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nเมนูเนื้อย่างรสเลิศจนผู้ที่ได้ลิ้มลองต่างมอบฉายา ‘เปล่งประกาย’ ให้\nSTR + 6\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "str": [
+    "6"
+   ]
+  }
+ },
+ "12072": {
+  "id": 12072,
+  "aegisName": "ROZ_12072",
+  "name": "Whole Roast",
+  "unidName": "Whole Roast",
+  "resName": "",
+  "description": "Large cut of meat grilled whole with spicy sauce. Said to be the ultimate dish for true meat lovers.\n^FFFFFF_^000000\nSTR +7.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nเมนูย่างเนื้อชิ้นโตราดซอสเผ็ด ว่ากันว่าเป็นสุดยอดอาหารสำหรับคนรักเนื้อ\nSTR + 7\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "str": [
+    "7"
+   ]
+  }
+ },
+ "12073": {
+  "id": 12073,
+  "aegisName": "ROZ_12073",
+  "name": "Bearfoot Special",
+  "unidName": "Bearfoot Special",
+  "resName": "",
+  "description": "Dish counted among the greatest delicacies of Yongji Castle, said to be especially prized when made using the right sole.\n^FFFFFF_^000000\nSTR +8.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nอาหารที่ถูกยกให้เป็นสุดยอดภัตตาหารแห่ง Lou Yang ว่ากันว่าฝ่าเท้าขวาเป็นส่วนที่ได้รับความนิยมมากที่สุด\nSTR + 8\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "str": [
+    "8"
+   ]
+  }
+ },
+ "12074": {
+  "id": 12074,
+  "aegisName": "ROZ_12074",
+  "name": "Tendon Satay",
+  "unidName": "Tendon Satay",
+  "resName": "",
+  "description": "Top-quality tendons quickly grilled so the natural flavor of the ingredients remains intact.\n^FFFFFF_^000000\nSTR +9.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nเอ็นคุณภาพเยี่ยมย่างไฟแรงในเวลาอันสั้น เพื่อคงรสชาติเดิมไว้อย่างสมบูรณ์\nSTR + 9\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "str": [
+    "9"
+   ]
+  }
+ },
+ "12075": {
+  "id": 12075,
+  "aegisName": "ROZ_12075",
+  "name": "Steamed Tongue",
+  "unidName": "Steamed Tongue",
+  "resName": "",
+  "description": "Finest-grade dish that is soft and delicious, with the only drawback being its expensive ingredients. Said to have also come from Yongji Castle.\n^FFFFFF_^000000\nSTR +10.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nสุดยอดอาหารชั้นเลิศที่ทั้งนุ่มและอร่อย วัตถุดิบมีราคาแพง สมกับเป็นเมนูที่ส่งตรงมาจาก Lou Yang\nSTR + 10\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "str": [
+    "10"
+   ]
+  }
+ },
+ "12044": {
+  "id": 12044,
+  "aegisName": "ROZ_12044",
+  "name": "Herb Marinade Beef",
+  "unidName": "Herb Marinade Beef",
+  "resName": "",
+  "description": "Marinated ribs enhanced with herbs, using a cooking technique passed down in Payon for added aroma.\n^FFFFFF_^000000\nSTR +4.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nซี่โครงหมักที่เพิ่มความหอมยิ่งขึ้นด้วยสมุนไพร จากเคล็ดลับการทำอาหารที่สืบทอดมาจาก Payon\nSTR + 4\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "str": [
+    "4"
+   ]
+  }
+ },
+ "12046": {
+  "id": 12046,
+  "aegisName": "ROZ_12046",
+  "name": "Grape Juice Herbal Tea",
+  "unidName": "Grape Juice Herbal Tea",
+  "resName": "",
+  "description": "A refreshing tea infused with grape essence and herbal aroma. Clears the mind—though it may simply taste like grape juice.\n^FFFFFF_^000000\nINT +1.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nชากลิ่นหอมที่ช่วยให้รู้สึกปลอดโปร่ง ด้วยการเติมกลิ่นสมุนไพรลงในน้ำองุ่นเข้มข้น แต่รสชาติก็ยังเหมือนน้ำองุ่นอยู่ดี\nINT + 1\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "int": [
+    "1"
+   ]
+  }
+ },
+ "12047": {
+  "id": 12047,
+  "aegisName": "ROZ_12047",
+  "name": "Autumn Red Tea",
+  "unidName": "Autumn Red Tea",
+  "resName": "",
+  "description": "A tea blending three types of herbs to create a rich and harmonious fragrance. The taste itself is merely adequate.\n^FFFFFF_^000000\nINT +2.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nชาที่ผสานกลิ่นหอมของสมุนไพร 3 ชนิดไว้อย่างลงตัว ให้กลิ่นหอมที่เข้มข้น แต่รสชาติกลับธรรมดา\nINT + 2\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "int": [
+    "2"
+   ]
+  }
+ },
+ "12048": {
+  "id": 12048,
+  "aegisName": "ROZ_12048",
+  "name": "Honey Herbal Tea",
+  "unidName": "Honey Herbal Tea",
+  "resName": "",
+  "description": "Herbal tea sweetened with honey for extra comfort. Handle with care—it’s served hot.\n^FFFFFF_^000000\nINT +3.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nชาสมุนไพรที่เติมน้ำผึ้งซึ่งช่วยคลายความเหนื่อยล้า ควรดื่มอย่างระมัดระวังเพราะยังร้อนอยู่\nINT + 3\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "int": [
+    "3"
+   ]
+  }
+ },
+ "12049": {
+  "id": 12049,
+  "aegisName": "ROZ_12049",
+  "name": "Morrcc Fruit Wine",
+  "unidName": "Morrcc Fruit Wine",
+  "resName": "",
+  "description": "A fruit wine crafted by a Merchant from Morroc using tangy fruits. Light and enjoyable even for those unaccustomed to alcohol.\n^FFFFFF_^000000\nINT +4.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nสุราที่หมักจากผลไม้รสเปรี้ยว พัฒนาโดย Merchant คนหนึ่งแห่ง Morroc มีรสชาติที่ดื่มง่ายแม้สำหรับผู้หญิง\nINT + 4\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "int": [
+    "4"
+   ]
+  }
+ },
+ "12050": {
+  "id": 12050,
+  "aegisName": "ROZ_12050",
+  "name": "Mastela Fruit Wine",
+  "unidName": "Mastela Fruit Wine",
+  "resName": "",
+  "description": "A distilled drink made from Mastela fruit refined solely for mental clarity. Best enjoyed in moderation.\n^FFFFFF_^000000\nINT +5.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nสุราที่สกัดจาก Mastela ซึ่งเพิ่มประสิทธิภาพในการทำให้สมองปลอดโปร่งถึงขีดสุด โปรดอย่าดื่มมากเกินไป\nINT + 5\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "int": [
+    "5"
+   ]
+  }
+ },
+ "12076": {
+  "id": 12076,
+  "aegisName": "ROZ_12076",
+  "name": "Red Mushroom Wine",
+  "unidName": "Red Mushroom Wine",
+  "resName": "",
+  "description": "Wine made from aged grapes, yet said to taste completely different from regular wine. The secret is rumored to lie in the use of mushrooms.\n^FFFFFF_^000000\nINT +6.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nสุราที่หมักจากองุ่น แม้จะดูเป็นไวน์แต่ให้รสชาติแตกต่างจากไวน์ทั่วไปโดยสิ้นเชิง ว่ากันว่าความลับอยู่ที่การใช้เห็ด\nINT + 6\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "int": [
+    "6"
+   ]
+  }
+ },
+ "12078": {
+  "id": 12078,
+  "aegisName": "ROZ_12078",
+  "name": "Royal Family Tea",
+  "unidName": "Royal Family Tea",
+  "resName": "",
+  "description": "A signature royal dessert by Charles d’Orléans, whose sweet aroma is said to drift beyond the castle walls during tea time.\n^FFFFFF_^000000\nINT +8.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nผลงานที่ภาคภูมิใจของ Charles Orleans ผู้ดูแลของหวานแห่งราชสำนัก ว่ากันว่ากลิ่นหอมหวานยามน้ำชายามบ่ายกระจายไปทั่วเมือง\nINT + 8\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "int": [
+    "8"
+   ]
+  }
+ },
+ "12079": {
+  "id": 12079,
+  "aegisName": "ROZ_12079",
+  "name": "Tristan 12-Year",
+  "unidName": "Tristan 12-Year",
+  "resName": "",
+  "description": "Premium liquor crafted to commemorate the coronation of Tristan III, with the 12-year vintage considered the finest.\n^FFFFFF_^000000\nINT +9.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nสุราชั้นเลิศที่ผลิตขึ้นเพื่อเฉลิมฉลองการขึ้นครองราชย์ของ Tristan III ว่ากันว่าการบ่ม 12 ปีให้รสชาติดีที่สุด\nINT + 9\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "int": [
+    "9"
+   ]
+  }
+ },
+ "12080": {
+  "id": 12080,
+  "aegisName": "ROZ_12080",
+  "name": "Dragon Breath Cocktail",
+  "unidName": "Dragon Breath Cocktail",
+  "resName": "",
+  "description": "Liquor with a fierce flavor said to let you feel a dragon’s breath from a single sip. Those who taste it claim they can never forget it.\n^FFFFFF_^000000\nINT +10.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nสุรารสเข้มข้นที่ให้ความรู้สึกราวกับลมหายใจของมังกร เพียงจิบเดียวก็ตราตรึงจนไม่มีวันลืม\nINT + 10\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "int": [
+    "10"
+   ]
+  }
+ },
+ "12077": {
+  "id": 12077,
+  "aegisName": "ROZ_12077",
+  "name": "Special Royal Jelly Herbal Tea",
+  "unidName": "Special Royal Jelly Herbal Tea",
+  "resName": "",
+  "description": "Herbal tea sweetened with Royal Jelly and honey, known to aid mental recovery, though its aroma is often considered unpleasant.\n^FFFFFF_^000000\nINT +7.\n^777777--------------------------^000000\nWeight : ^7777775^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nเครื่องดื่มชาสมุนไพรที่เติม Royal Jelly และน้ำผึ้ง ช่วยฟื้นฟูพลัง แต่ขึ้นชื่อว่ามีกลิ่นไม่ค่อยดี\nINT + 7\nน้ำหนัก : ^7777775^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 1,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {
+   "int": [
+    "7"
+   ]
+  }
+ },
+ "645": {
+  "id": 645,
+  "aegisName": "ROZ_645",
+  "name": "Concentration Potion",
+  "unidName": "Concentration Potion",
+  "resName": "",
+  "description": "Potion infused with ingredients that enhance focus. Increases ASPD when consumed. Usable by All Jobs.\n^FFFFFF_^000000\n^777777--------------------------^000000\nWeight : ^77777710^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nยาน้ำที่มีส่วนผสมช่วยเพิ่มสมาธิ\nเมื่อใช้แล้วจะเพิ่มความเร็ว\nในการโจมตี\nสามารถใช้งานได้ทุกอาชีพ\n^FFFFFF_^000000\nน้ำหนัก : ^77777710^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 2,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {}
+ },
+ "656": {
+  "id": 656,
+  "aegisName": "ROZ_656",
+  "name": "Awakening Potion",
+  "unidName": "Awakening Potion",
+  "resName": "",
+  "description": "Mysterious potion that induces an awakened state. Increases ASPD when consumed. Usable only by characters Lv.40 or higher, except Acolyte/Priest/Bard/Dancer.\n^FFFFFF_^000000\n^777777--------------------------^000000\nWeight : ^77777715^000000\nRequired Level : ^77777740^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nยาน้ำลึกลับที่ให้ผลปลุกพลัง\nเมื่อใช้แล้วจะเพิ่มความเร็วใน\nการโจมตี สามารถใช้งานได้\nเฉพาะตัวละครเลเวล 40 ขึ้นไป\nไม่สามารถใช้ได้กับ Acolyte,\nPriest, Bard, Dancer\n^FFFFFF_^000000\nน้ำหนัก : ^77777715^000000\nเลเวลที่ต้องการ : ^77777740^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 2,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {}
+ },
+ "657": {
+  "id": 657,
+  "aegisName": "ROZ_657",
+  "name": "Berserk Potion",
+  "unidName": "Berserk Potion",
+  "resName": "",
+  "description": "Powerful potion that heats the blood and drives the user into a berserk state. Increases ASPD when consumed. Usable only by characters Lv.85 or higher belonging to Swordman Class/Rogue/Mage/Wizard/Merchant Class/Gunslinger Class.\n^FFFFFF_^000000\n^777777--------------------------^000000\nWeight : ^77777720^000000\nRequired Level : ^77777785^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nยาทรงพลังที่ทำให้เลือดทั่วร่าง\nเดือดพล่านและเพิ่มความ\nแข็งแกร่งของผู้ใช้ ช่วยเพิ่ม\nความเร็วในการโจมตี ใช้ได้\nเฉพาะเลเวล 85 ขึ้นไป และ\nเฉพาะอาชีพ Swordman, Rogue,\nMage, Wizard, Merchant และ\nGunslinger เท่านั้น\n^FFFFFF_^000000\nน้ำหนัก : ^77777720^000000\nเลเวลที่ต้องการ : ^77777785^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 2,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {}
+ },
+ "107045": {
+  "id": 107045,
+  "aegisName": "ROZ_107045",
+  "name": "Agi Up Potion",
+  "unidName": "Agi Up Potion",
+  "resName": "",
+  "description": "A potion that produces an even greater effect when used with other ASPD-boosting potions.\nWhen consumed, ASPD increases slightly more for 30 minutes.\nApplies the same way as existing ASPD potions, and the amount of ASPD gained may vary depending on AGI.\n^FFFFFF_^000000\n^777777--------------------------^000000\nWeight : ^7777771^000000\n^777777--------------------------^000000\n^0000ff──────── ภาษาไทย ────────^000000\nเมื่อใช้ร่วมกับไอเทมเพิ่ม ASPD\nชิ้นอื่นจะให้ผลลัพธ์ที่มากขึ้น\nเมื่อใช้งาน จะเพิ่ม ASPD\nเป็นเวลา 30 นาที\nมีผลเช่นเดียวกับ Potion\nเพิ่ม ASPD ทั่วไป\nและค่าที่ได้รับอาจ\nแตกต่างตาม AGI\n^FFFFFF_^000000\nน้ำหนัก : ^7777771^000000",
+  "slots": 0,
+  "itemTypeId": 3,
+  "itemSubTypeId": 2,
+  "itemLevel": null,
+  "attack": null,
+  "defense": null,
+  "weight": 0,
+  "requiredLevel": null,
+  "location": null,
+  "compositionPos": null,
+  "usableClass": [
+   "all"
+  ],
+  "script": {}
  }
 }

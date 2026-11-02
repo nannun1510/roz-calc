@@ -1,4 +1,5 @@
 import { ItemOptionMap } from '../../../constants/item-options-table';
+import { RozFoodStatList } from '../../../constants/roz-consumables';
 import { decodeBuild, encodeBuild } from '../../../utils/roz-build-code';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService, PrimeIcons, SelectItemGroup } from 'primeng/api';
@@ -224,7 +225,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   passiveSkills: PassiveSkillModel[] = [];
   activeSkills: ActiveSkillModel[] = [];
   consumableList: DropdownModel[] = [];
-  consumableList2: DropdownModel[][] = FoodStatList;
+  consumableList2: DropdownModel[][] = RozFoodStatList;
   aspdPotionList: DropdownModel[] = [];
   aspdPotionList2: DropdownModel[] = AspdPotionList2;
   extrabuff: DropdownModel[] = extrabuff;
@@ -1716,41 +1717,21 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   }
 
   private setAspdPotionList() {
+    // ROZ rules from the potion descriptions
+    const c = String(this.selectedCharacter?.className || '');
+    const lv = Number(this.model?.level) || 0;
     this.aspdPotionList = AspdPotionList.filter(({ value }) => {
       switch (value) {
-        case 645:
+        case 656: // Awakening Potion: Lv 40+, not Acolyte / Priest / Bard / Dancer
+          return lv >= 40 && !['Acolyte', 'Priest', 'Bard', 'Dancer'].includes(c);
+        case 657: // Berserk Potion: Lv 85+, Swordman class / Rogue / Mage / Wizard / Merchant class
+          return lv >= 85 && ['Swordman', 'Knight', 'Crusader', 'Rogue', 'Mage', 'Wizard', 'Merchant', 'Blacksmith', 'Alchemist'].includes(c);
+        default:
           return true;
-        case 656:
-          return true;
-        case 657: {
-          const usable = [
-            ClassName.RuneKnight,
-            ClassName.DragonKnight,
-            ClassName.RoyalGuard,
-            ClassName.ImperialGuard,
-            ClassName.Genetic,
-            ClassName.Biolo,
-            ClassName.Mechanic,
-            ClassName.Meister,
-            ClassName.ShadowChaser,
-            ClassName.AbyssChaser,
-            ClassName.Warlock,
-            ClassName.ArchMage,
-            ClassName.Rebellion,
-            ClassName.NightWatch,
-            ClassName.SoulReaper,
-            ClassName.SoulAscetic,
-            ClassName.StarEmperor,
-            ClassName.SkyEmperor,
-          ];
-
-          return usable.includes(this.selectedCharacter.className);
-        }
       }
-
-      return true;
     });
   }
+
 
   private setSkillModelArray() {
     const { activeSkills, passiveSkills } = this.selectedCharacter;
@@ -1923,7 +1904,8 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
           }
           continue;
         case ItemTypeId.CONSUMABLE:
-          consumableList.push(item);
+          // ROZ: 0 = buff items (this list); stat foods and ASPD potions have their own lists
+          if (!itemSubTypeId) consumableList.push(item);
           continue;
         case ItemTypeId.AMMO:
           ammoList.push(item);

@@ -91,7 +91,8 @@ export interface AtkSkillModel {
    * For DPS calucation
    * undefined = 1, 0.2 = 20 %
    */
-  autoSpellChance?: number;
+  /** chance per auto attack (0-1); ROZ: may depend on skill level */
+  autoSpellChance?: number | ((skillLevel: number) => number);
   element?: ElementType;
   getElement?: (skillValue: string) => ElementType;
   secondaryDmgInput?: Omit<AtkSkillModel, 'secondaryDmg' | 'part2' | 'acd' | 'vct' | 'cd' | 'fct' | 'name' | 'value'> & { isIncludeMain: boolean; };

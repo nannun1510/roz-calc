@@ -86,6 +86,36 @@ export function rozAtkSkill(spec: RozAtkSpec): AtkSkillModel {
   };
 }
 
+/**
+ * ROZ Duple Light (Priest, from the client skill text):
+ *   Physical light 500 + 50*Lv % ATK, Magical light 800 + 80*Lv % MATK, on melee auto attacks.
+ * The proc chance is not in the client text; we use the official one (10 + 2*Lv %, each light
+ * rolls on its own), as on iRO. Magic light is Neutral, physical light uses the weapon element.
+ */
+export const ROZ_DUPLE_LIGHT: AtkSkillModel = {
+  name: 'Duple Light' as any,
+  label: 'Duple Light Lv10 (on auto attack)',
+  value: 'Duple Light==10',
+  levelList: Array.from({ length: 10 }, (_, i) => ({ label: `Duple Light Lv${i + 1} (on auto attack)`, value: `Duple Light==${i + 1}` })),
+  acd: 0,
+  fct: 0,
+  vct: 0,
+  cd: 0,
+  isMelee: true,
+  autoSpellChance: (lv: number) => (10 + 2 * lv) / 100,
+  rozProcOnAutoAttack: true,
+  formula: ({ skillLevel }) => 500 + 50 * skillLevel,
+  part2: {
+    label: 'Magic light',
+    element: ElementType.Neutral,
+    isIncludeMain: false,
+    hit: 1,
+    isMatk: true,
+    isMelee: false,
+    formula: ({ skillLevel }) => 800 + 80 * skillLevel,
+  },
+} as any;
+
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
 /** Engine skill names that differ from the ROZ English client name. */
@@ -131,6 +161,7 @@ function makeRozClass(Base: Ctor, cfg: RozClassConfig): Ctor {
   ].map((s) => s.name);
   const allowed = new Set(treeNames.map(norm).map((n) => NAME_ALIAS[n] ?? n));
   const atk = ROZ_ATK_SKILLS.filter((s) => treeNames.includes(s.name)).map(rozAtkSkill);
+  if (treeNames.includes('Duple Light') && !atk.some((a) => a.name === ('Duple Light' as any))) atk.push(ROZ_DUPLE_LIGHT);
 
   return class extends (Base as any) {
     constructor() {

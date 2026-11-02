@@ -319,6 +319,21 @@
       [max2]="totalSummary2?.dmg?.skillDps"
     ></app-calc-value>
   </div>
+  <div class="col-12" *ngIf="totalSummary?.dmg?.rozProcChance">
+    <span class="summary_label">Proc chance:</span>
+    <span class="summary_damage"> {{ totalSummary?.dmg?.rozProcChance }}% per light, per auto-attack hit</span>
+  </div>
+  <div class="col-12" *ngIf="totalSummary?.dmg?.rozProcChance">
+    <app-calc-value
+      [enableCompare]="isEnableCompare && totalSummary2?.dmg"
+      label="Auto attack + proc DPS:"
+      styleClass="summary_highlight"
+      styleClass2="summary_compare"
+      [showPercentDiff]="true"
+      [max]="totalSummary?.dmg?.rozBasicPlusProcDps"
+      [max2]="totalSummary2?.dmg?.rozBasicPlusProcDps"
+    ></app-calc-value>
+  </div>
   <div
     class="col-12"
     [hidden]="

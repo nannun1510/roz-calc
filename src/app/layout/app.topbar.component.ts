@@ -201,6 +201,14 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.5 (alpha)',
+      date: '02-11-2026',
+      logs: [
+        'Priest: Duple Light added (ROZ values: physical 500+50xLv %, magic 800+80xLv %). Pick "Duple Light (on auto attack)" as the Skill to see damage per proc and auto attack + proc DPS.',
+        'Duple Light proc chance uses the official 10+2xLv % per light (not shown in the ROZ client), please report if ROZ differs.',
+      ],
+    },
+    {
       v: 'ROZ Global v0.4 (alpha)',
       date: '02-11-2026',
       logs: [

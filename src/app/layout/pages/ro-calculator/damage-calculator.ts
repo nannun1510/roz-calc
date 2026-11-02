@@ -1321,7 +1321,7 @@ export class DamageCalculator {
       baseCri: baseSkillCri = 0,
       isMatk,
       isMelee: _isMelee,
-      autoSpellChance = 1,
+      autoSpellChance: _autoSpellChance = 1,
       isHit100,
       isIgnoreDef = false,
       totalHit: _totalHit = 1,
@@ -1479,9 +1479,21 @@ export class DamageCalculator {
     const { avgCriDamage, avgNoCriDamage } = calculated;
 
     const totalHit = typeof _totalHit === 'function' ? _totalHit(formulaParams) : _totalHit;
+    const autoSpellChance = typeof _autoSpellChance === 'function' ? _autoSpellChance(skillLevel) : _autoSpellChance;
     const isAutoSpell = autoSpellChance != 1;
     const skillHitsPerSec = Math.min(skillAspd.totalHitPerSec || basicAspd.hitsPerSec, basicAspd.hitsPerSec);
-    const oneHitDps = isAutoSpell
+    // ROZ: a proc on auto attack (e.g. Duple Light) = chance x (all its parts) on every auto-attack hit
+    const procOnAutoAttack = isAutoSpell && !!(skillData as any).rozProcOnAutoAttack;
+    const oneHitDps = procOnAutoAttack
+      ? calcDmgDps({
+        min: minDamage + skillMinDamage2,
+        max: maxDamage + skillMaxDamage2,
+        cri: 0,
+        criDmg: maxDamage + skillMaxDamage2,
+        hitsPerSec: basicAspd.hitsPerSec,
+        accRate: basicDmg.accuracy,
+      })
+      : isAutoSpell
       ? 0
       : calcDmgDps({
         min: avgNoCriDamage || minDamage + skillMinDamage2,
@@ -1533,7 +1545,9 @@ export class DamageCalculator {
       noStackMaxDamage,
       noStackMinCriDamage,
       noStackMinDamage,
-      isAutoSpell,
+      isAutoSpell: isAutoSpell && !procOnAutoAttack,
+      rozProcChance: procOnAutoAttack ? round(autoSpellChance * 100, 0) : 0,
+      rozBasicPlusProcDps: procOnAutoAttack ? floor(((basicDmg as any).basicDps || 0) + skillDps) : 0,
       isUsedCurrentHP: typeof currentHpFn === 'function',
       isUsedCurrentSP: typeof currentSpFn === 'function',
       currentHp,

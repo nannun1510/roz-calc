@@ -31,6 +31,9 @@ export interface SkillDamageSummaryModel {
   baseSkillDamage: number;
   dmgType: SkillType;
   isAutoSpell: boolean;
+  /** ROZ: proc on auto attack (Duple Light): chance % and basic attack DPS + proc DPS */
+  rozProcChance?: number;
+  rozBasicPlusProcDps?: number;
   skillSizePenalty: number;
   skillCanCri: boolean;
   skillPhyHit: boolean;

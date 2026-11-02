@@ -411,7 +411,8 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
           ammu: !this.calculator.isAllowAmmo(),
           shield: !this.calculator.isAllowShield(),
         };
-        if (this.hiddenMap.ammu && this.model.ammo) {
+        // ROZ: do not drop the arrow while a build is still loading (weapon may not be applied yet)
+        if (this.hiddenMap.ammu && this.model.ammo && !this.isInProcessingPreset) {
           this.model.ammo = undefined;
           this.onSelectItem(ItemTypeEnum.ammo);
           return;

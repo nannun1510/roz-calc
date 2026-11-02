@@ -201,6 +201,14 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.9 (alpha)',
+      date: '02-11-2026',
+      logs: [
+        'FIX: "Bane" skills now add damage: Beast Bane (Hunter, +4 ATK/Lv vs Brute & Insect), Demon Bane (Acolyte/Priest/Crusader, vs Demon & Undead element) and similar race/element mastery bonuses.',
+        'FIX: a pasted build code could lose its arrow while loading.',
+      ],
+    },
+    {
       v: 'ROZ Global v0.8 (alpha)',
       date: '02-11-2026',
       logs: [

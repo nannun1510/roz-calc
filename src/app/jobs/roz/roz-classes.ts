@@ -190,6 +190,18 @@ function makeRozClass(Base: Ctor, cfg: RozClassConfig): Ctor {
     get className() { return cfg.className; }
     get minMaxLevelCap() { return { minMaxLevel: [1, ROZ_MAX_BASE_LEVEL] as [number, number], maxJob: cfg.isSecond ? ROZ_MAX_JOB_2ND : ROZ_MAX_JOB_1ST }; }
     get maxBaseStat() { return 99; }
+
+    /** ROZ: race/element "bane" mastery ATK (Beast Bane, Demon Bane, ...) — some engine
+     *  base classes (e.g. Sniper) never add it, so add it here unless the base already does. */
+    getMasteryAtk(info: any): number {
+      const base = super.getMasteryAtk(info) || 0;
+      const src = String((Base as any).prototype.getMasteryAtk);
+      if (/getMasteryAtkByMonsterRace|x_race_/.test(src)) return base;
+      const self = this as any;
+      const race = self.getMasteryAtkByMonsterRace(info?.monster?.race)?.totalAtk || 0;
+      const ele = self.getMasteryAtkByMonsterElement(info?.monster?.element)?.totalAtk || 0;
+      return base + race + ele;
+    }
     get excludedJobLevels(): number[] { return []; }
     get isExpandedClass() { return false; }
     /** ROZ has no trait stats (POW/STA/WIS/SPL/CON/CRT). */

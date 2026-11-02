@@ -201,6 +201,13 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.3 (alpha)',
+      date: '02-11-2026',
+      logs: [
+        'Random options: up to 3 on every armor, headgear (upper/middle/lower), garment, shoes, shield and accessory; up to 4 on weapons (blacksmith-made).',
+      ],
+    },
+    {
       v: 'ROZ Global v0.2 (alpha)',
       date: '02-11-2026',
       logs: [

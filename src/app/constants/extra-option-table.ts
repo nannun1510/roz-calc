@@ -1,3 +1,4 @@
+import { RozExtraOptionTable } from './roz-extra-option-table';
 export const ExtraOptionTable = {
   Temporal_M_Str: 1,
   Temporal_M_Agi: 1,
@@ -142,4 +143,7 @@ export const ExtraOptionTable = {
   //Spade_Ace_Melee: 2,
   Temporal_Armor_TW_LT: 3,
 
-} as const;
+} as Record<string, number>;
+
+// ROZ Global: every ROZ armor/accessory piece can roll up to 3 random options.
+Object.assign(ExtraOptionTable, RozExtraOptionTable);

@@ -51,6 +51,21 @@ export enum ItemOptionNumber {
 
   X_HP = 26,
   X_SP = 27,
+
+  // ROZ Global: up to 3 random options on gear, 4 on (blacksmith-made) weapons
+  Shield_3 = 30,
+  H_Upper_3 = 31,
+  H_Low_1 = 32,
+  H_Low_2 = 33,
+  H_Low_3 = 34,
+  Garment_3 = 35,
+  Boot_1 = 36,
+  Boot_2 = 37,
+  Boot_3 = 38,
+  A_Right_3 = 39,
+  A_Left_3 = 40,
+  W_Left_4 = 41,
+  W_Right_4 = 42,
 }
 
 const slotNumbers = Object.values(ItemOptionNumber).filter((a) => Number.isInteger(a)) as number[];

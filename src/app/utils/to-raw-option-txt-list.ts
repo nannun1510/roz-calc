@@ -19,6 +19,8 @@ const weaponOptionSlots = [
   ItemOptionNumber.W_Left_1,
   ItemOptionNumber.W_Left_2,
   ItemOptionNumber.W_Left_3,
+  ItemOptionNumber.W_Left_4,
+  ItemOptionNumber.W_Right_4,
 ];
 
 export const toRawOptionTxtList = (model: MainModel, itemMap) => {

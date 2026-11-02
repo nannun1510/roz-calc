@@ -331,9 +331,9 @@
         </div>
       </div>
 
-      <div class="col-12" *ngIf="isWeapon || totalExtraOption === 3">
+      <div class="col-12" *ngIf="isWeapon || totalExtraOption >= 3">
         <div class="grid grid-nogutter">
-          <div class="col-4" [hidden]="totalExtraOption < 1">
+          <div class="col-3" [hidden]="totalExtraOption < 1">
             <p-cascadeSelect
               [(ngModel)]="option1Value"
               [disabled]="!itemId"
@@ -348,7 +348,7 @@
               (onClear)="onOptionChange('option1Value', $event)"
             ></p-cascadeSelect>
           </div>
-          <div class="col-4" [hidden]="totalExtraOption < 2">
+          <div class="col-3" [hidden]="totalExtraOption < 2">
             <p-cascadeSelect
               [(ngModel)]="option2Value"
               [disabled]="!itemId"
@@ -363,7 +363,7 @@
               (onClear)="onOptionChange('option2Value', $event)"
             ></p-cascadeSelect>
           </div>
-          <div class="col-4" [hidden]="totalExtraOption < 3">
+          <div class="col-3" [hidden]="totalExtraOption < 3">
             <p-cascadeSelect
               [(ngModel)]="option3Value"
               [disabled]="!itemId"
@@ -376,6 +376,21 @@
               [showClear]="true"
               (onChange)="onOptionChange('option3Value', $event)"
               (onClear)="onOptionChange('option3Value', $event)"
+            ></p-cascadeSelect>
+          </div>
+          <div class="col-3" [hidden]="totalExtraOption < 4">
+            <p-cascadeSelect
+              [(ngModel)]="option4Value"
+              [disabled]="!itemId"
+              [options]="optionList"
+              optionValue="value"
+              optionGroupLabel="label"
+              optionLabel="label"
+              [optionGroupChildren]="['children', 'children', 'children']"
+              placeholder="Option 4"
+              [showClear]="true"
+              (onChange)="onOptionChange('option4Value', $event)"
+              (onClear)="onOptionChange('option4Value', $event)"
             ></p-cascadeSelect>
           </div>
         </div>

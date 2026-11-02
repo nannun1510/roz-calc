@@ -1,3 +1,4 @@
+import { ItemOptionMap } from '../../../constants/item-options-table';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService, PrimeIcons, SelectItemGroup } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -767,7 +768,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       // if compare the item, should get options from its.
       if (this.compareItemNames?.includes(ItemTypeEnum.weapon)) {
         const itemId = this.model2[ItemTypeEnum.weapon];
-        for (let slot = ItemOptionNumber.W_Left_1; slot <= ItemOptionNumber.W_Left_3; slot++) {
+        for (const slot of ItemOptionMap.get(ItemTypeEnum.weapon)) {
           if (!itemId) {
             this.model2.rawOptionTxts[slot] = null;
           }
@@ -775,7 +776,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
         }
 
         const isAllowShield = calc.isAllowShield();
-        for (let slot = ItemOptionNumber.W_Right_1; slot <= ItemOptionNumber.W_Right_3; slot++) {
+        for (const slot of ItemOptionMap.get(ItemTypeEnum.leftWeapon)) {
           if (!itemId || !isAllowShield) {
             this.model2.rawOptionTxts[slot] = null;
             rawOptionTxts[slot] = this.model2.rawOptionTxts[slot];

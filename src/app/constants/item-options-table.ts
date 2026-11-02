@@ -2,15 +2,15 @@ import { ItemOptionNumber } from './item-option-number.enum';
 import { ItemTypeEnum } from './item-type.enum';
 
 export const ItemOptionTable: [ItemTypeEnum, ItemOptionNumber[]][] = [
-  [ItemTypeEnum.shield, [ItemOptionNumber.Shield_1, ItemOptionNumber.Shield_2]],
-  [ItemTypeEnum.headUpper, [ItemOptionNumber.H_Upper_1, ItemOptionNumber.H_Upper_2]],
+  [ItemTypeEnum.shield, [ItemOptionNumber.Shield_1, ItemOptionNumber.Shield_2, ItemOptionNumber.Shield_3]],
+  [ItemTypeEnum.headUpper, [ItemOptionNumber.H_Upper_1, ItemOptionNumber.H_Upper_2, ItemOptionNumber.H_Upper_3]],
   [ItemTypeEnum.headMiddle, [ItemOptionNumber.H_Mid_1, ItemOptionNumber.H_Mid_2, ItemOptionNumber.H_Mid_3]],
-  // [ItemTypeEnum.headLower, [ItemOptionNumber.H_Low_1, ItemOptionNumber.H_Low_2]],
+  [ItemTypeEnum.headLower, [ItemOptionNumber.H_Low_1, ItemOptionNumber.H_Low_2, ItemOptionNumber.H_Low_3]],
   [ItemTypeEnum.armor, [ItemOptionNumber.Armor_1, ItemOptionNumber.Armor_2, ItemOptionNumber.Armor_3]],
-  [ItemTypeEnum.garment, [ItemOptionNumber.Garment_1, ItemOptionNumber.Garment_2]],
-  // [ItemTypeEnum.boot, [ItemOptionNumber.Boot_1, ItemOptionNumber.Boot_2]],
-  [ItemTypeEnum.accLeft, [ItemOptionNumber.A_Left_1, ItemOptionNumber.A_Left_2]],
-  [ItemTypeEnum.accRight, [ItemOptionNumber.A_Right_1, ItemOptionNumber.A_Right_2]],
+  [ItemTypeEnum.garment, [ItemOptionNumber.Garment_1, ItemOptionNumber.Garment_2, ItemOptionNumber.Garment_3]],
+  [ItemTypeEnum.boot, [ItemOptionNumber.Boot_1, ItemOptionNumber.Boot_2, ItemOptionNumber.Boot_3]],
+  [ItemTypeEnum.accLeft, [ItemOptionNumber.A_Left_1, ItemOptionNumber.A_Left_2, ItemOptionNumber.A_Left_3]],
+  [ItemTypeEnum.accRight, [ItemOptionNumber.A_Right_1, ItemOptionNumber.A_Right_2, ItemOptionNumber.A_Right_3]],
 
   [ItemTypeEnum.shadowWeapon, [ItemOptionNumber.SD_Wp_1]],
   [ItemTypeEnum.shadowArmor, [ItemOptionNumber.SD_Ar_1]],
@@ -21,8 +21,8 @@ export const ItemOptionTable: [ItemTypeEnum, ItemOptionNumber[]][] = [
 ];
 
 const WeaponTable: typeof ItemOptionTable = [
-  [ItemTypeEnum.leftWeapon, [ItemOptionNumber.W_Right_1, ItemOptionNumber.W_Right_2, ItemOptionNumber.W_Right_3]],
-  [ItemTypeEnum.weapon, [ItemOptionNumber.W_Left_1, ItemOptionNumber.W_Left_2, ItemOptionNumber.W_Left_3]],
+  [ItemTypeEnum.leftWeapon, [ItemOptionNumber.W_Right_1, ItemOptionNumber.W_Right_2, ItemOptionNumber.W_Right_3, ItemOptionNumber.W_Right_4]],
+  [ItemTypeEnum.weapon, [ItemOptionNumber.W_Left_1, ItemOptionNumber.W_Left_2, ItemOptionNumber.W_Left_3, ItemOptionNumber.W_Left_4]],
 ];
 const allTable: typeof ItemOptionTable = [...WeaponTable, ...ItemOptionTable];
 

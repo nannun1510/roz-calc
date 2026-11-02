@@ -79,6 +79,9 @@ export class EquipmentComponent implements OnChanges, OnInit {
   @Input() option3Value = undefined;
   @Output() option3ValueChange = new EventEmitter<string>();
 
+  @Input() option4Value = undefined;
+  @Output() option4ValueChange = new EventEmitter<string>();
+
   totalCardSlots = 0;
   enchant1List: DropdownModel[] = [];
   enchant2List: DropdownModel[] = [];
@@ -244,7 +247,8 @@ export class EquipmentComponent implements OnChanges, OnInit {
       }
 
       if (this.isWeapon) {
-        this.totalExtraOption = 3;
+        // ROZ: blacksmith-made weapons can roll up to 4 random options
+        this.totalExtraOption = 4;
       } else if (OptionableItemTypeSet.has(this.itemType as any)) {
         const itemAegisName = item?.aegisName;
         this.totalExtraOption = ExtraOptionTable[itemAegisName] || 0;

@@ -20,6 +20,9 @@ fork = json.load(open('tools/roz/latam-original-item.json'))
 # anything else (damage taken, healing, SP cost, PvP) has no effect on damage output.
 _raw = open('src/app/utils/create-raw-total-bonus.ts').read()
 VALID = set(re.findall(r'^\s+([A-Za-z_0-9]+):', _raw, re.M))
+SKILLS = set(re.findall(r"^\s+'([^']+)',", open('src/app/constants/skill-name.ts').read(), re.M))
+VALID |= SKILLS
+TH = json.load(open('tools/roz/roz-items-th.json'))
 
 clean = lambda s: re.sub(r'\^[0-9a-fA-F]{6}', '', s).strip()
 
@@ -71,6 +74,19 @@ def clause(c):
     c = re.sub(r'\s+additional$', '', c)
     if not c: return []
     if re.fullmatch(r'Unbreakable|Cannot be Refined|Cannot be refined|Indestructible', c): return []
+    m = re.fullmatch(r'([A-Za-z]+(?:/[A-Za-z]+)+)\s*([+-]\s*\d+%?)', c)
+    if m:
+        out = []
+        for part in m.group(1).split('/'):
+            r = clause(f'{part} {m.group(2)}')
+            if r is None: return None
+            out += r
+        return out
+    m = re.fullmatch(r'Physical Damage to All Grades of Enemies \+(\d+)%', c, flags=re.I)
+    if m: return [('p_class_all', int(m.group(1)))]
+    m = re.fullmatch(r'Magic(?:al)? Damage to All Grades of Enemies \+(\d+)%', c, flags=re.I)
+    if m: return [('m_class_all', int(m.group(1)))]
+    if re.fullmatch(r'\w+ resistance \+\d+%', c, flags=re.I): return []
     m = re.fullmatch(rf'({flat_names})\s*([+-])\s*(\d+)', c)
     if m:
         k, v = FLAT[m.group(1)], int(m.group(3)) * (1 if m.group(2) == '+' else -1)
@@ -88,6 +104,10 @@ def clause(c):
         if k.startswith('after attack'): return [('aspdPercent', v)]
         if k.startswith('sp'): return [('spCostPercent', -v)]
         return [('acd', v)]
+    m = re.fullmatch(r'(?:Increases )?damage (?:dealt )?(?:with|of) \[?(.+?)\]? (?:by |\+)(\d+)%', c, flags=re.I)
+    if m and m.group(1) in SKILLS: return [(m.group(1), int(m.group(2)))]
+    m = re.fullmatch(r'\[?(.+?)\]? damage \+(\d+)%', c)
+    if m and m.group(1) in SKILLS: return [(m.group(1), int(m.group(2)))]
     m = re.fullmatch(r'ASPD increases \(After Attack Delay -(\d+)%\)', c)
     if m: return [('aspdPercent', int(m.group(1)))]
     # damage dealt
@@ -166,11 +186,21 @@ def parse_line(line):
     return out
 
 
+def bilingual(k, unparsed=()):
+    en = '\n'.join(x for x in (S.get(k, {}).get('identifiedDescriptionName') or []))
+    th = '\n'.join(x for x in (TH.get(k, {}).get('identifiedDescriptionName') or []))
+    out = ''
+    if unparsed: out += '^cc0000[ROZ] Not yet in the calculator:^000000\n' + '\n'.join(unparsed) + '\n'
+    out += en
+    if th and th != en: out += '\n^0000ff──────── ภาษาไทย ────────^000000\n' + (TH[k].get('identifiedDisplayName') or '') + '\n' + th
+    return out
+
+
 META = re.compile(r'^(Type|ATK|MATK|DEF|Weight|Weapon Level|Armor Level|Required Level|Equippable [Bb]y|Equipped on|Position|Location|Element|Property)\s*:\s*(.*)$')
 items, ov, st, unp = {}, {}, collections.Counter(), collections.Counter()
 for k, v in S.items():
     lines = [clean(x) for x in v.get('identifiedDescriptionName') or []]
-    f = {'type': None, 'atk': None, 'matk': None, 'def': 0, 'weight': 0, 'lv': None, 'req': 1, 'cls': ['all'], 'pos': [], 'cardpos': None, 'ele': None}
+    f = {'type': None, 'atk': None, 'matk': None, 'def': 0, 'weight': 0, 'lv': None, 'req': 1, 'cls': ['all'], 'pos': [], 'cardpos': None, 'ele': None, 'acc': None}
     body = []
     for l in lines:
         m = META.match(l)
@@ -186,7 +216,9 @@ for k, v in S.items():
         elif key == 'weight': f['weight'] = num or 0
         elif key in ('weapon level', 'armor level'): f['lv'] = num
         elif key == 'required level': f['req'] = num or 1
-        elif key in ('position', 'location'): f['pos'] = [POS[p.strip()] for p in re.split(r'[,/&]|\band\b', val) if p.strip() in POS]
+        elif key in ('position', 'location'):
+            f['pos'] = [POS[p.strip()] for p in re.split(r'[,/&]|\band\b', val) if p.strip() in POS]
+            f['acc'] = 510 if 'Accessory (Right)' in val else 511 if 'Accessory (Left)' in val else 517 if 'Accessory' in val else None
         elif key in ('element', 'property'): f['ele'] = val
         elif key == 'equipped on': f['cardpos'] = val
         elif key.startswith('equippable'):
@@ -196,9 +228,10 @@ for k, v in S.items():
     if t in WEAPON: tid, sub = 1, WEAPON[t]
     elif t in EQUIP: tid, sub = 2, EQUIP[t]
     elif t == 'Card': tid, sub = 6, 0
+    elif t == 'Special Equipment' and f['acc']: tid, sub = 2, f['acc']
     else: continue
     dt = DATA.get(k, {})
-    if dt.get('costume'): continue
+    if dt.get('costume') and t != 'Special Equipment': continue
     script, un = collections.defaultdict(list), []
     for l in body:
         r = parse_line(l)
@@ -214,7 +247,7 @@ for k, v in S.items():
     script = {kk: vv for kk, vv in dict(script).items() if kk in VALID or not re.fullmatch(r'[a-z_A-Z0-9]+', kk)}
     slots = dt.get('slotCount', 0)
     name = v['identifiedDisplayName'] + (f' [{slots}]' if slots else '')
-    rec = {'id': int(k), 'aegisName': dt.get('identifiedResourceName', ''), 'name': name, 'unidName': v.get('unidentifiedDisplayName', ''),
+    rec = {'id': int(k), 'aegisName': f'ROZ_{k}', 'name': name, 'unidName': v.get('unidentifiedDisplayName', ''),
            'resName': dt.get('identifiedResourceName', ''), 'description': '', 'slots': slots, 'itemTypeId': tid, 'itemSubTypeId': sub,
            'itemLevel': f['lv'], 'attack': f['atk'], 'defense': f['def'], 'weight': f['weight'], 'requiredLevel': f['req'],
            'location': f['pos'][0] if f['pos'] else ('Upper' if sub == 512 else None), 'compositionPos': None,
@@ -225,8 +258,7 @@ for k, v in S.items():
         rec['usableClass'] = ['all']
     if f['ele'] and tid == 1:
         rec['propertyAtk'] = ele_key(f['ele']).capitalize() if f['ele'] != 'Shadow' else 'Dark'
-    desc = '\n'.join(lines)
-    if un and source == 'roz': desc = '[ROZ] Not yet in the calculator:\n' + '\n'.join(un) + '\n-------------------------\n' + desc
+    desc = bilingual(k, un if source == 'roz' else [])
     rec['description'] = desc
     items[k] = rec
     st['items'] += 1; st['withScript'] += bool(script); st['fullyParsed'] += not un; st[source] += 1

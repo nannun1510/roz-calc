@@ -59,3 +59,11 @@ $gutter: 1rem; //for primeflex grid system
   background-color: black !important;
   color: white !important;
 }
+/* ROZ: item hover description (white card, like the in-game tooltip) */
+.roz-item-tip.p-tooltip { max-width: 440px; }
+.roz-item-tip .p-tooltip-text {
+  background: #ffffff; color: #000000; font-size: 12px; line-height: 1.45;
+  border: 1px solid #9aa7b8; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  white-space: normal; max-height: 70vh; overflow: auto;
+}
+.roz-item-tip .p-tooltip-arrow { border-right-color: #9aa7b8 !important; }

@@ -1,3 +1,4 @@
+import { prettyItemDesc } from 'src/app/utils/pretty-item-desc';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { DropdownModel } from '../../../../models/dropdown.model';
 import { ItemModel } from '../../../../models/item.model';
@@ -202,6 +203,13 @@ export class EquipmentComponent implements OnChanges, OnInit {
     this.gradeList = canGrade ? getGradeList() : [];
 
     clearModel();
+  }
+
+  /** Hover text for an item/card/enchant option: name + English + Thai client description. */
+  descOf(id: number) {
+    const item = this.items?.[id] ?? (this.mapEnchant ? [...this.mapEnchant.values()].find((a) => a.id === id) : undefined);
+    if (!item) return '';
+    return `<b>${item.name}</b><br>${prettyItemDesc(item.description || '')}`;
   }
 
   onSelectItem(itemType: string, itemId = 0, refine = 0, isEmitItemChange = true) {

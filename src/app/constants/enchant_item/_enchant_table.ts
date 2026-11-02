@@ -1,3 +1,4 @@
+import { RozEnchantTable } from './roz-enchant-table';
 import {
   ASPD,
   Acute,
@@ -1903,7 +1904,8 @@ export const EnchantTable: EntTable[] = [
 
 Object.freeze(EnchantTable);
 
-const map = new Map(EnchantTable.map((a) => [a.name, a.enchants]));
+// ROZ Global: only the enchants the ROZ client describes (roz-enchant-table.ts).
+const map = new Map<string, any>(RozEnchantTable.map((a) => [a.name, a.enchants]));
 
 export const getEnchants = (name) => {
   return map.get(name);

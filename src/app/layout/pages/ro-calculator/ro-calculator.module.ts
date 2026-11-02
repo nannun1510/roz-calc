@@ -4,6 +4,7 @@ import { ButtonModule } from 'primeng/button';
 import { StyleClassModule } from 'primeng/styleclass';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
+import { TooltipModule } from 'primeng/tooltip';
 import { BadgeModule } from 'primeng/badge';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
@@ -50,6 +51,7 @@ import { StatusInputComponent } from './status-input/status-input.component';
 
 @NgModule({
   imports: [
+    TooltipModule,
     AccordionModule,
     BadgeModule,
     ButtonModule,

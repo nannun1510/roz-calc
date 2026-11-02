@@ -1970,38 +1970,15 @@
                   (showElementTableClick)="onShowElementalTableClick()"
                 ></app-battle-dmg-summary>
               </div>
-              <!-- ROZ: auto attack procs (Duple Light / Spell Fist) -->
-              <div class="col-12 roz-procs" *ngIf="rozHasDuple || rozHasSpellFist">
+              <!-- ROZ: proc chance override for auto attack proc skills -->
+              <div class="col-12 roz-procs" *ngIf="isRozProcSkill">
                 <div class="roz-procs-head">
-                  <span>Auto attack procs</span>
-                  <small>Tick a buff that is active while you auto attack</small>
+                  <span>Proc chance</span>
+                  <small>{{ rozProcDefaultText }}. If you measured a different rate in game, type it here (% per proc, 0 = default).</small>
                 </div>
                 <div class="roz-procs-controls">
-                  <div class="roz-proc-ctl" *ngIf="rozHasDuple">
-                    <p-checkbox [binary]="true" inputId="rozDuple" [ngModel]="(model.rozDupleLight || 0) > 0" (ngModelChange)="model.rozDupleLight = $event ? 10 : 0; onSkillClassChange()"></p-checkbox>
-                    <label for="rozDuple">Duple Light</label>
-                    <p-dropdown *ngIf="model.rozDupleLight > 0" [options]="rozLevels" [(ngModel)]="model.rozDupleLight" (onChange)="onSkillClassChange()" styleClass="roz-proc-lv"></p-dropdown>
-                  </div>
-                  <div class="roz-proc-ctl" *ngIf="rozHasSpellFist">
-                    <p-checkbox [binary]="true" inputId="rozFist" [ngModel]="(model.rozSpellFist || 0) > 0" (ngModelChange)="model.rozSpellFist = $event ? 10 : 0; onSkillClassChange()"></p-checkbox>
-                    <label for="rozFist">Spell Fist</label>
-                    <ng-container *ngIf="model.rozSpellFist > 0">
-                      <p-dropdown [options]="rozLevels" [(ngModel)]="model.rozSpellFist" (onChange)="onSkillClassChange()" styleClass="roz-proc-lv"></p-dropdown>
-                      <p-dropdown [options]="rozBoltElements" [ngModel]="model.rozSpellFistElement || 'Fire'" (ngModelChange)="model.rozSpellFistElement = $event; onSkillClassChange()" styleClass="roz-proc-ele"></p-dropdown>
-                    </ng-container>
-                  </div>
+                  <p-inputNumber [(ngModel)]="model.rozProcChance" (onBlur)="onSkillClassChange()" (ngModelChange)="onSkillClassChange()" [min]="0" [max]="100" [maxFractionDigits]="1" suffix=" %" [showButtons]="true" inputStyleClass="roz-proc-input"></p-inputNumber>
                 </div>
-                <table class="roz-procs-table" *ngIf="totalSummary?.dmg?.rozProcs?.rows?.length">
-                  <tr><th></th><th>Chance</th><th>Damage per hit</th><th>DPS</th></tr>
-                  <tr *ngFor="let r of totalSummary.dmg.rozProcs.rows">
-                    <td>{{ r.label }} <small>{{ r.type }} · {{ r.element }}</small></td>
-                    <td>{{ r.chance }}%</td>
-                    <td class="dmg">{{ r.min | number }} - {{ r.max | number }}</td>
-                    <td class="dps">{{ r.dps | number }}</td>
-                  </tr>
-                  <tr class="sum"><td>Auto attack</td><td></td><td class="dmg">{{ totalSummary.dmg.basicMinDamage | number }} - {{ totalSummary.dmg.basicMaxDamage | number }}</td><td class="dps">{{ totalSummary.dmg.basicDps | number }}</td></tr>
-                  <tr class="sum total"><td>Auto attack + procs</td><td></td><td></td><td class="dps">{{ totalSummary.dmg.rozProcs.totalDps | number }}</td></tr>
-                </table>
               </div>
             </div>
           </div>

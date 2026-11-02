@@ -214,6 +214,26 @@
     <p-divider></p-divider>
   </div>
 
+  <!-- ROZ: auto attack proc skill (Duple Light / Spell Fist) -->
+  <ng-container *ngIf="totalSummary?.dmg?.rozProcs as rp">
+    <div class="col-12 roz-proc-sum">
+      <div class="roz-proc-sum-title">
+        Auto attack procs <small>Lv {{ rp.level }} · {{ rp.hitsPerSec }} auto attacks/s · hit {{ rp.accuracy }}%</small>
+      </div>
+      <table class="roz-procs-table">
+        <tr><th></th><th>Chance</th><th>Damage per proc</th><th>DPS</th></tr>
+        <tr *ngFor="let r of rp.rows">
+          <td>{{ r.label }}<small>{{ r.note }} · {{ r.element }}</small></td>
+          <td>{{ r.chance }}%<sup *ngIf="rp.isCustomChance">*</sup></td>
+          <td class="dmg">{{ r.min | number }} - {{ r.max | number }}</td>
+          <td class="dps">{{ r.dps | number }}</td>
+        </tr>
+        <tr class="sum"><td>Auto attack</td><td></td><td class="dmg">{{ totalSummary?.dmg?.basicMinDamage | number }} - {{ totalSummary?.dmg?.basicMaxDamage | number }}</td><td class="dps">{{ totalSummary?.dmg?.basicDps | number }}</td></tr>
+        <tr class="sum total"><td>Auto attack + procs</td><td></td><td></td><td class="dps">{{ rp.totalDps | number }}</td></tr>
+      </table>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!totalSummary?.dmg?.rozProcs">
   <!-- Skill Damage -->
   <div class="col-6" [hidden]="!totalSummary?.dmg?.skillCanCri">
     <app-calc-value
@@ -319,21 +339,6 @@
       [max2]="totalSummary2?.dmg?.skillDps"
     ></app-calc-value>
   </div>
-  <div class="col-12" *ngIf="totalSummary?.dmg?.rozProcChance">
-    <span class="summary_label">Proc chance:</span>
-    <span class="summary_damage"> {{ totalSummary?.dmg?.rozProcChance }}% per light, per auto-attack hit</span>
-  </div>
-  <div class="col-12" *ngIf="totalSummary?.dmg?.rozProcChance">
-    <app-calc-value
-      [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-      label="Auto attack + proc DPS:"
-      styleClass="summary_highlight"
-      styleClass2="summary_compare"
-      [showPercentDiff]="true"
-      [max]="totalSummary?.dmg?.rozBasicPlusProcDps"
-      [max2]="totalSummary2?.dmg?.rozBasicPlusProcDps"
-    ></app-calc-value>
-  </div>
   <div
     class="col-12"
     [hidden]="
@@ -390,6 +395,8 @@
       [max2]="selectedChances2?.length ? totalSummary2?.dmg?.effectedSkillDps : totalSummary2?.dmg?.skillDps"
     ></app-calc-value>
   </div>
+
+  </ng-container>
 
   <div class="col-12 py-1 divider">
     <p-divider></p-divider>

@@ -49,8 +49,6 @@ export interface MainModel extends Partial<EquipmentModel> {
   aspdPotions: number[];
   defStars?: number;
   hpStars?: number;
-  /** ROZ auto-attack procs: skill level (0 = off) */
-  rozDupleLight?: number;
-  rozSpellFist?: number;
-  rozSpellFistElement?: string;
+  /** ROZ: custom proc chance % for auto attack proc skills (0 = default) */
+  rozProcChance?: number;
 }

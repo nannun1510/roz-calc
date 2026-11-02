@@ -2507,18 +2507,17 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
-  // ROZ auto attack procs
-  readonly rozLevels = Array.from({ length: 10 }, (_, i) => ({ label: `Lv ${i + 1}`, value: i + 1 }));
-  readonly rozBoltElements = [
-    { label: 'Fire Bolt', value: 'Fire' },
-    { label: 'Cold Bolt', value: 'Water' },
-    { label: 'Lightning Bolt', value: 'Wind' },
-  ];
-  get rozHasDuple() {
-    return (this.selectedCharacter as any)?.className === 'Priest';
+  // ROZ auto attack proc skills (Duple Light / Spell Fist) picked in the Skill dropdown
+  get isRozProcSkill() {
+    const v = this.model?.selectedAtkSkill;
+    return !!v && /\(auto attack\)==/.test(v);
   }
-  get rozHasSpellFist() {
-    return (this.selectedCharacter as any)?.className === 'Sage';
+  get rozProcDefaultText() {
+    const v = this.model?.selectedAtkSkill || '';
+    const lv = Number(v.split('==')[1]) || 10;
+    return v.startsWith('Duple Light')
+      ? `Default ${10 + 2 * lv}% for each light at Lv${lv} (official formula 10 + 2×Lv, each light rolls separately). The ROZ client does not show this number`
+      : `Default ${5 * lv}% at Lv${lv} (from the ROZ skill description)`;
   }
 
   onSkillClassChange() {

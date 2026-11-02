@@ -87,34 +87,35 @@ export function rozAtkSkill(spec: RozAtkSpec): AtkSkillModel {
 }
 
 /**
- * ROZ Duple Light (Priest, from the client skill text):
- *   Physical light 500 + 50*Lv % ATK, Magical light 800 + 80*Lv % MATK, on melee auto attacks.
- * The proc chance is not in the client text; we use the official one (10 + 2*Lv %, each light
- * rolls on its own), as on iRO. Magic light is Neutral, physical light uses the weapon element.
+ * ROZ auto-attack proc skills, picked in the Skill dropdown. Selecting one shows the
+ * "Auto attack procs" table (damage per proc, DPS, auto attack + procs DPS).
+ *  - Duple Light (Priest, client text): Strike 500+50*Lv % ATK, Magic 800+80*Lv % MATK.
+ *    Proc chance is not in the client: official server code rolls each light separately
+ *    at 10+2*Lv % on a melee auto attack that hits (can be overridden on the page).
+ *  - Spell Fist (Sage, client text): 5*Lv % chance, 100*Lv % MATK of the bolt's element.
  */
-export const ROZ_DUPLE_LIGHT: AtkSkillModel = {
-  name: 'Duple Light' as any,
-  label: 'Duple Light Lv10 (on auto attack)',
-  value: 'Duple Light==10',
-  levelList: Array.from({ length: 10 }, (_, i) => ({ label: `Duple Light Lv${i + 1} (on auto attack)`, value: `Duple Light==${i + 1}` })),
-  acd: 0,
-  fct: 0,
-  vct: 0,
-  cd: 0,
-  isMelee: true,
-  autoSpellChance: (lv: number) => (10 + 2 * lv) / 100,
-  rozProcOnAutoAttack: true,
-  formula: ({ skillLevel }) => 500 + 50 * skillLevel,
-  part2: {
-    label: 'Magic light',
-    element: ElementType.Neutral,
-    isIncludeMain: false,
-    hit: 1,
-    isMatk: true,
-    isMelee: false,
-    formula: ({ skillLevel }) => 800 + 80 * skillLevel,
-  },
-} as any;
+const procSkill = (name: string, label: string, proc: any, isMatk: boolean, ratio: (lv: number) => number): AtkSkillModel =>
+  ({
+    name: name as any,
+    label: `${label} Lv10`,
+    value: `${label}==10`,
+    levelList: Array.from({ length: 10 }, (_, i) => ({ label: `${label} Lv${i + 1}`, value: `${label}==${i + 1}` })),
+    acd: 0, fct: 0, vct: 0, cd: 0,
+    isMatk,
+    isMelee: !isMatk,
+    ...(proc.element ? { element: proc.element } : {}),
+    rozProc: proc,
+    formula: ({ skillLevel }) => ratio(skillLevel),
+  }) as any;
+
+export const ROZ_PROC_SKILLS: Record<string, AtkSkillModel[]> = {
+  'Duple Light': [procSkill('Duple Light', 'Duple Light (auto attack)', { kind: 'duple' }, false, (lv) => 500 + 50 * lv)],
+  'Spell Fist': [
+    procSkill('Spell Fist', 'Spell Fist - Fire Bolt (auto attack)', { kind: 'fist', element: ElementType.Fire }, true, (lv) => 100 * lv),
+    procSkill('Spell Fist', 'Spell Fist - Cold Bolt (auto attack)', { kind: 'fist', element: ElementType.Water }, true, (lv) => 100 * lv),
+    procSkill('Spell Fist', 'Spell Fist - Lightning Bolt (auto attack)', { kind: 'fist', element: ElementType.Wind }, true, (lv) => 100 * lv),
+  ],
+};
 
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
@@ -160,7 +161,8 @@ function makeRozClass(Base: Ctor, cfg: RozClassConfig): Ctor {
     ...(cfg.isSecond ? ROZ_SKILL_TREE[cfg.className] ?? [] : []),
   ].map((s) => s.name);
   const allowed = new Set(treeNames.map(norm).map((n) => NAME_ALIAS[n] ?? n));
-  const atk = ROZ_ATK_SKILLS.filter((s) => treeNames.includes(s.name)).map(rozAtkSkill);
+  const atk = ROZ_ATK_SKILLS.filter((s) => treeNames.includes(s.name) && !ROZ_PROC_SKILLS[s.name]).map(rozAtkSkill);
+  for (const [name, list] of Object.entries(ROZ_PROC_SKILLS)) if (treeNames.includes(name)) atk.push(...list);
 
   return class extends (Base as any) {
     constructor() {

@@ -264,3 +264,8 @@ html.roz-theme .roz-optsel-btn:hover:not(:disabled) { color: var(--roz-gold); }
 .roz-procs-table tr.total td { font-weight: 700; }
 html.roz-theme .roz-procs { border-color: var(--roz-line); background: rgba(255, 255, 255, 0.02); }
 html.roz-theme .roz-procs-head span { color: var(--roz-gold-2); letter-spacing: 0.04em; }
+.roz-proc-sum-title { font-weight: 700; margin: 0.2rem 0 0.3rem; }
+.roz-proc-sum-title small { font-weight: 400; opacity: 0.65; margin-left: 0.4rem; }
+.roz-procs-table td small { display: block; margin-left: 0; }
+.roz-proc-input { width: 7rem; }
+html.roz-theme .roz-proc-sum-title { color: var(--roz-gold-2); }

@@ -201,13 +201,21 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.7 (alpha)',
+      date: '02-11-2026',
+      logs: [
+        'Auto attack procs moved into the Skill list: "Duple Light (auto attack)" for Priest, "Spell Fist - Fire/Cold/Lightning Bolt (auto attack)" for Sage. Selecting one shows each proc\'s damage, DPS and auto attack + procs DPS in Battle Summary.',
+        'Duple Strike can now miss on its own (it is a weapon skill), so its DPS uses your hit rate twice.',
+        'Proc chance box: the ROZ client does not show Duple Light\'s chance (default = official 10+2xLv % per light). Type the rate you see in game to override it.',
+      ],
+    },
+    {
       v: 'ROZ Global v0.6 (alpha)',
       date: '02-11-2026',
       logs: [
         'Monsters: HP, DEF, MDEF, stats, element, race and size now use ROZ Global values (373 monsters, incl. Nordfeld Boulder Dwarves). "C" monsters still use kRO values.',
         'Cards: Nordfeld and collab cards now show in their slot (e.g. Boulder Dwarf Siege Trooper Card in Helm), "+X per 3 refines of the Helm" bonuses are calculated.',
         'Random options: added FLEE, HIT, Perfect Dodge, DEF, MDEF; FLEE only in option slot 2. Removed trait stat options.',
-        'Auto attack procs (Battle Summary): tick Duple Light (Priest) or Spell Fist (Sage) to see Duple Strike / Duple Magic / Spell Fist damage per hit, DPS, and auto attack + procs DPS.',
         'Share a build: "Copy code" copies your build as a code, "Paste code" loads a code on any PC.',
       ],
     },

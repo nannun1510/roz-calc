@@ -234,6 +234,17 @@
     </div>
   </ng-container>
   <ng-container *ngIf="!totalSummary?.dmg?.rozProcs">
+  <!-- ROZ: normal vs critical breakdown for skills that can crit (e.g. Focused Arrow Strike) -->
+  <div class="col-12 roz-proc-sum" *ngIf="totalSummary?.dmg?.rozCrit as rc">
+    <div class="roz-proc-sum-title">Critical breakdown <small>{{ rc.note }}</small></div>
+    <table class="roz-procs-table">
+      <tr><th></th><th>Chance</th><th>Damage per cast</th><th></th></tr>
+      <tr><td>Normal hit</td><td>{{ 100 - rc.chance | number: '1.0-1' }}%</td><td class="dmg">{{ rc.normalMin | number }} - {{ rc.normalMax | number }}</td><td></td></tr>
+      <tr><td>Critical hit<small>Crit damage +{{ rc.critDmgBonus }}%</small></td><td>{{ rc.chance }}%</td><td class="dmg">{{ rc.critMin | number }} - {{ rc.critMax | number }}</td><td></td></tr>
+      <tr class="sum"><td>Average per cast</td><td></td><td class="dmg">{{ rc.avg | number }}</td><td></td></tr>
+      <tr class="sum total"><td>Skill DPS</td><td></td><td></td><td class="dps">{{ totalSummary?.dmg?.skillDps | number }}</td></tr>
+    </table>
+  </div>
   <!-- Skill Damage -->
   <div class="col-6" [hidden]="!totalSummary?.dmg?.skillCanCri">
     <app-calc-value

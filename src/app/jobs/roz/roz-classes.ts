@@ -61,7 +61,18 @@ const ELEMENT: Record<string, ElementType> = {
 
 const STAT_KEY: Record<string, string> = { str: 'totalStr', agi: 'totalAgi', vit: 'totalVit', int: 'totalInt', dex: 'totalDex', luk: 'totalLuk' };
 
+/** ROZ skill rules that the generated table (ratios / timings) cannot express, from the client skill text. */
+const ROZ_SKILL_OVERRIDES: Record<string, Partial<AtkSkillModel> & Record<string, any>> = {
+  // "Has an additional chance equal to 50% of the caster's CRIT to apply Critical Damage.
+  //  Only half of the total Critical Damage bonus is applied."
+  'Focused Arrow Strike': { canCri: true, baseCriPercentage: 0.5, criDmgPercentage: 0.5, rozCritNote: 'Crit chance = 50% of your CRIT · half of Crit Damage bonus' },
+};
+
 export function rozAtkSkill(spec: RozAtkSpec): AtkSkillModel {
+  return { ...rozAtkSkillBase(spec), ...(ROZ_SKILL_OVERRIDES[spec.name] || {}) } as AtkSkillModel;
+}
+
+function rozAtkSkillBase(spec: RozAtkSpec): AtkSkillModel {
   const at = (arr: number[], skillLevel: number) => arr[Math.min(Math.max(skillLevel, 1), spec.maxLv) - 1] ?? arr[arr.length - 1];
   const sec = (arr: number[]) => (skillLevel: number) => at(arr, skillLevel) / 1000;
   return {

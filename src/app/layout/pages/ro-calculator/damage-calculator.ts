@@ -1586,6 +1586,21 @@ export class DamageCalculator {
       noStackMinCriDamage,
       noStackMinDamage,
       isAutoSpell: isAutoSpell && !procOnAutoAttack,
+      rozCrit: calculated.canCri
+        ? (() => {
+          const c = Math.min(100, Math.max(0, actualCri)) / 100;
+          const avgNo = (calculated.rawMinNoCri + calculated.rawMaxNoCri) / 2;
+          const avgCri = (minDamage + maxDamage) / 2;
+          return {
+            note: (skillData as any).rozCritNote || '',
+            chance: round(c * 100, 1),
+            normalMin: calculated.rawMinNoCri, normalMax: calculated.rawMaxNoCri,
+            critMin: minDamage, critMax: maxDamage,
+            avg: floor(((1 - c) * avgNo + c * avgCri) * totalHit),
+            critDmgBonus: calculated.criDmgToMonster,
+          };
+        })()
+        : null,
       rozProcChance: procOnAutoAttack ? round(autoSpellChance * 100, 0) : 0,
       rozBasicPlusProcDps: procOnAutoAttack ? floor(((basicDmg as any).basicDps || 0) + skillDps) : 0,
       isUsedCurrentHP: typeof currentHpFn === 'function',

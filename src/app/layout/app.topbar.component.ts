@@ -201,6 +201,14 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.10 (alpha)',
+      date: '02-11-2026',
+      logs: [
+        'Focused Arrow Strike can now critical, using the ROZ rule: crit chance = 50% of your CRIT, and only half of your Crit Damage bonus applies.',
+        'Skills that can crit show a "Critical breakdown" in Battle Summary: normal hit and critical hit (chance + damage), average per cast and DPS.',
+      ],
+    },
+    {
       v: 'ROZ Global v0.9 (alpha)',
       date: '02-11-2026',
       logs: [

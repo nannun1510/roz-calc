@@ -1,7 +1,12 @@
 import { ActiveSkillModel } from '../jobs/_character-base.abstract';
 import { BragisPoemFn, DarkClawFn, ShieldSpellFn, SwingDanceFn } from './share-active-skills';
 
-export const JobBuffs: ActiveSkillModel[] = [
+import { RozJobBuffs } from './roz-job-buffs';
+
+/** ROZ: the buffs panel uses the ROZ list; Tong's original (4th job) list is kept below for reference. */
+export const JobBuffs: ActiveSkillModel[] = RozJobBuffs;
+
+export const TongJobBuffs: ActiveSkillModel[] = [
   {
     name: 'VIP',
     label: 'VIP Stat+7 Trait+3',

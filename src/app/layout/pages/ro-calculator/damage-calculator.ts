@@ -822,6 +822,8 @@ export class DamageCalculator {
     let pMultiplier = ElementMapper[this.monster.elementName][propertyAtk];
     //pMultiplier = pMultiplier * this.getVIAmp(propertyAtk);
     pMultiplier = pMultiplier + this.getLandSage(propertyAtk);
+    // ROZ: Sage ground skills (Volcano / Deluge / Whirlwind) raise damage of that element
+    pMultiplier = pMultiplier + ((this.totalBonus as any)?.[`roz_land_${String(propertyAtk).toLowerCase()}`] || 0);
 
     return round(this.toPercent(pMultiplier), 2);
   }

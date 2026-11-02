@@ -48,6 +48,25 @@ import { RuneKnight } from '../RuneKnight';
 import { Warlock } from '../Warlock';
 import { Sorcerer } from '../Sorcerer';
 import { ROZ_ATK_SKILLS, ROZ_SKILL_TREE, RozAtkSpec } from './roz-data.generated';
+import { RighthandMasteryFn } from '../../constants/share-passive-skills';
+
+/** ROZ skills the engine classes do not have (values from the ROZ client skill text).
+ *  Weapon-dependent parts are applied in getMasteryAtk / setAdditionalBonus below. */
+const lvs = (n: number, fn: (l: number) => Record<string, number> = () => ({})) => [
+  { label: '-', value: 0, isUse: false },
+  ...Array.from({ length: n }, (_, i) => ({ label: `Lv ${i + 1}`, value: i + 1, skillLv: i + 1, isUse: true, bonus: fn(i + 1) })),
+];
+const ROZ_EXTRA_PASSIVES: Record<string, any> = {
+  Study: { name: 'Study', label: 'Study (Book: dmg +3/Lv, ASPD)', inputType: 'dropdown', dropdown: lvs(10) },
+  'Music Lessons': { name: 'Music Lessons', label: 'Music Lessons (Instrument)', inputType: 'dropdown', dropdown: lvs(10, (l) => ({ spPercent: l })) },
+  'Dance Lessons': { name: 'Dance Lessons', label: 'Dance Lessons (Whip)', inputType: 'dropdown', dropdown: lvs(10, (l) => ({ spPercent: l })) },
+  Flee: { name: 'Flee', label: 'Flee', inputType: 'dropdown', dropdown: lvs(10, (l) => ({ flee: [0, 1, 3, 4, 6, 7, 9, 10, 12, 13, 15][l] })) },
+  'Righthand Mastery': RighthandMasteryFn(),
+};
+const ROZ_EXTRA_ACTIVES: Record<string, any> = {
+  Fury: { name: 'Fury', label: 'Fury (CRIT)', inputType: 'dropdown', dropdown: lvs(5, (l) => ({ cri: 7.5 + 2.5 * l })) },
+  'Summon Spirit Sphere': { name: 'Summon Spirit Sphere', label: 'Spirit Spheres (+3 dmg each)', inputType: 'dropdown', dropdown: lvs(5) },
+};
 
 /** ROZ Global caps (Sept 2026 patch: Base 60 / Job 60). Kept at the classic 99 / 50-70 so builds can be planned ahead. */
 export const ROZ_MAX_BASE_LEVEL = 99;
@@ -133,8 +152,7 @@ const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 /** Engine skill names that differ from the ROZ English client name. */
 const NAME_ALIAS: Record<string, string> = {
   ironfists: 'ironhand',
-  musiclessons: 'musicallesson',
-  dancelessons: 'dancinglesson',
+  maximizepower: 'powermaximize',
   twohandedswordmastery: 'twohandedswordmastery',
 };
 
@@ -194,6 +212,12 @@ function makeRozClass(Base: Ctor, cfg: RozClassConfig): Ctor {
         const d = donors().get(key);
         if (d) { self[d.kind].push(d.skill); have.add(key); }
       }
+      for (const n of treeNames) {
+        const k = norm(n);
+        if (have.has(k)) continue;
+        if (ROZ_EXTRA_PASSIVES[n]) { self._passiveSkillList.push(ROZ_EXTRA_PASSIVES[n]); have.add(k); }
+        else if (ROZ_EXTRA_ACTIVES[n]) { self._activeSkillList.push(ROZ_EXTRA_ACTIVES[n]); have.add(k); }
+      }
       self.minMaxLevel = [1, ROZ_MAX_BASE_LEVEL];
       self.maxJob = cfg.isSecond ? ROZ_MAX_JOB_2ND : ROZ_MAX_JOB_1ST;
     }
@@ -207,11 +231,34 @@ function makeRozClass(Base: Ctor, cfg: RozClassConfig): Ctor {
     getMasteryAtk(info: any): number {
       const base = super.getMasteryAtk(info) || 0;
       const src = String((Base as any).prototype.getMasteryAtk);
-      if (/getMasteryAtkByMonsterRace|x_race_/.test(src)) return base;
+      if (/getMasteryAtkByMonsterRace|x_race_/.test(src)) return base + this.rozWeaponMastery(info);
       const self = this as any;
       const race = self.getMasteryAtkByMonsterRace(info?.monster?.race)?.totalAtk || 0;
       const ele = self.getMasteryAtkByMonsterElement(info?.monster?.element)?.totalAtk || 0;
-      return base + race + ele;
+      return base + race + ele + this.rozWeaponMastery(info);
+    }
+
+    /** ROZ class masteries that depend on the weapon (Study, Music/Dance Lessons) + Spirit Spheres */
+    rozWeaponMastery(info: any): number {
+      const self = this as any;
+      const w = info?.weapon?.data?.typeName;
+      let atk = 0;
+      if (w === 'book') atk += 3 * (self.learnLv('Study') || 0);
+      if (w === 'instrument') atk += 3 * (self.learnLv('Music Lessons') || 0);
+      if (w === 'whip') atk += 3 * (self.learnLv('Dance Lessons') || 0);
+      atk += 3 * (self.activeSkillLv('Summon Spirit Sphere') || 0);
+      return atk;
+    }
+
+    setAdditionalBonus(params: any) {
+      const total = super.setAdditionalBonus(params);
+      const self = this as any;
+      const w = params?.weapon?.data?.typeName;
+      const add = (k: string, v: number) => { if (v) (total as any)[k] = ((total as any)[k] || 0) + v; };
+      if (w === 'book') add('aspdPercent', 0.5 * (self.learnLv('Study') || 0));
+      if (w === 'instrument') add('aspdPercent', self.learnLv('Music Lessons') || 0);
+      if (w === 'whip') add('cri', self.learnLv('Dance Lessons') || 0);
+      return total;
     }
     get excludedJobLevels(): number[] { return []; }
     get isExpandedClass() { return false; }

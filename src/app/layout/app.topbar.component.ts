@@ -201,6 +201,16 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.11 (alpha)',
+      date: '02-11-2026',
+      logs: [
+        'Items: more ROZ bonuses are calculated (e.g. Baby Shark / Gatchaman cards "for every 10 BaseLv", "when equipped by <class>", "when equipped with <item>", skill damage +%). Lines that cannot change PvE damage (PvP, flavour text, status chance, damage taken) are no longer marked "Not yet in the calculator".',
+        'Buffs panel now uses ROZ skills with ROZ values: Blessing, Increase AGI, Angelus, Impositio Manus, Gloria, Suffragium, Crazy Uproar, Adrenaline Rush, Power Thrust, Weapon Perfection, Magnum Break, Mystical Amplification, Volcano / Deluge / Whirlwind, Bard songs, Dancer dances, Battle Theme, and enemy debuffs Provoke, Signum Crucis, Mind Breaker.',
+        'Class skills added: Study (Sage), Music Lessons (Bard), Dance Lessons (Dancer), Flee / Fury / Spirit Spheres (Monk), Maximize Power (Blacksmith), Righthand Mastery (Assassin).',
+        'Removed the YouTube how-to link.',
+      ],
+    },
+    {
       v: 'ROZ Global v0.10 (alpha)',
       date: '02-11-2026',
       logs: [

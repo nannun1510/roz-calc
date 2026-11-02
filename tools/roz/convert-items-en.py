@@ -15,13 +15,17 @@ import json, re, collections
 D = 'src/assets/demo/data'
 src = json.load(open('tools/roz/roz-items-en.json'))
 S, DATA = src['tbl_string'], src['tbl_data']
+EQUIP_NAMES = {re.sub(r' \[\d+\]$', '', v['identifiedDisplayName']) for v in S.values()}
+
 fork = json.load(open('tools/roz/latam-original-item.json'))
 # Bonus keys the Tong calc engine understands (src/app/utils/create-raw-total-bonus.ts);
 # anything else (damage taken, healing, SP cost, PvP) has no effect on damage output.
 _raw = open('src/app/utils/create-raw-total-bonus.ts').read()
 VALID = set(re.findall(r'^\s+([A-Za-z_0-9]+):', _raw, re.M))
 SKILLS = set(re.findall(r"^\s+'([^']+)',", open('src/app/constants/skill-name.ts').read(), re.M))
+SKILLS |= {v['name'] for v in json.load(open('tools/roz/roz-skills.json')).values()}  # ROZ skill names (skill damage bonus keys)
 VALID |= SKILLS
+SKILL_ALIAS = {'Frost Driver': 'Frost Diver'}
 TH = json.load(open('tools/roz/roz-items-th.json'))
 
 clean = lambda s: re.sub(r'\^[0-9a-fA-F]{6}', '', s).strip()
@@ -46,7 +50,7 @@ ele_key = lambda e: 'dark' if e == 'Shadow' else e.lower()
 # flat stat names -> engine keys
 FLAT = {'STR': 'str', 'AGI': 'agi', 'VIT': 'vit', 'INT': 'int', 'DEX': 'dex', 'LUK': 'luk', 'ATK': 'atk', 'MATK': 'matk', 'DEF': 'def', 'MDEF': 'mdef',
         'HIT': 'hit', 'FLEE': 'flee', 'FLEE Rate': 'flee', 'CRIT': 'cri', 'Critical': 'cri', 'Perfect Dodge': 'perfectDodge', 'MHP': 'hp', 'MAXHP': 'hp', 'Max HP': 'hp',
-        'MSP': 'sp', 'MAXSP': 'sp', 'Max SP': 'sp', 'HP': 'hp', 'SP': 'sp', 'ASPD': 'aspd', 'All Stats': 'allStatus', 'All Status': 'allStatus', 'All State': 'allStatus'}
+        'MSP': 'sp', 'MAXSP': 'sp', 'Max SP': 'sp', 'MaxHP': 'hp', 'MaxSP': 'sp', 'MAX HP': 'hp', 'MAX SP': 'sp', 'HP': 'hp', 'SP': 'sp', 'ASPD': 'aspd', 'All Stats': 'allStatus', 'All Status': 'allStatus', 'All State': 'allStatus'}
 PCT = {'MHP': 'hpPercent', 'MAXHP': 'hpPercent', 'Max HP': 'hpPercent', 'MSP': 'spPercent', 'MAXSP': 'spPercent', 'Max SP': 'spPercent', 'HP': 'hpPercent', 'SP': 'spPercent',
        'ATK': 'atkPercent', 'MATK': 'matkPercent', 'ASPD': 'aspdPercent', 'CRIT': 'cri', 'Critical Damage': 'criDmg', 'Heal Amount': 'healPower', 'HP Heal effect': 'healPower',
        'Heal effect': 'healPower', 'Ranged Physical Damage': 'range', 'Ranged Weapon Physical Damage': 'range', 'Melee Physical Damage': 'melee', 'Long-range physical damage': 'range'}
@@ -55,6 +59,7 @@ pct_names = '|'.join(sorted(map(re.escape, PCT), key=len, reverse=True))
 
 
 def targets(text):
+    text = re.sub(r',?\s+and\s+', ', ', text)
     """'Demi-Human, Brute, Plant, and Insect' -> [('race','demihuman'),...]"""
     out = []
     for t in re.split(r',\s*(?:and\s+)?|\s+and\s+|\s*/\s*', text.strip()):
@@ -72,6 +77,8 @@ def targets(text):
 def clause(c):
     """One bonus clause -> list of (key, value) or None when not understood."""
     c = c.strip().rstrip('.').strip()
+    c = re.sub(r'^and\s+', '', c)
+    c = re.sub(r'^(.+?) (?:increases )?by an additional (\d+%?)$', r'\1 +\2', c)
     c = re.sub(r'^(additional(ly)?|an additional|increases?)\s+', '', c, flags=re.I).strip()
     c = re.sub(r'\s+additional$', '', c)
     if not c: return []
@@ -106,6 +113,17 @@ def clause(c):
         if k.startswith('after attack'): return [('aspdPercent', v)]
         if k.startswith('sp'): return [('spCostPercent', -v)]
         return [('acd', v)]
+    # skill damage, several skills: "+N% damage to Meteor Storm and Fire Pillar" / "damage of Holy Cross and Pierce by N%"
+    m = re.fullmatch(r'\+?(\d+)% damage to (.+)', c, flags=re.I) or None
+    if m:
+        names = [x.strip(' []') for x in re.split(r',\s*|\s+and\s+', m.group(2))]
+        if names and all(n in SKILLS for n in names): return [(n, int(m.group(1))) for n in names]
+    m = re.fullmatch(r'(?:increases )?damage of (.+?) by \+?(\d+)%', c, flags=re.I)
+    if m:
+        names = [x.strip(' []') for x in re.split(r',\s*|\s+and\s+', m.group(1))]
+        if names and all(n in SKILLS for n in names): return [(n, int(m.group(2))) for n in names]
+    m = re.fullmatch(r'\[?(.+?)\]? damage by \+?(\d+)%', c)
+    if m and m.group(1) in SKILLS: return [(m.group(1), int(m.group(2)))]
     m = re.fullmatch(r'(?:Increases )?damage (?:dealt )?(?:with|of) \[?(.+?)\]? (?:by |\+)(\d+)%', c, flags=re.I)
     if m and m.group(1) in SKILLS: return [(m.group(1), int(m.group(2)))]
     m = re.fullmatch(r'\[?(.+?)\]? damage \+(\d+)%', c)
@@ -136,6 +154,11 @@ def clause(c):
 
 
 def split_clauses(text):
+    if re.search(r'\+?\d+% damage to |damage of .+ by ', text):
+        t = text
+        for a, b in SKILL_ALIAS.items(): t = t.replace(a, b)
+        names = re.split(r',\s*|\s+and\s+', re.sub(r'^.*?(?:% damage to|damage of)\s+', '', t).split(' by ')[0].rstrip('.'))
+        if names and all(n.strip(' []') in SKILLS for n in names): return [t]
     return [p for p in re.split(r',\s*|\s+and\s+(?=[A-Z])|\.\s+|;\s*', text) if p.strip()]
 
 
@@ -174,6 +197,42 @@ def parse_line(line):
     l = line.strip()
     sr = parse_slot_refine(l)
     if sr is not False: return sr
+    l = re.sub(r'^and\s+', '', l)
+    # "(Up to BaseLv 50.)" is merged into the line before it by the item loop; alone it has no effect
+    if re.fullmatch(r'\((?:Applies )?[Uu]p to (?:Base ?Lv|Base Level) \d+\.?\)', l): return []
+    # "For every 10 BaseLv, ATK +7, DEF +3 [cap 50]" -> one LEVEL[a-b] bracket per step
+    m = re.fullmatch(r'For every (\d+) (?:Base ?Lv|Base Level)s?[,:]?\s*(.+?)(?:\s*\[cap (\d+)\])?', l, flags=re.I)
+    if m:
+        step, cap = int(m.group(1)), int(m.group(3) or 200)
+        out = []
+        for c in split_clauses(m.group(2).rstrip('.')):
+            r = clause(c)
+            if r is None: return None
+            for k, v in r:
+                for i in range(1, cap // step + 1):
+                    hi = (i + 1) * step - 1 if i < cap // step else 999
+                    out.append((k, f'LEVEL[{i * step}-{hi}]{v * i}'))
+        return out
+    # "When equipped by Thief Class, CRIT +5" / "When equipped by Swordsman, Merchant, Thief, or Archer Class: MAXHP +300"
+    m = re.fullmatch(r'When equipped by ([^:]+?)(?: Class(?:es)?)?:\s*(.+)', l) or re.fullmatch(r'When equipped by (.+?)(?: Class(?:es)?)?,\s*(.+)', l)
+    if m:
+        cls = [CLASS[x] for x in CLASS if re.search(r'\b' + re.escape(x) + r'\b', m.group(1))]
+        if cls:
+            out = []
+            for c in split_clauses(m.group(2)):
+                r = clause(c)
+                if r is None: return None
+                out += [(k, f'USED[{"||".join(sorted(set(cls)))}]{v}') for k, v in r]
+            return out
+    # "When equipped with Shackles, ATK +N" / "When equipped together with X: ..." (not pet eggs)
+    m = re.fullmatch(r'When equipped (?:together )?with (?:the |a )?(.+?)[,:]\s*(.+)', l)
+    if m and 'Egg' not in m.group(1) and 'refined' not in m.group(1) and m.group(1) in EQUIP_NAMES:
+        out = []
+        for c in split_clauses(m.group(2)):
+            r = clause(c)
+            if r is None: return None
+            out += [(k, f'EQUIP[{m.group(1)}]{v}') for k, v in r]
+        return out
     # refine thresholds
     m = re.match(r'^(?:At \+(\d+) refine(?: or higher)?|When refined to \+(\d+)(?: or higher)?|At refine level (\d+)(?: or higher)?|If refined to \+(\d+)(?: or higher)?)\s*[,:]?\s*(.*)$', l, flags=re.I)
     if m:
@@ -238,6 +297,13 @@ def bilingual(k, unparsed=()):
     return out
 
 
+# lines that never change damage vs monsters: PvP, flavour/UI text, status chances, damage taken, utility
+NO_DMG_EFFECT = re.compile(r"players'|[Pp]layers|<NAVI>|Enchant the \d+\w* slot|Costume Enchant Master|Unbreakable|chance to inflict|"
+                           r"[Dd]amage [Tt]aken|[Dd]amage taken|resistance|Resistance|Recovers \d+ (?:HP|SP)|when unequipped|EXP|[Dd]rop rate|"
+                           r"most townsfolk|bell within rings|anniversary|Shiba Says|\(prontera|Weight :|Required Level :|DEF : |Type : |Equippable by :|"
+                           r"Increases attack range|status ailment|Status Ailment|SP when|HP when|auto-cast \[?(?:Assumptio|Heal|Kyrie)|skill Lv\.? ?\d+ can be used|"
+                           r"Able to use|can be used\.")
+
 META = re.compile(r'^(Type|ATK|MATK|DEF|Weight|Weapon Level|Armor Level|Required Level|Equippable [Bb]y|Equipped on|Position|Location|Element|Property)\s*:\s*(.*)$')
 items, ov, st, unp = {}, {}, collections.Counter(), collections.Counter()
 for k, v in S.items():
@@ -281,11 +347,19 @@ for k, v in S.items():
     elif not t and costume_stone(lines): tid, sub = 6, costume_stone(lines)
     else: continue
     dt = DATA.get(k, {})
+    merged = []
+    for l in body:  # attach "(Up to BaseLv N.)" to the "For every N BaseLv" line before it
+        mm = re.fullmatch(r'\((?:Applies )?[Uu]p to (?:Base ?Lv|Base Level) (\d+)\.?\)', l)
+        if mm and merged and re.match(r'For every \d+ (?:Base ?Lv|Base Level)', merged[-1], re.I):
+            merged[-1] = merged[-1].rstrip('.') + f' [cap {mm.group(1)}]'
+            continue
+        merged.append(l)
+    body = merged
     script, un = collections.defaultdict(list), []
     for l in body:
         r = parse_line(l)
         if r is None:
-            if re.search(r'\d|%|[Ii]gnore', l): un.append(l); unp[re.sub(r'\d+', 'N', l)] += 1
+            if re.search(r'\d|%|[Ii]gnore', l) and not NO_DMG_EFFECT.search(l): un.append(l); unp[re.sub(r'\d+', 'N', l)] += 1
             continue
         for key, val in r: script[key].append(val)
     if f['matk'] and tid == 1: script['matk'].append(str(f['matk']))

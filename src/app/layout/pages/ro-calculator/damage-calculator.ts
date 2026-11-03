@@ -1284,6 +1284,7 @@ export class DamageCalculator {
       const dps = floor(chance * avg * a.hitsPerSec * acc * (canMiss ? acc : 1));
       rows.push({ label, chance: round(chance * 100, 1), min: r.minDamage, max: r.maxDamage, avg: floor(avg), dps, element: r.propertyAtk, type: isMatk ? 'Magical' : 'Physical', note });
     };
+    if (proc.kind === 'auto') return this.calcRozAutoAttack({ ...a, override });
     if (proc.kind === 'duple') {
       const ch = override > 0 ? override / 100 : (10 + 2 * lv) / 100;
       add('Duple Strike', false, 500 + 50 * lv, ch, undefined, true, `${500 + 50 * lv}% ATK`);
@@ -1298,6 +1299,62 @@ export class DamageCalculator {
       hitsPerSec: a.hitsPerSec, accuracy: a.accuracy,
       totalDps: floor((a.basicDps || 0) + procDps),
     };
+  }
+
+  /** basic (auto attack) damage with the weapon currently in this.weaponData: min/max and average per swing (crit + hit rate included) */
+  private rozBasicWith(propertyAtk: ElementType, accuracy: number) {
+    const sizePenalty = this.getSizePenalty();
+    const { totalMin, totalMax, totalMaxOver } = this.calcTotalAtk({ propertyAtk, sizePenalty, isEDP: this.isActiveEDP(''), isExcludeCannanball: true });
+    const { basicMinDamage, basicMaxDamage } = this.calcBasicDamage({ totalMin, totalMax: totalMaxOver });
+    const { criMinDamage, criMaxDamage } = this.calcBasicCriDamage({ totalMaxAtk: totalMax, totalMaxAtkOver: totalMaxOver, propertyAtk });
+    const cri = Math.max(0, this.getBaseCriRate(true) + this.getExtraCriRateToMonster() - this.monster.data.criShield);
+    const perSwing = calcDmgDps({ accRate: accuracy, cri, criDmg: floor((criMinDamage + criMaxDamage) / 2), hitsPerSec: 100, max: basicMaxDamage, min: basicMinDamage }) / 100;
+    return { min: basicMinDamage, max: basicMaxDamage, perSwing };
+  }
+
+  /**
+   * ROZ auto attack breakdown for the Thief line (client text + official renewal rules):
+   *  - Double Attack: with a Dagger in the right hand, 7% x Lv chance to hit twice (right hand only).
+   *  - Dual wield: right hand 50 + 10 x Righthand Mastery %, left hand 30 + 10 x Lefthand Mastery %.
+   *  - Katar: every auto attack adds a left-hand hit of (1 + 2 x Double Attack Lv)% of the main hit.
+   */
+  private calcRozAutoAttack(a: { propertyAtk: ElementType; hitsPerSec: number; accuracy: number; basicDps: number; override: number }) {
+    const cls: any = this._class;
+    const lv = (n: string) => Number(cls.learnLv?.(n)) || 0;
+    const da = lv('Double Attack');
+    const wType = this.weaponData?.data?.typeName;
+    const leftType = this.leftWeaponData?.data?.typeName;
+    const isKatar = wType === 'katar';
+    const isDual = !!leftType && !isKatar;
+    const rows: any[] = [];
+    const hps = a.hitsPerSec;
+    const main = this.rozBasicWith(a.propertyAtk, a.accuracy);
+    const rightRate = isDual ? (50 + 10 * lv('Righthand Mastery')) / 100 : 1;
+    const row = (label: string, note: string, chance: number, min: number, max: number, perSwing: number, type = 'Physical') =>
+      rows.push({ label, note, chance: round(chance * 100, 1), min: floor(min), max: floor(max), dps: floor(perSwing * chance * hps), element: a.propertyAtk, type });
+    row(isDual ? 'Right hand' : 'Auto attack', isDual ? `${Math.round(rightRate * 100)}% (Righthand Mastery)` : 'normal hit', 1, main.min * rightRate, main.max * rightRate, main.perSwing * rightRate);
+    if (wType === 'dagger' && da > 0) {
+      const ch = a.override > 0 ? a.override / 100 : (7 * da) / 100;
+      row('Double Attack', `right hand hits again · Lv ${da}`, Math.min(1, ch), main.min * rightRate, main.max * rightRate, main.perSwing * rightRate);
+    }
+    if (isDual) {
+      const leftRate = (30 + 10 * lv('Lefthand Mastery')) / 100;
+      const keep = this.weaponData;
+      let left = { min: 0, max: 0, perSwing: 0 };
+      try {
+        this.weaponData = this.leftWeaponData;
+        left = this.rozBasicWith(this.leftWeaponData?.data?.propertyAtk || a.propertyAtk, a.accuracy);
+      } finally {
+        this.weaponData = keep;
+      }
+      row('Left hand', `${Math.round(leftRate * 100)}% (Lefthand Mastery)`, 1, left.min * leftRate, left.max * leftRate, left.perSwing * leftRate);
+    }
+    if (isKatar) {
+      const r = (1 + 2 * da) / 100;
+      row('Katar extra hit', `${Math.round(r * 100)}% of the main hit (Double Attack Lv ${da})`, 1, main.min * r, main.max * r, main.perSwing * r);
+    }
+    const procDps = rows.reduce((t, r) => t + r.dps, 0);
+    return { kind: 'auto', level: da, isCustomChance: a.override > 0, rows, procDps, hitsPerSec: hps, accuracy: a.accuracy, totalDps: procDps };
   }
 
   calculateAllDamages(args: { skillValue: string; propertyAtk: ElementType; maxHp: number; maxSp: number; }): DamageSummaryModel {

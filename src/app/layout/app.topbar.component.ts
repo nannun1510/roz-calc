@@ -201,6 +201,15 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.16 (alpha)',
+      date: '03-11-2026',
+      logs: [
+        'Thief / Assassin / Rogue: new Skill "Auto Attack (Double Attack / Dual wield / Katar)" shows each part of your auto attack with damage and DPS: right hand, Double Attack (7% per Lv with a Dagger), left hand (dual wield) or the Katar extra hit (1 + 2 x Double Attack Lv %), and the total auto attack DPS (with compare).',
+        'Assassin can now equip a left-hand weapon (dual wield). Right hand 50 + 10 x Righthand Mastery %, left hand 30 + 10 x Lefthand Mastery %.',
+        'Double Attack passive uses the ROZ value: HIT +1% per level.',
+      ],
+    },
+    {
       v: 'ROZ Global v0.15 (alpha)',
       date: '03-11-2026',
       logs: [

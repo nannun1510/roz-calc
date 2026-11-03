@@ -67,6 +67,8 @@ const ROZ_EXTRA_PASSIVES: Record<string, any> = {
   'Dance Lessons': { name: 'Dance Lessons', label: 'Dance Lessons (Whip)', inputType: 'dropdown', dropdown: lvs(10, (l) => ({ spPercent: l })) },
   Flee: { name: 'Flee', label: 'Flee', inputType: 'dropdown', dropdown: lvs(10, (l) => ({ flee: [0, 1, 3, 4, 6, 7, 9, 10, 12, 13, 15][l] })) },
   'Righthand Mastery': RighthandMasteryFn(),
+  // ROZ: HIT +1% per level (the double hit itself is shown by "Auto Attack" in the Skill list)
+  'Double Attack': { name: 'Double Attack', label: 'Double Attack (Dagger)', inputType: 'dropdown', dropdown: lvs(10, (l) => ({ hitPercent: l })) },
   // Priest: party Blessing / Increase AGI centred on the caster; stronger with the caster's Job Lv.
   // Applied to yourself in setAdditionalBonus (assumes Blessing / Increase AGI Lv10).
   Clementia: { name: 'Clementia', label: 'Clementia (Blessing 10 + JobLv/10)', inputType: 'dropdown', dropdown: lvs(3) },
@@ -151,7 +153,17 @@ const procSkill = (name: string, label: string, proc: any, isMatk: boolean, rati
     formula: ({ skillLevel }) => ratio(skillLevel),
   }) as any;
 
+const AUTO_ATTACK_SKILL: AtkSkillModel = {
+  name: 'Auto Attack' as any,
+  label: 'Auto Attack (Double Attack / Dual wield / Katar)',
+  value: 'Auto Attack (Double Attack / Dual wield / Katar)==1',
+  acd: 0, fct: 0, vct: 0, cd: 0, isMelee: true,
+  rozProc: { kind: 'auto' },
+  formula: () => 100,
+} as any;
+
 export const ROZ_PROC_SKILLS: Record<string, AtkSkillModel[]> = {
+  'Double Attack': [AUTO_ATTACK_SKILL],
   'Duple Light': [procSkill('Duple Light', 'Duple Light (auto attack)', { kind: 'duple' }, false, (lv) => 500 + 50 * lv)],
   'Spell Fist': [
     procSkill('Spell Fist', 'Spell Fist - Fire Bolt (auto attack)', { kind: 'fist', element: ElementType.Fire }, true, (lv) => 100 * lv),

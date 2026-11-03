@@ -79,6 +79,8 @@ const ROZ_EXTRA_PASSIVES: Record<string, any> = {
 export const rozClementia = (jobLv: number) => ({ str: 10 + Math.floor(jobLv / 10), int: 10 + Math.floor(jobLv / 10), dex: 10 + Math.floor(jobLv / 10), hit: 20 + Math.floor(jobLv / 10) });
 export const rozCantocandidus = (jobLv: number) => ({ agi: 12 + Math.floor(jobLv / 10), aspdPercent: 10 + Math.floor(jobLv / 10) });
 const ROZ_EXTRA_ACTIVES: Record<string, any> = {
+  // ROZ text (EN/TH/KR): only a strong poison status, no damage increase (Tong's EDP gives a big damage boost)
+  'Enchant Deadly Poison': { name: 'Enchant Deadly Poison', label: 'Enchant Deadly Poison (poison only)', inputType: 'selectButton', dropdown: [{ label: 'Yes', value: 1, isUse: true, bonus: {} }, { label: 'No', value: 0, isUse: false }] },
   Fury: { name: 'Fury', label: 'Fury (CRIT)', inputType: 'dropdown', dropdown: lvs(5, (l) => ({ cri: 7.5 + 2.5 * l })) },
   'Summon Spirit Sphere': { name: 'Summon Spirit Sphere', label: 'Spirit Spheres (+3 dmg each)', inputType: 'dropdown', dropdown: lvs(5) },
 };

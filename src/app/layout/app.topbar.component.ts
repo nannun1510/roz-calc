@@ -201,6 +201,14 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.20 (alpha)',
+      date: '03-11-2026',
+      logs: [
+        'Auto attack breakdown: the normal hit row now also shows your crit chance and crit damage range.',
+        'FIX Enchant Deadly Poison: in ROZ (EN / TH / KR skill text) it only adds a strong poison status and no longer gives the big damage boost from other servers.',
+      ],
+    },
+    {
       v: 'ROZ Global v0.19 (alpha)',
       date: '03-11-2026',
       logs: [

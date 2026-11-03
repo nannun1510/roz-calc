@@ -1309,7 +1309,7 @@ export class DamageCalculator {
     const { criMinDamage, criMaxDamage } = this.calcBasicCriDamage({ totalMaxAtk: totalMax, totalMaxAtkOver: totalMaxOver, propertyAtk });
     const cri = Math.max(0, this.getBaseCriRate(true) + this.getExtraCriRateToMonster() - this.monster.data.criShield);
     const perSwing = calcDmgDps({ accRate: accuracy, cri, criDmg: floor((criMinDamage + criMaxDamage) / 2), hitsPerSec: 100, max: basicMaxDamage, min: basicMinDamage }) / 100;
-    return { min: basicMinDamage, max: basicMaxDamage, perSwing };
+    return { min: basicMinDamage, max: basicMaxDamage, perSwing, cri: Math.min(100, cri), criMin: criMinDamage, criMax: criMaxDamage };
   }
 
   /**
@@ -1352,7 +1352,8 @@ export class DamageCalculator {
     // When Double Attack triggers, that attack is 2 normal hits and cannot crit (official rule); otherwise a normal swing (can crit).
     const daCh = daLv > 0 ? Math.min(1, a.override > 0 ? a.override / 100 : (7 * daLv) / 100) : 0;
     const nonCritHit = ((main.min + main.max) / 2) * (Math.min(100, a.accuracy) / 100);
-    row(isDual ? 'Right hand' : 'Auto attack', (isDual ? `${Math.round(rightRate * 100)}% (Righthand Mastery)` : 'normal hit') + (daCh > 0 ? ' · when Double Attack does not trigger' : ''), 1 - daCh, main.min * rightRate, main.max * rightRate, main.perSwing * rightRate);
+    const critNote = main.cri > 0 ? ` · crit ${round(main.cri, 0)}%: ${floor(main.criMin * rightRate).toLocaleString()} - ${floor(main.criMax * rightRate).toLocaleString()}` : '';
+    row(isDual ? 'Right hand' : 'Auto attack', (isDual ? `${Math.round(rightRate * 100)}% (Righthand Mastery)` : 'normal hit') + (daCh > 0 ? ' · when Double Attack does not trigger' : '') + critNote, 1 - daCh, main.min * rightRate, main.max * rightRate, main.perSwing * rightRate);
     if (daCh > 0) {
       row('Double Attack', `2 hits, cannot crit · ${daSource}`, daCh, main.min * rightRate * 2, main.max * rightRate * 2, nonCritHit * rightRate * 2);
     }

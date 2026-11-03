@@ -2511,7 +2511,7 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
   get rozProcDefaultText() {
     const v = this.model?.selectedAtkSkill || '';
     const lv = Number(v.split('==')[1]) || 10;
-    if (v.startsWith('Auto Attack (Double Attack')) return 'Double Attack default = 7% per skill level (with a Dagger)';
+    if (v.startsWith('Auto Attack (Double Attack')) return 'Double Attack default = 7% per level (learned: Dagger only; Sidewinder Card / Double Attack Stone: any weapon)';
     return v.startsWith('Duple Light')
       ? `Default ${10 + 2 * lv}% for each light at Lv${lv} (official formula 10 + 2×Lv, each light rolls separately). The ROZ client does not show this number`
       : `Default ${5 * lv}% at Lv${lv} (from the ROZ skill description)`;

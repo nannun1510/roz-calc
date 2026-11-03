@@ -1313,19 +1313,36 @@ export class DamageCalculator {
   }
 
   /**
-   * ROZ auto attack breakdown for the Thief line (client text + official renewal rules):
-   *  - Double Attack: with a Dagger in the right hand, 7% x Lv chance to hit twice (right hand only).
-   *  - Dual wield: right hand 50 + 10 x Righthand Mastery %, left hand 30 + 10 x Lefthand Mastery %.
-   *  - Katar: every auto attack adds a left-hand hit of (1 + 2 x Double Attack Lv)% of the main hit.
+   * ROZ auto attack breakdown for the Thief line (ROZ client text; official renewal rules where the text is silent):
+   *  - Double Attack (learned): only with a Dagger in the right hand; 7% x Lv to hit twice.
+   *  - Double Attack from an item (Sidewinder Card = Lv1, Double Attack Stone (Garment) = Lv3, "all weapons"):
+   *    works with any weapon (not bare-handed); if Double Attack is learned higher, the learned level is used.
+   *  - The double hit is the right hand only. Dual wield: right 50 + 10 x Righthand Mastery %, left 30 + 10 x Lefthand Mastery %.
+   *  - Katar: every auto attack also has a left-hand hit of (1 + 2 x Double Attack Lv)% of the main hit (not a double attack).
    */
   private calcRozAutoAttack(a: { propertyAtk: ElementType; hitsPerSec: number; accuracy: number; basicDps: number; override: number }) {
     const cls: any = this._class;
     const lv = (n: string) => Number(cls.learnLv?.(n)) || 0;
-    const da = lv('Double Attack');
+    const learnedDa = lv('Double Attack');
+    const m: any = this.model || {};
+    const values = new Set(Object.entries(m).filter(([k]) => /card|enchant/i.test(k)).map(([, v]) => Number(v)));
+    const itemDaLv = Math.max(values.has(4117) ? 1 : 0, values.has(25302) ? 3 : 0); // Sidewinder Card / Double Attack Stone (Garment)
+    const itemDaName = values.has(25302) ? 'Double Attack Stone' : values.has(4117) ? 'Sidewinder Card' : '';
     const wType = this.weaponData?.data?.typeName;
     const leftType = this.leftWeaponData?.data?.typeName;
+    const hasWeapon = !!wType;
     const isKatar = wType === 'katar';
     const isDual = !!leftType && !isKatar;
+    // which Double Attack applies
+    let daLv = 0;
+    let daSource = '';
+    if (itemDaLv > 0 && hasWeapon) {
+      daLv = Math.max(itemDaLv, learnedDa);
+      daSource = learnedDa > itemDaLv ? `learned Lv ${learnedDa} (via ${itemDaName})` : `${itemDaName} Lv ${itemDaLv}`;
+    } else if (learnedDa > 0 && wType === 'dagger') {
+      daLv = learnedDa;
+      daSource = `learned Lv ${learnedDa}, Dagger`;
+    }
     const rows: any[] = [];
     const hps = a.hitsPerSec;
     const main = this.rozBasicWith(a.propertyAtk, a.accuracy);
@@ -1333,9 +1350,9 @@ export class DamageCalculator {
     const row = (label: string, note: string, chance: number, min: number, max: number, perSwing: number, type = 'Physical') =>
       rows.push({ label, note, chance: round(chance * 100, 1), min: floor(min), max: floor(max), dps: floor(perSwing * chance * hps), element: a.propertyAtk, type });
     row(isDual ? 'Right hand' : 'Auto attack', isDual ? `${Math.round(rightRate * 100)}% (Righthand Mastery)` : 'normal hit', 1, main.min * rightRate, main.max * rightRate, main.perSwing * rightRate);
-    if (wType === 'dagger' && da > 0) {
-      const ch = a.override > 0 ? a.override / 100 : (7 * da) / 100;
-      row('Double Attack', `right hand hits again · Lv ${da}`, Math.min(1, ch), main.min * rightRate, main.max * rightRate, main.perSwing * rightRate);
+    if (daLv > 0) {
+      const ch = a.override > 0 ? a.override / 100 : (7 * daLv) / 100;
+      row('Double Attack', `right hand hits again · ${daSource}`, Math.min(1, ch), main.min * rightRate, main.max * rightRate, main.perSwing * rightRate);
     }
     if (isDual) {
       const leftRate = (30 + 10 * lv('Lefthand Mastery')) / 100;
@@ -1347,14 +1364,15 @@ export class DamageCalculator {
       } finally {
         this.weaponData = keep;
       }
-      row('Left hand', `${Math.round(leftRate * 100)}% (Lefthand Mastery)`, 1, left.min * leftRate, left.max * leftRate, left.perSwing * leftRate);
+      row('Left hand', `${Math.round(leftRate * 100)}% (Lefthand Mastery) · no Double Attack`, 1, left.min * leftRate, left.max * leftRate, left.perSwing * leftRate);
     }
     if (isKatar) {
-      const r = (1 + 2 * da) / 100;
-      row('Katar extra hit', `${Math.round(r * 100)}% of the main hit (Double Attack Lv ${da})`, 1, main.min * r, main.max * r, main.perSwing * r);
+      const offLv = Math.max(learnedDa, itemDaLv);
+      const r = (1 + 2 * offLv) / 100;
+      row('Katar left-hand hit', `${Math.round(r * 100)}% of the main hit · stronger with Double Attack skill Lv`, 1, main.min * r, main.max * r, main.perSwing * r);
     }
     const procDps = rows.reduce((t, r) => t + r.dps, 0);
-    return { kind: 'auto', level: da, isCustomChance: a.override > 0, rows, procDps, hitsPerSec: hps, accuracy: a.accuracy, totalDps: procDps };
+    return { kind: 'auto', level: daLv, isCustomChance: a.override > 0, rows, procDps, hitsPerSec: hps, accuracy: a.accuracy, totalDps: procDps };
   }
 
   calculateAllDamages(args: { skillValue: string; propertyAtk: ElementType; maxHp: number; maxSp: number; }): DamageSummaryModel {

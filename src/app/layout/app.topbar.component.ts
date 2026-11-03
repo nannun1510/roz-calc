@@ -201,6 +201,15 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.17 (alpha)',
+      date: '03-11-2026',
+      logs: [
+        'Double Attack rules: the learned skill only double-hits with a Dagger in the right hand. Sidewinder Card (Lv1) and Double Attack Stone (Garment) (Lv3) give Double Attack to any weapon, incl. Katar; if Double Attack is learned higher, the learned level is used.',
+        'The double hit is the right hand only; the left hand (dual wield) never double attacks.',
+        'Katar: the extra left-hand hit is shown as "Katar left-hand hit" (not a double attack); Double Attack skill Lv only makes it stronger.',
+      ],
+    },
+    {
       v: 'ROZ Global v0.16 (alpha)',
       date: '03-11-2026',
       logs: [

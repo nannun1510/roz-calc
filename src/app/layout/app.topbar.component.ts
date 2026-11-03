@@ -201,6 +201,13 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.18 (alpha)',
+      date: '03-11-2026',
+      logs: [
+        'Double Attack: an attack that double-hits cannot crit (official rule). The auto attack breakdown now shows "Auto attack (when Double Attack does not trigger)" and "Double Attack (2 hits, cannot crit)" separately, so crit builds are no longer over-estimated.',
+      ],
+    },
+    {
       v: 'ROZ Global v0.17 (alpha)',
       date: '03-11-2026',
       logs: [

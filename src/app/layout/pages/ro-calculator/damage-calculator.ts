@@ -1349,10 +1349,12 @@ export class DamageCalculator {
     const rightRate = isDual ? (50 + 10 * lv('Righthand Mastery')) / 100 : 1;
     const row = (label: string, note: string, chance: number, min: number, max: number, perSwing: number, type = 'Physical') =>
       rows.push({ label, note, chance: round(chance * 100, 1), min: floor(min), max: floor(max), dps: floor(perSwing * chance * hps), element: a.propertyAtk, type });
-    row(isDual ? 'Right hand' : 'Auto attack', isDual ? `${Math.round(rightRate * 100)}% (Righthand Mastery)` : 'normal hit', 1, main.min * rightRate, main.max * rightRate, main.perSwing * rightRate);
-    if (daLv > 0) {
-      const ch = a.override > 0 ? a.override / 100 : (7 * daLv) / 100;
-      row('Double Attack', `right hand hits again · ${daSource}`, Math.min(1, ch), main.min * rightRate, main.max * rightRate, main.perSwing * rightRate);
+    // When Double Attack triggers, that attack is 2 normal hits and cannot crit (official rule); otherwise a normal swing (can crit).
+    const daCh = daLv > 0 ? Math.min(1, a.override > 0 ? a.override / 100 : (7 * daLv) / 100) : 0;
+    const nonCritHit = ((main.min + main.max) / 2) * (Math.min(100, a.accuracy) / 100);
+    row(isDual ? 'Right hand' : 'Auto attack', (isDual ? `${Math.round(rightRate * 100)}% (Righthand Mastery)` : 'normal hit') + (daCh > 0 ? ' · when Double Attack does not trigger' : ''), 1 - daCh, main.min * rightRate, main.max * rightRate, main.perSwing * rightRate);
+    if (daCh > 0) {
+      row('Double Attack', `2 hits, cannot crit · ${daSource}`, daCh, main.min * rightRate * 2, main.max * rightRate * 2, nonCritHit * rightRate * 2);
     }
     if (isDual) {
       const leftRate = (30 + 10 * lv('Lefthand Mastery')) / 100;

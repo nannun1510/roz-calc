@@ -24,6 +24,14 @@ interface DamageResultModel {
   phyHit: boolean;
 }
 
+const ROZ_MONSTER_GROUPS: [string, RegExp][] = [
+  ['goblin', /Goblin|Gobline/],
+  ['orc', /\bOrc\b/],
+  ['boulder_dwarf', /Boulder Dwarf/],
+  ['aster', /^Aster$/],
+  ['guardian', /Guardian$/],
+];
+
 export class DamageCalculator {
   private readonly EDP_WEAPON_MULTIPLIER = 0.25;
   private readonly MAGNUM_BREAK_WEAPON_MULTIPLIER = 0.2;
@@ -669,7 +677,14 @@ export class DamageCalculator {
 
     const total = 100 + base + (this.totalBonus[`${prefix}_${this.monster.race}`] ?? 0);
 
-    return round(total, 3);
+    // ROZ: monster-group cards (Goblin Leader, Orc Lady, Boulder Dwarf Captain, Elder, Crab) - a separate multiplier, like race2 bonuses
+    let groupBonus = 0;
+    for (const [tag, re] of ROZ_MONSTER_GROUPS) {
+      const v = this.totalBonus[`${atkType}_mon_${tag}`] || 0;
+      if (v && re.test(this.monster.data?.name || '')) groupBonus += v;
+    }
+
+    return round((total * (100 + groupBonus)) / 100, 3);
   }
 
   private getSizeMultiplier(atkType: 'p' | 'm') {

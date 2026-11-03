@@ -201,6 +201,21 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.21 (alpha)',
+      date: '03-11-2026',
+      logs: [
+        'Items: about 108 more items now calculate their "[ROZ] Not yet in the calculator" lines (135 -> 27 items left).',
+        'New: damage vs race / size / element / Boss wordings (Deviace, Abysmal Knight, Quadrille, Book of the Apocalypse, Frog Hat, Battle Hook ...), element magic damage (Sting Hat, Staff of Blue Flame, Ring of Blue Oath), skill damage lists (Wand of Ice / Flame, Dragon Tail, Zealotus, Royal Knight Lance).',
+        'New: CRIT vs race cards (Goblin Steamrider, Goblin Archer, Cruiser, Panzer Goblin, Rotar Zairo, Fur Seal for Acolytes).',
+        'New: monster-group cards: Goblin Leader (Goblins), Orc Lady (Orcs), Boulder Dwarf Captain / Squad Leader (Boulder Dwarves), Elder (Guardians), Crab (Aster).',
+        'New: card / item combos (Orc General + High Orc, Bathory, Penomena, Arclouse, Tarou, Mummy, Lunatic, Magician Hat, Thief Handcuffs with Prison Uniform / Shackles, Critical Stone sets, Crab + Shell Fish + Aster).',
+        'New: refine-step and BaseLv lines (Every N refine, per refine level, At +9 refine: for every BaseLv N ...), cast time / delay lines, Perfect Hit (Merman, Ancient Mummy).',
+        'FIX refinable accessories (Red Oath Ring, Ring of Blue Oath, Cursed Emerald Earring, Shimmering Opal Earrings ...) now have a refine box, so their +7 / +9 bonuses apply.',
+        'Guild weapon lines that only work in Siege / WoE areas are no longer counted.',
+        'Still not calculated (shown in red on the item): random autocasts / procs, transformations, pet egg combos.',
+      ],
+    },
+    {
       v: 'ROZ Global v0.20 (alpha)',
       date: '03-11-2026',
       logs: [

@@ -25,6 +25,8 @@ VALID = set(re.findall(r'^\s+([A-Za-z_0-9]+):', _raw, re.M))
 SKILLS = set(re.findall(r"^\s+'([^']+)',", open('src/app/constants/skill-name.ts').read(), re.M))
 SKILLS |= {v['name'] for v in json.load(open('tools/roz/roz-skills.json')).values()}  # ROZ skill names (skill damage bonus keys)
 VALID |= SKILLS
+VALID |= {f'{a}_mon_{t}' for a in 'pm' for t in ('goblin', 'orc', 'boulder_dwarf', 'aster', 'guardian')}
+VALID |= {f'cri_race_{r}' for r in ('formless','undead','brute','plant','insect','fish','demon','demihuman','angel','dragon')}
 SKILL_ALIAS = {'Frost Driver': 'Frost Diver'}
 TH = json.load(open('tools/roz/roz-items-th.json'))
 
@@ -62,12 +64,17 @@ def targets(text):
     text = re.sub(r',?\s+and\s+', ', ', text)
     """'Demi-Human, Brute, Plant, and Insect' -> [('race','demihuman'),...]"""
     out = []
-    for t in re.split(r',\s*(?:and\s+)?|\s+and\s+|\s*/\s*', text.strip()):
+    prop = bool(re.search(r'[Pp]roperty', text))
+    for t in re.split(r',\s*(?:and\s+|or\s+)?|\s+and\s+|\s+or\s+|\s*/\s*', text.strip()):
         t = re.sub(r'^(?:monsters|enemies|Monsters|Enemies) of ', '', t.strip())
         t = re.sub(r'\b(Enemies|enemies|Monsters|monsters|Monster|monster|type|-type|race|races of)\b', '', t).strip(' -')
         t = t.replace('monsters of ', '').replace('enemies of ', '').strip()
-        if t in RACES: out.append(('race', RACES[t]))
+        if prop and re.sub(r'[- ]?[Pp]roperty$', '', t) in ELEMENTS: out.append(('element', ele_key(re.sub(r'[- ]?[Pp]roperty$', '', t))))
+        elif t in RACES: out.append(('race', RACES[t]))
         elif t in SIZES: out.append(('size', SIZES[t]))
+        elif t in ('Boss', 'Boss-type', 'Boss class', 'MVP'): out.append(('class', 'boss'))
+        elif t in ('Normal', 'Normal-type', 'non-Boss'): out.append(('class', 'normal'))
+        elif re.sub(r'-Size$', '', t) in SIZES: out.append(('size', SIZES[re.sub(r'-Size$', '', t)]))
         elif re.sub(r'[- ]?[Pp]roperty$', '', t) in ELEMENTS: out.append(('element', ele_key(re.sub(r'[- ]?[Pp]roperty$', '', t))))
         elif t in ('players', 'Players', 'player'): out.append(('race', 'player_human'))
         else: return None
@@ -80,8 +87,46 @@ def clause(c):
     c = re.sub(r'^and\s+', '', c)
     c = re.sub(r'^(.+?) (?:increases )?by an additional (\d+%?)$', r'\1 +\2', c)
     c = re.sub(r'^(additional(ly)?|an additional|increases?)\s+', '', c, flags=re.I).strip()
-    c = re.sub(r'\s+additional$', '', c)
+    c = re.sub(r'\s+additional(?:ly)?$', '', c)
     if not c: return []
+    c = re.sub(r'\bM\.ATK\b', 'MATK', c)
+    c = re.sub(r'^All basic stats', 'All Stats', c, flags=re.I)
+    c = re.sub(r'\bCRIT Damage\b', 'Critical Damage', c)
+    c = re.sub(r'^(?:increases )?(.+?) by (?:an additional )?(\d+%?)$', lambda m: f'{m.group(1)} +{m.group(2)}' if re.fullmatch(rf'(?:{flat_names}|{pct_names})', m.group(1)) else m.group(0), c, flags=re.I)
+    c = re.sub(r'^grants\s+', '', c)
+    c = re.sub(r'^.*? have a chance to drop \w+ when hunted$', '', c)
+    c = re.sub(r'\s+is granted$', '', c)
+    c = re.sub(r'^(?:reduces|decreases) (.+?) by (\d+%?)$', r'\1 -\2', c, flags=re.I)
+    c = re.sub(r'^(.+?) increases by (\d+%?)$', r'\1 +\2', c)
+    c = re.sub(r'\s*\+\s+(\d)', r' +\1', c)
+    m = re.fullmatch(r'Perfect Hit \+(\d+)%?', c)
+    if m: return [('perfectHit', int(m.group(1)))]
+    # no effect on damage: SP cost, healing, status chance
+    if re.fullmatch(r'(?:Reduces )?(?:SP cost of skills|SP consumption|SP Consumption)\s*(?:[+-]\s*|by\s*)\d+%', c, flags=re.I): return []
+    if re.fullmatch(r'(?:Stun|Freeze|Stone|Sleep|Curse|Blind|Silence|Poison|Bleeding|Confusion) \+\d+%', c): return []
+    if re.fullmatch(r'Heal Amount you cast is increased by \d+%|HP Recovery \+\d+%|Received Heal Amount \+\d+%', c, flags=re.I): return []
+    # "Additional N% damage to Human-type enemies" / "Deals N% additional damage to Demon-type enemies" / "Increases damage to Fish Monsters by N%"
+    m = (re.fullmatch(r'(?:Deals )?(?:additional )?(\d+)% (?:additional )?damage to (.+)', c, flags=re.I)
+         or re.fullmatch(r'(?:Deals )?(?:additional )?(\d+)% damage to (.+)', c, flags=re.I))
+    if m and targets(m.group(2)): return [(f'p_{a}_{b}', int(m.group(1))) for a, b in targets(m.group(2))]
+    m = re.fullmatch(r'(?:Increases )?damage to (.+?) by (\d+)%', c, flags=re.I)
+    if m and targets(m.group(1)): return [(f'p_{a}_{b}', int(m.group(2))) for a, b in targets(m.group(1))]
+    # "Water and Fire magic damage +N%" / "Earth Magical Damage +N%" / "Fire-Property and Water Magical Damage +N%"
+    m = re.fullmatch(r'(.+?) [Mm]agic(?:al)? [Dd]amage \+(\d+)%', c)
+    if m:
+        els = [re.sub(r'[- ]?[Pp]roperty$', '', x.strip()) for x in re.split(r',\s*(?:and\s+)?|\s+and\s+', m.group(1))]
+        if all(e in ELEMENTS for e in els): return [(f'm_my_element_{ele_key(e)}', int(m.group(2))) for e in els]
+    # "CRIT +N when attacking Formless Monsters" / "When attacking Brute Monsters, CRIT +N"
+    m = re.fullmatch(r'CRIT \+(\d+) when attacking (.+)', c, flags=re.I) or None
+    if not m:
+        m2 = re.fullmatch(r'When attacking (.+?),? CRIT \+(\d+)', c, flags=re.I)
+        if m2: m = type('M', (), {'group': lambda self, i, a=m2: [None, a.group(2), a.group(1)][i]})()
+    if m:
+        tg = targets(m.group(2))
+        if tg and all(a == 'race' for a, b in tg): return [(f'cri_race_{b}', int(m.group(1))) for a, b in tg]
+        return None
+    m = re.fullmatch(r'(?:Variable Casting Time|Variable Cast) \+(\d+)%', c, flags=re.I)
+    if m: return [('vct', -int(m.group(1)))]
     if re.fullmatch(r'Unbreakable|Cannot be Refined|Cannot be refined|Indestructible', c): return []
     m = re.fullmatch(r'([A-Za-z]+(?:/[A-Za-z]+)+)\s*([+-]\s*\d+%?)', c)
     if m:
@@ -104,8 +149,8 @@ def clause(c):
     if m: return [(FLAT[m.group(1)], int(m.group(2)))]
     m = re.fullmatch(rf'({pct_names})\s*([+-])\s*(\d+)%', c)
     if m: return [(PCT[m.group(1)], int(m.group(3)) * (1 if m.group(2) == '+' else -1))]
-    m = re.fullmatch(r'(?:reduces )?(Variable Casting Time|Variable Cast(?:ing)?|Fixed Casting(?: Time)?|Fixed Cast|After Attack Delay|Global Delay|After Cast(?:ing)? Delay|SP consumption|SP Consumption)\s*(?:-|by\s*)\s*(\d+)%', c)
-    if not m: m = re.fullmatch(r'reduces (Variable Casting Time|Fixed Casting Time|After Attack Delay|Global Delay|After Cast Delay|SP consumption) by (\d+)%', c)
+    m = re.fullmatch(r'(?:reduces )?(Variable Casting Time|Variable Cast(?:ing)?|Fixed Casting(?: Time)?|Fixed Cast|After Attack Delay|Global Delay|After Cast(?:ing)? Delay|SP consumption|SP Consumption)\s*(?:-|by\s*)\s*(\d+)%', c, flags=re.I)
+    if not m: m = re.fullmatch(r'reduces (Variable Casting Time|Fixed Casting Time|After Attack Delay|Global Delay|After Cast Delay|SP consumption) by (\d+)%', c, flags=re.I)
     if m:
         k, v = m.group(1).lower(), int(m.group(2))
         if k.startswith('variable'): return [('vct', v)]
@@ -114,6 +159,13 @@ def clause(c):
         if k.startswith('sp'): return [('spCostPercent', -v)]
         return [('acd', v)]
     # skill damage, several skills: "+N% damage to Meteor Storm and Fire Pillar" / "damage of Holy Cross and Pierce by N%"
+    for pat in (r'\+?(\d+)% damage to (.+)', r'(?:increases )?damage of (.+?) (?:by )?\+?(\d+)%', r'(.+?) damage (?:by )?\+?(\d+)%'):
+        m = re.fullmatch(pat, c, flags=re.I)
+        if not m: continue
+        num, txt = (m.group(1), m.group(2)) if m.group(1).isdigit() else (m.group(2), m.group(1))
+        for a, b in SKILL_ALIAS.items(): txt = txt.replace(a, b)
+        names = [x.strip(' []') for x in re.split(r',\s*(?:and\s+)?|\s+and\s+', txt)]
+        if names and all(n in SKILLS for n in names): return [(n, int(num)) for n in names]
     m = re.fullmatch(r'\+?(\d+)% damage to (.+)', c, flags=re.I) or None
     if m:
         names = [x.strip(' []') for x in re.split(r',\s*|\s+and\s+', m.group(2))]
@@ -132,6 +184,11 @@ def clause(c):
     if m: return [('aspdPercent', int(m.group(1)))]
     m = re.fullmatch(r'ASPD increases \(After Attack Delay -(\d+)%\)', c)
     if m: return [('aspdPercent', int(m.group(1)))]
+    # monster groups (Goblin Leader, Orc Lady, Boulder Dwarf Captain, Elder, Crab cards) -> p_mon_<tag> (damage-calculator.ts ROZ_MONSTER_GROUPS)
+    m = re.fullmatch(r'(Physical|Magic(?:al)?) [Dd]amage (?:against|to) (Goblins?|Orcs?|Boulder Dwar(?:f|fs|ves)|Aster|Siege Guardians?) \+(\d+)%', c, flags=re.I)
+    if m:
+        tag = {'gob': 'goblin', 'orc': 'orc', 'bou': 'boulder_dwarf', 'ast': 'aster', 'sie': 'guardian'}[m.group(2)[:3].lower()]
+        return [(('p' if m.group(1).lower().startswith('phys') else 'm') + f'_mon_{tag}', int(m.group(3)))]
     # damage dealt
     m = re.fullmatch(r'(Physical|Magic(?:al)?|Physical/Magical|Physical and [Mm]agical) [Dd]amage (?:dealt )?to (.+?) \+(\d+)%(?: \(excluding Players\))?', c, flags=re.I)
     if not m:
@@ -156,16 +213,30 @@ def clause(c):
 
 
 def split_clauses(text):
+    if re.search(r',| and ', text) and clause(text): return [text]  # "Physical Damage to Demi-Human, Brute, and Plant Monsters +N%"
     if re.search(r'\+?\d+% damage to |damage of .+ by ', text):
         t = text
         for a, b in SKILL_ALIAS.items(): t = t.replace(a, b)
         names = re.split(r',\s*|\s+and\s+', re.sub(r'^.*?(?:% damage to|damage of)\s+', '', t).split(' by ')[0].rstrip('.'))
         if names and all(n.strip(' []') in SKILLS for n in names): return [t]
-    return [p for p in re.split(r',\s*|\s+and\s+(?=[A-Z])|\.\s+|;\s*', text) if p.strip()]
+    bits = re.split(r'(,\s*(?:and\s+)?|\s+and\s+(?=[A-Z\[]|reduces|increases)|\.\s+|;\s*)', text)
+    out, carry = [], ''
+    for i in range(0, len(bits), 2):
+        piece, sep = bits[i], (bits[i + 1] if i + 1 < len(bits) else '')
+        if not piece.strip(): continue
+        if not re.search(r'\d', piece) and sep and not sep.startswith('.') and not sep.startswith(';'):
+            carry += piece + (' and ' if 'and' in sep or i + 3 >= len(bits) else ', ')
+            continue
+        out.append(carry + piece); carry = ''
+    if carry: out.append(carry.rstrip(', ').removesuffix(' and'))
+    return [p for p in out if p.strip()]
 
 
 SLOT_REFINE = {'helm': 'headUpper', 'headgear': 'headUpper', 'helmet': 'headUpper', 'shield': 'shield', 'armor': 'armor',
                'garment': 'garment', 'shoes': 'boot', 'footgear': 'boot', 'weapon': 'weapon'}
+
+
+ITEM_SLOT = {'Shackles': 'boot', 'Prison Uniform': 'armor', 'Prisoner Uniform': 'armor'}
 
 
 def parse_slot_refine(l):
@@ -180,9 +251,24 @@ def parse_slot_refine(l):
                 r = clause(c)
                 if r is None: return None
                 out += [(k, str(v)) for k, v in r]
-        r = clause(m.group(2))
-        if r is None: return None
+        r = []
+        for c in split_clauses(m.group(2)):
+            x = clause(c)
+            if x is None: return None
+            r += x
         return out + [(k, f'REFINE[{slot}=={n}]---{v}') for k, v in r]
+    m = re.fullmatch(r'For every (\d+ )?refine levels? of the (\w+),\s*(.+?)\.?', l, flags=re.I)
+    if m and m.group(2).lower() in SLOT_REFINE:
+        r = []
+        for c in split_clauses(m.group(3)):
+            x = clause(c)
+            if x is None: return None
+            r += x
+        return [(k, f'REFINE[{SLOT_REFINE[m.group(2).lower()]}=={(m.group(1) or "1").strip()}]---{v}') for k, v in r]
+    m = re.fullmatch(r'(.+?) per refine level on (.+?)\.?', l)
+    if m and m.group(2) in ITEM_SLOT and not m.group(1).startswith('When'):
+        r = clause(m.group(1))
+        return None if r is None else [(k, f'REFINE[{ITEM_SLOT[m.group(2)]}==1]---{v}') for k, v in r]
     m = re.fullmatch(r'Each refine on (\w+) grants (.+?)\.?', l, flags=re.I) or None
     if m and m.group(1).lower() in SLOT_REFINE:
         r = clause(m.group(2))
@@ -194,9 +280,36 @@ def parse_slot_refine(l):
     return False
 
 
+STAT_WORDS = re.compile(r'ATK|CRIT|ASPD|[Dd]amage|HIT|Critical|Attack Speed|Cast')
+
+
+def parse_sentences(l):
+    """'INT +1. If refine level >= 7, MSP +100.' -> each sentence on its own; a leading
+    'When equipped by <class>' condition carries over to the sentences after it."""
+    parts = [x.strip() for x in re.split(r'(?<=\.)\s+(?=[A-Z])', l) if x.strip()]
+    if len(parts) < 2: return False
+    out, used = [], None
+    for i, x in enumerate(parts):
+        if not re.search(r'\d', x):
+            if STAT_WORDS.search(x): return None   # "Additional ATK increases based on ..." (no number given)
+            continue
+        r = parse_line(x.rstrip('.'))
+        if r is None: return None
+        if i == 0:
+            mm = re.match(r'((?:USED|EQUIP)\[[^\]]+\])', r[0][1]) if r else None
+            used = mm.group(1) if mm and all(v.startswith(mm.group(1)) for k, v in r) else None
+        elif used and not any(v.startswith(('USED[', 'EQUIP[')) for k, v in r):
+            r = [(k, used + v) for k, v in r]
+        out += r
+    return out
+
+
 def parse_line(line):
     """Returns (list of (key, value-string)) or None."""
     l = line.strip()
+    l = re.sub(r'\s*[^,]*have a chance to drop \w+ when hunted, and ', ' ', l)
+    ps = parse_sentences(l)
+    if ps is not False: return ps
     sr = parse_slot_refine(l)
     if sr is not False: return sr
     l = re.sub(r'^and\s+', '', l)
@@ -204,6 +317,7 @@ def parse_line(line):
     if re.fullmatch(r'\((?:Applies )?[Uu]p to (?:Base ?Lv|Base Level) \d+\.?\)', l): return []
     # "For every 10 BaseLv, ATK +7, DEF +3 [cap 50]" -> one LEVEL[a-b] bracket per step
     m = re.fullmatch(r'For every (\d+) (?:Base ?Lv|Base Level)s?[,:]?\s*(.+?)(?:\s*\[cap (\d+)\])?', l, flags=re.I)
+    if not m: m = re.fullmatch(r'For every (?:Base ?Lv|Base Level) (\d+)[,:]?\s*(.+?)(?:\s*\[cap (\d+)\])?', l, flags=re.I)
     if m:
         step, cap = int(m.group(1)), int(m.group(3) or 200)
         out = []
@@ -216,7 +330,11 @@ def parse_line(line):
                     out.append((k, f'LEVEL[{i * step}-{hi}]{v * i}'))
         return out
     # "When equipped by Thief Class, CRIT +5" / "When equipped by Swordsman, Merchant, Thief, or Archer Class: MAXHP +300"
-    m = re.fullmatch(r'When equipped by ([^:]+?)(?: Class(?:es)?)?:\s*(.+)', l) or re.fullmatch(r'When equipped by (.+?)(?: Class(?:es)?)?,\s*(.+)', l)
+    m = re.fullmatch(r'When an? (\w+) Class attacks (.+?) Monsters, CRIT \+(\d+)\.?', l)
+    if m and m.group(1) in CLASS and targets(m.group(2)):
+        return [(f'cri_race_{b}', f'USED[{CLASS[m.group(1)]}]{m.group(3)}') for a, b in targets(m.group(2)) if a == 'race']
+    m = (re.fullmatch(r'When equipped by ([^:]+?)(?: Class(?:es)?)?:\s*(.+)', l) or re.fullmatch(r'When equipped by (.+) Class(?:es)?,\s*(.+)', l)
+         or re.fullmatch(r'When equipped by (.+?)(?: Class(?:es)?)?,\s*(.+)', l))
     if m:
         cls = [CLASS[x] for x in CLASS if re.search(r'\b' + re.escape(x) + r'\b', m.group(1))]
         if cls:
@@ -227,19 +345,72 @@ def parse_line(line):
                 out += [(k, f'USED[{"||".join(sorted(set(cls)))}]{v}') for k, v in r]
             return out
     # "When equipped with Shackles, ATK +N" / "When equipped together with X: ..." (not pet eggs)
-    m = re.fullmatch(r'When equipped (?:together )?with (?:the |a )?(.+?)[,:]\s*(.+)', l)
-    if m and 'Egg' not in m.group(1) and 'refined' not in m.group(1) and m.group(1) in EQUIP_NAMES:
+    m = (re.fullmatch(r'When (?:equipped|used|worn) (?:together )?with (?:the |a )?((?:\w+, )+(?:and )?\w+ Card)[,:]\s*(.+)', l)
+         or re.fullmatch(r'When (?:equipped|used|worn) (?:together )?with (?:the |a )?(.+?)[,:]\s*(.+)', l))
+    if m and 'Egg' not in m.group(1) and 'refined' not in m.group(1):
+        names = [{'Prisoner Uniform': 'Prison Uniform'}.get(m.group(1), m.group(1))]
+        if m.group(1) not in EQUIP_NAMES and re.search(r',| and ', m.group(1)) and not m.group(1).endswith(' Card'):
+            names = [x.strip() for x in re.split(r',\s*(?:and\s+)?|\s+and\s+', m.group(1))]
+        elif m.group(1) not in EQUIP_NAMES and m.group(1).endswith(' Card'):
+            names = [x.strip() for x in re.split(r',\s*(?:and\s+)?|\s+and\s+', m.group(1)[:-5])]
+            names = [{'Shellfish': 'Shell Fish'}.get(x, x) + ' Card' for x in names]
+        if all(x in EQUIP_NAMES for x in names):
+            cond = f'EQUIP[{"&&".join(names)}]'
+            sr = parse_slot_refine(m.group(2).rstrip('.'))
+            if sr is not False:
+                return None if sr is None else [(k, cond + v) for k, v in sr]
+            out = []
+            for c in split_clauses(m.group(2)):
+                r = clause(c)
+                if r is None: return None
+                out += [(k, cond + v) for k, v in [(k, str(v)) for k, v in r]]
+            return out
+    m = re.fullmatch(r'When equipped together with Critical Stones for (.+), (?:an additional )?(.+?) is granted\.?', l)
+    if m:
+        parts = re.split(r',\s*(?:and\s+)?|\s+and\s+', m.group(1))
+        r = clause(m.group(2))
+        if r is not None and all(x in ('Upper', 'Middle', 'Lower', 'Garment') for x in parts):
+            cond = '&&'.join(f'Critical Stone ({x})' for x in parts)
+            return [(k, f'EQUIP[{cond}]{v}') for k, v in r]
+    m = re.fullmatch(r'While using an? (blunt weapon|mace|knuckle|dagger|bow|sword|katar), (.+?)(?:,? and at \+(\d+) (.+?))?\.?', l)
+    if m:
+        wt = {'blunt weapon': 'mace', 'knuckle': 'fist'}.get(m.group(1), m.group(1))
         out = []
-        for c in split_clauses(m.group(2)):
-            r = clause(c)
+        mm = re.fullmatch(r'(increases|reduces) (.+?) by (\d+%?) per (?:weapon )?refine', m.group(2))
+        if not mm: return None
+        r = clause(f'{mm.group(2)} {"+" if mm.group(1) == "increases" else "-"}{mm.group(3)}')
+        if r is None: return None
+        out += [(k, f'WEAPON_TYPE[{wt}]REFINE[weapon==1]---{v}') for k, v in r]
+        if m.group(3):
+            r = clause(m.group(4))
             if r is None: return None
-            out += [(k, f'EQUIP[{m.group(1)}]{v}') for k, v in r]
+            out += [(k, f'WEAPON_TYPE[{wt}]XREFINEX[weapon=={m.group(3)}]===' + str(v)) for k, v in r]
         return out
     # refine thresholds
-    m = re.match(r'^(?:At \+(\d+) refine(?: or higher)?|When refined to \+(\d+)(?: or higher)?|At refine level (\d+)(?: or higher)?|If refined to \+(\d+)(?: or higher)?)\s*[,:]?\s*(.*)$', l, flags=re.I)
+    m = re.fullmatch(r'(.+?) when refine(?:ment)? level is (\d+) or lower\.?', l, flags=re.I)
     if m:
-        n = next(g for g in m.groups()[:4] if g)
-        body = m.group(5)
+        out = []
+        for c in split_clauses(m.group(1)):
+            r = clause(c)
+            if r is None: return None
+            out += [(k, str(v)) for k, v in r] + [(k, f'{int(m.group(2)) + 1}==={-v}') for k, v in r]
+        return out
+    m = re.match(r'^(?:At \+(\d+) refine(?: or higher)?|When refined to \+(\d+)(?: or higher)?|At refine level (\d+)(?: or higher)?|If refined to \+(\d+)(?: or higher)?|When refine(?:ment)? level is (\d+) or higher|If refine level (?:≥|>=|is) ?(\d+)(?: or higher)?|At \+(\d+)(?=\s*[,:]))\s*[,:]?\s*(.*)$', l, flags=re.I)
+    if m:
+        n = next(g for g in m.groups()[:7] if g)
+        body = m.group(8)
+        mm = re.fullmatch(r'when using \[?([^\],]+?)\]?, (.+?)\.?', body, flags=re.I)
+        if mm and ' or ' not in mm.group(1) and 'chance' not in mm.group(2):
+            out = []
+            for c in split_clauses(re.sub(r' for \d+ seconds', '', mm.group(2))):
+                r = clause(c)
+                if r is None: return None
+                out += [(k, f'ACTIVE_SKILL[{mm.group(1)}]{n}==={v}') for k, v in r]
+            return out
+        if re.match(r'For every (?:\d+ )?(?:Base ?Lv|Base Level)', body, flags=re.I):
+            r = parse_line(body)
+            if r is None: return None
+            return [(k, re.sub(r'^(LEVEL\[[^\]]+\])(.*)$', rf'\g<1>{n}===\2', v)) for k, v in r]
         mm = re.fullmatch(r'(.+?) for each refine level above \+(\d+)\.?', body)
         if mm:
             base = int(mm.group(2)); out = []
@@ -263,15 +434,25 @@ def parse_line(line):
             if r is None: return None
             out += [(k, f'1---{v}') for k, v in r]
         return out
-    m = re.match(r'^For every (\d+) refines?[,:]?\s*(.*)$', l, flags=re.I)
+    m = re.fullmatch(r'(.+?) per (?:(\d+) )?refine(?: levels?)?\.?', l, flags=re.I)
+    if m and not re.search(r'\b(?:of|on)\b', m.group(1)):
+        body = re.sub(r'^(?:Reduces |Increases )?(.+?)(?: increases)? by (\d+%?)$', lambda x: f'{x.group(1)} -{x.group(2)}' if l.lower().startswith('reduces') else f'{x.group(1)} +{x.group(2)}', m.group(1))
+        out = []
+        for c in split_clauses(body):
+            r = clause(c)
+            if r is None: return None
+            out += [(k, f'{m.group(2) or 1}---{v}') for k, v in r]
+        return out
+    m = re.match(r'^(?:For )?every (\d+) refine(?:ment)?s?(?: levels?)?[,:]?\s*(.*)$', l, flags=re.I)
     if m:
         out = []
-        for c in split_clauses(m.group(2)):
+        body = re.sub(r'increases? (.+?) by \+?(\d+%?)', r'\1 +\2', m.group(2))
+        for c in split_clauses(body):
             r = clause(c)
             if r is None: return None
             out += [(k, f'{m.group(1)}---{v}') for k, v in r]
         return out
-    if re.search(r'chance|When equipped (with|together)|equipped together|When using|when using|If total refine|Auto-Spell|autocast|skill Lv|Lv\.? ?\d+ can be used|for \d+ seconds|damage of|damage to [A-Z][a-z]+ [A-Z]|BaseLv|Base Level|Siege|GvG|WoE|PvP', l):
+    if re.search(r'chance|When equipped (with|together)|equipped together|When using|when using|If total refine|Auto-Spell|autocast|skill Lv|Lv\.? ?\d+ can be used|for \d+ seconds|Siege [Aa]rea|GvG|WoE|PvP', l):
         return None
     out = []
     for c in split_clauses(l):
@@ -304,7 +485,11 @@ NO_DMG_EFFECT = re.compile(r"players'|[Pp]layers|<NAVI>|Enchant the \d+\w* slot|
                            r"[Dd]amage [Tt]aken|[Dd]amage taken|resistance|Resistance|Recovers \d+ (?:HP|SP)|when unequipped|EXP|[Dd]rop rate|"
                            r"most townsfolk|bell within rings|anniversary|Shiba Says|\(prontera|Weight :|Required Level :|DEF : |Type : |Equippable by :|"
                            r"Increases attack range|status ailment|Status Ailment|SP when|HP when|auto-cast \[?(?:Assumptio|Heal|Kyrie)|skill Lv\.? ?\d+ can be used|"
-                           r"Able to use|can be used\.")
+                           r"Able to use|can be used\.|Modeled after|Sword named after|Encyclopedia published|soft, squishy hat|Range : |HP Recovery|Received Heal|"
+                           r"Heal effect|Heal Amount|When drinking|Reflects|[Tt]akes \d+% additional damage|All DEF|All defense|Physical Defense -|knocks? enemies back|"
+                           r"pushes enemies back|Consumes \d+ SP|[Rr]estores? \d+ (?:HP|SP)|restore \d+ (?:HP|SP)|drop Meat|when receiving|[Ww]hen hit by|when taking|"
+                           r"[Rr]educes physical and magical damage received|[Ii]s learned|usable\.|level of Faith|Faith learned|break the|Snatch|Sight Lv|Signum Crucis Lv|"
+                           r"Allows use of Double Attack|Kyrie Eleison|Quagmire|Auto Guard|reduce enemy SP|Land Protector|Sacrifice succeeds|movement speed|Movement speed")
 
 META = re.compile(r'^(Type|ATK|MATK|DEF|Weight|Weapon Level|Armor Level|Required Level|Equippable [Bb]y|Equipped on|Position|Location|Element|Property)\s*:\s*(.*)$')
 items, ov, st, unp = {}, {}, collections.Counter(), collections.Counter()
@@ -358,8 +543,12 @@ for k, v in S.items():
         merged.append(l)
     body = merged
     # "Additional effects are granted when <item> is also equipped:" -> following effect lines only count with that item
-    tagged, cond = [], None
+    tagged, cond, siege = [], None, False
     for l in body:
+        if re.search(r'(?:options|effects) in (?:Siege|WoE|GvG) areas', l, flags=re.I): siege = True; continue
+        if siege and (l.startswith('---') or l.startswith('<')): siege = False
+        # ROZ prints the weapon's own stat lines inside the siege block; only skill/damage lines there are siege-only
+        if siege and re.search(r'when using|\[|[Dd]amage|[Cc]ast|[Pp]layer|HIT', l): continue
         mm = re.match(r'^(?:Additional effects (?:are )?(?:granted |apply )?when|When) (?:equipped (?:together )?with )?(.+?) (?:is|are) (?:also )?equipped[:,]?$', l)
         if mm:
             nm = mm.group(1).strip()
@@ -383,6 +572,9 @@ for k, v in S.items():
             continue
         for key, val in r: script[key].append(val)
     if f['matk'] and tid == 1: script['matk'].append(str(f['matk']))
+    if tid == 1 and script.get('matk'):  # "MATK +125. DEX +1." and "MATK +125" on one staff = the same base MATK
+        plain = [x for x in script['matk'] if re.fullmatch(r'\d+', x)]
+        script['matk'] = [x for x in script['matk'] if not re.fullmatch(r'\d+', x)] + sorted(set(plain), key=plain.index)
     source = 'roz'
     fk = fork.get(k)
     if un and fk and fk.get('script') and all(all(x in fk['script'].get(kk, []) for x in vv) for kk, vv in script.items()) and script:
@@ -396,6 +588,7 @@ for k, v in S.items():
            'location': f['pos'][0] if f['pos'] else ('Upper' if sub == 512 else None), 'compositionPos': None,
            'usableClass': f['cls'], 'script': script}
     if len(f['pos']) > 1: rec['locations'] = f['pos']
+    if sub in (510, 511, 517) and re.search(r'^Refinable\.?$', '\n'.join(lines), flags=re.M): rec['isRefinable'] = True
     if tid == 6:
         rec['compositionPos'] = CARDPOS.get((f['cardpos'] or '').split(',')[0].strip(), 65535)
         rec['usableClass'] = ['all']

@@ -252,6 +252,8 @@ function makeRozClass(Base: Ctor, cfg: RozClassConfig): Ctor {
     get className() { return cfg.className; }
     get minMaxLevelCap() { return { minMaxLevel: [1, ROZ_MAX_BASE_LEVEL] as [number, number], maxJob: cfg.isSecond ? ROZ_MAX_JOB_2ND : ROZ_MAX_JOB_1ST }; }
     get maxBaseStat() { return 99; }
+    /** ROZ: normal (non-transcendent) characters start with 48 status points (Tong default is 100) */
+    get initialStatPoint() { return 48; }
 
     /** ROZ: race/element "bane" mastery ATK (Beast Bane, Demon Bane, ...) — some engine
      *  base classes (e.g. Sniper) never add it, so add it here unless the base already does. */

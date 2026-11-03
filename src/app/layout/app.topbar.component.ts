@@ -201,6 +201,13 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.19 (alpha)',
+      date: '03-11-2026',
+      logs: [
+        'FIX status points: ROZ characters start with 48 points (not 100 like transcendent / 3rd jobs), so remaining points now match the game (e.g. Lv70 = 710 points in total).',
+      ],
+    },
+    {
       v: 'ROZ Global v0.18 (alpha)',
       date: '03-11-2026',
       logs: [

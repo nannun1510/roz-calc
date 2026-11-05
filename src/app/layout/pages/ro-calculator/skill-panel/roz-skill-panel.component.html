@@ -1,0 +1,140 @@
+<div class="rsp">
+  <div class="rsp-bar">
+    <span class="rsp-search">
+      <i class="pi pi-search"></i>
+      <input type="text" [(ngModel)]="query" placeholder="Search skills / buffs… e.g. bless, fire, crit" />
+      <button *ngIf="query" type="button" class="rsp-clear" (click)="query = ''" aria-label="Clear search"><i class="pi pi-times"></i></button>
+    </span>
+    <span class="rsp-seg">
+      <button type="button" [class.act]="!activeOnly" (click)="activeOnly = false">All</button>
+      <button type="button" [class.act]="activeOnly" (click)="activeOnly = true">Active only</button>
+    </span>
+  </div>
+
+  <div class="rsp-tabs" *ngIf="!searching">
+    <button type="button" *ngFor="let t of tabs" class="rsp-tab" [class.act]="tab === t.id" (click)="setTab(t.id)">
+      {{ t.label }} <b *ngIf="countOn(t.id) as n">{{ n }}</b>
+    </button>
+  </div>
+
+  <div class="rsp-body">
+    <!-- search: matches from every tab -->
+    <ng-container *ngIf="searching">
+      <div class="rsp-grid">
+        <ng-container *ngFor="let r of rows; trackBy: trackRow">
+          <ng-container *ngIf="visible(r)">
+            <ng-container *ngTemplateOutlet="rowTpl; context: { $implicit: r, showTab: true }"></ng-container>
+          </ng-container>
+        </ng-container>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="!searching">
+      <!-- Learned / Self / Debuffs -->
+      <ng-container *ngIf="tab === 'learn' || tab === 'self' || tab === 'debuff'">
+        <div class="rsp-grid">
+          <ng-container *ngFor="let r of rowsOf(tab); trackBy: trackRow">
+            <ng-container *ngIf="visible(r)">
+              <ng-container *ngTemplateOutlet="rowTpl; context: { $implicit: r }"></ng-container>
+            </ng-container>
+          </ng-container>
+        </div>
+        <div class="rsp-empty" *ngIf="!rowsOf(tab).length && !(tab === 'self' && procs?.length)">Nothing here for this class.</div>
+      </ng-container>
+
+      <!-- Self: auto attack procs -->
+      <div class="rsp-proc" *ngIf="tab === 'self' && procs?.length">
+        <div class="rsp-proc-h">
+          <span>Auto attack procs</span>
+          <small *ngIf="isAutoAttackSelected">shown in Battle Summary (Skill = Auto Attack)</small>
+          <button type="button" *ngIf="!isAutoAttackSelected" class="rsp-link" (click)="useAutoAttack.emit()">Show in Battle Summary → pick Auto Attack</button>
+        </div>
+        <div class="rsp-pr" *ngIf="has('spellFist')" [class.on]="!!model.rozSpellFist">
+          <label>Spell Fist</label>
+          <p-dropdown [options]="sfOptions" [(ngModel)]="model.rozSpellFist" (onChange)="onChange()" appendTo="body"></p-dropdown>
+          <p-dropdown [options]="lv10" [(ngModel)]="model.rozSpellFistLv" (onChange)="onChange()" [disabled]="!model.rozSpellFist" appendTo="body"></p-dropdown>
+          <small>{{ sfHint }}</small>
+        </div>
+        <div class="rsp-pr" *ngIf="has('autoSpell')" [class.on]="!!model.rozAutoSpell">
+          <label>Auto Spell</label>
+          <p-dropdown [options]="autoSpellOptions" optionDisabled="disabled" [(ngModel)]="model.rozAutoSpell" (onChange)="onChange()" appendTo="body"></p-dropdown>
+          <p-dropdown [options]="lv10" [(ngModel)]="model.rozAutoSpellLv" (onChange)="onChange()" [disabled]="!model.rozAutoSpell" appendTo="body"></p-dropdown>
+          <small>{{ asHint }}</small>
+        </div>
+        <div class="rsp-pr" *ngIf="has('luckyCast')" [class.on]="model.rozLuckyCastLv > 0">
+          <label>Lucky Cast</label>
+          <p-dropdown [options]="lv5off" [(ngModel)]="model.rozLuckyCastLv" (onChange)="onChange()" appendTo="body"></p-dropdown>
+          <span></span>
+          <small>{{ lcHint }}</small>
+        </div>
+        <div class="rsp-pr" *ngIf="has('duple')" [class.on]="model.rozDupleLv > 0">
+          <label>Duple Light</label>
+          <p-dropdown [options]="lv10off" [(ngModel)]="model.rozDupleLv" (onChange)="onChange()" appendTo="body"></p-dropdown>
+          <span></span>
+          <small>{{ dupleHint }}</small>
+        </div>
+        <div class="rsp-custom">
+          <p-checkbox [binary]="true" inputId="rspCustom" [ngModel]="isCustom" (ngModelChange)="onCustomToggle($event)"></p-checkbox>
+          <label for="rspCustom">Custom chance</label>
+          <ng-container *ngIf="isCustom">
+            <span *ngIf="has('spellFist') || has('duple')" class="rsp-ci">
+              {{ has('spellFist') ? 'Spell Fist' : 'Duple' }}
+              <p-inputNumber [(ngModel)]="model.rozProcChance" (ngModelChange)="onChange()" [min]="0" [max]="100" [maxFractionDigits]="1" suffix=" %" inputStyleClass="rsp-num" placeholder="%"></p-inputNumber>
+            </span>
+            <span *ngIf="has('autoSpell')" class="rsp-ci">
+              Auto Spell
+              <p-inputNumber [(ngModel)]="model.rozProcChance2" (ngModelChange)="onChange()" [min]="0" [max]="100" [maxFractionDigits]="1" suffix=" %" inputStyleClass="rsp-num" placeholder="%"></p-inputNumber>
+            </span>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Party buffs, grouped by caster class -->
+      <ng-container *ngIf="tab === 'party'">
+        <div class="rsp-grp" *ngFor="let g of groups">
+          <button type="button" class="rsp-gh" (click)="toggleGroup(g.name)" [attr.aria-expanded]="isGroupOpen(g.name)">
+            <i class="pi" [class.pi-chevron-down]="isGroupOpen(g.name)" [class.pi-chevron-right]="!isGroupOpen(g.name)"></i>
+            {{ g.name }}
+            <small *ngIf="groupOn(g).length as n">{{ n }} on<ng-container *ngIf="!isGroupOpen(g.name)"> · {{ groupOn(g).map(name).join(', ') }}</ng-container></small>
+          </button>
+          <div class="rsp-grid" *ngIf="isGroupOpen(g.name)">
+            <ng-container *ngFor="let r of g.rows; trackBy: trackRow">
+              <ng-container *ngIf="visible(r)">
+                <ng-container *ngTemplateOutlet="rowTpl; context: { $implicit: r }"></ng-container>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <div class="rsp-chips" *ngIf="activeRows.length || procOnCount">
+    <small>Active:</small>
+    <button type="button" class="rsp-chip" *ngFor="let r of activeRows" [class.deb]="r.tab === 'debuff'" (click)="query = ''; setTab(r.tab)">
+      {{ name(r) }}<ng-container *ngIf="!isSwitch(r)"> {{ value(r) > 100 ? 'Job ' + (value(r) - 100) : 'Lv ' + value(r) }}</ng-container>
+    </button>
+    <button type="button" class="rsp-chip proc" *ngIf="procOnCount" (click)="query = ''; setTab('self')">Auto attack procs ({{ procOnCount }})</button>
+  </div>
+</div>
+
+<ng-template #rowTpl let-r let-showTab="showTab">
+  <div class="rsp-row" [class.on]="isOn(r)" [class.deb]="r.tab === 'debuff'" [title]="r.skill.label">
+    <div class="rsp-n">
+      <div>{{ name(r) }}</div>
+      <small *ngIf="hint(r) || showTab">{{ hint(r) }}<ng-container *ngIf="showTab"> · {{ r.tab === 'learn' ? 'Learned' : r.tab === 'self' ? 'Self' : r.tab === 'party' ? 'Party' : 'Debuff' }}</ng-container></small>
+    </div>
+    <button *ngIf="isSwitch(r); else dd" type="button" class="rsp-sw" [class.on]="isOn(r)" (click)="toggle(r)" [attr.aria-pressed]="isOn(r)" [attr.aria-label]="name(r)"></button>
+    <ng-template #dd>
+      <p-dropdown
+        [options]="r.skill.dropdown"
+        [(ngModel)]="model[r.arr][r.i]"
+        (onChange)="onChange()"
+        [autoDisplayFirst]="false"
+        appendTo="body"
+        scrollHeight="320px"
+        styleClass="rsp-dd"
+      ></p-dropdown>
+    </ng-template>
+  </div>
+</ng-template>

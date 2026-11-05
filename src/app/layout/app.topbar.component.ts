@@ -201,6 +201,17 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.23 (alpha)',
+      date: '05-11-2026',
+      logs: [
+        'New Skills panel: tabs (Learned / Self skills / Party buffs / Monster debuffs) with a count of what is on, a search box, an "Active only" switch, party buffs grouped by class, on/off switches, and a row of active chips.',
+        'Auto attack procs are now buffs: set Spell Fist, Auto Spell, Lucky Cast (Sage) or Duple Light (Priest) in Skills > Self skills, then pick Skill "Auto Attack". They are all shown together, with compare.',
+        'Sage: a Spell Fist hit replaces that auto attack; Auto Spell and Lucky Cast roll on the normal hits. Auto Spell casts at half its level, capped by the spell level you set in the Learned tab.',
+        'Every class now has "Auto Attack" in the Skill list (Sidewinder Card / Double Attack Stone work with any weapon).',
+        'Old build codes with the previous Spell Fist / Auto Spell / Duple Light skill entries load into the new setup.',
+      ],
+    },
+    {
       v: 'ROZ Global v0.22 (alpha)',
       date: '05-11-2026',
       logs: [
@@ -366,7 +377,6 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
       date: '02-11-2026',
       logs: [
         'New ROZ look: dark navy and gold theme, section headers (Character / Equipment / Costume / Guild), panels and Thai-friendly font.',
-        'Prefer the old look? Click the theme button at the top right to switch to Classic (it is remembered).',
         'Page fits smaller screens automatically; item details show in a hover card that stays on screen.',
         'Option slots keep the original menus and now also have a search button (magnifier) next to each one: type e.g. "demi", "atk %", "str +5", then click or press Enter.',
       ],

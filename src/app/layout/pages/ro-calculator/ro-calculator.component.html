@@ -1702,116 +1702,16 @@
       </p-accordionTab>
 
       <p-accordionTab header="Skills ***กดอัพสกิลด้วยนะ เพราะไอเทมบางชิ้นต้องอัพสกิลถึงจะได้ bonus" class="select_skill">
-        <div class="grid grid-nogutter">
-          <!--  Buffs -->
-          <div class="col-4">
-            <p-tag severity="info" value="Buffs"></p-tag>
-            <span class="skill_debuff pl-2">สีแดง = Debuff monster</span>
-            <div class="grid grid-nogutter">
-              <div *ngFor="let bishopBuff of skillBuffs; let i = index" class="col-12">
-                <div [ngSwitch]="bishopBuff.inputType">
-                  <div *ngSwitchCase="'dropdown'">
-                    <div class="p-inputgroup">
-                      <span class="p-inputgroup-addon text_group_ellips {{ bishopBuff.isDebuff ? 'skill_debuff' : '' }}">{{ bishopBuff.label }}</span>
-                      <p-dropdown
-                        [autoDisplayFirst]="false"
-                        [resetFilterOnHide]="true"
-                        [options]="bishopBuff.dropdown"
-                        [(ngModel)]="model.skillBuffs[i]"
-                        (onChange)="onSkillClassChange()"
-                        styleClass="'width: 50%'"
-                        scrollHeight="380px"
-                      ></p-dropdown>
-                    </div>
-                  </div>
-                  <div *ngSwitchDefault>
-                    <div class="p-inputgroup">
-                      <span class="p-inputgroup-addon text_group_ellips {{ bishopBuff.isDebuff ? 'skill_debuff' : '' }}">{{ bishopBuff.label }}</span>
-                      <p-selectButton
-                        [options]="bishopBuff.dropdown"
-                        [(ngModel)]="model.skillBuffs[i]"
-                        (ngModelChange)="onSkillClassChange()"
-                        styleClass="'width: 50%'"
-                      ></p-selectButton>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Learned Skills -->
-          <div class="col-4" [hidden]="passiveSkills.length === 0">
-            <p-tag severity="warning" value="Learn to get bonuses"></p-tag>
-            <div class="grid grid-nogutter">
-              <div *ngFor="let passiveSkill of passiveSkills; let i = index" class="col-12">
-                <div [ngSwitch]="passiveSkill.inputType">
-                  <div *ngSwitchCase="'dropdown'">
-                    <div class="p-inputgroup">
-                      <span class="p-inputgroup-addon text_group_ellips">{{ passiveSkill.label }}</span>
-                      <p-dropdown
-                        [autoDisplayFirst]="false"
-                        [resetFilterOnHide]="true"
-                        [options]="passiveSkill.dropdown"
-                        [(ngModel)]="model.passiveSkills[i]"
-                        (onChange)="onSkillClassChange()"
-                        styleClass="'width: 50%'"
-                        scrollHeight="380px"
-                      ></p-dropdown>
-                    </div>
-                  </div>
-                  <div *ngSwitchDefault>
-                    <div class="p-inputgroup">
-                      <span class="p-inputgroup-addon text_group_ellips">{{ passiveSkill.label }}</span>
-                      <p-selectButton
-                        [options]="passiveSkill.dropdown"
-                        [(ngModel)]="model.passiveSkills[i]"
-                        (ngModelChange)="onSkillClassChange()"
-                        styleClass="'width: 50%'"
-                      ></p-selectButton>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Active SKills -->
-          <div class="col-4">
-            <p-tag severity="danger" value="Activating Skills/Effects"></p-tag>
-            <div class="grid grid-nogutter">
-              <div *ngFor="let activeSkill of activeSkills; let i = index" class="col-12">
-                <div [ngSwitch]="activeSkill.inputType">
-                  <div *ngSwitchCase="'dropdown'">
-                    <div class="p-inputgroup">
-                      <span class="p-inputgroup-addon text_group_ellips {{ activeSkill.isDebuff ? 'skill_debuff' : '' }}">{{ activeSkill.label }}</span>
-                      <p-dropdown
-                        [autoDisplayFirst]="false"
-                        [resetFilterOnHide]="true"
-                        [options]="activeSkill.dropdown"
-                        [(ngModel)]="model.activeSkills[i]"
-                        (onChange)="onSkillClassChange()"
-                        styleClass="'width: 50%'"
-                        scrollHeight="380px"
-                      ></p-dropdown>
-                    </div>
-                  </div>
-                  <div *ngSwitchDefault>
-                    <div class="p-inputgroup">
-                      <span class="p-inputgroup-addon text_group_ellips {{ activeSkill.isDebuff ? 'skill_debuff' : '' }}">{{ activeSkill.label }}</span>
-                      <p-selectButton
-                        [options]="activeSkill.dropdown"
-                        [(ngModel)]="model.activeSkills[i]"
-                        (onChange)="onSkillClassChange()"
-                        styleClass="'width: 50%'"
-                      ></p-selectButton>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <roz-skill-panel
+          [model]="model"
+          [skillBuffs]="skillBuffs"
+          [passiveSkills]="passiveSkills"
+          [activeSkills]="activeSkills"
+          [procs]="rozProcs"
+          [isAutoAttackSelected]="isRozAutoAttack"
+          (changed)="onSkillClassChange()"
+          (useAutoAttack)="selectRozAutoAttack()"
+        ></roz-skill-panel>
       </p-accordionTab>
 
       <p-accordionTab header="Battle Summary">
@@ -1976,7 +1876,7 @@
                 ></app-battle-dmg-summary>
               </div>
               <!-- ROZ: proc chance override for auto attack proc skills -->
-              <div class="col-12 roz-proc-custom" *ngIf="isRozProcSkill">
+              <div class="col-12 roz-proc-custom" *ngIf="isRozProcSkill && !rozProcs.length">
                 <p-checkbox
                   [binary]="true"
                   inputId="rozProcCustom"

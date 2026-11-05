@@ -1,5 +1,6 @@
 import { ItemOptionMap } from '../../../constants/item-options-table';
 import { RozFoodStatList } from '../../../constants/roz-consumables';
+import { ROZ_AUTO_ATTACK_VALUE } from '../../../jobs/roz/roz-procs';
 import { decodeBuild, encodeBuild } from '../../../utils/roz-build-code';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService, PrimeIcons, SelectItemGroup } from 'primeng/api';
@@ -1498,6 +1499,22 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       rawModel[key] = validValue;
     }
 
+    // ROZ v0.11 - v0.22: per-proc Skill entries -> Auto Attack + proc settings in the Skills panel
+    const oldProc = String(rawModel.selectedAtkSkill || '');
+    let mm: RegExpMatchArray | null;
+    if ((mm = oldProc.match(/^Duple Light \(auto attack\)==(\d+)$/))) {
+      rawModel.rozDupleLv = Number(mm[1]);
+      rawModel.selectedAtkSkill = ROZ_AUTO_ATTACK_VALUE;
+    } else if ((mm = oldProc.match(/^Spell Fist - (Fire|Cold|Lightning) Bolt \(auto attack\)==(\d+)$/))) {
+      rawModel.rozSpellFist = { Fire: 'Fire', Cold: 'Water', Lightning: 'Wind' }[mm[1]];
+      rawModel.rozSpellFistLv = Number(mm[2]);
+      rawModel.selectedAtkSkill = ROZ_AUTO_ATTACK_VALUE;
+    } else if ((mm = oldProc.match(/^Auto Spell - (.+) \(auto attack\)==(\d+)$/))) {
+      rawModel.rozAutoSpell = mm[1];
+      rawModel.rozAutoSpellLv = Number(mm[2]);
+      rawModel.selectedAtkSkill = ROZ_AUTO_ATTACK_VALUE;
+    }
+
     const rawOptionTxts = [] as string[];
     // migrate
     for (let i = 0; i <= MAX_OPTION_NUMBER; i++) {
@@ -2493,7 +2510,18 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
-  // ROZ auto attack proc skills (Duple Light / Spell Fist) picked in the Skill dropdown
+  // ROZ auto attack: procs (Spell Fist / Auto Spell / Lucky Cast / Duple Light) are set in the Skills panel
+  get rozProcs(): string[] {
+    return ((this.selectedCharacter as any)?.rozProcs as string[]) || [];
+  }
+  get isRozAutoAttack() {
+    return this.model?.selectedAtkSkill === ROZ_AUTO_ATTACK_VALUE;
+  }
+  selectRozAutoAttack() {
+    this.model.selectedAtkSkill = ROZ_AUTO_ATTACK_VALUE;
+    this.onAtkSkillChange();
+  }
+
   rozProcCustomOpen = false;
 
   onRozProcCustomToggle(on: boolean) {

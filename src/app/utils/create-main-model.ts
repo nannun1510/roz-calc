@@ -177,4 +177,12 @@ export const createMainModel = (): MainModel => ({
   defStars: 0,
   hpStars: 0,
   rozProcChance: 0,
+  // ROZ auto attack procs (Skills > Self skills > Auto attack procs); shown when Skill = Auto Attack
+  rozSpellFist: '',
+  rozSpellFistLv: 10,
+  rozAutoSpell: '',
+  rozAutoSpellLv: 10,
+  rozLuckyCastLv: 0,
+  rozDupleLv: 0,
+  rozProcChance2: 0,
 });

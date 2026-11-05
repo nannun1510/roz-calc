@@ -51,6 +51,8 @@ import { ROZ_ATK_SKILLS, ROZ_SKILL_TREE, RozAtkSpec } from './roz-data.generated
 import { RighthandMasteryFn } from '../../constants/share-passive-skills';
 import { AspdTable } from '../_aspd-table';
 import { RozAspdTable } from './roz-aspd-table';
+import { ROZ_AUTO_SPELLS, ROZ_PROC_TREE } from './roz-procs';
+export { ROZ_AUTO_SPELLS, ROZ_PROC_TREE } from './roz-procs';
 
 // ROZ 1st/2nd job base ASPD per weapon (Tong only has 3rd/4th job rows; others fell back to a flat 156)
 Object.assign(AspdTable as any, RozAspdTable);
@@ -89,8 +91,6 @@ const ROZ_EXTRA_ACTIVES: Record<string, any> = {
   'Endow Tornado': { name: 'Endow Tornado', label: 'Endow Tornado / Lightning Loader (Wind magic +Lv%)', inputType: 'dropdown', dropdown: lvs(5, (l) => ({ m_my_element_wind: l })) },
   'Endow Tsunami': { name: 'Endow Tsunami', label: 'Endow Tsunami / Frost Weapon (Water magic +Lv%)', inputType: 'dropdown', dropdown: lvs(5, (l) => ({ m_my_element_water: l })) },
   'Endow Quake': { name: 'Endow Quake', label: 'Endow Quake / Seismic Weapon (Earth magic +Lv%)', inputType: 'dropdown', dropdown: lvs(5, (l) => ({ m_my_element_earth: l })) },
-  // Double Bolt (Thai client: Lucky Cast): 30 + 10 x Lv % chance that a Bolt is cast once more (used by Auto Spell rows)
-  'Double Bolt': { name: 'Double Bolt', label: 'Double Bolt / Lucky Cast (Bolt recast 30+10xLv %)', inputType: 'dropdown', dropdown: lvs(5) },
 };
 
 /** ROZ Global caps (Sept 2026 patch: Base 60 / Job 60). Kept at the classic 99 / 50-70 so builds can be planned ahead. */
@@ -142,27 +142,14 @@ function rozAtkSkillBase(spec: RozAtkSpec): AtkSkillModel {
 }
 
 /**
- * ROZ auto-attack proc skills, picked in the Skill dropdown. Selecting one shows the
- * "Auto attack procs" table (damage per proc, DPS, auto attack + procs DPS).
+ * ROZ auto attack (Skill list "Auto Attack"): Double Attack / dual wield / katar rows, plus the
+ * class procs set in the Self skills tab (damage-calculator.ts calcRozProcs):
  *  - Duple Light (Priest, client text): Strike 500+50*Lv % ATK, Magic 800+80*Lv % MATK.
- *    Proc chance is not in the client: official server code rolls each light separately
- *    at 10+2*Lv % on a melee auto attack that hits (can be overridden on the page).
+ *    Proc chance is not in the client: official server code rolls each light at 10+2*Lv %.
  *  - Spell Fist (Sage, client text): 5*Lv % chance, 100*Lv % MATK of the bolt's element.
+ *  - Hindsight / Auto Spell (Sage, client text): 2*Lv % per normal hit, spell at half the level.
+ *  - Double Bolt / Lucky Cast (Sage, client text): 30+10*Lv % that a Bolt is cast again.
  */
-const procSkill = (name: string, label: string, proc: any, isMatk: boolean, ratio: (lv: number) => number): AtkSkillModel =>
-  ({
-    name: name as any,
-    label: `${label} Lv10`,
-    value: `${label}==10`,
-    levelList: Array.from({ length: 10 }, (_, i) => ({ label: `${label} Lv${i + 1}`, value: `${label}==${i + 1}` })),
-    acd: 0, fct: 0, vct: 0, cd: 0,
-    isMatk,
-    isMelee: !isMatk,
-    ...(proc.element ? { element: proc.element } : {}),
-    rozProc: proc,
-    formula: ({ skillLevel }) => ratio(skillLevel),
-  }) as any;
-
 const AUTO_ATTACK_SKILL: AtkSkillModel = {
   name: 'Auto Attack' as any,
   label: 'Auto Attack (Double Attack / Dual wield / Katar)',
@@ -172,24 +159,11 @@ const AUTO_ATTACK_SKILL: AtkSkillModel = {
   formula: () => 100,
 } as any;
 
-/** Sage Hindsight (Thai client: Auto Spell): spells it can cast, with the Hindsight level that unlocks each (client text). */
-const AUTO_SPELLS: [name: string, minLv: number][] = [
-  ['Fire Bolt', 1], ['Cold Bolt', 1], ['Lightning Bolt', 1], ['Soul Strike', 4], ['Fire Ball', 4],
-  ['Frost Diver', 7], ['Earth Spike', 7], ['Thunder Storm', 10], ["Heaven's Drive", 10],
-];
 
-export const ROZ_PROC_SKILLS: Record<string, AtkSkillModel[]> = {
-  Hindsight: AUTO_SPELLS.map(([spell, minLv]) => {
-    const spec = ROZ_ATK_SKILLS.find((x) => x.name === spell);
-    return procSkill('Hindsight', `Auto Spell - ${spell} (auto attack)`, { kind: 'autospell', spell, minLv, element: spec?.element ? ELEMENT[spec.element] : undefined }, true, () => 100);
-  }),
-  'Double Attack': [AUTO_ATTACK_SKILL],
-  'Duple Light': [procSkill('Duple Light', 'Duple Light (auto attack)', { kind: 'duple' }, false, (lv) => 500 + 50 * lv)],
-  'Spell Fist': [
-    procSkill('Spell Fist', 'Spell Fist - Fire Bolt (auto attack)', { kind: 'fist', element: ElementType.Fire }, true, (lv) => 100 * lv),
-    procSkill('Spell Fist', 'Spell Fist - Cold Bolt (auto attack)', { kind: 'fist', element: ElementType.Water }, true, (lv) => 100 * lv),
-    procSkill('Spell Fist', 'Spell Fist - Lightning Bolt (auto attack)', { kind: 'fist', element: ElementType.Wind }, true, (lv) => 100 * lv),
-  ],
+const autoAttackSkill = (procNames: string[], treeNames: string[]): AtkSkillModel => {
+  const extra = procNames.filter((n) => n !== 'Double Bolt').map((n) => (n === 'Hindsight' ? 'Auto Spell' : n));
+  const label = extra.length ? `Auto Attack (+ ${extra.join(' / ')})` : treeNames.includes('Double Attack') ? AUTO_ATTACK_SKILL.label : 'Auto Attack';
+  return { ...AUTO_ATTACK_SKILL, label } as AtkSkillModel;
 };
 
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -235,8 +209,10 @@ function makeRozClass(Base: Ctor, cfg: RozClassConfig): Ctor {
     ...(cfg.isSecond ? ROZ_SKILL_TREE[cfg.className] ?? [] : []),
   ].map((s) => s.name);
   const allowed = new Set(treeNames.map(norm).map((n) => NAME_ALIAS[n] ?? n));
-  const atk = ROZ_ATK_SKILLS.filter((s) => treeNames.includes(s.name) && !ROZ_PROC_SKILLS[s.name]).map(rozAtkSkill);
-  for (const [name, list] of Object.entries(ROZ_PROC_SKILLS)) if (treeNames.includes(name)) atk.push(...list);
+  const atk = ROZ_ATK_SKILLS.filter((s) => treeNames.includes(s.name) && !ROZ_PROC_TREE[s.name]).map(rozAtkSkill);
+  const procNames = Object.keys(ROZ_PROC_TREE).filter((n) => treeNames.includes(n));
+  // every class can auto attack (Sidewinder Card / Double Attack Stone work with any weapon)
+  atk.push(autoAttackSkill(procNames, treeNames));
 
   return class extends (Base as any) {
     constructor() {
@@ -265,11 +241,22 @@ function makeRozClass(Base: Ctor, cfg: RozClassConfig): Ctor {
         if (ROZ_EXTRA_PASSIVES[n]) { self._passiveSkillList.push(ROZ_EXTRA_PASSIVES[n]); have.add(k); }
         else if (ROZ_EXTRA_ACTIVES[n]) { self._activeSkillList.push(ROZ_EXTRA_ACTIVES[n]); have.add(k); }
       }
+      // Sage: learned levels of the spells Auto Spell can cast (Auto Spell casts half its level, capped by this)
+      if (treeNames.includes('Hindsight')) {
+        for (const [spell] of ROZ_AUTO_SPELLS) {
+          if (have.has(norm(spell))) continue;
+          const max = ROZ_ATK_SKILLS.find((x) => x.name === spell)?.maxLv ?? 10;
+          self._passiveSkillList.push({ name: spell, label: `${spell} (learned Lv, caps Auto Spell)`, inputType: 'dropdown', dropdown: lvs(max) });
+          have.add(norm(spell));
+        }
+      }
       self.minMaxLevel = [1, ROZ_MAX_BASE_LEVEL];
       self.maxJob = cfg.isSecond ? ROZ_MAX_JOB_2ND : ROZ_MAX_JOB_1ST;
     }
 
     get className() { return cfg.className; }
+    /** ROZ auto attack procs this class has (ids from ROZ_PROC_TREE), for the Self skills proc box. */
+    get rozProcs(): string[] { return Object.entries(ROZ_PROC_TREE).filter(([n]) => treeNames.includes(n)).map(([, id]) => id); }
     get minMaxLevelCap() { return { minMaxLevel: [1, ROZ_MAX_BASE_LEVEL] as [number, number], maxJob: cfg.isSecond ? ROZ_MAX_JOB_2ND : ROZ_MAX_JOB_1ST }; }
     get maxBaseStat() { return 99; }
     /** ROZ: normal (non-transcendent) characters start with 48 status points (Tong default is 100) */

@@ -1,4 +1,5 @@
 import { ROZ_ATK_SKILLS } from '../../../jobs/roz/roz-data.generated';
+import { ROZ_AUTO_SPELLS } from '../../../jobs/roz/roz-procs';
 import { ElementMapper, ElementType, ItemTypeEnum, SizePenaltyMapper } from 'src/app/constants';
 import { SKILL_NAME } from 'src/app/constants/skill-name';
 import { Monster, Weapon } from 'src/app/domain';
@@ -24,6 +25,11 @@ interface DamageResultModel {
   criDmgToMonster: number;
   phyHit: boolean;
 }
+
+const ELEMENT_BY_NAME: Record<string, ElementType> = {
+  Neutral: ElementType.Neutral, Water: ElementType.Water, Earth: ElementType.Earth, Fire: ElementType.Fire, Wind: ElementType.Wind,
+  Poison: ElementType.Poison, Holy: ElementType.Holy, Dark: ElementType.Dark, Ghost: ElementType.Ghost, Undead: ElementType.Undead,
+};
 
 const ROZ_MONSTER_GROUPS: [string, RegExp][] = [
   ['goblin', /Goblin|Gobline/],
@@ -1283,61 +1289,88 @@ export class DamageCalculator {
    *       (x hit rate again for Duple Strike: it is a weapon skill and can miss).
    */
   private calcRozProcs(a: { skillValue: string; propertyAtk: ElementType; sizePenalty: number; hitsPerSec: number; accuracy: number; basicDps: number }) {
-    const [, , lvStr] = a.skillValue?.match(/(.+)==(\d+)/) ?? [];
     const skill: any = this._class.atkSkills.find((s: any) => s.value === a.skillValue || s.levelList?.some((b: any) => b.value === a.skillValue));
-    const proc = skill?.rozProc;
-    if (!proc) return null;
-    const lv = Number(lvStr) || 10;
-    const override = Number((this.model as any)?.rozProcChance) || 0;
+    if (!skill?.rozProc) return null;
+    const m: any = this.model || {};
+    const cls: any = this._class;
+    const procs: string[] = cls.rozProcs || [];
     const acc = a.accuracy / 100;
-    const rows: { label: string; chance: number; min: number; max: number; avg: number; dps: number; element: string; type: string; note: string }[] = [];
+    const clampLv = (v: any, max: number) => Math.min(max, Math.max(1, Number(v) || max));
+    type Row = { label: string; chance: number; min: number; max: number; avg?: number; dps: number; element: string; type: string; note: string; main?: boolean; proc?: boolean };
+    const rows: Row[] = [];
     const add = (label: string, isMatk: boolean, ratio: number, chance: number, element: ElementType | undefined, canMiss: boolean, note: string, hits = 1, skillName = skill.name) => {
       const skillData: any = { name: skillName, isMatk, isMelee: !isMatk, ...(element ? { element } : {}) };
       const r0 = isMatk
         ? this.calcMagicalSkillDamage({ skillData, baseSkillDamage: ratio, weaponPropertyAtk: a.propertyAtk })
         : this.calcPhysicalSkillDamage({ skillData, baseSkillDamage: ratio, weaponPropertyAtk: a.propertyAtk, sizePenalty: a.sizePenalty });
-      const r = { ...r0, minDamage: r0.minDamage * hits, maxDamage: r0.maxDamage * hits };
-      const avg = (r.minDamage + r.maxDamage) / 2;
+      const min = r0.minDamage * hits;
+      const max = r0.maxDamage * hits;
+      const avg = (min + max) / 2;
       const dps = floor(chance * avg * a.hitsPerSec * acc * (canMiss ? acc : 1));
-      rows.push({ label, chance: round(chance * 100, 1), min: r.minDamage, max: r.maxDamage, avg: floor(avg), dps, element: r.propertyAtk, type: isMatk ? 'Magical' : 'Physical', note });
+      rows.push({ label, chance: round(chance * 100, 1), min, max, avg: floor(avg), dps, element: r0.propertyAtk, type: isMatk ? 'Magical' : 'Physical', note, proc: true });
+      return rows[rows.length - 1];
     };
-    if (proc.kind === 'auto') return this.calcRozAutoAttack({ ...a, override });
-    // the auto attack itself (Double Attack from Sidewinder Card / Double Attack Stone, dual wield, katar) comes first;
-    // procs roll once per auto attack (a Double Attack swing is still one attack)
-    const auto = this.calcRozAutoAttack({ ...a, override: 0 });
-    rows.push(...auto.rows);
-    const procStart = rows.length;
-    if (proc.kind === 'duple') {
-      const ch = override > 0 ? override / 100 : (10 + 2 * lv) / 100;
-      add('Duple Strike', false, 500 + 50 * lv, ch, undefined, true, `${500 + 50 * lv}% ATK`);
-      add('Duple Magic', true, 800 + 80 * lv, ch, ElementType.Neutral, false, `${800 + 80 * lv}% MATK`);
-    } else if (proc.kind === 'fist') {
-      const ch = override > 0 ? override / 100 : (5 * lv) / 100;
-      add('Spell Fist', true, 100 * lv, ch, proc.element, false, `${100 * lv}% MATK`);
-    } else if (proc.kind === 'autospell') {
-      // Hindsight / Auto Spell (client text): 2 x Lv % per basic attack, cast at half the Hindsight level, no cast time.
-      const spec: any = ROZ_ATK_SKILLS.find((x) => x.name === proc.spell);
+
+    // Spell Fist (Sage): a Spell Fist hit is only Spell Fist damage (it replaces that auto attack)
+    const sfEle: Record<string, ElementType> = { Fire: ElementType.Fire, Water: ElementType.Water, Wind: ElementType.Wind };
+    const hasSF = procs.includes('spellFist') && !!sfEle[m.rozSpellFist];
+    const sfLv = clampLv(m.rozSpellFistLv, 10);
+    const hasDuple = procs.includes('duple') && Number(m.rozDupleLv) > 0;
+    const custom1 = Number(m.rozProcChance) || 0;
+    const sfCh = hasSF ? Math.min(1, custom1 > 0 ? custom1 / 100 : (5 * sfLv) / 100) : 0;
+
+    // the auto attack itself (Double Attack from items / learned, dual wield, katar). The custom chance box
+    // is the Double Attack chance only for classes without Spell Fist / Duple Light.
+    const auto: any = this.calcRozAutoAttack({ ...a, override: hasSF || hasDuple || procs.includes('spellFist') || procs.includes('duple') ? 0 : custom1 });
+    for (const r of auto.rows) {
+      if (sfCh > 0 && r.main) rows.push({ ...r, chance: round(r.chance * (1 - sfCh), 1), dps: floor(r.dps * (1 - sfCh)) });
+      else rows.push(r);
+    }
+    const daCh = auto.daCh || 0;
+
+    if (hasSF) {
+      const bolt = { Fire: 'Fire Bolt', Water: 'Cold Bolt', Wind: 'Lightning Bolt' }[m.rozSpellFist as 'Fire'];
+      add(`Spell Fist · ${bolt} Lv ${sfLv}`, true, 100 * sfLv, sfCh * (1 - daCh), sfEle[m.rozSpellFist], false, `${100 * sfLv}% MATK · replaces the hit`);
+      if (daCh > 0) add('Spell Fist + Double Attack', true, 100 * sfLv, sfCh * daCh, sfEle[m.rozSpellFist], false, `${100 * sfLv}% MATK x 2 · official rule: a double hit doubles it`, 2);
+    }
+
+    // Auto Spell (Hindsight): rolls on normal hits only, at half its level, capped by the learned spell level
+    if (procs.includes('autoSpell') && m.rozAutoSpell) {
+      const spell = String(m.rozAutoSpell);
+      const spec: any = ROZ_ATK_SKILLS.find((x) => x.name === spell);
+      const unlock = (ROZ_AUTO_SPELLS.find(([n]) => n === spell) || [spell, 1])[1] as number;
       if (spec) {
-        const cls: any = this._class;
-        const spellLv = Math.max(1, Math.min(spec.maxLv, Math.floor(lv / 2)));
+        const asLv = clampLv(m.rozAutoSpellLv, 10);
+        const learned = Number(cls.learnLv?.(spell)) || 0;
+        const spellLv = Math.max(1, Math.min(spec.maxLv, Math.floor(asLv / 2), learned || spec.maxLv));
         const at = (arr: number[] | null) => (arr ? arr[spellLv - 1] ?? arr[arr.length - 1] : 1);
-        const ch = lv < proc.minLv ? 0 : override > 0 ? override / 100 : (2 * lv) / 100;
-        const unlock = lv < proc.minLv ? ` · needs Auto Spell Lv ${proc.minLv}` : '';
-        add(`${proc.spell} Lv ${spellLv}`, true, at(spec.ratio), ch, proc.element, false, `${at(spec.ratio)}% MATK x ${at(spec.hits)} hit(s) · half of Auto Spell Lv${unlock}`, at(spec.hits), proc.spell);
-        // Double Bolt (Lucky Cast): a Bolt can be cast once more (official server code also applies it to auto-cast bolts)
-        const db = Number(cls.activeSkillLv?.('Double Bolt')) || 0;
-        if (db > 0 && / Bolt$/.test(proc.spell)) {
-          const base = rows[rows.length - 1];
-          const p2 = (30 + 10 * db) / 100;
-          rows.push({ ...base, label: `Lucky Cast extra ${proc.spell}`, chance: round(ch * p2 * 100, 1), dps: floor(base.dps * p2), note: `Double Bolt Lv ${db}: ${30 + 10 * db}% of auto-cast bolts repeat` });
+        const custom2 = Number(m.rozProcChance2) || 0;
+        const blocked = asLv < unlock ? `needs Auto Spell Lv ${unlock}` : learned <= 0 ? `set ${spell} in the Learned tab` : '';
+        const ch = blocked ? 0 : Math.min(1, custom2 > 0 ? custom2 / 100 : (2 * asLv) / 100) * (1 - sfCh);
+        const note = blocked || `${at(spec.ratio)}% MATK x ${at(spec.hits)} hit(s) · normal hits only`;
+        const row = add(`Auto Spell · ${spell} Lv ${spellLv}`, true, at(spec.ratio), ch, ELEMENT_BY_NAME[spec.element], false, note, at(spec.hits), spell);
+        // Lucky Cast (Double Bolt): the bolt can be cast once more (official code also repeats auto-cast bolts)
+        const lc = procs.includes('luckyCast') ? Number(m.rozLuckyCastLv) || 0 : 0;
+        if (lc > 0 && / Bolt$/.test(spell) && ch > 0) {
+          const p2 = (30 + 10 * lc) / 100;
+          rows.push({ ...row, label: `Lucky Cast repeat · ${spell}`, chance: round(ch * p2 * 100, 1), dps: floor(row.dps * p2), note: `Lucky Cast Lv ${lc}: ${30 + 10 * lc}% of these bolts repeat` });
         }
       }
     }
-    const procDps = rows.slice(procStart).reduce((t, r) => t + r.dps, 0);
+
+    // Duple Light (Priest): each light rolls separately on a melee auto attack
+    if (hasDuple) {
+      const lv = clampLv(m.rozDupleLv, 10);
+      const ch = custom1 > 0 ? custom1 / 100 : (10 + 2 * lv) / 100;
+      add(`Duple Strike Lv ${lv}`, false, 500 + 50 * lv, ch, undefined, true, `${500 + 50 * lv}% ATK`);
+      add(`Duple Magic Lv ${lv}`, true, 800 + 80 * lv, ch, ElementType.Neutral, false, `${800 + 80 * lv}% MATK`);
+    }
+
+    const procDps = rows.filter((r) => r.proc).reduce((t, r) => t + r.dps, 0);
+    const totalDps = rows.reduce((t, r) => t + r.dps, 0);
     return {
-      kind: proc.kind, level: lv, isCustomChance: override > 0, rows, procDps,
-      hitsPerSec: a.hitsPerSec, accuracy: a.accuracy,
-      totalDps: floor(auto.totalDps + procDps),
+      kind: 'auto', level: auto.level, isCustomChance: custom1 > 0 || (Number(m.rozProcChance2) || 0) > 0, rows, procDps,
+      hasProcs: rows.some((r) => r.proc), hitsPerSec: a.hitsPerSec, accuracy: a.accuracy, totalDps,
     };
   }
 
@@ -1387,15 +1420,15 @@ export class DamageCalculator {
     const hps = a.hitsPerSec;
     const main = this.rozBasicWith(a.propertyAtk, a.accuracy);
     const rightRate = isDual ? (50 + 10 * lv('Righthand Mastery')) / 100 : 1;
-    const row = (label: string, note: string, chance: number, min: number, max: number, perSwing: number, type = 'Physical') =>
-      rows.push({ label, note, chance: round(chance * 100, 1), min: floor(min), max: floor(max), dps: floor(perSwing * chance * hps), element: a.propertyAtk, type });
+    const row = (label: string, note: string, chance: number, min: number, max: number, perSwing: number, type = 'Physical', main = false) =>
+      rows.push({ label, note, chance: round(chance * 100, 1), min: floor(min), max: floor(max), dps: floor(perSwing * chance * hps), element: a.propertyAtk, type, main });
     // When Double Attack triggers, that attack is 2 normal hits and cannot crit (official rule); otherwise a normal swing (can crit).
     const daCh = daLv > 0 ? Math.min(1, a.override > 0 ? a.override / 100 : (7 * daLv) / 100) : 0;
     const nonCritHit = ((main.min + main.max) / 2) * (Math.min(100, a.accuracy) / 100);
     const critNote = main.cri > 0 ? ` · crit ${round(main.cri, 0)}%: ${floor(main.criMin * rightRate).toLocaleString()} - ${floor(main.criMax * rightRate).toLocaleString()}` : '';
-    row(isDual ? 'Right hand' : 'Auto attack', (isDual ? `${Math.round(rightRate * 100)}% (Righthand Mastery)` : 'normal hit') + (daCh > 0 ? ' · when Double Attack does not trigger' : '') + critNote, 1 - daCh, main.min * rightRate, main.max * rightRate, main.perSwing * rightRate);
+    row(isDual ? 'Right hand' : 'Auto attack', (isDual ? `${Math.round(rightRate * 100)}% (Righthand Mastery)` : 'normal hit') + (daCh > 0 ? ' · when Double Attack does not trigger' : '') + critNote, 1 - daCh, main.min * rightRate, main.max * rightRate, main.perSwing * rightRate, 'Physical', true);
     if (daCh > 0) {
-      row('Double Attack', `2 hits, cannot crit · ${daSource}`, daCh, main.min * rightRate * 2, main.max * rightRate * 2, nonCritHit * rightRate * 2);
+      row('Double Attack', `2 hits, cannot crit · ${daSource}`, daCh, main.min * rightRate * 2, main.max * rightRate * 2, nonCritHit * rightRate * 2, 'Physical', true);
     }
     if (isDual) {
       const leftRate = (30 + 10 * lv('Lefthand Mastery')) / 100;
@@ -1415,7 +1448,7 @@ export class DamageCalculator {
       row('Katar left-hand hit', `${Math.round(r * 100)}% of the main hit · stronger with Double Attack skill Lv`, 1, main.min * r, main.max * r, main.perSwing * r);
     }
     const procDps = rows.reduce((t, r) => t + r.dps, 0);
-    return { kind: 'auto', level: daLv, isCustomChance: a.override > 0, rows, procDps, hitsPerSec: hps, accuracy: a.accuracy, totalDps: procDps };
+    return { kind: 'auto', level: daLv, daCh, isCustomChance: a.override > 0, rows, procDps, hitsPerSec: hps, accuracy: a.accuracy, totalDps: procDps };
   }
 
   calculateAllDamages(args: { skillValue: string; propertyAtk: ElementType; maxHp: number; maxSp: number; }): DamageSummaryModel {

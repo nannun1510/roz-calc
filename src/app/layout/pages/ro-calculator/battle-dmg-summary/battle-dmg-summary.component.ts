@@ -6,6 +6,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./battle-dmg-summary.component.css', '../ro-calculator.component.css'],
 })
 export class BattleDmgSummaryComponent {
+  /** names of ROZ auto attack procs switched on in the Skills panel (they only count with Skill = Auto Attack) */
+  get rozProcsOn(): string {
+    const m: any = this.model || {};
+    return [m.rozSpellFist && 'Spell Fist', m.rozAutoSpell && 'Auto Spell', m.rozDupleLv > 0 && 'Duple Light'].filter(Boolean).join(', ');
+  }
+
   @Input({ required: true }) model = {} as any;
   @Input({ required: true }) totalSummary = {} as any;
   @Input({ required: true }) totalSummary2 = {} as any;

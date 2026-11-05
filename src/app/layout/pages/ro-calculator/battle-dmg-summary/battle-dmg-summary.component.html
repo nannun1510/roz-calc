@@ -218,7 +218,7 @@
   <ng-container *ngIf="totalSummary?.dmg?.rozProcs as rp">
     <div class="col-12 roz-proc-sum">
       <div class="roz-proc-sum-title">
-        {{ rp.kind === 'auto' ? 'Auto attack breakdown' : 'Auto attack + procs' }} <small><ng-container *ngIf="rp.kind !== 'auto'">Lv {{ rp.level }} · </ng-container>{{ rp.hitsPerSec }} auto attacks/s · hit {{ rp.accuracy }}%</small>
+        {{ rp.hasProcs ? 'Auto attack + procs' : 'Auto attack breakdown' }} <small>{{ rp.hitsPerSec }} auto attacks/s · hit {{ rp.accuracy }}%</small>
       </div>
       <table class="roz-procs-table">
         <tr><th></th><th>Chance</th><th>Damage per proc</th><th>DPS</th></tr>
@@ -239,7 +239,7 @@
     <div class="col-12">
       <app-calc-value
         [enableCompare]="isEnableCompare && totalSummary2?.dmg"
-        [label]="rp.kind === 'auto' ? 'DPS (auto attack):' : 'DPS (auto attack + procs):'"
+        [label]="rp.hasProcs ? 'DPS (auto attack + procs):' : 'DPS (auto attack):'"
         styleClass="summary_highlight"
         styleClass2="summary_compare"
         [showPercentDiff]="true"
@@ -248,6 +248,7 @@
       ></app-calc-value>
     </div>
   </ng-container>
+  <div class="col-12 roz-proc-hint" *ngIf="!totalSummary?.dmg?.rozProcs && rozProcsOn">Auto attack procs are on ({{ rozProcsOn }}): pick Skill "Auto Attack" to see their DPS.</div>
   <ng-container *ngIf="!totalSummary?.dmg?.rozProcs">
   <!-- ROZ: normal vs critical breakdown for skills that can crit (e.g. Focused Arrow Strike) -->
   <div class="col-12 roz-proc-sum" *ngIf="totalSummary?.dmg?.rozCrit as rc">
@@ -435,7 +436,7 @@
         Element:
         <span class="{{ 'property_' + totalSummary?.propertyAtk }} px-1 font-semibold">{{ totalSummary?.propertyAtk }}</span
         ><span class="summary_highlight px-2">( x {{ totalSummary?.dmg?.propertyMultiplier }})</span>
-        <span class="summary_monster_value px-1 font-bold" style="color: var(--red-500)" [hidden]="!showLeftWeapon || !model.leftWeapon || !!totalSummary?.dmg?.rozProcs">Left hand: pick Skill "Auto Attack (Double Attack / Dual wield / Katar)"</span>
+        <span class="summary_monster_value px-1 font-bold" style="color: var(--red-500)" [hidden]="!showLeftWeapon || !model.leftWeapon || !!totalSummary?.dmg?.rozProcs">Left hand: pick Skill "Auto Attack"</span>
       </div>
       <div class="col-6" [hidden]="totalSummary?.dmg?.totalPene === totalSummary?.dmg?.skillTotalPene">
         <app-calc-value

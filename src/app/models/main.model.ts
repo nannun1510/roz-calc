@@ -51,4 +51,11 @@ export interface MainModel extends Partial<EquipmentModel> {
   hpStars?: number;
   /** ROZ: custom proc chance % for auto attack proc skills (0 = default) */
   rozProcChance?: number;
+  rozSpellFist?: string;
+  rozSpellFistLv?: number;
+  rozAutoSpell?: string;
+  rozAutoSpellLv?: number;
+  rozLuckyCastLv?: number;
+  rozDupleLv?: number;
+  rozProcChance2?: number;
 }

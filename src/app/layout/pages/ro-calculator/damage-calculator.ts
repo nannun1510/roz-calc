@@ -1,3 +1,4 @@
+import { ROZ_ATK_SKILLS } from '../../../jobs/roz/roz-data.generated';
 import { ElementMapper, ElementType, ItemTypeEnum, SizePenaltyMapper } from 'src/app/constants';
 import { SKILL_NAME } from 'src/app/constants/skill-name';
 import { Monster, Weapon } from 'src/app/domain';
@@ -1290,16 +1291,22 @@ export class DamageCalculator {
     const override = Number((this.model as any)?.rozProcChance) || 0;
     const acc = a.accuracy / 100;
     const rows: { label: string; chance: number; min: number; max: number; avg: number; dps: number; element: string; type: string; note: string }[] = [];
-    const add = (label: string, isMatk: boolean, ratio: number, chance: number, element: ElementType | undefined, canMiss: boolean, note: string) => {
-      const skillData: any = { name: skill.name, isMatk, isMelee: !isMatk, ...(element ? { element } : {}) };
-      const r = isMatk
+    const add = (label: string, isMatk: boolean, ratio: number, chance: number, element: ElementType | undefined, canMiss: boolean, note: string, hits = 1, skillName = skill.name) => {
+      const skillData: any = { name: skillName, isMatk, isMelee: !isMatk, ...(element ? { element } : {}) };
+      const r0 = isMatk
         ? this.calcMagicalSkillDamage({ skillData, baseSkillDamage: ratio, weaponPropertyAtk: a.propertyAtk })
         : this.calcPhysicalSkillDamage({ skillData, baseSkillDamage: ratio, weaponPropertyAtk: a.propertyAtk, sizePenalty: a.sizePenalty });
+      const r = { ...r0, minDamage: r0.minDamage * hits, maxDamage: r0.maxDamage * hits };
       const avg = (r.minDamage + r.maxDamage) / 2;
       const dps = floor(chance * avg * a.hitsPerSec * acc * (canMiss ? acc : 1));
       rows.push({ label, chance: round(chance * 100, 1), min: r.minDamage, max: r.maxDamage, avg: floor(avg), dps, element: r.propertyAtk, type: isMatk ? 'Magical' : 'Physical', note });
     };
     if (proc.kind === 'auto') return this.calcRozAutoAttack({ ...a, override });
+    // the auto attack itself (Double Attack from Sidewinder Card / Double Attack Stone, dual wield, katar) comes first;
+    // procs roll once per auto attack (a Double Attack swing is still one attack)
+    const auto = this.calcRozAutoAttack({ ...a, override: 0 });
+    rows.push(...auto.rows);
+    const procStart = rows.length;
     if (proc.kind === 'duple') {
       const ch = override > 0 ? override / 100 : (10 + 2 * lv) / 100;
       add('Duple Strike', false, 500 + 50 * lv, ch, undefined, true, `${500 + 50 * lv}% ATK`);
@@ -1307,12 +1314,30 @@ export class DamageCalculator {
     } else if (proc.kind === 'fist') {
       const ch = override > 0 ? override / 100 : (5 * lv) / 100;
       add('Spell Fist', true, 100 * lv, ch, proc.element, false, `${100 * lv}% MATK`);
+    } else if (proc.kind === 'autospell') {
+      // Hindsight / Auto Spell (client text): 2 x Lv % per basic attack, cast at half the Hindsight level, no cast time.
+      const spec: any = ROZ_ATK_SKILLS.find((x) => x.name === proc.spell);
+      if (spec) {
+        const cls: any = this._class;
+        const spellLv = Math.max(1, Math.min(spec.maxLv, Math.floor(lv / 2)));
+        const at = (arr: number[] | null) => (arr ? arr[spellLv - 1] ?? arr[arr.length - 1] : 1);
+        const ch = lv < proc.minLv ? 0 : override > 0 ? override / 100 : (2 * lv) / 100;
+        const unlock = lv < proc.minLv ? ` · needs Auto Spell Lv ${proc.minLv}` : '';
+        add(`${proc.spell} Lv ${spellLv}`, true, at(spec.ratio), ch, proc.element, false, `${at(spec.ratio)}% MATK x ${at(spec.hits)} hit(s) · half of Auto Spell Lv${unlock}`, at(spec.hits), proc.spell);
+        // Double Bolt (Lucky Cast): a Bolt can be cast once more (official server code also applies it to auto-cast bolts)
+        const db = Number(cls.activeSkillLv?.('Double Bolt')) || 0;
+        if (db > 0 && / Bolt$/.test(proc.spell)) {
+          const base = rows[rows.length - 1];
+          const p2 = (30 + 10 * db) / 100;
+          rows.push({ ...base, label: `Lucky Cast extra ${proc.spell}`, chance: round(ch * p2 * 100, 1), dps: floor(base.dps * p2), note: `Double Bolt Lv ${db}: ${30 + 10 * db}% of auto-cast bolts repeat` });
+        }
+      }
     }
-    const procDps = rows.reduce((t, r) => t + r.dps, 0);
+    const procDps = rows.slice(procStart).reduce((t, r) => t + r.dps, 0);
     return {
       kind: proc.kind, level: lv, isCustomChance: override > 0, rows, procDps,
       hitsPerSec: a.hitsPerSec, accuracy: a.accuracy,
-      totalDps: floor((a.basicDps || 0) + procDps),
+      totalDps: floor(auto.totalDps + procDps),
     };
   }
 

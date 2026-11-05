@@ -83,6 +83,14 @@ const ROZ_EXTRA_ACTIVES: Record<string, any> = {
   'Enchant Deadly Poison': { name: 'Enchant Deadly Poison', label: 'Enchant Deadly Poison (poison only)', inputType: 'selectButton', dropdown: [{ label: 'Yes', value: 1, isUse: true, bonus: {} }, { label: 'No', value: 0, isUse: false }] },
   Fury: { name: 'Fury', label: 'Fury (CRIT)', inputType: 'dropdown', dropdown: lvs(5, (l) => ({ cri: 7.5 + 2.5 * l })) },
   'Summon Spirit Sphere': { name: 'Summon Spirit Sphere', label: 'Spirit Spheres (+3 dmg each)', inputType: 'dropdown', dropdown: lvs(5) },
+  // Sage endows (ROZ EN client name; Thai client: Flame Launcher / Lightning Loader / Frost Weapon / Seismic Weapon).
+  // Element magic damage +1%/Lv; the weapon element itself is picked in the weapon element box.
+  'Endow Blaze': { name: 'Endow Blaze', label: 'Endow Blaze / Flame Launcher (Fire magic +Lv%)', inputType: 'dropdown', dropdown: lvs(5, (l) => ({ m_my_element_fire: l })) },
+  'Endow Tornado': { name: 'Endow Tornado', label: 'Endow Tornado / Lightning Loader (Wind magic +Lv%)', inputType: 'dropdown', dropdown: lvs(5, (l) => ({ m_my_element_wind: l })) },
+  'Endow Tsunami': { name: 'Endow Tsunami', label: 'Endow Tsunami / Frost Weapon (Water magic +Lv%)', inputType: 'dropdown', dropdown: lvs(5, (l) => ({ m_my_element_water: l })) },
+  'Endow Quake': { name: 'Endow Quake', label: 'Endow Quake / Seismic Weapon (Earth magic +Lv%)', inputType: 'dropdown', dropdown: lvs(5, (l) => ({ m_my_element_earth: l })) },
+  // Double Bolt (Thai client: Lucky Cast): 30 + 10 x Lv % chance that a Bolt is cast once more (used by Auto Spell rows)
+  'Double Bolt': { name: 'Double Bolt', label: 'Double Bolt / Lucky Cast (Bolt recast 30+10xLv %)', inputType: 'dropdown', dropdown: lvs(5) },
 };
 
 /** ROZ Global caps (Sept 2026 patch: Base 60 / Job 60). Kept at the classic 99 / 50-70 so builds can be planned ahead. */
@@ -164,7 +172,17 @@ const AUTO_ATTACK_SKILL: AtkSkillModel = {
   formula: () => 100,
 } as any;
 
+/** Sage Hindsight (Thai client: Auto Spell): spells it can cast, with the Hindsight level that unlocks each (client text). */
+const AUTO_SPELLS: [name: string, minLv: number][] = [
+  ['Fire Bolt', 1], ['Cold Bolt', 1], ['Lightning Bolt', 1], ['Soul Strike', 4], ['Fire Ball', 4],
+  ['Frost Diver', 7], ['Earth Spike', 7], ['Thunder Storm', 10], ["Heaven's Drive", 10],
+];
+
 export const ROZ_PROC_SKILLS: Record<string, AtkSkillModel[]> = {
+  Hindsight: AUTO_SPELLS.map(([spell, minLv]) => {
+    const spec = ROZ_ATK_SKILLS.find((x) => x.name === spell);
+    return procSkill('Hindsight', `Auto Spell - ${spell} (auto attack)`, { kind: 'autospell', spell, minLv, element: spec?.element ? ELEMENT[spec.element] : undefined }, true, () => 100);
+  }),
   'Double Attack': [AUTO_ATTACK_SKILL],
   'Duple Light': [procSkill('Duple Light', 'Duple Light (auto attack)', { kind: 'duple' }, false, (lv) => 500 + 50 * lv)],
   'Spell Fist': [

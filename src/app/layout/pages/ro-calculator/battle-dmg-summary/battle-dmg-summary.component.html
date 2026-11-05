@@ -218,7 +218,7 @@
   <ng-container *ngIf="totalSummary?.dmg?.rozProcs as rp">
     <div class="col-12 roz-proc-sum">
       <div class="roz-proc-sum-title">
-        {{ rp.kind === 'auto' ? 'Auto attack breakdown' : 'Auto attack procs' }} <small><ng-container *ngIf="rp.kind !== 'auto'">Lv {{ rp.level }} · </ng-container>{{ rp.hitsPerSec }} auto attacks/s · hit {{ rp.accuracy }}%</small>
+        {{ rp.kind === 'auto' ? 'Auto attack breakdown' : 'Auto attack + procs' }} <small><ng-container *ngIf="rp.kind !== 'auto'">Lv {{ rp.level }} · </ng-container>{{ rp.hitsPerSec }} auto attacks/s · hit {{ rp.accuracy }}%</small>
       </div>
       <table class="roz-procs-table">
         <tr><th></th><th>Chance</th><th>Damage per proc</th><th>DPS</th></tr>
@@ -232,14 +232,6 @@
           <td class="dps">
             {{ r.dps | number }}
             <small class="cmp" *ngIf="isEnableCompare && totalSummary2?.dmg?.rozProcs?.rows?.[i] as r2">→ {{ r2.dps | number }}</small>
-          </td>
-        </tr>
-        <tr class="sum" *ngIf="rp.kind !== 'auto'">
-          <td>Auto attack</td><td></td>
-          <td class="dmg">{{ totalSummary?.dmg?.basicMinDamage | number }} - {{ totalSummary?.dmg?.basicMaxDamage | number }}</td>
-          <td class="dps">
-            {{ totalSummary?.dmg?.basicDps | number }}
-            <small class="cmp" *ngIf="isEnableCompare && totalSummary2?.dmg">→ {{ totalSummary2?.dmg?.basicDps | number }}</small>
           </td>
         </tr>
       </table>

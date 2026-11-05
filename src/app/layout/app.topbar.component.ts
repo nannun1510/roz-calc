@@ -201,6 +201,16 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.22 (alpha)',
+      date: '05-11-2026',
+      logs: [
+        'Sage: Auto Spell (Hindsight in the English client) is now in the Skill list for Fire / Cold / Lightning Bolt, Soul Strike, Fire Ball, Frost Diver, Earth Spike, Thunder Storm and Heaven\'s Drive: 2% x Lv chance per auto attack, cast at half the Auto Spell level (game text).',
+        'Sage: added Lucky Cast (Double Bolt): 30 + 10 x Lv % chance for an auto-cast Bolt to be cast again.',
+        'Sage: added Flame Launcher / Lightning Loader / Frost Weapon / Seismic Weapon (Endow Blaze / Tornado / Tsunami / Quake): element magic damage +1% per Lv.',
+        'Auto attack procs (Spell Fist, Auto Spell, Duple Light) now include Double Attack from Sidewinder Card / Double Attack Stone (and dual wield / katar hits) in the auto attack rows.',
+      ],
+    },
+    {
       v: 'ROZ Global v0.21 (alpha)',
       date: '03-11-2026',
       logs: [

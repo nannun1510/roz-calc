@@ -58,4 +58,5 @@ export interface MainModel extends Partial<EquipmentModel> {
   rozLuckyCastLv?: number;
   rozDupleLv?: number;
   rozProcChance2?: number;
+  rozBashChance?: number;
 }

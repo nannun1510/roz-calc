@@ -1298,7 +1298,7 @@ export class DamageCalculator {
     const clampLv = (v: any, max: number) => Math.min(max, Math.max(1, Number(v) || max));
     type Row = { label: string; chance: number; min: number; max: number; avg?: number; dps: number; element: string; type: string; note: string; main?: boolean; proc?: boolean };
     const rows: Row[] = [];
-    const add = (label: string, isMatk: boolean, ratio: number, chance: number, element: ElementType | undefined, canMiss: boolean, note: string, hits = 1, skillName = skill.name) => {
+    const add = (label: string, isMatk: boolean, ratio: number, chance: number, element: ElementType | undefined, canMiss: boolean, note: string, hits = 1, skillName = skill.name, ownHit?: number) => {
       const skillData: any = { name: skillName, isMatk, isMelee: !isMatk, ...(element ? { element } : {}) };
       const r0 = isMatk
         ? this.calcMagicalSkillDamage({ skillData, baseSkillDamage: ratio, weaponPropertyAtk: a.propertyAtk })
@@ -1306,7 +1306,7 @@ export class DamageCalculator {
       const min = r0.minDamage * hits;
       const max = r0.maxDamage * hits;
       const avg = (min + max) / 2;
-      const dps = floor(chance * avg * a.hitsPerSec * acc * (canMiss ? acc : 1));
+      const dps = floor(chance * avg * a.hitsPerSec * acc * (canMiss ? ownHit ?? acc : 1));
       rows.push({ label, chance: round(chance * 100, 1), min, max, avg: floor(avg), dps, element: r0.propertyAtk, type: isMatk ? 'Magical' : 'Physical', note, proc: true });
       return rows[rows.length - 1];
     };
@@ -1364,6 +1364,17 @@ export class DamageCalculator {
       const ch = custom1 > 0 ? custom1 / 100 : (10 + 2 * lv) / 100;
       add(`Duple Strike Lv ${lv}`, false, 500 + 50 * lv, ch, undefined, true, `${500 + 50 * lv}% ATK`);
       add(`Duple Magic Lv ${lv}`, true, 800 + 80 * lv, ch, ElementType.Neutral, false, `${800 + 80 * lv}% MATK`);
+    }
+
+    // Essence autocast (Priest / Alchemist Essence II Lv.2): Bash Lv 10 on normal melee attacks.
+    // Chance is not in the client ("high chance"): 15% by default (user's in-game estimate), editable.
+    const bashLv = Number(this.totalBonus['roz_autobash']) || 0;
+    if (bashLv > 0 && !this.isRangeAtk()) {
+      const spec: any = ROZ_ATK_SKILLS.find((x) => x.name === 'Bash');
+      const lv = Math.min(10, bashLv);
+      const ratio = spec?.ratio?.[lv - 1] ?? 400;
+      const bashCh = Number(m.rozBashChance) > 0 ? Number(m.rozBashChance) / 100 : 0.15;
+      add(`Bash Lv ${lv} (essence autocast)`, false, ratio, bashCh * (1 - sfCh), undefined, true, `${ratio}% ATK · +${5 * lv}% hit · ${round(bashCh * 100, 1)}% per normal hit`, 1, 'Bash', Math.min(1, acc + (5 * lv) / 100));
     }
 
     const procDps = rows.filter((r) => r.proc).reduce((t, r) => t + r.dps, 0);

@@ -137,7 +137,7 @@ export class RozSkillPanelComponent {
   get procOnCount() {
     const m = this.model || {};
     return (this.has('spellFist') && m.rozSpellFist ? 1 : 0) + (this.has('autoSpell') && m.rozAutoSpell ? 1 : 0)
-      + (this.has('luckyCast') && m.rozLuckyCastLv > 0 ? 1 : 0) + (this.has('duple') && m.rozDupleLv > 0 ? 1 : 0);
+      + (this.has('luckyCast') && m.rozLuckyCastLv > 0 ? 1 : 0) + (this.has('duple') && m.rozDupleLv > 0 ? 1 : 0) + (this.has('bash') ? 1 : 0);
   }
   private asOptCache: { lv: number; opts: any[] } = { lv: -1, opts: [] };
   get autoSpellOptions() {

@@ -9,7 +9,8 @@ export class BattleDmgSummaryComponent {
   /** names of ROZ auto attack procs switched on in the Skills panel (they only count with Skill = Auto Attack) */
   get rozProcsOn(): string {
     const m: any = this.model || {};
-    return [m.rozSpellFist && 'Spell Fist', m.rozAutoSpell && 'Auto Spell', m.rozDupleLv > 0 && 'Duple Light'].filter(Boolean).join(', ');
+    const bash = [m.armorEnchant1, m.armorEnchant2, m.armorEnchant3].some((id: any) => [9529570, 9529574].includes(Number(id)));
+    return [m.rozSpellFist && 'Spell Fist', m.rozAutoSpell && 'Auto Spell', m.rozDupleLv > 0 && 'Duple Light', bash && 'Bash (essence)'].filter(Boolean).join(', ');
   }
 
   @Input({ required: true }) model = {} as any;

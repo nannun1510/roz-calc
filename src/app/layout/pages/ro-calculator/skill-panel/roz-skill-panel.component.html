@@ -73,7 +73,15 @@
           <span></span>
           <small>{{ dupleHint }}</small>
         </div>
-        <div class="rsp-custom">
+        <div class="rsp-pr" *ngIf="has('bash')" [class.on]="true">
+          <label>Bash (essence)</label>
+          <span class="rsp-ci">chance
+            <p-inputNumber [(ngModel)]="model.rozBashChance" (ngModelChange)="onChange()" [min]="0" [max]="100" [maxFractionDigits]="1" suffix=" %" inputStyleClass="rsp-num" placeholder="15"></p-inputNumber>
+          </span>
+          <span></span>
+          <small>Lv 10 · 400% ATK · game: "high chance", default 15%</small>
+        </div>
+        <div class="rsp-custom" *ngIf="has('spellFist') || has('duple') || has('autoSpell')">
           <p-checkbox [binary]="true" inputId="rspCustom" [ngModel]="isCustom" (ngModelChange)="onCustomToggle($event)"></p-checkbox>
           <label for="rspCustom">Custom chance</label>
           <ng-container *ngIf="isCustom">

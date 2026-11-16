@@ -201,6 +201,18 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
 
   updates: { v: string; date: string; logs: string[]; }[] = [
     {
+      v: 'ROZ Global v0.24 (alpha)',
+      date: '16-11-2026',
+      logs: [
+        'Game data updated to the 16 Nov patch (new costumes; essence changes: Alchemist II Mammonite 20%, Hunter Blitz Beat 20% / 40%, Crusader Holy Cross 20%, Knight II Brandish Spear 20%).',
+        'New: all 60 Subjugation / Expedition essences, in the 4th enchant slot of Subjugation Team\'s Armor, Expedition\'s Armor and Expedition\'s Robe. They work at armor refine +9 or higher.',
+        'Essence bonuses that scale with a skill level use the Learned tab; added the missing learned-level fields (Discount, Overcharge, Steal, Grimtooth, Gank, Snatch, Potion Research, Prepare Potion, Magnificat, Maximize Power, Heaven\'s Drive, Lord of Vermilion, Fire Wall, Hindsight).',
+        'New: Bash Lv 10 autocast from Priest / Alchemist Essence II Lv.2, shown under Skill "Auto Attack". The game only says "high chance": 15% by default, editable in Skills > Self skills.',
+        'FIX: set bonuses of Expedition / Subjugation Team armor now need the full set (and total refine 21+ / 17+ for the ASPD / cast part).',
+        'FIX: Merman Card AGI / DEX / Ranged damage / Perfect Hit is a 5-card set bonus (with Cruiser, Anolian, Alligator, Dragon Tail Card), no longer given by Merman alone.',
+      ],
+    },
+    {
       v: 'ROZ Global v0.23 (alpha)',
       date: '05-11-2026',
       logs: [

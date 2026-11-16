@@ -283,6 +283,14 @@ def parse_slot_refine(l):
 STAT_WORDS = re.compile(r'ATK|CRIT|ASPD|[Dd]amage|HIT|Critical|Attack Speed|Cast')
 
 
+def resolve_equip_name(n):
+    """Item name as written in a set header -> the item's real name ('Team’s Boots' -> 'Team Boots')."""
+    n = n.replace('’', "'").strip()
+    for cand in (n, n.replace("'s ", ' '), n.replace(' ', "'s ", 1), {'Shellfish Card': 'Shell Fish Card'}.get(n, n)):
+        if cand in EQUIP_NAMES: return cand
+    return None
+
+
 def parse_sentences(l):
     """'INT +1. If refine level >= 7, MSP +100.' -> each sentence on its own; a leading
     'When equipped by <class>' condition carries over to the sentences after it."""
@@ -556,7 +564,22 @@ for k, v in S.items():
                 if cand in EQUIP_NAMES: cond = cand; break
             else: cond = '?'
             continue
-        if cond and (l.startswith('_') or l.startswith('<') or not re.search(r'[+-]\s*\d', l)): cond = None
+        # set header with a list of items: "When equipped with Expedition Manteau, Expedition Boots, and Expedition Ring:"
+        mm = re.fullmatch(r'When equipped (?:together )?with (.+?):', l)
+        if mm:
+            names = [x.strip() for x in re.split(r',\s*(?:and\s+)?|\s+and\s+', mm.group(1))]
+            if names[-1].endswith(' Card'):
+                names = [x if x.endswith(' Card') else x + ' Card' for x in names]
+            names = [resolve_equip_name(x) for x in names]
+            cond = '&&'.join(names) if all(names) else '?'
+            continue
+        # "If total refine level is 21 or higher:" inside a set block -> total refine of the refinable set pieces
+        mm = re.fullmatch(r'If total refine level is (\d+) or higher:', l)
+        if mm and cond and cond != '?' and '&&' in cond:
+            cond = cond.split('REFINE[')[0] + f']REFINE[armor,garment,boot=={mm.group(1)}]==='
+            continue
+        if cond and (l.startswith('_') or l.startswith('<') or l.startswith('---')): cond = None
+        if cond and not re.search(r'[+-]\s*\d|-\d+%', l) and not l.endswith(','): cond = None
         tagged.append(f'§{cond}§{l}' if cond else l)
     body = tagged
     script, un = collections.defaultdict(list), []
@@ -566,7 +589,9 @@ for k, v in S.items():
         if mm: cond, l = mm.group(1), mm.group(2)
         r = parse_line(l)
         if r is not None and cond:
-            r = None if cond == '?' else [(k, f'EQUIP[{cond}]{v}') for k, v in r]
+            if cond == '?': r = None
+            elif ']REFINE[' in cond: r = [(k, f'EQUIP[{cond}{v}') for k, v in r]   # EQUIP[a&&b]REFINE[..==21]===v
+            else: r = [(k, f'EQUIP[{cond}]{v}') for k, v in r]
         if r is None:
             if re.search(r'\d|%|[Ii]gnore', l) and not NO_DMG_EFFECT.search(l): un.append(l); unp[re.sub(r'\d+', 'N', l)] += 1
             continue

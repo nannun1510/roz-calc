@@ -1,6 +1,6 @@
 import { ItemOptionMap } from '../../../constants/item-options-table';
 import { RozFoodStatList } from '../../../constants/roz-consumables';
-import { ROZ_AUTO_ATTACK_VALUE } from '../../../jobs/roz/roz-procs';
+import { ROZ_AUTO_ATTACK_VALUE, ROZ_BASH_ESSENCES } from '../../../jobs/roz/roz-procs';
 import { decodeBuild, encodeBuild } from '../../../utils/roz-build-code';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService, PrimeIcons, SelectItemGroup } from 'primeng/api';
@@ -2512,7 +2512,13 @@ export class RoCalculatorComponent implements OnInit, OnDestroy {
 
   // ROZ auto attack: procs (Spell Fist / Auto Spell / Lucky Cast / Duple Light) are set in the Skills panel
   get rozProcs(): string[] {
-    return ((this.selectedCharacter as any)?.rozProcs as string[]) || [];
+    const list = ((this.selectedCharacter as any)?.rozProcs as string[]) || [];
+    return this.hasBashEssence ? [...list, 'bash'] : list;
+  }
+  /** Priest / Alchemist Essence II Lv.2 (armor 4th slot): Bash Lv 10 autocast on melee auto attacks */
+  get hasBashEssence() {
+    const m: any = this.model || {};
+    return [m.armorEnchant1, m.armorEnchant2, m.armorEnchant3].some((id) => ROZ_BASH_ESSENCES.includes(Number(id)));
   }
   get isRozAutoAttack() {
     return this.model?.selectedAtkSkill === ROZ_AUTO_ATTACK_VALUE;

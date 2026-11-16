@@ -11,3 +11,6 @@ export const ROZ_PROC_TREE: Record<string, string> = { 'Spell Fist': 'spellFist'
 
 /** Skill value of the Auto Attack entry (kept from v0.14 so old build codes still load). */
 export const ROZ_AUTO_ATTACK_VALUE = 'Auto Attack (Double Attack / Dual wield / Katar)==1';
+
+/** Essence enchant item ids (gen-enchants.py: 9_500_000 + client id) whose text autocasts Bash Lv 10. */
+export const ROZ_BASH_ESSENCES = [9529570, 9529574];

@@ -166,6 +166,14 @@ const autoAttackSkill = (procNames: string[], treeNames: string[]): AtkSkillMode
   return { ...AUTO_ATTACK_SKILL, label } as AtkSkillModel;
 };
 
+/** Skills whose learned level essence bonuses read (client essence text). */
+const ROZ_ESSENCE_SKILLS = [
+  'Discount', 'Overcharge', 'Steal', 'Fire Wall', 'Grimtooth', "Heaven's Drive", 'Lord of Vermilion', 'Magnificat', 'Maximize Power',
+  'Potion Research', 'Prepare Potion', 'Gank', 'Snatch', 'Hindsight', 'Bash', 'Heal', 'Blitz Beat', 'Cavalier Mastery', 'Faith',
+  'Demon Bane', 'Mace Mastery', 'Study', 'Spear Mastery', 'Skin Tempering', 'Lefthand Mastery', 'Weaponry Research',
+  'Music Lessons', 'Dance Lessons', "Vulture's Eye",
+];
+
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
 /** Engine skill names that differ from the ROZ English client name. */
@@ -249,6 +257,15 @@ function makeRozClass(Base: Ctor, cfg: RozClassConfig): Ctor {
           self._passiveSkillList.push({ name: spell, label: `${spell} (learned Lv, caps Auto Spell)`, inputType: 'dropdown', dropdown: lvs(max) });
           have.add(norm(spell));
         }
+      }
+      // Essences (armor 4th slot) scale with the learned level of these skills; give a Learned-tab field
+      // when the class has the skill in its ROZ tree but no passive level for it yet.
+      const passiveNames = new Set(self._passiveSkillList.map((x: any) => norm(x.name)));
+      const treeLv = new Map([...(ROZ_SKILL_TREE[cfg.firstJob] ?? []), ...(cfg.isSecond ? ROZ_SKILL_TREE[cfg.className] ?? [] : [])].map((t) => [t.name, t.maxLv]));
+      for (const n of ROZ_ESSENCE_SKILLS) {
+        if (!treeLv.has(n) || passiveNames.has(norm(n))) continue;
+        self._passiveSkillList.push({ name: n, label: `${n} (learned Lv, essence bonus)`, inputType: 'dropdown', dropdown: lvs(treeLv.get(n) || 10) });
+        passiveNames.add(norm(n));
       }
       self.minMaxLevel = [1, ROZ_MAX_BASE_LEVEL];
       self.maxJob = cfg.isSecond ? ROZ_MAX_JOB_2ND : ROZ_MAX_JOB_1ST;

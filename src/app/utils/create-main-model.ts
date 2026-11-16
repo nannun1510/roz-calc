@@ -185,4 +185,5 @@ export const createMainModel = (): MainModel => ({
   rozLuckyCastLv: 0,
   rozDupleLv: 0,
   rozProcChance2: 0,
+  rozBashChance: 15,
 });

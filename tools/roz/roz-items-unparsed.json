@@ -1,9 +1,5 @@
 [
 [
-"If total refine level is N or higher:",
-3
-],
-[
 "When equipped with a Garment refined to +N or higher,",
 2
 ],
@@ -120,6 +116,10 @@
 1
 ],
 [
+"When ATK +N% (Upper), ATK +N%, and ATK +N% (Lower) are equipped on Upper, Middle, and Lower costume slots, ATK +N% is granted.",
+1
+],
+[
 "Chance to autocast Fire Ball Lv.N when dealing physical damage.",
 1
 ],
@@ -137,10 +137,6 @@
 ],
 [
 "When equipped together with Fei-chai’s Egg Lv.N or Tai-zi Egg Lv.N, physical attacks (melee/ranged) have a high chance to trigger ATK +N. The user loses N HP per second for N second, lasting N seconds.",
-1
-],
-[
-"When ATK +N% (Upper), ATK +N%, and ATK +N% (Lower) are equipped on Upper, Middle, and Lower costume slots, ATK +N% is granted.",
 1
 ],
 [
